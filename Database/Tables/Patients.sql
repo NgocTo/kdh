@@ -4,5 +4,6 @@
     [FirstName] VARCHAR(50) NOT NULL, 
     [LastName] VARCHAR(50) NOT NULL, 
     [UserId] UNIQUEIDENTIFIER NULL, 
+    [HealthCardNumber] VARCHAR(12) NULL, 
     CONSTRAINT [FK_Patients_Users] FOREIGN KEY ([UserId]) REFERENCES [Users]([Id])
 )
