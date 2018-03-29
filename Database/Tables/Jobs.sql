@@ -11,6 +11,6 @@ DateClosed DATETIME CONSTRAINT jobs_dateclosed_ck CHECK(DateClosed > GetDate()),
 JobShift VARCHAR(50),
 Salary VARCHAR(50) CONSTRAINT jobs_salary_nn NOT NULL,
 Requirement VARCHAR(max) CONSTRAINT jobs_requirement_nn NOT NULL,
-UsersId UNIQUEIDENTIFIER CONSTRAINT jobs_managerid_fk REFERENCES Users(Id)
+UserId UNIQUEIDENTIFIER CONSTRAINT jobs_userid_fk REFERENCES Users(Id)
 CONSTRAINT jobs_managerid_nn NOT NULL
 )
