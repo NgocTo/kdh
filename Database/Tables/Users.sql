@@ -5,5 +5,6 @@
     [Password] CHAR(64) NULL, 
     [Role] VARBINARY(7) NOT NULL, 
     CONSTRAINT [AK_Users_Email] UNIQUE ([Email]), 
-    CONSTRAINT [CK_Users_Role] CHECK ([Role] IN ('admin', 'patient'))
+    CONSTRAINT [CK_Users_Role] CHECK ([Role] IN ('admin', 'patient')),
+	CONSTRAINT [CK_Users_Email] CHECK (Email like '%_@__%.__%' AND Email not like '@%')
 )
