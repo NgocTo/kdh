@@ -63,5 +63,11 @@
   <ItemGroup>
     <Build Include="Tables\Users.sql" />
     <Build Include="Tables\Patients.sql" />
+    <Build Include="Tables\LabReports.sql" />
+    <Build Include="Tables\LabResults.sql" />
+    <Build Include="Tables\TestTypes.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Database.refactorlog" />
   </ItemGroup>
 </Project>
