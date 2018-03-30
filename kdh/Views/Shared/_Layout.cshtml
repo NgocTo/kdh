@@ -3,32 +3,68 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Career Opportunities</title>
+    <title>@ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
+        </div>*@
+
+    <nav class="navbar-dark bg-primary fixed-top" role="navigation">
+        <ul class="py-3 nav justify-content-end mr-auto">
+            <li class="nav-item mr-3"><a class=" text-light" href="#">KDH</a></li>
+            <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
+            <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
+            <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
+            <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
+            <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
+        </ul>
+    </nav>
+
+    <!-- START OF BODY CONTENT -->
+    <div class="container body-content">
+        <div class="row">
+            <aside class="col-sm-3 bg-light rounded-right">
+                <div class="mb-3 mt-2">
+                    <h3 class="text-dark">Features</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                    </ul>
+                </div>
+            </aside>
+            <main class="col-sm-9">
+                @RenderBody()
+                <hr />
+            </main>
         </div>
     </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
+    <div class="container">
         <footer>
             <p>&copy; @DateTime.Now.Year - KDH Project</p>
         </footer>
