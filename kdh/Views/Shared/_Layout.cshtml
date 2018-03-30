@@ -10,16 +10,18 @@
 </head>
 
 <body>
-<!-- HEADER CREATED BY TERUMI KUSAKA-->
+<!-- HEADER -->
     <header>
-        <div class="container-fluid" style="background-color: #17429b;">
+        <div class="container-fluid" id="header">
 
-            <div class="row p-4"> 
-                <div class="bg-light col-md-1 p-4">LOGO</div>
-                <div class="col-md-7">
-                    <h2><a href="#" class="text-white font-weight-bold align-middle">Humber and District Hospital</a></h2>
+            <div class="row p-2 h-100" id="navigation"> 
+                <div class="col-1">
+                    <div style="width: 50px; height: 50px; background-color: gainsboro;">LOGO</div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-7 d-none d-md-block">
+                    <h2><a href="#" class="h3 text-white font-weight-bold">Humber and District Hospital</a></h2>
+                </div>
+                <div class="col-5 col-md-2 offset-1 offset-md-0">
                     <form>
                         <select class="form-control" aria-label="Language">
                             <option>ENG</option>
@@ -27,31 +29,36 @@
                         </select>
                     </form>
                 </div>
+                <button class="navbar-toggler bg-light d-block d-md-none" type="button" data-toggle="collapse" data-target="#toggleMenu" aria-controls="toggleMenu"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="col-md-2">
                     <form>
-                        <button class="btn btn-danger btn-lg" type="submit">Donate Now</button>
+                        <button class="btn btn-danger d-none d-md-block" type="submit">Donate Now</button>
                     </form>
                 </div>
+
             </div> <!-- end of 1st row -->
 
-            <nav class="navbar navbar-dark navbar navbar-expand-lg " role="navigation">
+            <nav class="navbar navbar-expand-md" role="navigation">
 
-                <div class="row col-md-12 ">
+                <div class="row col-12 collapse navbar-collapse" id="toggleMenu">
                     <ul class="navbar-nav col-md-9">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Patient &amp; Visitor Resources</a>
+                            <a class="nav-link text-white mr-2" href="#">Patient &amp; Visitor</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
+                            <a class="nav-link text-white mr-2" href="#">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Career &amp; Volunteering</a>
+                            <a class="nav-link text-white mr-2" href="#">Career &amp; Volunteering</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Foundation</a>
+                            <a class="nav-link text-white mr-2" href="#">Foundation</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact Us</a>
+                            <a class="nav-link text-white mr-2" href="#">Contact Us</a>
                         </li>
                     </ul>
                     <div class="col-md-3">
@@ -63,9 +70,6 @@
                         </div>
                     </div>
                 </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
             </nav>
 
         </div><!-- end of container fluid -->
@@ -73,16 +77,6 @@
 
 <!-- END OF HEADER-->
 
-    @*<nav class="navbar-dark bg-primary fixed-top" role="navigation">
-            <ul class="py-3 nav justify-content-end mr-auto">
-                <li class="nav-item mr-3"><a class=" text-light" href="#">KDH</a></li>
-                <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
-                <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
-                <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
-                <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
-                <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
-            </ul>
-        </nav>*@
 
     <!-- START OF BODY CONTENT -->
     <div class="container body-content">
@@ -116,7 +110,7 @@
         </footer>
     </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
