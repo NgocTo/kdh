@@ -10,33 +10,79 @@
 </head>
 
 <body>
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                    </ul>
-                </div>
-            </div>
-        </div>*@
+<!-- HEADER CREATED BY TERUMI KUSAKA-->
+    <header>
+        <div class="container-fluid" style="background-color: #17429b;">
 
-    <nav class="navbar-dark bg-primary fixed-top" role="navigation">
-        <ul class="py-3 nav justify-content-end mr-auto">
-            <li class="nav-item mr-3"><a class=" text-light" href="#">KDH</a></li>
-            <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
-            <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
-            <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
-            <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
-            <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
-        </ul>
-    </nav>
+            <div class="row p-4"> 
+                <div class="bg-light col-md-1 p-4">LOGO</div>
+                <div class="col-md-7">
+                    <h2><a href="#" class="text-white font-weight-bold align-middle">Humber and District Hospital</a></h2>
+                </div>
+                <div class="col-md-2">
+                    <form>
+                        <select class="form-control" aria-label="Language">
+                            <option>ENG</option>
+                            <option>FR</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="col-md-2">
+                    <form>
+                        <button class="btn btn-danger btn-lg" type="submit">Donate Now</button>
+                    </form>
+                </div>
+            </div> <!-- end of 1st row -->
+
+            <nav class="navbar navbar-dark navbar navbar-expand-lg " role="navigation">
+
+                <div class="row col-md-12 ">
+                    <ul class="navbar-nav col-md-9">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Patient &amp; Visitor Resources</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Career &amp; Volunteering</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Foundation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact Us</a>
+                        </li>
+                    </ul>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-light" type="button">Go</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+
+        </div><!-- end of container fluid -->
+    </header>
+
+<!-- END OF HEADER-->
+
+    @*<nav class="navbar-dark bg-primary fixed-top" role="navigation">
+            <ul class="py-3 nav justify-content-end mr-auto">
+                <li class="nav-item mr-3"><a class=" text-light" href="#">KDH</a></li>
+                <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
+                <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
+                <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
+                <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
+                <li class="nav-item mr-3">@Html.ActionLink("Add Patient", "Create", "TerumiKusaka", new { area = "" }, new { @class = "text-light" })</li>
+            </ul>
+        </nav>*@
 
     <!-- START OF BODY CONTENT -->
     <div class="container body-content">
@@ -45,7 +91,7 @@
                 <div class="mb-3 mt-2">
                     <h3 class="text-dark">Features</h3>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                        <li class="list-group-item">@Html.ActionLink("Link", "Jobs")</li>
                         <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
                         <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
                         <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
