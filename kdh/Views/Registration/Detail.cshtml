@@ -1,0 +1,33 @@
+﻿@model kdh.ViewModels.RegistrationVM
+
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+<div>Name: @Model.FirstName @Model.LastName</div>
+<div>
+    Date of Birth:
+    @if (Model.DateOfBirth.HasValue)
+    {
+        @Model.DateOfBirth
+    }
+    else
+    {
+        <span>N/A</span>
+    }
+</div>
+<div>Gender: @Model.Gender</div>
+<div>OHIP: @Model.HealthCardNumber</div>
+<div>Address1: @Model.Address1</div>
+<div>Address2: @Model.Address2</div>
+<div>City: @Model.City</div>
+<div>Province: @Model.Province</div>
+<div>Postal Code: @Model.PostalCode</div>
+<div>Phone: @Model.Phone</div>
+<div>Email: @Model.Email</div>
+
+
+
+

@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="51d4d841db7d447c8f2e24f8b1b47e2b" Name="Diagram1">
-        <EntityTypeShape EntityType="HospitalModel.LabReport" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModel.Patient" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModel.Result" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModel.TestType" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModel.User" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <AssociationConnector Association="HospitalModel.FK_LabReports_Patients" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalModel.FK_Results_LabReports" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalModel.FK_Patients_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalModel.FK_Results_TestTypes" ManuallyRouted="false" />
+      <Diagram DiagramId="c45db9eee3dc4b5791972524afc55ddb" Name="Diagram1">
+        <EntityTypeShape EntityType="HospitalModels.LabReport" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalModels.Patient" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalModels.Result" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalModels.TestType" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalModels.User" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="HospitalModels.FK_LabReports_Patients" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalModels.FK_Results_LabReports" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalModels.FK_Patients_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalModels.FK_Results_TestTypes" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

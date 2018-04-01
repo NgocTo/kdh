@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PatientPortal_IS_0307.Models
+namespace kdh.ViewModels
 {
     public class PatientVM
     {

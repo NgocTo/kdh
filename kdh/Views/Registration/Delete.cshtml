@@ -1,0 +1,33 @@
+﻿@model kdh.ViewModels.PatientVM
+
+
+@{
+    ViewBag.Title = "Delete User Account";
+}
+
+<h2>Delete</h2>
+@using (Html.BeginForm("Delete", "Registration", new { id = ViewBag.Id }))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <div>
+            @Html.LabelFor(model => model.FullName)
+        </div>
+        <div>
+            @Html.TextBoxFor(model => model.FullName, new { disabled = "disabled" })
+        </div>
+    </div>
+    <div>
+        <div>
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div>
+            @Html.TextBoxFor(model => model.Email, new { disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+    </div>
+    <div>
+        Are you sure to delete the online account of the patient?
+        <input type="submit" value="Delete" />
+    </div>
+}

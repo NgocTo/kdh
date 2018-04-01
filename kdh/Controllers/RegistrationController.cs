@@ -6,14 +6,15 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using kdh.ViewModels;
 
-namespace PatientPortal_IS_0307.Controllers
+namespace kdh.Controllers
 {
-    public class TerumiKusakaController : Controller
+    public class RegistrationController : Controller
     {
         HospitalContext context = new HospitalContext();
 
-        // GET: TerumiKusaka
+        // GET: Registration
         public ActionResult Index()
         {
             try
@@ -164,7 +165,8 @@ namespace PatientPortal_IS_0307.Controllers
                         User u = new User
                         {
                             Id = userId,
-                            Email = registrationVM.Email
+                            Email = registrationVM.Email,
+                            Role = "patient"
                         };
                         p.UserId = userId;
 

@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace PatientPortal_IS_0307.Classes
+namespace kdh.Utils
 {
     public static class ErrorHandler
     {

@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace PatientPortal_IS_0307.Classes
+namespace kdh.Utils
 {
     public static class Hasher
     {

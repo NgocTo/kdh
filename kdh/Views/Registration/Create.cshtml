@@ -1,0 +1,131 @@
+﻿<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@model kdh.ViewModels.RegistrationVM
+
+@{
+    ViewBag.Title = "Register a Patient";
+}
+
+<h2>Register Patient</h2>
+
+
+@using (Html.BeginForm("Create", "Registration"))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <div>
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div>
+            @Html.TextBoxFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+    </div>
+    <div>
+        <div>
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div>
+            @Html.TextBoxFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+    </div>
+    <div>
+        <div>
+            @Html.LabelFor(model => model.Gender)
+            @Html.ValidationMessageFor(model => model.Gender)
+        </div>
+        <div>
+            <label>@Html.RadioButtonFor(model => model.Gender, "Female") Female</label>
+            <label>@Html.RadioButtonFor(model => model.Gender, "Male") Male</label>
+            <label>@Html.RadioButtonFor(model => model.Gender, "Other") Other</label>
+        </div>
+    </div>
+    <div>
+        <div>
+            @Html.LabelFor(model => model.HealthCardNumber)
+        </div>
+        <div>
+            @Html.TextBoxFor(model => model.HealthCardNumber)
+            @Html.ValidationMessageFor(model => model.HealthCardNumber)
+        </div>
+    </div>
+    <div>
+        <div>
+            @Html.LabelFor(model => model.Address1)
+        </div>
+        <div>
+            @Html.TextBoxFor(model => model.Address1)
+            @Html.ValidationMessageFor(model => model.Address1)
+        </div>
+    </div>
+    <div>
+        <div>
+            @Html.LabelFor(model => model.Address2)
+        </div>
+        <div>
+            @Html.TextBoxFor(model => model.Address2)
+            @Html.ValidationMessageFor(model => model.Address2)
+        </div>
+    </div>
+    <div>
+        <div>
+            @Html.LabelFor(model => model.City)
+        </div>
+        <div>
+            @Html.TextBoxFor(model => model.City)
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+    </div>
+    <div>
+        <div>
+            @Html.LabelFor(model => model.Province)
+        </div>
+        <div>
+            @Html.TextBoxFor(model => model.Province)
+            @Html.ValidationMessageFor(model => model.Province)
+        </div>
+    </div>
+    <div>
+        <div>
+            @Html.LabelFor(model => model.PostalCode)
+        </div>
+        <div>
+            @Html.TextBoxFor(model => model.PostalCode)
+            @Html.ValidationMessageFor(model => model.PostalCode)
+        </div>
+    </div>
+    <div>
+        <div>
+            @Html.LabelFor(model => model.DateOfBirth)
+        </div>
+        <div>
+            @Html.TextBoxFor(model => model.DateOfBirth, new { type = "date" })
+            @Html.ValidationMessageFor(model => model.DateOfBirth)
+        </div>
+    </div>
+    <div>
+        <div>
+            @Html.LabelFor(model => model.Phone)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Phone)
+            @Html.ValidationMessageFor(model => model.Phone)
+        </div>
+    </div>
+    <div>
+        <div>
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div>
+            @Html.TextBoxFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+    </div>
+    <div>
+        <input type="submit" value="Register" />
+    </div>
+}
+

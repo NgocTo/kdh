@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HospitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="HospitalModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="LabReports">
           <Key>
             <PropertyRef Name="Id" />
@@ -64,7 +64,7 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="char" MaxLength="64" />
-          <Property Name="Role" Type="varbinary" MaxLength="7" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="7" Nullable="false" />
         </EntityType>
         <Association Name="FK_LabReports_Patients">
           <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
@@ -114,7 +114,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HospitalModelStoreContainer">
+        <EntityContainer Name="HospitalModelsStoreContainer">
           <EntitySet Name="LabReports" EntityType="Self.LabReports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Results" EntityType="Self.Results" Schema="dbo" store:Type="Tables" />
@@ -141,7 +141,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="HospitalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="HospitalModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="LabReport">
           <Key>
             <PropertyRef Name="Id" />
@@ -208,7 +208,7 @@
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="64" FixedLength="true" Unicode="false" />
-          <Property Name="Role" Type="Binary" MaxLength="7" FixedLength="false" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Patients" Relationship="Self.FK_Patients_Users" FromRole="Users" ToRole="Patients" />
         </EntityType>
         <Association Name="FK_LabReports_Patients">
@@ -287,9 +287,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HospitalModelStoreContainer" CdmEntityContainer="HospitalContext">
+        <EntityContainerMapping StorageEntityContainer="HospitalModelsStoreContainer" CdmEntityContainer="HospitalContext">
           <EntitySetMapping Name="LabReports">
-            <EntityTypeMapping TypeName="HospitalModel.LabReport">
+            <EntityTypeMapping TypeName="HospitalModels.LabReport">
               <MappingFragment StoreEntitySet="LabReports">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
@@ -301,7 +301,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Patients">
-            <EntityTypeMapping TypeName="HospitalModel.Patient">
+            <EntityTypeMapping TypeName="HospitalModels.Patient">
               <MappingFragment StoreEntitySet="Patients">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -321,7 +321,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Results">
-            <EntityTypeMapping TypeName="HospitalModel.Result">
+            <EntityTypeMapping TypeName="HospitalModels.Result">
               <MappingFragment StoreEntitySet="Results">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ReportId" ColumnName="ReportId" />
@@ -333,7 +333,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestTypes">
-            <EntityTypeMapping TypeName="HospitalModel.TestType">
+            <EntityTypeMapping TypeName="HospitalModels.TestType">
               <MappingFragment StoreEntitySet="TestTypes">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
@@ -345,7 +345,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="HospitalModel.User">
+            <EntityTypeMapping TypeName="HospitalModels.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
