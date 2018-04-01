@@ -12,5 +12,5 @@ JobShift VARCHAR(50),
 Salary VARCHAR(50) CONSTRAINT jobs_salary_nn NOT NULL,
 Requirement VARCHAR(max) CONSTRAINT jobs_requirement_nn NOT NULL,
 UserId UNIQUEIDENTIFIER CONSTRAINT jobs_userid_fk REFERENCES Users(Id)
-CONSTRAINT jobs_managerid_nn NOT NULL
+CONSTRAINT jobs_userid_nn NOT NULL
 )

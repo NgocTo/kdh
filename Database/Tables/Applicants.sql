@@ -11,7 +11,6 @@ Email VARCHAR(50) CONSTRAINT applicants_email_nn NOT NULL
 CONSTRAINT applicants_email_ck CHECK (Email LIKE '%_@__%.__%' AND Email NOT LIKE '@%'),
 Phone VARCHAR(15) CONSTRAINT applicants_phone_nn NOT NULL
 CONSTRAINT applicants_phone_ck CHECK ((Phone NOT LIKE '%[^0-9]%') AND (DATALENGTH([Phone]) > 9)),
---ApplicantResume VARBINARY(8000) CONSTRAINT applicants_applicantresume_nn NOT NULL,--ALTER TABLE VARCHAR(max)
 JobId VARCHAR(50) CONSTRAINT applicants_jobid_fk REFERENCES Jobs(JobId)
 CONSTRAINT applicants_jobid_nn NOT NULL
 )
