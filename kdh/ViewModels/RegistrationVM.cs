@@ -61,32 +61,8 @@ namespace kdh.ViewModels
 
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         [StringLength(100, ErrorMessage = "Field must be less than 100 characters.")]
-        [Remote("IsAvailableEmail", "TerumiKusaka", ErrorMessage = "Email address already in use.")]
+        [Remote("IsAvailableEmail", "Account", HttpMethod ="POST", ErrorMessage = "Email address already in use.")]
         public string Email { get; set; }
 
     }
 }
-
-//  Table Column
-//  Id uniqueidentifier not null primary key,
-//  FirstName VARCHAR(50) not null,
-//	LastName VARCHAR(50) not null,
-//	HealthCardNumber VARCHAR(12) null,
-//	Address1 VARCHAR(100)    NULL,
-//	Address2 VARCHAR(100) NULL,
-//	City VARCHAR(20)     NULL,
-//	Province VARCHAR(20)     NULL,
-//	PostalCode VARCHAR(6)      NULL,
-//	DateOfBirth DATETIME         NULL,
-//	Gender VARCHAR(6)      NOT NULL,
-//  Phone            VARCHAR(15)     NULL,
-//	UserId UNIQUEIDENTIFIER NULL,
-//	EmailToken VARCHAR(100)    NOT NULL unique,
-//  CONSTRAINT patients_first_name_ck check(FirstName not like '%[^A-Z .]%'),
-//  CONSTRAINT patients_last_name_ck check(LastName not like '%[^A-Z .]%'),
-//  CONSTRAINT patients_health_card_num_ck check(HealthCardNumber like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]' OR HealthCardNumber like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z][A-Z]'),
-//  CONSTRAINT patients_postal_code_ck check(PostalCode like '[A-Z][0-9][A-Z][0-9][A-Z][0-9]'),
-//  CONSTRAINT patients_gender_ck CHECK(Gender= 'Others' OR Gender = 'Female' OR Gender = 'Male'),
-//  CONSTRAINT patients_phone_ck check((Phone not like '%[^0-9]%' ) AND(DATALENGTH([Phone]))>9),
-//  CONSTRAINT patients_users_fk FOREIGN KEY(UserId) REFERENCES Users(Id),
-

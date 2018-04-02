@@ -403,40 +403,15 @@ namespace kdh.Controllers
         }
 
 
-        // Remote Validation (working on)
+        // Remote Validation
+        // return false if email adress is in use
         [HttpPost]
         public JsonResult IsAvailableEmail(string email)
         {
-            return Json(!IsExistingEmail(email));
+            bool result = context.Users.Any(q => q.Email.ToLower() == email.ToLower());
+            return Json(!result);
         }
 
-        public bool IsExistingEmail(string Email)
-        {
-            // patients (and users) from database with values
-            List<User> users = context.Users.ToList();
-
-            //var RegEmail = context.Users.Any(q => q.Email.ToUpper() == Email.ToUpper());
-            // return RegEmail;
-
-            var RegEmail = (from u in users
-                            where u.Email.ToUpper() == Email.ToUpper()
-                            select new { Email }).FirstOrDefault();
-            bool status;
-
-            if (RegEmail != null)
-            {
-                // Value in db = Already in use
-                status = false;
-            }
-            else
-            {
-                // not in use
-                status = true;
-            }
-
-            return status;
-
-        }
 
 
     }
