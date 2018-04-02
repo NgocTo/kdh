@@ -46,5 +46,6 @@ namespace kdh.Utils
             return $"{DomainName}/Account/Registration?token={emailToken}";
 
         }
+
     }
 }

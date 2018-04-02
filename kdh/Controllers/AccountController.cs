@@ -154,7 +154,7 @@ namespace kdh.Controllers
                         PostalCode = registrationVM.PostalCode,
                         DateOfBirth = registrationVM.DateOfBirth,
                         Phone = registrationVM.Phone,
-                        EmailToken = GenerateEmailToken()
+                        EmailToken = TokenGenerator.GenerateEmailToken()
                     };
 
 
@@ -296,33 +296,33 @@ namespace kdh.Controllers
         {
             try
             {
-            if (String.IsNullOrWhiteSpace(id.ToString()))
-            {
-                return RedirectToAction("Index");
-            }
-
-            User u = context.Users.SingleOrDefault(q => q.Id == id);
-            Patient p = context.Patients.SingleOrDefault(q => q.UserId == id);
-
-
-            if (p != null)
-            {
-                // assigining value from db to VM
-                PatientVM patientVM = new PatientVM
+                if (String.IsNullOrWhiteSpace(id.ToString()))
                 {
-                    FullName = p.FirstName + " " + p.LastName,
-                };
-
-                if (p.User != null)
-                {
-                    patientVM.Email = p.User.Email;
+                    return RedirectToAction("Index");
                 }
 
-                ViewBag.Id = id;
-                return View(patientVM);
-            }
+                User u = context.Users.SingleOrDefault(q => q.Id == id);
+                Patient p = context.Patients.SingleOrDefault(q => q.UserId == id);
 
-            return RedirectToAction("Index");
+
+                if (p != null)
+                {
+                    // assigining value from db to VM
+                    PatientVM patientVM = new PatientVM
+                    {
+                        FullName = p.FirstName + " " + p.LastName,
+                    };
+
+                    if (p.User != null)
+                    {
+                        patientVM.Email = p.User.Email;
+                    }
+
+                    ViewBag.Id = id;
+                    return View(patientVM);
+                }
+
+                return RedirectToAction("Index");
 
             }
             catch (Exception e)
@@ -362,17 +362,48 @@ namespace kdh.Controllers
 
         }
 
-
-        // Other Methods
-        private string GenerateEmailToken()
+        [HttpGet]
+        public ActionResult Registration(string token)
         {
-            string now = DateTime.Now.ToString();
-            string emailTk = Guid.NewGuid().ToString();
-            string emailToken = Hasher.ToHashedStr(now + emailTk);
+            Patient p = context.Patients.SingleOrDefault(q => q.EmailToken == token && q.EmailToken != "");
 
-            return emailToken;
+            // if email token does not exist in the table
+            if (p == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                ViewBag.DisplayName = $"{p.FirstName} {p.LastName}";
+                ViewBag.UserId = p.UserId;
+                return View();
+            }
+
         }
 
+        [HttpPost]
+        public ActionResult Registration(AccountRegistrationVM vm)
+        {
+            if (ModelState.IsValid)
+            {
+                User u = context.Users.Single(q => q.Id == vm.UserId);
+                Patient p = context.Patients.Single(q => q.UserId == vm.UserId);
+
+                // hash password
+                u.Password = Hasher.ToHashedStr(vm.Password);
+
+                // clear the email token used for generating the link
+                p.EmailToken = String.Empty;
+
+                context.SaveChanges();
+
+            }
+
+            return View();
+        }
+
+
+        // Remote Validation (working on)
         [HttpPost]
         public JsonResult IsAvailableEmail(string email)
         {

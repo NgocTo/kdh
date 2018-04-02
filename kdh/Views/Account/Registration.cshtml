@@ -1,0 +1,37 @@
+﻿@model kdh.ViewModels.AccountRegistrationVM
+
+@{
+    ViewBag.Title = "Register to Patient Portal";
+}
+
+
+<h2>Create a Portal Account</h2>
+
+
+@using (Html.BeginForm("Registration", "Account"))
+{
+
+    <div>
+        @ViewBag.DisplayName
+    </div>
+    <div>
+        @Html.LabelFor(model=>model.Password)
+        @Html.EditorFor(model=>model.Password)
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.ConfirmPassword)
+        @Html.EditorFor(model => model.ConfirmPassword)
+        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+    </div>
+    <div>
+        <input type="hidden" name="UserId" value="@ViewBag.UserId" />
+    </div>
+    <div>
+        <input type="submit" value="Register" />
+    </div>
+
+}
+
+
+
