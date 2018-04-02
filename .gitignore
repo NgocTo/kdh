@@ -1,5 +1,7 @@
 # Git Ignore
 
+kdh/Web.config
+
 # Created by https://www.gitignore.io/api/visualstudio
 
 ### VisualStudio ###
