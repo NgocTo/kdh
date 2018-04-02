@@ -10,7 +10,7 @@ using kdh.ViewModels;
 
 namespace kdh.Controllers
 {
-    public class RegistrationController : Controller
+    public class AccountController : Controller
     {
         HospitalContext context = new HospitalContext();
 
@@ -169,6 +169,8 @@ namespace kdh.Controllers
                             Role = "patient"
                         };
                         p.UserId = userId;
+
+                        Mailer.SendEmail(u.Email, p.EmailToken);
 
                         context.Users.Add(u);
                     }

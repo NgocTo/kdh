@@ -164,7 +164,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\SampleController.cs" />
-    <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -202,6 +202,7 @@
     <Compile Include="Utils\DateValidator.cs" />
     <Compile Include="Utils\ErrorHandler.cs" />
     <Compile Include="Utils\Hasher.cs" />
+    <Compile Include="Utils\Mailer.cs" />
     <Compile Include="ViewModels\PatientVM.cs" />
     <Compile Include="ViewModels\RegistrationVM.cs" />
   </ItemGroup>
@@ -222,12 +223,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Registration\Index.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Errors\Details.cshtml" />
-    <Content Include="Views\Registration\Detail.cshtml" />
-    <Content Include="Views\Registration\Create.cshtml" />
-    <Content Include="Views\Registration\Edit.cshtml" />
-    <Content Include="Views\Registration\Delete.cshtml" />
+    <Content Include="Views\Account\Detail.cshtml" />
+    <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Account\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
