@@ -14,6 +14,7 @@
     [Phone] VARCHAR(15) NULL, 
     [UserId] UNIQUEIDENTIFIER NULL, 
     [EmailToken] CHAR(64) NOT NULL, 
+    [Status] VARCHAR(10) NOT NULL DEFAULT 'active', 
     CONSTRAINT [FK_Patients_Users] FOREIGN KEY ([UserId]) REFERENCES [Users]([Id]), 
     CONSTRAINT [AK_Patients_EmailToken] UNIQUE ([EmailToken]),
 	CONSTRAINT [CK_Patients_First_Name] CHECK (FirstName not like '%[^-.A-Z %''%]%'),
@@ -22,4 +23,6 @@
 	CONSTRAINT [CK_Patients_Postal_Code] CHECK (PostalCode like '[A-Z][0-9][A-Z][0-9][A-Z][0-9]'),
 	CONSTRAINT [CK_Patients_Gender] CHECK (Gender='Others' OR Gender='Female' OR Gender='Male'),
 	CONSTRAINT [CK_Patients_Phone] CHECK ((Phone not like '%[^0-9]%' ) AND (DATALENGTH([Phone]))>9),
+	CONSTRAINT [CK_Patients_Status] CHECK (Status='active' OR Status='inactive'),
+
 )
