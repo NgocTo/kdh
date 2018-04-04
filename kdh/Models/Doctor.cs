@@ -27,5 +27,7 @@ namespace kdh.Models
         public string Speciality { get; set; }
         public string Province { get; set; }
         public string City { get; set; }
+    
+        public virtual department department { get; set; }
     }
 }
