@@ -195,7 +195,6 @@
     <Compile Include="Models\FAQ.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FAQs.cs" />
     <Compile Include="Models\FAQsPurposes.cs" />
     <Compile Include="Models\HospitalContext.Context.cs">
       <AutoGen>True</AutoGen>
@@ -213,6 +212,9 @@
       <DependentUpon>HospitalContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Job.cs">
+      <DependentUpon>HospitalContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobManager.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LabReport.cs">
@@ -281,6 +283,10 @@
     <Content Include="Views\FAQ\Edit.cshtml" />
     <Content Include="Views\FAQ\Delete.cshtml" />
     <Content Include="Views\FAQ\Details.cshtml" />
+    <Content Include="Views\FAQ\PurposeList.cshtml" />
+    <Content Include="Views\FAQ\AddPurpose.cshtml" />
+    <Content Include="Views\FAQ\EditPurpose.cshtml" />
+    <Content Include="Views\FAQ\DeletePurpose.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

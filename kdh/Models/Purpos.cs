@@ -20,7 +20,7 @@ namespace kdh.Models
             this.FAQs = new HashSet<FAQ>();
         }
     
-        public string PurposeId { get; set; }
+        public int PurposeId { get; set; }
         public string PurposeToCreate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

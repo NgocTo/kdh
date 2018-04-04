@@ -31,6 +31,7 @@ namespace kdh.Models
         public virtual DbSet<DonateCreditCard> DonateCreditCards { get; set; }
         public virtual DbSet<DonationContact> DonationContacts { get; set; }
         public virtual DbSet<FAQ> FAQs { get; set; }
+        public virtual DbSet<JobManager> JobManagers { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<LabReport> LabReports { get; set; }
         public virtual DbSet<OnlineConsultationForm> OnlineConsultationForms { get; set; }

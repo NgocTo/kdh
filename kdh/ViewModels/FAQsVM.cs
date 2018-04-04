@@ -38,9 +38,9 @@ namespace kdh.ViewModels
         [DataType(DataType.Text)]
         public string AuthorityFirstName { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Purpose is required")]
+        [Required(ErrorMessage = "Purpose is required")]
         [Display(Name = "Purpose")]
-        public string PurposeId { get; set; }
+        public int PurposeId { get; set; }
 
         public virtual Purpos Purpos { get; set; }
 

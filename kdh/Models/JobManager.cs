@@ -12,16 +12,11 @@ namespace kdh.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class FAQ
+    public partial class JobManager
     {
-        public int QueId { get; set; }
-        public string Question { get; set; }
-        public string Answer { get; set; }
-        public System.DateTime DateCreated { get; set; }
-        public string AuthorFirstName { get; set; }
-        public string AuthorityFirstName { get; set; }
-        public int PurposeId { get; set; }
-    
-        public virtual Purpos Purpos { get; set; }
+        public int ManagerId { get; set; }
+        public string ManagerName { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
     }
 }

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<kdh.Models.Purpos>
+
+@{
+    ViewBag.Title = "PurposeList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center text-dark">Purpose List</h2>
+
+<p>
+    @Html.ActionLink("Create New Purpose", "AddPurpose")
+</p>
+@Html.DisplayNameFor(model => model.PurposeToCreate)
+<ul>
+    @foreach (var item in Model)
+            {
+        <li>
+            @Html.DisplayFor(modelItem => item.PurposeToCreate)
+            @Html.ActionLink("Edit", "EditPurpose", new { id = item.PurposeId }) |
+            @Html.ActionLink("Delete", "DeletePurpose", new { id = item.PurposeId })
+        </li>
+
+    }
+</ul>
+

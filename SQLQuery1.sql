@@ -1,2 +1,6 @@
-﻿INSERT INTO FAQs(Question, Answer, AuthorFirstName, AuthorityFirstName, PurposeId) values('gift shop', 'available', 'gurinder', 'manager', 'p103');
---INSERT INTO Purposes(PurposeId, PurposeToCreate) VALUES('p104', 'other');
+﻿--INSERT INTO FAQs(Question, Answer, AuthorFirstName, AuthorityFirstName, PurposeId) 
+--values('donation', 'online', 'gurinder', 'manager', '201');
+--INSERT INTO Purposes(PurposeToCreate) VALUES( 'other');
+--delete from FAQs;
+--delete from Purposes;
+--select * from Purposes;

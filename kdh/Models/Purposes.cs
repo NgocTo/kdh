@@ -13,10 +13,10 @@ namespace kdh.Models
     }
     public class PurposMeta
     {
-        [System.ComponentModel.DataAnnotations.Key]
+        [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         [Display(Name = "Purpose Id")]
-        public string PurposeId { get; set; }
+        public int PurposeId { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Purpose is required")]
         [Display(Name = "Purpose To Create")]

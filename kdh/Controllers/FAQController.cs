@@ -51,7 +51,7 @@ namespace kdh.Controllers
                 ViewBag.ExceptionMessage = ex.Message;
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details");
         }
         
         
@@ -92,7 +92,7 @@ namespace kdh.Controllers
                     };
                     db.FAQs.Add(f);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details");
 
                 }
                 ViewBag.Purpose = db.Purposes.ToList();
@@ -117,12 +117,12 @@ namespace kdh.Controllers
             {
                 if (id == 0)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details");
                 }
                 FAQ faq = db.FAQs.SingleOrDefault(c => c.QueId == id);
                 if (faq == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details");
                 }
                 
                 ViewBag.Purpose = db.Purposes.ToList();
@@ -145,7 +145,7 @@ namespace kdh.Controllers
                 {
                     db.Entry(faq).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details");
                 }
                 ViewBag.Purpose = db.Purposes.ToList();
                 return View(faq);
@@ -171,14 +171,14 @@ namespace kdh.Controllers
         {
             if (id == 0)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
             try
             {
                 FAQ faq = db.FAQs.SingleOrDefault(c => c.QueId == id);
                 if (faq == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details");
                 }
                 return View(faq);
             }
@@ -201,7 +201,7 @@ namespace kdh.Controllers
                 FAQ faq = db.FAQs.Find(id);
                 db.FAQs.Remove(faq);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
             catch (DbUpdateException dbException)
             {
@@ -248,15 +248,22 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
         }
+      
         [HttpPost]
-        public ActionResult AddPurpose(Purpose purpose)
+        public ActionResult AddPurpose(Purpos purpose)
         {
 
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Purpose.Add(purpose);
+                    Purpos p = new Purpos
+                    {
+                        PurposeId = purpose.PurposeId,
+                        PurposeToCreate = purpose.PurposeToCreate
+
+                    };
+                    db.Purposes.Add(p);
                     db.SaveChanges();
                     return RedirectToAction("PurposeList");
 
