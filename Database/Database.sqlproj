@@ -70,7 +70,6 @@
     <Build Include="Tables\DonateCreditCards.sql" />
     <Build Include="Tables\DonationContacts.sql" />
     <Build Include="Tables\Departments.sql" />
-    <Build Include="Tables\Doctors.sql" />
     <Build Include="Tables\Applicants.sql" />
     <Build Include="Tables\Jobs.sql" />
     <Build Include="Tables\FAQs.sql" />

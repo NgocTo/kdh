@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="InClassModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="HospitalModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applicants">
           <Key>
             <PropertyRef Name="ApplicantId" />
@@ -30,7 +30,7 @@
           <Key>
             <PropertyRef Name="Doctorid" />
           </Key>
-          <Property Name="Doctorid" Type="int" Nullable="false" />
+          <Property Name="Doctorid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fname" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Lname" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
@@ -243,6 +243,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_dept">
+          <End Role="departments" Type="Self.departments" Multiplicity="1" />
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departments">
+              <PropertyRef Name="departmentid" />
+            </Principal>
+            <Dependent Role="Doctors">
+              <PropertyRef Name="Departmentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_LabReports_Patients">
           <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
           <End Role="LabReports" Type="Self.LabReports" Multiplicity="*" />
@@ -315,7 +327,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="InClassModelStoreContainer">
+        <EntityContainer Name="HospitalModelsStoreContainer">
           <EntitySet Name="Applicants" EntityType="Self.Applicants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="departments" EntityType="Self.departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
@@ -343,6 +355,10 @@
           <AssociationSet Name="FAQs_PurposeId_fk" Association="Self.FAQs_PurposeId_fk">
             <End Role="Purposes" EntitySet="Purposes" />
             <End Role="FAQs" EntitySet="FAQs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dept" Association="Self.fk_dept">
+            <End Role="departments" EntitySet="departments" />
+            <End Role="Doctors" EntitySet="Doctors" />
           </AssociationSet>
           <AssociationSet Name="FK_LabReports_Patients" Association="Self.FK_LabReports_Patients">
             <End Role="Patients" EntitySet="Patients" />
@@ -373,7 +389,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="InClassModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="HospitalModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="ApplicantId" />
@@ -395,13 +411,14 @@
           <Property Name="department_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="department_location" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="department_description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Doctors" Relationship="Self.fk_dept" FromRole="departments" ToRole="Doctors" />
           <NavigationProperty Name="Jobs" Relationship="Self.jobs_departmentid_fk" FromRole="departments" ToRole="Jobs" />
         </EntityType>
         <EntityType Name="Doctor">
           <Key>
             <PropertyRef Name="Doctorid" />
           </Key>
-          <Property Name="Doctorid" Type="Int32" Nullable="false" />
+          <Property Name="Doctorid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Fname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Lname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -414,6 +431,7 @@
           <Property Name="Speciality" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Province" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="City" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="department" Relationship="Self.fk_dept" FromRole="Doctors" ToRole="departments" />
         </EntityType>
         <EntityType Name="DonateCreditCard">
           <Key>
@@ -606,6 +624,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_dept">
+          <End Role="departments" Type="Self.department" Multiplicity="1" />
+          <End Role="Doctors" Type="Self.Doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departments">
+              <PropertyRef Name="departmentid" />
+            </Principal>
+            <Dependent Role="Doctors">
+              <PropertyRef Name="Departmentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="jobs_departmentid_fk">
           <End Role="departments" Type="Self.department" Multiplicity="1" />
           <End Role="Jobs" Type="Self.Job" Multiplicity="*" />
@@ -723,6 +753,10 @@
             <End Role="Jobs" EntitySet="Jobs" />
             <End Role="Applicants" EntitySet="Applicants" />
           </AssociationSet>
+          <AssociationSet Name="fk_dept" Association="Self.fk_dept">
+            <End Role="departments" EntitySet="departments" />
+            <End Role="Doctors" EntitySet="Doctors" />
+          </AssociationSet>
           <AssociationSet Name="jobs_departmentid_fk" Association="Self.jobs_departmentid_fk">
             <End Role="departments" EntitySet="departments" />
             <End Role="Jobs" EntitySet="Jobs" />
@@ -761,9 +795,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="InClassModelStoreContainer" CdmEntityContainer="HospitalContext">
+        <EntityContainerMapping StorageEntityContainer="HospitalModelsStoreContainer" CdmEntityContainer="HospitalContext">
           <EntitySetMapping Name="Applicants">
-            <EntityTypeMapping TypeName="InClassModel.Applicant">
+            <EntityTypeMapping TypeName="HospitalModels.Applicant">
               <MappingFragment StoreEntitySet="Applicants">
                 <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -776,7 +810,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="departments">
-            <EntityTypeMapping TypeName="InClassModel.department">
+            <EntityTypeMapping TypeName="HospitalModels.department">
               <MappingFragment StoreEntitySet="departments">
                 <ScalarProperty Name="departmentid" ColumnName="departmentid" />
                 <ScalarProperty Name="department_name" ColumnName="department_name" />
@@ -786,7 +820,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Doctors">
-            <EntityTypeMapping TypeName="InClassModel.Doctor">
+            <EntityTypeMapping TypeName="HospitalModels.Doctor">
               <MappingFragment StoreEntitySet="Doctors">
                 <ScalarProperty Name="Doctorid" ColumnName="Doctorid" />
                 <ScalarProperty Name="Fname" ColumnName="Fname" />
@@ -805,7 +839,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DonateCreditCards">
-            <EntityTypeMapping TypeName="InClassModel.DonateCreditCard">
+            <EntityTypeMapping TypeName="HospitalModels.DonateCreditCard">
               <MappingFragment StoreEntitySet="DonateCreditCards">
                 <ScalarProperty Name="CreditId" ColumnName="CreditId" />
                 <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
@@ -816,7 +850,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DonationContacts">
-            <EntityTypeMapping TypeName="InClassModel.DonationContact">
+            <EntityTypeMapping TypeName="HospitalModels.DonationContact">
               <MappingFragment StoreEntitySet="DonationContacts">
                 <ScalarProperty Name="DonorId" ColumnName="DonorId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -836,7 +870,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FAQs">
-            <EntityTypeMapping TypeName="InClassModel.FAQ">
+            <EntityTypeMapping TypeName="HospitalModels.FAQ">
               <MappingFragment StoreEntitySet="FAQs">
                 <ScalarProperty Name="QueId" ColumnName="QueId" />
                 <ScalarProperty Name="Question" ColumnName="Question" />
@@ -849,7 +883,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="JobManagers">
-            <EntityTypeMapping TypeName="InClassModel.JobManager">
+            <EntityTypeMapping TypeName="HospitalModels.JobManager">
               <MappingFragment StoreEntitySet="JobManagers">
                 <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
                 <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
@@ -859,7 +893,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Jobs">
-            <EntityTypeMapping TypeName="InClassModel.Job">
+            <EntityTypeMapping TypeName="HospitalModels.Job">
               <MappingFragment StoreEntitySet="Jobs">
                 <ScalarProperty Name="JobId" ColumnName="JobId" />
                 <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
@@ -876,7 +910,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LabReports">
-            <EntityTypeMapping TypeName="InClassModel.LabReport">
+            <EntityTypeMapping TypeName="HospitalModels.LabReport">
               <MappingFragment StoreEntitySet="LabReports">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
@@ -888,7 +922,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OnlineConsultationForms">
-            <EntityTypeMapping TypeName="InClassModel.OnlineConsultationForm">
+            <EntityTypeMapping TypeName="HospitalModels.OnlineConsultationForm">
               <MappingFragment StoreEntitySet="OnlineConsultationForm">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -904,7 +938,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Patients">
-            <EntityTypeMapping TypeName="InClassModel.Patient">
+            <EntityTypeMapping TypeName="HospitalModels.Patient">
               <MappingFragment StoreEntitySet="Patients">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -925,7 +959,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Purposes">
-            <EntityTypeMapping TypeName="InClassModel.Purpos">
+            <EntityTypeMapping TypeName="HospitalModels.Purpos">
               <MappingFragment StoreEntitySet="Purposes">
                 <ScalarProperty Name="PurposeId" ColumnName="PurposeId" />
                 <ScalarProperty Name="PurposeToCreate" ColumnName="PurposeToCreate" />
@@ -933,7 +967,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Results">
-            <EntityTypeMapping TypeName="InClassModel.Result">
+            <EntityTypeMapping TypeName="HospitalModels.Result">
               <MappingFragment StoreEntitySet="Results">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ReportId" ColumnName="ReportId" />
@@ -945,7 +979,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Surveys">
-            <EntityTypeMapping TypeName="InClassModel.Survey">
+            <EntityTypeMapping TypeName="HospitalModels.Survey">
               <MappingFragment StoreEntitySet="Survey">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -959,7 +993,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestTypes">
-            <EntityTypeMapping TypeName="InClassModel.TestType">
+            <EntityTypeMapping TypeName="HospitalModels.TestType">
               <MappingFragment StoreEntitySet="TestTypes">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
@@ -971,7 +1005,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="InClassModel.User">
+            <EntityTypeMapping TypeName="HospitalModels.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
