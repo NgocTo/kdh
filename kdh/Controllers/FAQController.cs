@@ -11,12 +11,16 @@ using System.Data.SqlClient;
 
 namespace kdh.Controllers
 {
+    //[Authorize(Roles = "admin")]
     public class FAQController : Controller
     {
+
         HospitalContext db = new HospitalContext();
         //FOR FAQS
+        [Authorize(Roles = "patient, admin")]
         public ActionResult Index()
         {
+
             try
             {
                 List<FAQ> Faq = db.FAQs.ToList();
@@ -35,6 +39,7 @@ namespace kdh.Controllers
         }
         //create details of FAQ for admin
         // GET: FAQ
+        [Authorize(Roles = "admin")]
         public ActionResult Details()
         {
             try
@@ -51,11 +56,12 @@ namespace kdh.Controllers
                 ViewBag.ExceptionMessage = ex.Message;
             }
 
-            return RedirectToAction("Details");
+            return RedirectToAction("Index");
         }
-        
-        
+
+
         //Create a new FAQ
+       [Authorize(Roles = "admin")]
         [HttpGet]
         public ActionResult Add()
         {
@@ -92,7 +98,7 @@ namespace kdh.Controllers
                     };*/
                     db.FAQs.Add(faq);
                     db.SaveChanges();
-                    return RedirectToAction("Details");
+                    return RedirectToAction("Index");
 
                 }
                 ViewBag.Purpose = db.Purposes.ToList();
@@ -111,18 +117,19 @@ namespace kdh.Controllers
         }
         //update a FAQ 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             try
             {
                 if (id == 0)
                 {
-                    return RedirectToAction("Details");
+                    return RedirectToAction("Index");
                 }
                 FAQ faq = db.FAQs.SingleOrDefault(c => c.QueId == id);
                 if (faq == null)
                 {
-                    return RedirectToAction("Details");
+                    return RedirectToAction("Index");
                 }
                 
                 ViewBag.Purpose = db.Purposes.ToList();
@@ -136,6 +143,7 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
         [HttpPost]
+
         [ValidateAntiForgeryToken]
         public ActionResult Edit(FAQ faq)
         {
@@ -145,7 +153,7 @@ namespace kdh.Controllers
                 {
                     db.Entry(faq).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Details");
+                    return RedirectToAction("Index");
                 }
                 ViewBag.Purpose = db.Purposes.ToList();
                 return View(faq);
@@ -167,18 +175,19 @@ namespace kdh.Controllers
         }
         //Delete a FAQ
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == 0)
             {
-                return RedirectToAction("Details");
+                return RedirectToAction("Index");
             }
             try
             {
                 FAQ faq = db.FAQs.SingleOrDefault(c => c.QueId == id);
                 if (faq == null)
                 {
-                    return RedirectToAction("Details");
+                    return RedirectToAction("Index");
                 }
                 return View(faq);
             }
@@ -201,7 +210,7 @@ namespace kdh.Controllers
                 FAQ faq = db.FAQs.Find(id);
                 db.FAQs.Remove(faq);
                 db.SaveChanges();
-                return RedirectToAction("Details");
+                return RedirectToAction("Index");
             }
             catch (DbUpdateException dbException)
             {
@@ -220,6 +229,7 @@ namespace kdh.Controllers
 
 
         //FOR PURPOSES
+        [Authorize(Roles = "admin")]
         public ActionResult PurposeList()
         {
             try
@@ -236,6 +246,7 @@ namespace kdh.Controllers
         }
         //add new purpose
         [HttpGet]
+        //[Authorize(Roles = "admin")]
         public ActionResult AddPurpose()
         {
             try
@@ -284,6 +295,7 @@ namespace kdh.Controllers
 
         //update a purpose
         [HttpGet]
+       [Authorize(Roles = "admin")]
         public ActionResult EditPurpose(int? id)
         {
             try
@@ -336,6 +348,7 @@ namespace kdh.Controllers
         }
         //Delete a Purpose
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult DeletePurpose(int? id)
         {
             if (id == 0)
