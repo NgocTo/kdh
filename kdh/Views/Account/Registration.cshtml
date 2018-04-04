@@ -22,10 +22,12 @@
     <div>
         @Html.LabelFor(model => model.ConfirmPassword)
         @Html.EditorFor(model => model.ConfirmPassword)
+    </div>
+    <div>
         @Html.ValidationMessageFor(model => model.ConfirmPassword)
     </div>
     <div>
-        <input type="hidden" name="UserId" value="@ViewBag.UserId" />
+        <input type="text" name="UserId" value="@ViewBag.UserId" />
     </div>
     <div>
         <input type="submit" value="Register" />
