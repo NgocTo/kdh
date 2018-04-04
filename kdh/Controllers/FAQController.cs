@@ -72,14 +72,14 @@ namespace kdh.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(FAQsVM faq)
+        public ActionResult Add(FAQ faq)
         {
 
             try
             {
                 if (ModelState.IsValid)
                 {
-                    FAQ f = new FAQ
+                   /* FAQ f = new FAQ
                     {
                         QueId = faq.QueId,
                         Question = faq.Question,
@@ -89,8 +89,8 @@ namespace kdh.Controllers
                         AuthorityFirstName = faq.AuthorityFirstName,
                         PurposeId = faq.PurposeId
 
-                    };
-                    db.FAQs.Add(f);
+                    };*/
+                    db.FAQs.Add(faq);
                     db.SaveChanges();
                     return RedirectToAction("Details");
 
