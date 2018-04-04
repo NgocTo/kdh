@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace kdh.ViewModels
 {
-    public class RegistrationVM
+    public class PatientRegistrationVM
     {
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "First name is required. ")]
@@ -61,7 +61,7 @@ namespace kdh.ViewModels
 
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         [StringLength(100, ErrorMessage = "Field must be less than 100 characters.")]
-        [Remote("IsAvailableEmail", "Account", HttpMethod ="POST", ErrorMessage = "Email address already in use.")]
+        [Remote("IsAvailableEmail", "Account", HttpMethod ="POST", ErrorMessage = "Email address is already in use.")]
         public string Email { get; set; }
 
     }

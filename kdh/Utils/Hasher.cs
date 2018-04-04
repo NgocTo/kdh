@@ -19,7 +19,7 @@ namespace kdh.Utils
             SHA256 sha256 = new SHA256CryptoServiceProvider();
             byte[] hash256Val = sha256.ComputeHash(byteVal);
 
-            // get result of the calculation as utf8 string format
+            // get result of the calculation in utf8 string format
             StringBuilder hashedText = new StringBuilder();
             for (int i = 0; i < hash256Val.Length; i++)
             {

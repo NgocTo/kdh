@@ -75,7 +75,7 @@ namespace kdh.Controllers
                 if (patient != null)
                 {
                     // assigining value from db to VM
-                    RegistrationVM registrationVM = new RegistrationVM();
+                    PatientRegistrationVM registrationVM = new PatientRegistrationVM();
                     registrationVM.FirstName = patient.FirstName;
                     registrationVM.LastName = patient.LastName;
                     registrationVM.Gender = patient.Gender;
@@ -129,7 +129,7 @@ namespace kdh.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(RegistrationVM registrationVM) // represents what user submitted through the form
+        public ActionResult Create(PatientRegistrationVM registrationVM) // represents what user submitted through the form
         {
 
             try
@@ -154,12 +154,12 @@ namespace kdh.Controllers
                         PostalCode = registrationVM.PostalCode,
                         DateOfBirth = registrationVM.DateOfBirth,
                         Phone = registrationVM.Phone,
-                        EmailToken = TokenGenerator.GenerateEmailToken()
+                        EmailToken = TokenGenerator.GenerateEmailToken(),
+                        Status = "active"
                     };
 
 
                     // If email address is provided, create a user account
-                    // TODO: check if email is unique or not
                     if (!String.IsNullOrWhiteSpace(registrationVM.Email))
                     {
                         User u = new User
@@ -213,7 +213,7 @@ namespace kdh.Controllers
                 if (patient != null)
                 {
                     // assigining value from db to VM
-                    RegistrationVM registrationVM = new RegistrationVM
+                    PatientRegistrationVM registrationVM = new PatientRegistrationVM
                     {
                         FirstName = patient.FirstName,
                         LastName = patient.LastName,
@@ -249,7 +249,7 @@ namespace kdh.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(RegistrationVM registrationVM, Guid id) // id in patients table
+        public ActionResult Edit(PatientRegistrationVM registrationVM, Guid id) // id in patients table
         {
             try
             {
@@ -337,7 +337,7 @@ namespace kdh.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete (RegistrationVM registrationVM, Guid id) // id in users table
+        public ActionResult Delete (PatientRegistrationVM registrationVM, Guid id) // id in users table
         {
             try
             {
@@ -362,18 +362,20 @@ namespace kdh.Controllers
 
         }
 
+        // Once patients received an email with their own token
         [HttpGet]
         public ActionResult Registration(string token)
         {
             Patient p = context.Patients.SingleOrDefault(q => q.EmailToken == token && q.EmailToken != "");
 
-            // if email token does not exist in the table
+            // if email token does not exist in the table (invalid accesss)
             if (p == null)
             {
                 return HttpNotFound();
             }
             else
             {
+                // if valid access, pass those value to the view 
                 ViewBag.DisplayName = $"{p.FirstName} {p.LastName}";
                 ViewBag.UserId = p.UserId;
                 return View();
@@ -381,6 +383,7 @@ namespace kdh.Controllers
 
         }
 
+        // when patients create a password and click the register button
         [HttpPost]
         public ActionResult Registration(AccountRegistrationVM vm)
         {
@@ -392,8 +395,9 @@ namespace kdh.Controllers
                 // hash password
                 u.Password = Hasher.ToHashedStr(vm.Password);
 
-                // clear the email token used for generating the link
-                p.EmailToken = String.Empty;
+                // replace the email token used for generating the link to new token
+                // String.Empty does not work because the column must be unique
+                p.EmailToken = TokenGenerator.GenerateEmailToken();
 
                 context.SaveChanges();
 
