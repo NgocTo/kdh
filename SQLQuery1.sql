@@ -1,0 +1,2 @@
+﻿INSERT INTO FAQs(Question, Answer, AuthorFirstName, AuthorityFirstName, PurposeId) values('gift shop', 'available', 'gurinder', 'manager', 'p103');
+--INSERT INTO Purposes(PurposeId, PurposeToCreate) VALUES('p104', 'other');

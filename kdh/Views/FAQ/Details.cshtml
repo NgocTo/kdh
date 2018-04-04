@@ -1,0 +1,43 @@
+﻿@model kdh.Models.FAQsPurposes
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2 class="text-center text-dark">Frequently Asked Questions(FAQ)</h2>
+
+<p>
+    @Html.ActionLink("Create New FAQ", "Add")
+</p>
+<p>
+    @*@Html.ActionLink("Show Purpose List", "PurposeList")*@
+</p>
+
+<ul>
+    @foreach (var item in Model.Faqs)
+    {
+        <li>
+            @Html.DisplayNameFor(model => item.Question): @Html.DisplayFor(modelItem => item.Question) <br />
+            @Html.DisplayNameFor(model => item.Answer): @Html.DisplayFor(modelItem => item.Answer) <br />
+            @Html.DisplayNameFor(model => item.DateCreated): @Html.DisplayFor(modelItem => item.DateCreated) <br />
+            @Html.DisplayNameFor(model => item.AuthorFirstName): @Html.DisplayFor(modelItem => item.AuthorFirstName) <br />
+            @Html.DisplayNameFor(model => item.AuthorityFirstName): @Html.DisplayFor(modelItem => item.AuthorityFirstName) <br />
+            @Html.DisplayNameFor(model => item.PurposeId): @Html.DisplayFor(modelItem => item.PurposeId) ---
+            @foreach (var p in Model.Purposes)
+            {
+                if (item.PurposeId == p.PurposeId)
+                {
+                @Html.DisplayFor(modelItem => p.PurposeToCreate)
+                }
+            }
+            <br />
+            @Html.ActionLink("Edit", "Edit", new { id = item.QueId })
+
+            @Html.ActionLink("Delete", "Delete", new { id = item.QueId })
+        </li>
+    }
+</ul>
+
+
+

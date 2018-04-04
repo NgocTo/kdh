@@ -1,0 +1,73 @@
+﻿@model kdh.Models.FAQ
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center text-dark">Delete Frequently Asked Question(FAQ)</h2>
+
+<p class="text-danger text-md-left">*Are you sure you want to delete this?</p>
+<div>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Question)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorityFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorityFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurposeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurposeId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.QueId)
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE Purposes
 (
-	PurposeId VARCHAR(10) CONSTRAINT Purposes_PurposeId_pk PRIMARY KEY ,
+	PurposeId INT CONSTRAINT Purposes_PurposeId_pk PRIMARY KEY IDENTITY (201, 1) NOT NULL ,
 	PurposeToCreate VARCHAR(900) CONSTRAINT Purposes_PurposeToCreate_nn NOT NULL
 	
 );
