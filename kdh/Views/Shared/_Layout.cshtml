@@ -46,8 +46,13 @@
 
                 <div class="row col-12 collapse navbar-collapse" id="toggleMenu">
                     <ul class="navbar-nav col-md-9">
-                        <li class="nav-item">
-                            <a class="nav-link text-white mr-2" href="#">Patient &amp; Visitor</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white mr-2" data-toggle="dropdown" href="#">Patient &amp; Visitor</a>
+                            <div class="dropdown-menu">
+                                <a href="@Url.Action("Login", "Account")" class="dropdown-item">Patient Portal</a>
+                                <a class="dropdown-item" href="#">Link 2</a>
+                                <a class="dropdown-item" href="#">Link 3</a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white mr-2" href="#">About Us</a>

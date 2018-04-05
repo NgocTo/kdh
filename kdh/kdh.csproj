@@ -299,7 +299,6 @@
     <Content Include="Views\Doctor\Add.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />
     <Content Include="Views\Account\RegistrationComplete.cshtml" />
     <Content Include="Views\Admin\AddPatient.cshtml" />
@@ -311,6 +310,7 @@
     <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Patient\MyProfile.cshtml" />
     <Content Include="Views\Shared\PatientPortal.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
