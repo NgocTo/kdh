@@ -1,6 +1,7 @@
 # Git Ignore
 
 kdh/Web.config
+kdh/obj/Debug/kdh.csproj.CoreCompileInputs.cache
 
 # Created by https://www.gitignore.io/api/visualstudio
 
