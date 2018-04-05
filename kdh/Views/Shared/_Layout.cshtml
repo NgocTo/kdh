@@ -20,7 +20,7 @@
                     <div style="width: 50px; height: 50px; background-color: gainsboro;">LOGO</div>
                 </div>
                 <div class="col-md-7 d-none d-md-block">
-                    <h2><a href="#" class="h3 text-white font-weight-bold">Humber and District Hospital</a></h2>
+                    <h2><a href="@Url.Action("Index", "Home")" class="h3 text-white font-weight-bold">Humber and District Hospital</a></h2>
                 </div>
                 <div class="col-5 col-md-2 offset-1 offset-md-0">
                     <form>
@@ -50,7 +50,7 @@
                             <a class="nav-link dropdown-toggle text-white mr-2" data-toggle="dropdown" href="#">Patient &amp; Visitor</a>
                             <div class="dropdown-menu">
                                 <a href="@Url.Action("Login", "Account")" class="dropdown-item">Patient Portal</a>
-                                <a class="dropdown-item" href="#">Link 2</a>
+                                <a href="@Url.Action("Index", "FAQPublic")" class="dropdown-item">FAQ</a>
                                 <a class="dropdown-item" href="#">Link 3</a>
                             </div>
                         </li>
@@ -91,28 +91,32 @@
                 <div class="mb-3 mt-2">
 @if (User.Identity.IsAuthenticated)
 {
-    <h3 class="text-dark">Features</h3>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item"><p class="text-lg-left text-dark">Welcome @User.Identity.Name</p></li>
-        <li class="list-group-item"><a href="@Url.Action("Logout", "Account")" class="btn btn-outline-danger">Logout</a></li>
-        <li class="list-group-item">@Html.ActionLink("Patient Registration", "Index", "Account")</li>
-        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-        <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Index", "FAQ")</li>
-        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-        
-    </ul>
+    // Only admin will be able to see the sidebar
+    if (User.IsInRole("admin"))
+    {
+        <h3 class="text-dark">Features</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="@Url.Action("Logout", "Home")" class="btn btn-outline-danger">Logout</a></li>
+                <li class="list-group-item">@Html.ActionLink("Patient Registration", "Index", "Account")</li>
+                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Index", "FAQ")</li>
+                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+
+            </ul>
+    }
 }
 else
 {
-   @Html.ActionLink("Admin Login", "Login", "Home")
+
 }
  </div>
 </aside>
+            <!-- Body -->
         <main class="col-sm-9">
             @RenderBody()
             <hr />
@@ -120,11 +124,21 @@ else
     </div>
 </div>
 
+    <!-- Footer -->
+<footer id="footer" style="height: 200px">
     <div class="container">
-        <footer>
-            <p>&copy; @DateTime.Now.Year - KDH Project</p>
-        </footer>
+        <div class="row pt-3">
+            <div col-md-4>
+                <a href="@Url.Action("Login", "Home")" class="btn btn-danger">Admin Login</a>
+            </div>
+            <p class="col-md-8 text-right">&copy; @DateTime.Now.Year - KDH Project</p>
+        </div>
     </div>
+</footer>
+
+
+
+
 
     <script src="~/Scripts/jquery-3.0.0.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
