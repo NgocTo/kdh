@@ -177,6 +177,7 @@
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\SampleController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -311,6 +312,11 @@
     <Content Include="Views\Patient\MyProfile.cshtml" />
     <Content Include="Views\Shared\PatientPortal.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Job\Index.cshtml" />
+    <Content Include="Views\Job\Details.cshtml" />
+    <Content Include="Views\Job\Create.cshtml" />
+    <Content Include="Views\Job\Edit.cshtml" />
+    <Content Include="Views\Job\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
