@@ -35,10 +35,22 @@ namespace kdh.Models
             throw new NotImplementedException();
         }
 
+
         public override string[] GetRolesForUser(string userId)
         {
             HospitalContext db = new HospitalContext();
             string role = db.Users.Where(u => u.Id.ToString() == userId).FirstOrDefault().Role;
+
+        //public override string[] GetRolesForUser(string username)
+        //{
+        //    HospitalContext db = new HospitalContext();
+        //    string role = db.Users.Where(u => u.Email == username).FirstOrDefault().Role;
+        //    string[] results = { role };
+        //     return results;
+        //    //throw new NotImplementedException();
+        //}
+        
+
             string[] results = { role };
             return results;
         }

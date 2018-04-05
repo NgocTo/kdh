@@ -185,6 +185,7 @@
     <Compile Include="Models\department.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\Doctor.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>

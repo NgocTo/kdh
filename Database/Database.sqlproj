@@ -75,6 +75,7 @@
     <Build Include="Tables\FAQs.sql" />
     <Build Include="Tables\OnlineConsultationForm.sql" />
     <Build Include="Tables\Survey.sql" />
+    <Build Include="Tables\Doctors.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Database.refactorlog" />
