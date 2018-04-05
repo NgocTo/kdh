@@ -4,6 +4,34 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+<<<<<<< HEAD
+      <Diagram DiagramId="0b578a245ceb4228bf829c2e4d90af63" Name="Diagram1">
+        <EntityTypeShape EntityType="InClassModel.Applicant" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.department" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.Doctor" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.DonateCreditCard" Width="1.5" PointX="9.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.DonationContact" Width="1.5" PointX="12" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.FAQ" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.JobManager" Width="1.5" PointX="11.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.Job" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.LabReport" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.OnlineConsultationForm" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.Patient" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.Purpos" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.Result" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.Survey" Width="1.5" PointX="11.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.TestType" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.User" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="InClassModel.applicants_jobid_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="InClassModel.jobs_departmentid_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="InClassModel.DonationContacts_CreditCardId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="InClassModel.FAQs_PurposeId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="InClassModel.jobs_userid_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="InClassModel.FK_LabReports_Patients" ManuallyRouted="false" />
+        <AssociationConnector Association="InClassModel.FK_Results_LabReports" ManuallyRouted="false" />
+        <AssociationConnector Association="InClassModel.FK_Patients_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="InClassModel.FK_Results_TestTypes" ManuallyRouted="false" />
+=======
       <Diagram DiagramId="56c726a98e7b4390964418d1d1067086" Name="Diagram1">
         <EntityTypeShape EntityType="HospitalModels.Applicant" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalModels.department" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
@@ -31,6 +59,7 @@
         <AssociationConnector Association="HospitalModels.FK_Results_LabReports" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalModels.FK_Patients_Users" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalModels.FK_Results_TestTypes" ManuallyRouted="false" />
+>>>>>>> b242211f62a9e2cbe6d96c2d56611bbbc8c52927
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

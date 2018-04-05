@@ -46,6 +46,7 @@ namespace kdh.Models
         [Display(Name = "Purpose")]
         public int PurposeId { get; set; }
 
+
         public virtual Purpos Purpos { get; set; }
 
 
