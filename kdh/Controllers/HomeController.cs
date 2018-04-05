@@ -32,15 +32,7 @@ namespace kdh.Controllers
                 var u = db.Users.SingleOrDefault(q => q.Email == vm.Email && q.Password == password);
 
                 // if username(email) and password are correct
-                if (u != null && u.Role == "patient")
-                {
-                    FormsAuthentication.SetAuthCookie(u.Id.ToString(), false);
-                    Session["id"] = u.Id; // Set Id in Users table (= UserId in Patient table) to session
-
-                    // --- temp: if the role is patient, redirect them to patient portal
-                    return RedirectToAction("Index", "Patient", new { Id = u.Id });
-                }
-                else if (u != null && u.Role == "admin")
+                if (u != null && u.Role == "admin")
                 {
                     FormsAuthentication.SetAuthCookie(u.Id.ToString(), false);
                     Session["id"] = u.Id;
