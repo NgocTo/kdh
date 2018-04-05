@@ -1,0 +1,26 @@
+﻿@model kdh.ViewModels.PatientVM
+
+
+@{
+    ViewBag.Title = "Delete User Account";
+}
+
+<h2>Delete</h2>
+@using (Html.BeginForm("DeleteUser", "Admin", new { id = ViewBag.Id }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div>
+            @Html.LabelFor(model => model.FullName): @Model.FullName
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Email): @Model.Email
+        </div>
+        <div class="mb-5">
+            Are you sure to delete the online account of the patient?
+        </div>
+        <input type="submit" value="Delete" class="btn bg-danger text-white" />
+
+
+    </div>
+}
