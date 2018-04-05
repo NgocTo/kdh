@@ -84,26 +84,36 @@
         <div class="row">
             <aside class="col-sm-3 bg-light rounded-right">
                 <div class="mb-3 mt-2">
-                    <h3 class="text-dark">Features</h3>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">@Html.ActionLink("Patient Registration", "Index", "Account")</li>
-                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                    </ul>
-                </div>
-            </aside>
-            <main class="col-sm-9">
-                @RenderBody()
-                <hr />
-            </main>
-        </div>
+@if (User.Identity.IsAuthenticated)
+{
+    <h3 class="text-dark">Features</h3>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><p class="text-lg-left text-dark">Welcome @User.Identity.Name - @Html.ActionLink("Logout", "Logout", "Home")</p></li>
+        
+        <li class="list-group-item">@Html.ActionLink("Patient Registration", "Index", "Account")</li>
+        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+        <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Index", "FAQ")</li>
+        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+        
+    </ul>
+}
+else
+{
+   @Html.ActionLink("Admin Login", "Login", "Home")
+}
+ </div>
+</aside>
+        <main class="col-sm-9">
+            @RenderBody()
+            <hr />
+        </main>
     </div>
+</div>
 
     <div class="container">
         <footer>

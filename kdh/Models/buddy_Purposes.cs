@@ -7,11 +7,11 @@ using System.Web;
 
 namespace kdh.Models
 {
-    [MetadataType(typeof(PurposMeta))]
+    [MetadataType(typeof(buddy_Purposes))]
     public partial class Purpos
     {
     }
-    public class PurposMeta
+    public class buddy_Purposes
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
