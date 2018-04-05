@@ -177,9 +177,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+
+    <Compile Include="Controllers\AdminController.cs" />
+
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\SampleController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Global.asax.cs">
@@ -188,6 +193,7 @@
     <Compile Include="Models\Applicant.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\buddy_Job.cs" />
     <Compile Include="Models\buddy_User.cs" />
     <Compile Include="Models\department.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
@@ -261,9 +267,11 @@
     <Compile Include="Utils\Hasher.cs" />
     <Compile Include="Utils\Mailer.cs" />
     <Compile Include="Utils\TokenGenerator.cs" />
+    <Compile Include="ViewModels\AccountLoginVM.cs" />
     <Compile Include="ViewModels\AccountRegistrationVM.cs" />
     <Compile Include="ViewModels\DoctorDepartment.cs" />
     <Compile Include="ViewModels\FAQsVM.cs" />
+    <Compile Include="ViewModels\PatientProfileVM.cs" />
     <Compile Include="ViewModels\PatientVM.cs" />
     <Compile Include="ViewModels\PatientRegistrationVM.cs" />
     <Compile Include="ViewModels\PurposesVM.cs" />
@@ -285,13 +293,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Errors\Details.cshtml" />
-    <Content Include="Views\Account\Detail.cshtml" />
-    <Content Include="Views\Account\Create.cshtml" />
-    <Content Include="Views\Account\Edit.cshtml" />
-    <Content Include="Views\Account\Delete.cshtml" />
-    <Content Include="Views\Account\Registration.cshtml" />
     <Content Include="Views\FAQ\Index.cshtml" />
     <Content Include="Views\FAQ\Add.cshtml" />
     <Content Include="Views\FAQ\Edit.cshtml" />
@@ -305,8 +307,29 @@
     <Content Include="Views\Doctor\Add.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+
     <Content Include="Views\Doctor\Delete.cshtml" />
     <Content Include="Views\Doctor\_DoctorSearch.cshtml" />
+
+    <Content Include="Views\Account\Registration.cshtml" />
+    <Content Include="Views\Account\RegistrationComplete.cshtml" />
+    <Content Include="Views\Admin\AddPatient.cshtml" />
+    <Content Include="Views\Admin\DeleteUser.cshtml" />
+    <Content Include="Views\Admin\EditPatient.cshtml" />
+    <Content Include="Views\Admin\PatientDetails.cshtml" />
+    <Content Include="Views\Admin\PatientList.cshtml" />
+    <Content Include="Views\Patient\EditProfile.cshtml" />
+    <Content Include="Views\Patient\Index.cshtml" />
+    <Content Include="Views\Patient\MyProfile.cshtml" />
+    <Content Include="Views\Shared\PatientPortal.cshtml" />
+    <Content Include="Views\Shared\_NoSidebar.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Job\Index.cshtml" />
+    <Content Include="Views\Job\Details.cshtml" />
+    <Content Include="Views\Job\Create.cshtml" />
+    <Content Include="Views\Job\Edit.cshtml" />
+    <Content Include="Views\Job\Delete.cshtml" />
+
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

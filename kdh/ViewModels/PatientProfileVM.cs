@@ -2,15 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace kdh.ViewModels
 {
-    public class PatientRegistrationVM
+    public class PatientProfileVM
     {
+        public Guid Id { get; set; }
+        public Guid? UserId { get; set; }
+
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "First name is required. ")]
         [StringLength(50, ErrorMessage = "Field must be less than 50 characters. ")]
@@ -39,6 +41,8 @@ namespace kdh.ViewModels
 
         [StringLength(20, ErrorMessage = "Field must be less than 20 characters.")]
         public string City { get; set; }
+
+        [StringLength(20, ErrorMessage = "Field must be less than 20 characters.")]
         public string Province { get; set; }
 
         [Display(Name = "Postal Code")]
@@ -46,23 +50,18 @@ namespace kdh.ViewModels
         public string PostalCode { get; set; }
 
         [DataType(DataType.Date)]
-        [DateValidator(ErrorMessage = "Date of birth must be in the past." )]
+        [DateValidator(ErrorMessage = "Date of birth must be in the past.")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date of Birth")]
-        public Nullable<DateTime> DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Gender is required. ")]
-        [RegularExpression("^Female|Male|Other$/gi", ErrorMessage = "Gender must be choosen from one of the options.")]
+        [RegularExpression("^Female|Male|Others$", ErrorMessage = "Gender must be choosen from one of the options.")]
         [Display(Name = "* Gender")]
         public string Gender { get; set; }
 
         [RegularExpression(@"^\d{10,15}$", ErrorMessage = "Invalid phone number. Phone number must be between 10 to 15 digits.")]
         public string Phone { get; set; }
-
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        [StringLength(100, ErrorMessage = "Field must be less than 100 characters.")]
-        [Remote("IsAvailableEmail", "Admin", HttpMethod ="POST", ErrorMessage = "Email address is already in use.")]
-        public string Email { get; set; }
 
     }
 }

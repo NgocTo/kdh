@@ -11,7 +11,10 @@
     Date of Birth:
     @if (Model.DateOfBirth.HasValue)
     {
-        @Model.DateOfBirth
+        string d = Model.DateOfBirth.ToString();
+        d = d.Substring(0, d.Length - 11);
+        <span>@d</span>
+
     }
     else
     {

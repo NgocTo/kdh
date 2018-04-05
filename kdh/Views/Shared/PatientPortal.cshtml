@@ -7,41 +7,20 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-    
-    
-    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <script>
-        //$(document).ready(function () {
-        //    $("#country_form").change(function () {
-        //        alert("hi");
-        //        $("#country_form").submit();
-        //    }
-        //});
-        //$(function () {
-        //    $("#SearchBar").(function () {
-        //        $(this).submit();
-        //    })
-        //})();
-           
-    </script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 
 <body>
-<!-- HEADER -->
+    <!-- HEADER -->
     <header class="mb-5">
         <div class="container-fluid" id="header">
 
-            <div class="row p-2 pt-3" id="navigation"> 
+            <div class="row p-2 pt-3" id="navigation">
                 <div class="col-1">
                     <div style="width: 50px; height: 50px; background-color: gainsboro;">LOGO</div>
                 </div>
                 <div class="col-md-7 d-none d-md-block">
-                    <h2><a href="@Url.Action("Index", "Home")" class="h3 text-white font-weight-bold">Humber and District Hospital</a></h2>
+                    <h2><a href="#" class="h3 text-white font-weight-bold">Humber and District Hospital</a></h2>
                 </div>
                 <div class="col-5 col-md-2 offset-1 offset-md-0">
                     <form>
@@ -67,13 +46,8 @@
 
                 <div class="row col-12 collapse navbar-collapse" id="toggleMenu">
                     <ul class="navbar-nav col-md-9">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white mr-2" data-toggle="dropdown" href="#">Patient &amp; Visitor</a>
-                            <div class="dropdown-menu">
-                                <a href="@Url.Action("Login", "Account")" class="dropdown-item">Patient Portal</a>
-                                <a href="@Url.Action("Index", "FAQPublic")" class="dropdown-item">FAQ</a>
-                                <a class="dropdown-item" href="#">Link 3</a>
-                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link text-white mr-2" href="#">Patient &amp; Visitor</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white mr-2" href="#">About Us</a>
@@ -102,70 +76,38 @@
         </div><!-- end of container fluid -->
     </header>
 
-<!-- END OF HEADER-->
-
-
+    <!-- END OF HEADER-->
     <!-- START OF BODY CONTENT -->
     <div class="container body-content">
         <div class="row">
             <aside class="col-sm-3 bg-light rounded-right">
                 <div class="mb-3 mt-2">
-@if (User.Identity.IsAuthenticated)
-{
-    // Only admin will be able to see the sidebar
-    if (User.IsInRole("admin"))
-    {
-        <h3 class="text-dark">Features</h3>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><a href="@Url.Action("Logout", "Home")" class="btn btn-outline-danger">Logout</a></li>
-                <li class="list-group-item">@Html.ActionLink("Patient Registration", "Index", "Account")</li>
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Index", "FAQ")</li>
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                    <h3 class="text-dark">Menu</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">@Html.ActionLink("My Profile", "MyProfile", "Patient")</li>
+                        <li class="list-group-item">@Html.ActionLink("My Lab Results", "Index", "Patient")</li>
+                        <li class="list-group-item">@Html.ActionLink("My Appointments", "Index", "Patient")</li>
+                        <li class="list-group-item"><a href="@Url.Action("Logout", "Account")" class="btn btn-danger">Logout</a></li>
+                    </ul>
+                    
 
-            </ul>
-    }
-}
-else
-{
-
-}
- </div>
-</aside>
-            <!-- Body -->
-        <main class="col-sm-9">
-            @RenderBody()
-            <hr />
-        </main>
-    </div>
-</div>
-
-    <!-- Footer -->
-<footer id="footer" style="height: 200px">
-    <div class="container">
-        <div class="row pt-3">
-            <div col-md-4>
-                <a href="@Url.Action("Login", "Home")" class="btn btn-danger">Admin Login</a>
-            </div>
-            <p class="col-md-8 text-right">&copy; @DateTime.Now.Year - KDH Project</p>
+                </div>
+            </aside>
+            <main class="col-sm-9">
+                @RenderBody()
+                <hr />
+            </main>
         </div>
     </div>
-</footer>
 
-
-
-
+    <div class="container">
+        <footer>
+            <p>&copy; @DateTime.Now.Year - KDH Project</p>
+        </footer>
+    </div>
 
     <script src="~/Scripts/jquery-3.0.0.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>
+

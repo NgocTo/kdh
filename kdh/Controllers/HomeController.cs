@@ -1,4 +1,6 @@
 ﻿using kdh.Models;
+using kdh.Utils;
+using kdh.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,28 +24,60 @@ namespace kdh.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(User users)
+        public ActionResult Login(AccountLoginVM vm)
         {
-            //Return the number of rows returned from the database (should be 1)
-            int count = db.Users.Where(
-                    u => u.Id == users.Id
-                &&
-            u.Password == users.Password).Count();
-            if (count == 1)
+            try
             {
-                //set the authcookie with your username or any other value. This username is also being used to determine your user role.
-                FormsAuthentication.SetAuthCookie(users.Id.ToString(), false);
-                return RedirectToAction("Index");
-            }
+                string password = Hasher.ToHashedStr(vm.Password);
+                var u = db.Users.SingleOrDefault(q => q.Email == vm.Email && q.Password == password);
 
-            ViewBag.Message = "Invalid username and/or password";
-            return View(users);
+                // if username(email) and password are correct
+                if (u != null && u.Role == "admin")
+                {
+                    FormsAuthentication.SetAuthCookie(u.Id.ToString(), false);
+                    Session["id"] = u.Id; // Id from Users table
+                    string userEmail = db.Users.SingleOrDefault(q => q.Id == u.Id).Email;
+                    ViewBag.AdminEmail = userEmail;
+
+                    // --- temp: where do you want to redirect admin?
+                    return View("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Incorrect username or password. Please confirm your login information.");
+                }
+
+                return View("Login");
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+
+
         }
+
         public ActionResult Logout()
         {
-            //unset the authcookie
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Index");
+            try
+            {
+                if (Session["id"] != null)
+                {
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                }
+                return RedirectToAction("Login","Home");
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
+
+
     }
 }

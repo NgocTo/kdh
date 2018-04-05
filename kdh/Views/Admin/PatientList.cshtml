@@ -1,0 +1,43 @@
+﻿@model IEnumerable<kdh.ViewModels.PatientVM>
+
+@{
+    ViewBag.Title = "List of All Patients";
+}
+
+<div class="mb-4">
+    Logged in as @ViewBag.UserEmail
+    <a href="@Url.Action("Logout", "Account")" class="btn btn-outline-danger btn-sm ml-3">Logout</a>
+</div>
+
+
+<h2>List of All Patients</h2>
+<a href="@Url.Action("AddPatient", "Admin")" class="btn btn-primary my-3">Add a new patient</a>
+
+
+@foreach (var p in Model)
+{
+    <div class="row mb-3">
+        <div class="col-10">
+            Name: @p.FullName   (@p.Gender)
+        </div>
+        <div class="col-10">
+            Email address: @p.Email
+        </div>
+        <div class="col-10">
+            <span class="m-2">@Html.ActionLink("Patient Details", "PatientDetails", "Admin", new { id = p.Id }, null)</span>
+            <span class="mr-2">@Html.ActionLink("Edit Patient", "EditPatient", "Admin", new { id = p.Id }, null)</span>
+            <span class="">
+                @if (p.UserId.HasValue)
+                {
+                    @Html.ActionLink("Delete User Account", "DeleteUser", "Admin", new { id = p.UserId }, null)
+                }
+            </span>
+        </div>
+        @* new { id = p.Id }  id should be the same as parameter of the action*@
+
+
+        
+       
+
+    </div>
+}
