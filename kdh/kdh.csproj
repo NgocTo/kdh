@@ -204,11 +204,9 @@
     <Compile Include="Models\FAQ.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Models\FAQs.cs" />
-=======
     <Compile Include="Models\buddy_FAQ.cs" />
->>>>>>> 00e3398e3bdebb27d6db3f0218621716767f058f
+
     <Compile Include="Models\FAQsPurposes.cs" />
     <Compile Include="Models\HospitalContext.Context.cs">
       <AutoGen>True</AutoGen>
@@ -303,13 +301,11 @@
     <Content Include="Views\FAQ\AddPurpose.cshtml" />
     <Content Include="Views\FAQ\EditPurpose.cshtml" />
     <Content Include="Views\FAQ\DeletePurpose.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Doctor\Add.cshtml" />
-=======
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
->>>>>>> 00e3398e3bdebb27d6db3f0218621716767f058f
+
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
