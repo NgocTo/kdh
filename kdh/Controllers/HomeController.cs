@@ -1,4 +1,6 @@
 ﻿using kdh.Models;
+using kdh.Utils;
+using kdh.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,28 +24,66 @@ namespace kdh.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(User users)
+        public ActionResult Login(AccountLoginVM vm)
         {
-            //Return the number of rows returned from the database (should be 1)
-            int count = db.Users.Where(
-                    u => u.Id == users.Id
-                &&
-            u.Password == users.Password).Count();
-            if (count == 1)
+            try
             {
-                //set the authcookie with your username or any other value. This username is also being used to determine your user role.
-                FormsAuthentication.SetAuthCookie(users.Id.ToString(), false);
-                return RedirectToAction("Index");
-            }
+                string password = Hasher.ToHashedStr(vm.Password);
+                var u = db.Users.SingleOrDefault(q => q.Email == vm.Email && q.Password == password);
 
-            ViewBag.Message = "Invalid username and/or password";
-            return View(users);
+                // if username(email) and password are correct
+                if (u != null && u.Role == "patient")
+                {
+                    FormsAuthentication.SetAuthCookie(u.Id.ToString(), false);
+                    Session["id"] = u.Id; // Set Id in Users table (= UserId in Patient table) to session
+
+                    // --- temp: if the role is patient, redirect them to patient portal
+                    return RedirectToAction("Index", "Patient", new { Id = u.Id });
+                }
+                else if (u != null && u.Role == "admin")
+                {
+                    FormsAuthentication.SetAuthCookie(u.Id.ToString(), false);
+                    Session["id"] = u.Id;
+
+                    // --- temp: where do you want to redirect admin?
+                    return RedirectToAction("Index", "Admin");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Incorrect username or password. Please confirm your login information.");
+                }
+
+                return View("Login");
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+
+
         }
+
         public ActionResult Logout()
         {
-            //unset the authcookie
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Index");
+            try
+            {
+                if (Session["id"] != null)
+                {
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                }
+                return RedirectToAction("Login");
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
+
+
     }
 }

@@ -204,7 +204,6 @@
     <Compile Include="Models\FAQ.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FAQs.cs" />
     <Compile Include="Models\buddy_FAQ.cs" />
     <Compile Include="Models\FAQsPurposes.cs" />
     <Compile Include="Models\HospitalContext.Context.cs">
