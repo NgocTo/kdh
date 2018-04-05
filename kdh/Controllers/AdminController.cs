@@ -176,11 +176,15 @@ namespace kdh.Controllers
                     // If email address is provided, create a user account
                     if (!String.IsNullOrWhiteSpace(registrationVM.Email))
                     {
+                        Guid pw = new Guid();
+
                         User u = new User
                         {
                             Id = userId,
                             Email = registrationVM.Email,
-                            Role = "patient"
+                            Role = "patient",
+                            // TODO: set temporary password
+                            Password = Hasher.ToHashedStr(pw.ToString())
                         };
                         p.UserId = userId;
 
@@ -190,8 +194,8 @@ namespace kdh.Controllers
                     }
 
                     context.Patients.Add(p);
-
                     context.SaveChanges();
+
                     return RedirectToAction("PatientList");
                 }
 
