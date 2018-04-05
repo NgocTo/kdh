@@ -4,128 +4,139 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
-
+<h2>Create new job posting</h2>
+<div class="text-danger text-center mb-5">*: required</div>
 
 @using (Html.BeginForm("Create", "Job"))
 {
     @Html.AntiForgeryToken()
-    <div>
-        <div>
-            @Html.LabelFor(m => m.JobId):
+    <div class="form-group row">
+        <div class = "col-form-label col-sm-3 text-right">
+            <span class="text-danger">*</span>
+            @Html.LabelFor(m => m.JobId)
         </div>
-        <div>
-            @Html.TextBoxFor(m => m.JobId)*
+        <div class="col-sm-7">
+            @Html.EditorFor(model => model.JobId, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(m => m.JobId, "", new { @style = "color:red" })
         </div>
     </div>
 
-    <div>
-        <div>
-            @Html.LabelFor(m => m.JobTitle):
+    <div class="form-group row">
+        <div class = "col-form-label col-sm-3 text-right">
+            <span class="text-danger">*</span>
+            @Html.LabelFor(m => m.JobTitle)
         </div>
-        <div>
-            @Html.TextBoxFor(m => m.JobTitle)*
+        <div class="col-sm-7">
+            @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(m => m.JobTitle, "", new { @style = "color:red" })
         </div>
     </div>
 
-    <div>
-        <div>
-            @Html.LabelFor(m => m.JobStatus):
+    <div class="form-group row">
+        <div class="col-form-label col-sm-3 text-right">
+            <span class="text-danger">*</span>
+            @Html.LabelFor(m => m.JobStatus)
         </div>
-        <div>
-            @Html.TextBoxFor(m => m.JobStatus)*
+        <div class="col-sm-7">
+            @Html.EditorFor(model => model.JobStatus, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(m => m.JobStatus, "", new { @style = "color:red" })
         </div>
     </div>
 
-    <div>
-        <div>
-            @Html.LabelFor(m => m.JobDescription):
+    <div class="form-group row">
+        <div class="col-form-label col-sm-3 text-right">
+            @Html.LabelFor(m => m.JobDescription)
         </div>
-        <div>
-            @Html.TextAreaFor(m => m.JobDescription, 4, 20, null)
+        <div class="col-sm-7">
+            @Html.TextAreaFor(model => model.JobDescription, 4, 20, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.JobDescription, "", new { @style = "color:red" })
         </div>
     </div>
 
-    <div>
-        <div>
-            @Html.LabelFor(m => m.DepartmentId):
+    <div class="form-group row">
+        <div class="col-form-label col-sm-3 text-right">
+            <span class="text-danger">*</span>
+            @Html.LabelFor(m => m.DepartmentId)
         </div>
-        <div>
-            @Html.DropDownListFor(m => m.DepartmentId, new SelectList(ViewBag.Departments, "Departmentid", "department_name"), " - Select a Department - ")*
+        <div class="col-sm-7">
+            @Html.DropDownListFor(m => m.DepartmentId, new SelectList(ViewBag.Departments, "Departmentid", "department_name"), " - Select a Department - ", new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.DepartmentId, "", new { @style = "color:red" })
         </div>
     </div>
 
-    <div>
-        <div>
-            @Html.LabelFor(m => m.DatePosted):
+    <div class="form-group row">
+        <div class="col-form-label col-sm-3 text-right">
+            <span class="text-danger">*</span>
+            @Html.LabelFor(m => m.DatePosted)
         </div>
-        <div>
-            @Html.TextBoxFor(m => m.DatePosted, new { type = "date" })
+        <div class="col-sm-7">
+            @Html.EditorFor(m => m.DatePosted, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(m => m.DatePosted, "", new { @style = "color:red" })
         </div>
     </div>
 
-    <div>
-        <div>
-            @Html.LabelFor(m => m.DateClosed):
+    <div class="form-group row">
+        <div class="col-form-label col-sm-3 text-right">
+            <span class="text-danger">*</span>
+            @Html.LabelFor(m => m.DateClosed)
         </div>
-        <div>
-            @Html.TextBoxFor(m => m.DateClosed, new { type = "date" })
+        <div class="col-sm-7">
+            @Html.EditorFor(m => m.DateClosed, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
             @Html.ValidationMessageFor(m => m.DatePosted, "", new { @style = "color:red" })
         </div>
     </div>
 
-    <div>
-        <div>
-            @Html.LabelFor(m => m.JobShift):
+    <div class="form-group row">
+        <div class="col-form-label col-sm-3 text-right">
+            @Html.LabelFor(m => m.JobShift)
         </div>
-        <div>
-            @Html.TextBoxFor(m => m.JobShift)
+        <div class="col-sm-7">
+            @Html.EditorFor(model => model.JobShift, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(m => m.JobShift, "", new { @style = "color:red" })
         </div>
     </div>
 
-    <div>
-        <div>
-            @Html.LabelFor(m => m.Salary):
+    <div class="form-group row">
+        <div class="col-form-label col-sm-3 text-right">
+            <span class="text-danger">*</span>
+            @Html.LabelFor(m => m.Salary)
         </div>
-        <div>
-            @Html.TextBoxFor(m => m.Salary)*
+        <div class="col-sm-7">
+            @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(m => m.Salary, "", new { @style = "color:red" })
         </div>
     </div>
 
-    <div>
-        <div>
-            @Html.LabelFor(m => m.Requirement):
+    <div class="form-group row">
+        <div class="col-form-label col-sm-3 text-right">
+            <span class="text-danger">*</span>
+            @Html.LabelFor(m => m.Requirement)
         </div>
-        <div>
-            @Html.TextAreaFor(m => m.Requirement, 4, 20, null)*
+        <div class="col-sm-7">
+            @Html.TextAreaFor(m => m.Requirement, 4, 20, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Requirement, "", new { @style = "color:red" })
         </div>
     </div>
 
-    <div>
-        <div>
-            @Html.LabelFor(m => m.UserId):
+    <div class="form-group row">
+        <div class="col-form-label col-sm-3 text-right">
+            <span class="text-danger">*</span>
+            @Html.LabelFor(m => m.UserId)
         </div>
-        <div>
-            @Html.DropDownListFor(m => m.UserId, new SelectList(ViewBag.Users, "Id", "Email"), " - Select manager's email - ")*
+        <div class="col-sm-7">
+            @Html.DropDownListFor(m => m.UserId, new SelectList(ViewBag.Users, "Id", "Email"), " - Select manager's email - ", new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.UserId, "", new { @style = "color:red" })
         </div>
     </div>
 
-    <div>
-        <input type="submit" value="Create" />
+    <div class="form-group">
+        <div class="text-center">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
     </div>
 }
 
-<div>
+<div class="text-center">
     @Html.ActionLink("Back to List", "Index")
 </div>
 @{
@@ -133,5 +144,4 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
 

@@ -6,8 +6,29 @@
     <title>@ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">	
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    
+    
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script>
+        //$(document).ready(function () {
+        //    $("#country_form").change(function () {
+        //        alert("hi");
+        //        $("#country_form").submit();
+        //    }
+        //});
+        //$(function () {
+        //    $("#SearchBar").(function () {
+        //        $(this).submit();
+        //    })
+        //})();
+           
+    </script>
 </head>
 
 <body>
@@ -17,7 +38,7 @@
 
             <div class="row p-2 pt-3" id="navigation"> 
                 <div class="col-1">
-                    <div style="width: 50px; height: 50px; background-color: gainsboro;">LOGO</div>
+                    <div class="offset-3"><img style="width: 50px; height: 50px;" src="~/Images/LOGO.png" />"</div>
                 </div>
                 <div class="col-md-7 d-none d-md-block">
                     <h2><a href="@Url.Action("Index", "Home")" class="h3 text-white font-weight-bold">Humber and District Hospital</a></h2>
@@ -98,7 +119,7 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><a href="@Url.Action("Logout", "Home")" class="btn btn-outline-danger">Logout</a></li>
                 <li class="list-group-item">@Html.ActionLink("Patient Registration", "Index", "Account")</li>
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                <li class="list-group-item">@Html.ActionLink("Job Posting", "Index")</li>
                 <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Index", "FAQ")</li>
                 <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
                 <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
