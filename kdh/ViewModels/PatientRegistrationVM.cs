@@ -61,7 +61,7 @@ namespace kdh.ViewModels
 
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         [StringLength(100, ErrorMessage = "Field must be less than 100 characters.")]
-        [Remote("IsAvailableEmail", "Account", HttpMethod ="POST", ErrorMessage = "Email address is already in use.")]
+        [Remote("IsAvailableEmail", "Admin", HttpMethod ="POST", ErrorMessage = "Email address is already in use.")]
         public string Email { get; set; }
 
     }

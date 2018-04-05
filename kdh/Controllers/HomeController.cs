@@ -35,10 +35,12 @@ namespace kdh.Controllers
                 if (u != null && u.Role == "admin")
                 {
                     FormsAuthentication.SetAuthCookie(u.Id.ToString(), false);
-                    Session["id"] = u.Id;
+                    Session["id"] = u.Id; // Id from Users table
+                    string userEmail = db.Users.SingleOrDefault(q => q.Id == u.Id).Email;
+                    ViewBag.AdminEmail = userEmail;
 
                     // --- temp: where do you want to redirect admin?
-                    return RedirectToAction("Index", "Admin");
+                    return View("Index");
                 }
                 else
                 {

@@ -187,6 +187,7 @@
     <Compile Include="Models\Applicant.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\buddy_Job.cs" />
     <Compile Include="Models\buddy_User.cs" />
     <Compile Include="Models\department.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
@@ -311,6 +312,7 @@
     <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Patient\MyProfile.cshtml" />
     <Content Include="Views\Shared\PatientPortal.cshtml" />
+    <Content Include="Views\Shared\_NoSidebar.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Job\Index.cshtml" />
     <Content Include="Views\Job\Details.cshtml" />
