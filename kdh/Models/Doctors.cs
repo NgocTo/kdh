@@ -86,6 +86,6 @@ namespace kdh.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Department Required")]
         public int Departmentid { get; set; }
 
-        public Department Department { get; set; }
+        public virtual department department { get; set; }
     }
 }

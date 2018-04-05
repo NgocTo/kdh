@@ -7,31 +7,31 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace kdh.Models
 {
-    [Table("Departments")]
-    [MetadataType(typeof(DepartmentMeta))]
-    public partial class Department
+    [Table("departments")]
+    [MetadataType(typeof(departmentMeta))]
+    public partial class department
     {
     }
-    public class DepartmentMeta
+    public class departmentMeta
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Display(Name = "department id")]
-        public int Departmentid { get; set; }
+        public int departmentid { get; set; }
         [Required(ErrorMessage = "enter department name")]
         [StringLength(50, ErrorMessage = "maximum 50 characters")]
         [Display(Name = "department Name")]
-        public string Department_name { get; set; }
+        public string department_name { get; set; }
         [Required(ErrorMessage = "enter department location")]
         [StringLength(10, ErrorMessage = "maximum 10 characters")]
         [Display(Name = "department Location")]
-        public string Department_location { get; set; }
+        public string department_location { get; set; }
         [Required(ErrorMessage = "give some description")]
         [StringLength(100, ErrorMessage = "not more than 100 characters")]
         [Display(Name = "Description")]
-        public string Department_description { get; set; }
+        public string department_description { get; set; }
 
         //navigation property defining one to many
-        public ICollection<Doctor> Doctor { get; set; }
+        public ICollection<Doctor> Doctors { get; set; }
     }
 }
