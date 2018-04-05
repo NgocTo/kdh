@@ -171,8 +171,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\FAQAccountController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SampleController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Global.asax.cs">
@@ -181,6 +181,7 @@
     <Compile Include="Models\Applicant.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\buddy_User.cs" />
     <Compile Include="Models\department.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
@@ -196,8 +197,7 @@
     <Compile Include="Models\FAQ.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FAQRoleProvider.cs" />
-    <Compile Include="Models\FAQs.cs" />
+    <Compile Include="Models\buddy_FAQ.cs" />
     <Compile Include="Models\FAQsPurposes.cs" />
     <Compile Include="Models\HospitalContext.Context.cs">
       <AutoGen>True</AutoGen>
@@ -223,6 +223,7 @@
     <Compile Include="Models\LabReport.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MyRoleProvider.cs" />
     <Compile Include="Models\OnlineConsultationForm.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
@@ -232,7 +233,7 @@
     <Compile Include="Models\Purpos.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Purposes.cs" />
+    <Compile Include="Models\buddy_Purposes.cs" />
     <Compile Include="Models\Result.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
@@ -290,7 +291,8 @@
     <Content Include="Views\FAQ\AddPurpose.cshtml" />
     <Content Include="Views\FAQ\EditPurpose.cshtml" />
     <Content Include="Views\FAQ\DeletePurpose.cshtml" />
-    <Content Include="Views\FAQAccount\Login.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

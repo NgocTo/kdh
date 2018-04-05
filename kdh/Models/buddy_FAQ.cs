@@ -8,12 +8,12 @@ using System.Web;
 namespace kdh.Models
 {
     [Table("FAQs")]
-    [MetadataType(typeof(FAQMeta))]
+    [MetadataType(typeof(buddy_FAQ))]
     public partial class FAQ
     {
 
     }
-    public class FAQMeta
+    public class buddy_FAQ
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]

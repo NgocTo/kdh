@@ -6,7 +6,7 @@ using System.Web.Security;
 
 namespace kdh.Models
 {
-    public class FAQRoleProvider : RoleProvider
+    public class MyRoleProvider : RoleProvider
     {
         public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -35,13 +35,12 @@ namespace kdh.Models
             throw new NotImplementedException();
         }
 
-        public override string[] GetRolesForUser(string username)
+        public override string[] GetRolesForUser(string userId)
         {
             HospitalContext db = new HospitalContext();
-            string role = db.Users.Where(u => u.Email == username).FirstOrDefault().Role;
+            string role = db.Users.Where(u => u.Id.ToString() == userId).FirstOrDefault().Role;
             string[] results = { role };
-             return results;
-            //throw new NotImplementedException();
+            return results;
         }
 
         public override string[] GetUsersInRole(string roleName)
