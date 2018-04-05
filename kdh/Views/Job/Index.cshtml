@@ -1,0 +1,32 @@
+﻿@model IEnumerable<kdh.Models.Job>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create new Job", "Create")
+</p>
+@foreach (var item in Model)
+{
+    <div>
+        <h3>@Html.DisplayNameFor(model => model.JobId): @item.JobId</h3>
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { job_id = item.JobId }) |
+            @Html.ActionLink("Details", "Details", new { job_id = item.JobId }) |
+            @Html.ActionLink("Delete", "Delete", new { job_id = item.JobId })
+        </div>
+        <div>@Html.DisplayNameFor(model => model.JobTitle): @Html.DisplayFor(modelItem => item.JobTitle)</div>
+        <div>@Html.DisplayNameFor(model => model.JobStatus): @Html.DisplayFor(modelItem => item.JobStatus)</div>
+        <div>@Html.DisplayNameFor(model => model.JobDescription): @Html.DisplayFor(modelItem => item.JobDescription)</div>
+        <div>@Html.DisplayNameFor(model => model.DepartmentId): @Html.DisplayFor(modelItem => item.department.department_name)</div>
+        <div>@Html.DisplayNameFor(model => model.DatePosted): @Html.DisplayFor(modelItem => item.DatePosted)</div>
+        <div>@Html.DisplayNameFor(model => model.DateClosed): @Html.DisplayFor(modelItem => item.DateClosed)</div>
+        <div>@Html.DisplayNameFor(model => model.JobShift): @Html.DisplayFor(modelItem => item.JobShift)</div>
+        <div>@Html.DisplayNameFor(model => model.Salary): @Html.DisplayFor(modelItem => item.Salary)</div>
+        <div>@Html.DisplayNameFor(model => model.Requirement): @Html.DisplayFor(modelItem => item.Requirement)</div>
+        <div>@Html.DisplayNameFor(model => model.User.Email): @Html.DisplayFor(modelItem => item.User.Email)</div>
+    </div>
+}

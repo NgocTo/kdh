@@ -1,0 +1,137 @@
+﻿@model kdh.Models.Job
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("Create", "Jobs"))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <div>
+            @Html.LabelFor(m => m.JobId):
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.JobId)*
+            @Html.ValidationMessageFor(m => m.JobId, "", new { @style = "color:red" })
+        </div>
+    </div>
+
+    <div>
+        <div>
+            @Html.LabelFor(m => m.JobTitle):
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.JobTitle)*
+            @Html.ValidationMessageFor(m => m.JobTitle, "", new { @style = "color:red" })
+        </div>
+    </div>
+
+    <div>
+        <div>
+            @Html.LabelFor(m => m.JobStatus):
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.JobStatus)*
+            @Html.ValidationMessageFor(m => m.JobStatus, "", new { @style = "color:red" })
+        </div>
+    </div>
+
+    <div>
+        <div>
+            @Html.LabelFor(m => m.JobDescription):
+        </div>
+        <div>
+            @Html.TextAreaFor(m => m.JobDescription, 4, 20, null)
+            @Html.ValidationMessageFor(m => m.JobDescription, "", new { @style = "color:red" })
+        </div>
+    </div>
+
+    <div>
+        <div>
+            @Html.LabelFor(m => m.DepartmentId):
+        </div>
+        <div>
+            @Html.DropDownListFor(m => m.DepartmentId, new SelectList(ViewBag.Departments, "department_id", "department_name"), " - Select a Department - ")*
+            @Html.ValidationMessageFor(m => m.DepartmentId, "", new { @style = "color:red" })
+        </div>
+    </div>
+
+    <div>
+        <div>
+            @Html.LabelFor(m => m.DatePosted):
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.DatePosted, new { type = "date" })
+            @Html.ValidationMessageFor(m => m.DatePosted, "", new { @style = "color:red" })
+        </div>
+    </div>
+
+    <div>
+        <div>
+            @Html.LabelFor(m => m.DateClosed):
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.DateClosed, new { type = "date" })
+            @Html.ValidationMessageFor(m => m.DatePosted, "", new { @style = "color:red" })
+        </div>
+    </div>
+
+    <div>
+        <div>
+            @Html.LabelFor(m => m.JobShift):
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.JobShift)
+            @Html.ValidationMessageFor(m => m.JobShift, "", new { @style = "color:red" })
+        </div>
+    </div>
+
+    <div>
+        <div>
+            @Html.LabelFor(m => m.Salary):
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Salary)*
+            @Html.ValidationMessageFor(m => m.Salary, "", new { @style = "color:red" })
+        </div>
+    </div>
+
+    <div>
+        <div>
+            @Html.LabelFor(m => m.Requirement):
+        </div>
+        <div>
+            @Html.TextAreaFor(m => m.Requirement, 4, 20, null)*
+            @Html.ValidationMessageFor(m => m.Requirement, "", new { @style = "color:red" })
+        </div>
+    </div>
+
+    <div>
+        <div>
+            @Html.LabelFor(m => m.UserId):
+        </div>
+        <div>
+            @Html.DropDownListFor(m => m.UserId, new SelectList(ViewBag.JobManagers, "Id", "Email"), " - Select manager's email - ")*
+            @Html.ValidationMessageFor(m => m.UserId, "", new { @style = "color:red" })
+        </div>
+    </div>
+
+    <div>
+        <input type="submit" value="Create" />
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+

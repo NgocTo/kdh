@@ -210,6 +210,7 @@ namespace kdh.Controllers
 
         }
 
+
         // Update a Patient
         [HttpGet]
         public ActionResult EditPatient(Guid id)
