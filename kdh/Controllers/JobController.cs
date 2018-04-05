@@ -11,6 +11,7 @@ using System.Data.Entity;
 
 namespace kdh.Controllers
 {
+    //[Authorize(Roles = "admin")]
     public class JobController : Controller
     {
         HospitalContext db = new HospitalContext();
@@ -67,8 +68,8 @@ namespace kdh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "JobId,JobTitle,JobStatus,JobDescription,DepartmentId,DatePosted,DateClosed,JobShift,Salary,Requirement,UserId")] Job job)
         {
-            //try
-            //{
+            try
+            {
                 if (ModelState.IsValid)
                 {
                     db.Jobs.Add(job);
@@ -78,16 +79,16 @@ namespace kdh.Controllers
                 ViewBag.departments = db.departments.ToList();
                 ViewBag.users = db.Users.ToList();
                 return View(job);
-            //}
-            //catch (DbUpdateException dbException)
-            //{
-            //    ViewBag.DbExceptionMessage = dbException.Message;
-            //}
-            //catch (Exception genericException)
-            //{
-            //    ViewBag.ExceptionMessage = genericException.Message;
-            //}
-            //return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+            }
+            catch (Exception genericException)
+            {
+                ViewBag.ExceptionMessage = genericException.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
         // GET: edit job
         [HttpGet]
