@@ -310,6 +310,7 @@
     <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Patient\MyProfile.cshtml" />
     <Content Include="Views\Shared\PatientPortal.cshtml" />
+    <Content Include="Views\Shared\_NoSidebar.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
