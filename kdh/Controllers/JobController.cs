@@ -32,26 +32,28 @@ namespace kdh.Controllers
         }
 
         // GET: Jobs/Details
-        public ActionResult Details(string id)
+        public ActionResult Details(string job_id)
         {
-            if (id == null)
+            if (job_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Jobs.Find(id);
+            Job job = db.Jobs.Find(job_id);
             if (job == null)
             {
                 return HttpNotFound();
             }
             return View(job);
         }
+
+        // GET: add job
         [HttpGet]
         public ActionResult Create()
         {
             try
             {
                 ViewBag.departments = db.departments.ToList();
-                ViewBag.Users = db.JobManagers.ToList();
+                ViewBag.users = db.Users.ToList();
                 return View();
             }
             catch (Exception genericException)
@@ -65,8 +67,8 @@ namespace kdh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "JobId,JobTitle,JobStatus,JobDescription,DepartmentId,DatePosted,DateClosed,JobShift,Salary,Requirement,UserId")] Job job)
         {
-            try
-            {
+            //try
+            //{
                 if (ModelState.IsValid)
                 {
                     db.Jobs.Add(job);
@@ -74,18 +76,18 @@ namespace kdh.Controllers
                     return RedirectToAction("Index");
                 }
                 ViewBag.departments = db.departments.ToList();
-                ViewBag.Users = db.JobManagers.ToList();
+                ViewBag.users = db.Users.ToList();
                 return View(job);
-            }
-            catch (DbUpdateException dbException)
-            {
-                ViewBag.DbExceptionMessage = dbException.Message;
-            }
-            catch (Exception genericException)
-            {
-                ViewBag.ExceptionMessage = genericException.Message;
-            }
-            return View("~/Views/Errors/Details.cshtml");
+            //}
+            //catch (DbUpdateException dbException)
+            //{
+            //    ViewBag.DbExceptionMessage = dbException.Message;
+            //}
+            //catch (Exception genericException)
+            //{
+            //    ViewBag.ExceptionMessage = genericException.Message;
+            //}
+            //return View("~/Views/Errors/Details.cshtml");
         }
         // GET: edit job
         [HttpGet]
@@ -100,7 +102,7 @@ namespace kdh.Controllers
                     return RedirectToAction("Index");
                 }
                 ViewBag.departments = db.departments.ToList();
-                ViewBag.Users = db.JobManagers.ToList();
+                ViewBag.users = db.Users.ToList();
                 return View(job);
             }
             catch (Exception genericException)
@@ -124,7 +126,7 @@ namespace kdh.Controllers
                     return RedirectToAction("Index");
                 }
                 ViewBag.departments = db.departments.ToList();
-                ViewBag.Users = db.JobManagers.ToList();
+                ViewBag.users = db.Users.ToList();
                 return View(job);
             }
             catch (DbUpdateException dbException)

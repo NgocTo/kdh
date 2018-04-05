@@ -6,7 +6,7 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm("Edit", "Jobs"))
+@using (Html.BeginForm("Edit", "Job"))
 {
     @Html.AntiForgeryToken()
     <div>
@@ -54,7 +54,7 @@
             @Html.LabelFor(m => m.DepartmentId):
         </div>
         <div>
-            @Html.DropDownListFor(m => m.DepartmentId, new SelectList(ViewBag.Departments, "department_id", "department_name"), " - Select a Department - ")*
+            @Html.DropDownListFor(m => m.DepartmentId, new SelectList(ViewBag.Departments, "Departmentid", "department_name"), " - Select a Department - ")*
             @Html.ValidationMessageFor(m => m.DepartmentId, "", new { @style = "color:red" })
         </div>
     </div>
@@ -114,7 +114,7 @@
             @Html.LabelFor(m => m.UserId):
         </div>
         <div>
-            @Html.DropDownListFor(m => m.UserId, new SelectList(ViewBag.JobManagers, "Id", "Email"), " - Select manager's email - ")*
+            @Html.DropDownListFor(m => m.UserId, new SelectList(ViewBag.Users, "Id", "Email"), " - Select manager's email - ")*
             @Html.ValidationMessageFor(m => m.UserId, "", new { @style = "color:red" })
         </div>
     </div>
