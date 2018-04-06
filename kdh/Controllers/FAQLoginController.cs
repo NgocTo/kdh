@@ -10,10 +10,10 @@ using System.Web.Security;
 
 namespace kdh.Controllers
 {
-    public class HomeController : Controller
+    public class FAQLoginController : Controller
     {
         HospitalContext db = new HospitalContext();
-        // GET: Home
+        // GET: FAQLogin
         public ActionResult Index()
         {
             return View();
@@ -40,14 +40,14 @@ namespace kdh.Controllers
                     ViewBag.AdminEmail = userEmail;
 
                     // --- temp: where do you want to redirect admin?
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","FAQ");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Incorrect username or password. Please confirm your login information.");
                 }
 
-                return View("Index");
+                return View("Index", "FAQ");
 
             }
             catch (Exception e)
@@ -68,7 +68,7 @@ namespace kdh.Controllers
                     Session.Abandon();
                     FormsAuthentication.SignOut();
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Login","FAQLogin");
 
             }
             catch (Exception e)

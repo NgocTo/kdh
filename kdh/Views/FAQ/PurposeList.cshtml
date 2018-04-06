@@ -5,21 +5,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="text-center text-dark">Purpose List</h2>
+<h2 class="text-center text-dark">Frequently Asked Questions(FAQ)</h2>
+<h3 class="text-dark">Purpose List</h3>
+<div class="offset-9">
+    @Html.ActionLink("Back to FAQ List", "Index")
+</div>
 
-<p>
+<div class="btn btn-dark">
     @Html.ActionLink("Create New Purpose", "AddPurpose")
-</p>
-@Html.DisplayNameFor(model => model.PurposeToCreate)
-<ul>
+</div>
+
+
+
+<ul class="border mt-3">
     @foreach (var item in Model)
             {
         <li>
-            @Html.DisplayFor(modelItem => item.PurposeToCreate)
-            @Html.ActionLink("Edit", "EditPurpose", new { id = item.PurposeId }) |
-            @Html.ActionLink("Delete", "DeletePurpose", new { id = item.PurposeId })
-        </li>
+            <span class="font-weight-bold">
+                Purpose ID:</span> @Html.DisplayFor(modelItem => item.PurposeId) <br />
+            <span class="font-weight-bold">
+                Purpose: </span>   @Html.DisplayFor(modelItem => item.PurposeToCreate) <br />
+                @Html.ActionLink("Edit", "EditPurpose", new { id = item.PurposeId }) |
+                @Html.ActionLink("Delete", "DeletePurpose", new { id = item.PurposeId })
+</li>
 
     }
 </ul>
+
 
