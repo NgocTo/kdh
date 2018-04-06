@@ -133,13 +133,13 @@ namespace kdh.Controllers
                 if (u != null && u.Role == "patient")
                 {
                     FormsAuthentication.SetAuthCookie(u.Id.ToString(), false);
-                    //Session["id"] = u.Id; // Set Id in Users table (= UserId in Patient table) to session
+
                     return RedirectToAction("Index", "Patient", new { Id = u.Id });
                 }
                 else if (u != null && u.Role == "admin")
                 {
                     FormsAuthentication.SetAuthCookie(u.Id.ToString(), false);
-                    //Session["id"] = u.Id;
+
                     return RedirectToAction("Index", "Admin");
                 }
                 else
@@ -166,7 +166,6 @@ namespace kdh.Controllers
                 // if (Session["id"] != null)
                 if (User.Identity.Name != null)
                 {
-                    //Session.Abandon();
                     FormsAuthentication.SignOut();
                 }
                 return RedirectToAction("Login");
@@ -179,14 +178,6 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
 
-        // Remote Validation
-        // return false if email adress is in use
-        //[HttpPost]
-        //public JsonResult IsAvailableEmail(string email)
-        //{
-        //    bool result = context.Users.Any(q => q.Email.ToLower() == email.ToLower());
-        //    return Json(!result);
-        //}
 
     }
 }

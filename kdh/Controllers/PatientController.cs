@@ -15,13 +15,21 @@ namespace kdh.Controllers
     {
         HospitalContext context = new HospitalContext();
 
+        private string DisplayPatientName(Patient p)
+        {
+            string pFn = context.Patients.SingleOrDefault(q => q.UserId == p.UserId).FirstName;
+            string pLn = context.Patients.SingleOrDefault(q => q.UserId == p.UserId).LastName;
+            return pFn + " " + pLn;
+        }
+
         // GET: PortalPatient
         public ActionResult Index(Guid id) // id in Users table (=UserId in Patients table)
         {
             try
             {
-                Patient p = context.Patients.SingleOrDefault(q => q.UserId == id);
-                return View(p);
+                Patient patient = context.Patients.SingleOrDefault(q => q.UserId == id);
+                ViewBag.PatientName = DisplayPatientName(patient);
+                return View(patient);
             }
             catch (Exception e)
             {
@@ -35,7 +43,6 @@ namespace kdh.Controllers
         {
             try
             {
-                // Guid id = new Guid(Session["id"].ToString());
                 Guid authId = new Guid(User.Identity.Name);
 
                 // get data from db
@@ -57,6 +64,7 @@ namespace kdh.Controllers
                     profile.DateOfBirth = patient.DateOfBirth;
                     profile.Phone = (String.IsNullOrEmpty(patient.Phone)) ? "N/A" : patient.Phone;
 
+                    ViewBag.PatientName = DisplayPatientName(patient);
                     return View(profile);
                 }
 
@@ -98,6 +106,7 @@ namespace kdh.Controllers
                     profile.DateOfBirth = patient.DateOfBirth;
                     profile.Phone = (String.IsNullOrEmpty(patient.Phone)) ? null : patient.Phone;
 
+                    ViewBag.PatientName = DisplayPatientName(patient);
                     return View(profile);
                 }
 
@@ -120,7 +129,6 @@ namespace kdh.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    // Guid id = new Guid(Session["id"].ToString());
                     Guid authId = new Guid(User.Identity.Name);
 
                     // get data from db and assign new value to patient obj

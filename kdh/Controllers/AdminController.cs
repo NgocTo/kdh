@@ -16,11 +16,16 @@ namespace kdh.Controllers
     {
         HospitalContext context = new HospitalContext();
 
-        public ActionResult Index()
+        private string DisplayAdminEmail()
         {
             string adminId = User.Identity.Name;
             string adminEmail = context.Users.SingleOrDefault(q => q.Id.ToString() == adminId).Email;
-            ViewBag.AdminEmail = adminEmail;
+            return adminEmail;
+        }
+
+        public ActionResult Index()
+        {
+            ViewBag.AdminEmail = DisplayAdminEmail();
             return View();
         }
 
@@ -30,7 +35,7 @@ namespace kdh.Controllers
 
             try
             {
-                // string sessionId = Session["id"].ToString();
+
                 string authId = User.Identity.Name;
 
                 string userAccount = context.Users.Where(q => q.Id.ToString() == authId).SingleOrDefault().Email;
@@ -61,6 +66,7 @@ namespace kdh.Controllers
                     }
                     else patientVM.Email = "N/A";
 
+                    ViewBag.AdminEmail = DisplayAdminEmail();
                     patientsVM.Add(patientVM);
                 }
 
@@ -111,9 +117,8 @@ namespace kdh.Controllers
                         registrationVM.Email = patient.User.Email;
                     }
 
-
-
                     ViewBag.Id = id;
+                    ViewBag.AdminEmail = DisplayAdminEmail();
                     return View(registrationVM);
                 }
 
@@ -134,6 +139,7 @@ namespace kdh.Controllers
         {
             try
             {
+                ViewBag.AdminEmail = DisplayAdminEmail();
                 return View();
             }
             catch (Exception e)
@@ -187,7 +193,7 @@ namespace kdh.Controllers
                             Email = registrationVM.Email,
                             Role = "patient",
                             // Since nullable password column does not work
-                            // set temporary dummy password
+                            // set temporary dummy string (won't be able to match with hashed string)
                             Password = "Not Set"
                         };
                         p.UserId = userId;
@@ -200,9 +206,11 @@ namespace kdh.Controllers
                     context.Patients.Add(p);
                     context.SaveChanges();
 
+
                     return RedirectToAction("PatientList");
                 }
 
+                ViewBag.AdminEmail = DisplayAdminEmail();
                 return View(registrationVM);
 
             }
@@ -257,6 +265,7 @@ namespace kdh.Controllers
                     }
 
                     ViewBag.Id = id;
+                    ViewBag.AdminEmail = DisplayAdminEmail();
                     return View(registrationVM);
                 }
 
@@ -340,6 +349,7 @@ namespace kdh.Controllers
                     }
 
                     ViewBag.Id = id;
+                    ViewBag.AdminEmail = DisplayAdminEmail();
                     return View(patientVM);
                 }
 
