@@ -62,7 +62,17 @@ namespace kdh.Models
 
         public override bool IsUserInRole(string username, string roleName)
         {
-            throw new NotImplementedException();
+            //https://www.c-sharpcorner.com/UploadFile/6bb76f/how-to-implement-custom-role-provider-in-vs2008-and-vs2010/
+            //throw new NotImplementedException();
+            var roles = GetRolesForUser(username);
+            foreach (var role in roles)
+            {
+                if (role.Equals(roleName))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)

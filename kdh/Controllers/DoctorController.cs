@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using kdh.Models;
 using kdh.ViewModels;
+using kdh.Utils;
+using System.Data.SqlClient;
+using System.Data.Entity.Infrastructure;
 
 namespace kdh.Controllers
 {
@@ -23,9 +26,9 @@ namespace kdh.Controllers
                 doctordepartment = doctors.Join(departments, doc => doc.Departmentid, dep => dep.departmentid, (doc, dep) => new DoctorDepartment { doctor = doc, department = dep }).ToList();
                 return View(doctordepartment);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                ViewBag.err = e.Message;
+                ViewBag.ExceptionMessage = e.Message;
             }
             return View();
         }
@@ -39,9 +42,9 @@ namespace kdh.Controllers
             }
             catch (Exception e)
             {
-                ViewBag.err = e.Message;
+                ViewBag.ExceptionMessage = e.Message;
             }
-            return View();
+            return View("~/Views/Errors/Details.cshtml");
         }
         [HttpPost]
         public ActionResult Add(Doctor doctor)
@@ -57,11 +60,15 @@ namespace kdh.Controllers
                 ViewBag.Departments = db.departments.ToList();
                 return View(doctor);
             }
-            catch(Exception e)
+            catch (DbUpdateException d)
             {
-                ViewBag.err = e.Message;
+                ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(d);
             }
-            return View();
+            catch (Exception ex)
+            {
+                ViewBag.ExceptionMessage = ex.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
         [HttpGet]
         public ActionResult Update(int? id)
@@ -88,10 +95,10 @@ namespace kdh.Controllers
             }
             catch (Exception e)
             {
-                ViewBag.err = e.Message;
+                ViewBag.ExceptionMessage = e.Message;
             }
-            //errror
-            return View();
+
+            return View("~/Views/Errors/Details.cshtml");
         }
         [HttpPost]
         public ActionResult Update(Doctor doctor)
@@ -107,20 +114,26 @@ namespace kdh.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-                else
-                {
-                   // ViewBag.err = "invalid";
-                }
                 
-                ViewBag.err = "invalid";
+                
+               
                 return View();
 
             }
-            catch(Exception e)
+            catch (DbUpdateException d)
             {
-                ViewBag.err = e.Message;
+                ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(d);
+                //ViewBag.DbExceptionMessage = uex.Message;
             }
-            return View();
+            catch (SqlException sq)
+            {
+                ViewBag.SqlExceptionMessage = sq.Message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
         [HttpGet]
         public ActionResult Delete(int? id)
@@ -135,12 +148,15 @@ namespace kdh.Controllers
                 DoctorDepartment doctorDepartment = db.Doctors.Join(db.departments, doc => doc.Departmentid, dep => dep.departmentid, (doc, dep) => new DoctorDepartment { doctor = doc, department = dep }).Where(doc => doc.doctor.Doctorid == id).FirstOrDefault();
                 return View(doctorDepartment);
             }
-            catch(Exception e)
+            catch (SqlException sq)
             {
-                ViewBag.err = e.Message;
+                ViewBag.SqlExceptionMessage = sq.Message;
             }
-
-            return View();
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
         [HttpPost]
         [ActionName("Delete")]
@@ -157,15 +173,45 @@ namespace kdh.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch(Exception e)
+            catch (DbUpdateException d)
             {
-                ViewBag.err = e.Message;
+                ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(d);
             }
-            return View();
+            catch (SqlException s)
+            {
+                ViewBag.SqlExceptionMessage = s.Message;
+            }
+            catch (Exception g)
+            {
+                ViewBag.ExceptionMessage = g.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
-        public PartialViewResult DoctorSearch(FormCollection form)
+        public ActionResult Detail(int? id)
         {
-            string search = form["SearchBar"];
+            try
+            {
+                if (id == null)
+                {
+
+                    return RedirectToAction("Index");
+                }
+                DoctorDepartment doctorDepartment = db.Doctors.Join(db.departments, doc => doc.Departmentid, dep => dep.departmentid, (doc, dep) => new DoctorDepartment { doctor = doc, department = dep }).Where(doc => doc.doctor.Doctorid == id).FirstOrDefault();
+                return View(doctorDepartment);
+            }
+            catch (SqlException sq)
+            {
+                ViewBag.SqlExceptionMessage = sq.Message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+        }
+        public PartialViewResult DoctorSearch(string ajaxdoc)
+        {
+            string search = ajaxdoc;
             
             List<DoctorDepartment> doctordepartment = new List<DoctorDepartment>();
             if (!String.IsNullOrWhiteSpace(search))
@@ -181,7 +227,7 @@ namespace kdh.Controllers
                     ViewBag.err = e.Message;
                 }
             }
-            return PartialView("~/Views/Doctor/_DoctorSearch.cshtml", doctordepartment);
+            return PartialView("~/Views/Doctor/_dl.cshtml", doctordepartment);
 
         }
     }

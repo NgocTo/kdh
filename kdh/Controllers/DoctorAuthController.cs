@@ -1,19 +1,19 @@
-﻿using kdh.Models;
-using kdh.Utils;
-using kdh.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using kdh.Models;
+using kdh.Utils;
+using kdh.ViewModels;
 
 namespace kdh.Controllers
 {
-    public class HomeController : Controller
+    public class DoctorAuthController : Controller
     {
         HospitalContext db = new HospitalContext();
-        // GET: Home
+        // GET: DoctorAuth
         public ActionResult Index()
         {
             return View();
@@ -24,29 +24,26 @@ namespace kdh.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(AccountLoginVM vm)
+        public ActionResult Login(AccountLoginVM user)
         {
             try
             {
-                string password = Hasher.ToHashedStr(vm.Password);
-                var u = db.Users.SingleOrDefault(q => q.Email == vm.Email && q.Password == password);
-                // if username(email) and password are correct
-                if (u != null && u.Role == "admin")
+                string password = Hasher.ToHashedStr(user.Password);
+                var u = db.Users.SingleOrDefault(r => r.Email == user.Email && r.Password == user.Password);
+
+
+                if (u != null)
                 {
                     FormsAuthentication.SetAuthCookie(u.Id.ToString(), false);
-                    Session["id"] = u.Id; // Id from Users table
-                    string userEmail = db.Users.SingleOrDefault(q => q.Id == u.Id).Email;
-                    ViewBag.AdminEmail = userEmail;
-
-                    // --- temp: where do you want to redirect admin?
-                    return View("Index");
+                    Session["id"] = u.Id;
+                    return RedirectToAction("Index", "Doctor");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Incorrect username or password. Please confirm your login information.");
                 }
 
-                return View("Login");
+                return View();
 
             }
             catch (Exception e)
@@ -54,10 +51,7 @@ namespace kdh.Controllers
                 ViewBag.ExceptionMessage = e.Message;
             }
             return View("~/Views/Errors/Details.cshtml");
-
-
         }
-
         public ActionResult Logout()
         {
             try
@@ -67,7 +61,7 @@ namespace kdh.Controllers
                     Session.Abandon();
                     FormsAuthentication.SignOut();
                 }
-                return RedirectToAction("Login","Home");
+                return RedirectToAction("Login", "Doctor");
 
             }
             catch (Exception e)
@@ -76,7 +70,6 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
         }
-
-
     }
+
 }
