@@ -25,7 +25,7 @@ namespace kdh.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.AdminEmail = DisplayAdminEmail();
+            ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
             return View();
         }
 
@@ -56,6 +56,11 @@ namespace kdh.Controllers
                         Id = p.Id,
                         FullName = p.FirstName + " " + p.LastName,
                         Gender = p.Gender,
+                        Address1 = String.IsNullOrEmpty(p.Address1)? "N/A" : p.Address1,
+                        Address2 = String.IsNullOrEmpty(p.Address2) ? "N/A" : p.Address2,
+                        City = String.IsNullOrEmpty(p.City) ? "N/A" : p.City,
+                        Province = String.IsNullOrEmpty(p.Province) ? "N/A" : p.Province,
+                        Postal = String.IsNullOrEmpty(p.PostalCode) ? "N/A" : p.PostalCode
                     };
 
                     // assign if patient has an User account
@@ -66,7 +71,7 @@ namespace kdh.Controllers
                     }
                     else patientVM.Email = "N/A";
 
-                    ViewBag.AdminEmail = DisplayAdminEmail();
+                    ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
                     patientsVM.Add(patientVM);
                 }
 
@@ -118,7 +123,7 @@ namespace kdh.Controllers
                     }
 
                     ViewBag.Id = id;
-                    ViewBag.AdminEmail = DisplayAdminEmail();
+                    ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
                     return View(registrationVM);
                 }
 
@@ -139,7 +144,7 @@ namespace kdh.Controllers
         {
             try
             {
-                ViewBag.AdminEmail = DisplayAdminEmail();
+                ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
                 return View();
             }
             catch (Exception e)
@@ -209,7 +214,7 @@ namespace kdh.Controllers
                     return RedirectToAction("PatientList");
                 }
 
-                ViewBag.AdminEmail = DisplayAdminEmail();
+                ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
                 return View(registrationVM);
 
             }
@@ -264,7 +269,7 @@ namespace kdh.Controllers
                     }
 
                     ViewBag.Id = id;
-                    ViewBag.AdminEmail = DisplayAdminEmail();
+                    ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
                     return View(registrationVM);
                 }
 
@@ -348,7 +353,7 @@ namespace kdh.Controllers
                     }
 
                     ViewBag.Id = id;
-                    ViewBag.AdminEmail = DisplayAdminEmail();
+                    ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
                     return View(patientVM);
                 }
 

@@ -8,30 +8,38 @@
 }
 
 <h2>Detail</h2>
-<div>Name: @Model.FirstName @Model.LastName</div>
-<div>
-    Date of Birth:
-    @if (Model.DateOfBirth.HasValue)
-    {
-        string d = Model.DateOfBirth.ToString();
-        d = d.Substring(0, d.Length - 11);
-        <span>@d</span>
 
-    }
-    else
-    {
-        <span>N/A</span>
-    }
+<div class="card mb-3">
+    <div class="card-header">
+        <span class="h5">@Model.FirstName @Model.LastName</span>
+    </div>
+    <div class="card-body">
+        <div class="card-text">
+            Date of Birth:
+            @if (Model.DateOfBirth.HasValue)
+            {
+                string d = Model.DateOfBirth.ToString();
+                d = d.Substring(0, d.Length - 11);
+                <span>@d</span>
+
+            }
+            else
+            {
+                <span>N/A</span>
+            }
+        </div>
+        <div class="card-text">Gender: @Model.Gender</div>
+        <div class="card-text">OHIP: @Model.HealthCardNumber</div>
+        <div class="card-text">Address1: @Model.Address1</div>
+        <div class="card-text">Address2: @Model.Address2</div>
+        <div class="card-text">City: @Model.City</div>
+        <div class="card-text">Province: @Model.Province</div>
+        <div class="card-text">Postal Code: @Model.PostalCode</div>
+        <div class="card-text">Phone: @Model.Phone</div>
+        <div class="card-text">Email: @Model.Email</div>
+    </div>
 </div>
-<div>Gender: @Model.Gender</div>
-<div>OHIP: @Model.HealthCardNumber</div>
-<div>Address1: @Model.Address1</div>
-<div>Address2: @Model.Address2</div>
-<div>City: @Model.City</div>
-<div>Province: @Model.Province</div>
-<div>Postal Code: @Model.PostalCode</div>
-<div>Phone: @Model.Phone</div>
-<div>Email: @Model.Email</div>
+
 
 
 
