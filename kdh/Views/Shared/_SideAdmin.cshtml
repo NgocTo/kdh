@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = null;
+}
+
+<aside class="col-sm-3 bg-light rounded-right">
+    <div class="mb-3 mt-2">
+        @if (User.Identity.IsAuthenticated)
+        {
+            // Only admin will be able to see the sidebar
+            if (User.IsInRole("admin"))
+            {
+                <h3 class="text-dark">Features</h3>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><p class="text-dark text-lg-center">Welcome  </p>@User.Identity.Name</li>
+                                <li class="list-group-item"><a href="@Url.Action("Logout", "Home")" class="btn btn-outline-danger">Logout</a></li>
+                                <li class="list-group-item">@Html.ActionLink("Patient Registration", "Index", "Account")</li>
+
+                                <li class="list-group-item">@Html.ActionLink("Jobs", "Index", "Job")</li>
+                                <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Login", "FAQLogin")</li>
+
+
+
+                                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+
+                            </ul>
+            }
+        }
+        else
+        {
+            <h3 class="text-dark">Quick Links</h3>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">@Html.ActionLink("Patient Registration", "Index", "Account")</li>
+                            <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                            <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Details", "FAQ")</li>
+                            <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                            <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                            <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                            <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                            <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                            <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+
+                        </ul>
+        }
+
+    </div>
+</aside>

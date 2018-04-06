@@ -7,8 +7,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-    
-    
+
     <script src="~/Scripts/jquery-3.0.0.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
@@ -27,163 +26,36 @@
         //        $(this).submit();
         //    })
         //})();
-           
+
     </script>
 </head>
 
 <body>
-<!-- HEADER -->
-    <header class="mb-5">
-        <div class="container-fluid" id="header">
+    <!-- HEADER -->
 
-            <div class="row p-2 pt-3" id="navigation"> 
-                <div class="col-1">
-                    <div class="offset-3"><img style="width: 50px; height: 50px;" src="~/Images/LOGO.png" />"</div>
-                </div>
-                <div class="col-md-7 d-none d-md-block">
-                    <h2><a href="@Url.Action("Index", "Home")" class="h3 text-white font-weight-bold">Humber and District Hospital</a></h2>
-                </div>
-                <div class="col-5 col-md-2 offset-1 offset-md-0">
-                    <form>
-                        <select class="form-control" aria-label="Language">
-                            <option>ENG</option>
-                            <option>FR</option>
-                        </select>
-                    </form>
-                </div>
-                <button class="navbar-toggler  navbar-dark d-block d-md-none" type="button" data-toggle="collapse" data-target="#toggleMenu" aria-controls="toggleMenu"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="col-md-2">
-                    <form>
-                        <button class="btn btn-danger d-none d-md-block" type="submit">Donate Now</button>
-                    </form>
-                </div>
-
-            </div> <!-- end of 1st row -->
-
-            <nav class="navbar navbar-expand-md" role="navigation">
-
-                <div class="row col-12 collapse navbar-collapse" id="toggleMenu">
-                    <ul class="navbar-nav col-md-9">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white mr-2" data-toggle="dropdown" href="#">Patient &amp; Visitor</a>
-                            <div class="dropdown-menu">
-                                <a href="@Url.Action("Login", "Account")" class="dropdown-item">Patient Portal</a>
-                                <a href="@Url.Action("Details", "FAQ")" class="dropdown-item">FAQ</a>
-                                <a class="dropdown-item" href="#">Link 3</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white mr-2" href="#">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white mr-2" href="#">Career &amp; Volunteering</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white mr-2" href="#">Foundation</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white mr-2" href="#">Contact Us</a>
-                        </li>
-                    </ul>
-                    <div class="col-md-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-light" type="button">Go</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-        </div><!-- end of container fluid -->
-    </header>
-
-<!-- END OF HEADER-->
+    @Html.Partial("~/Views/Shared/_Header.cshtml")
+    
+    <!-- END OF HEADER-->
 
 
     <!-- START OF BODY CONTENT -->
     <div class="container body-content">
         <div class="row">
-            <aside class="col-sm-3 bg-light rounded-right">
-                <div class="mb-3 mt-2">
-@if (User.Identity.IsAuthenticated)
-{
-    // Only admin will be able to see the sidebar
-    if (User.IsInRole("admin"))
-    {
-        <h3 class="text-dark">Features</h3>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><p class="text-dark text-lg-center">Welcome  </p>@User.Identity.Name</li>
-                <li class="list-group-item"><a href="@Url.Action("Logout", "Home")" class="btn btn-outline-danger">Logout</a></li>
-                <li class="list-group-item">@Html.ActionLink("Patient Registration", "Index", "Account")</li>
 
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Index","Job")</li>
-                <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Login", "FAQLogin")</li>
+            <!-- Sidebar -->
+            @Html.Partial("~/Views/Shared/_SideAdmin.cshtml")
 
-             
-                
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
 
-            </ul>
-    }
-}
-else
-{
-    <h3 class="text-dark">Quick Links</h3>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">@Html.ActionLink("Patient Registration", "Index", "Account")</li>
-        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-        <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Details", "FAQ")</li>
-        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-
-    </ul>
-}
-
- </div>
-</aside>
             <!-- Body -->
-        <main class="col-sm-9">
-            @RenderBody()
-            <hr />
-        </main>
+            <main class="col-sm-9">
+                @RenderBody()
+            </main>
+
+        </div> 
     </div>
-</div>
 
     <!-- Footer -->
-<footer id="footer" style="height: 200px">
-    <div class="container">
-        <div class="row pt-3">
-            <div col-md-4>
-                <a href="@Url.Action("Login", "Home")" class="btn btn-danger">Admin Login</a>
-            </div>
-            <p class="col-md-8 text-right">&copy; @DateTime.Now.Year - KDH Project</p>
-        </div>
-    </div>
-</footer>
+    @Html.Partial("~/Views/Shared/_Footer.cshtml")
 
-
-
-
-
-    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>

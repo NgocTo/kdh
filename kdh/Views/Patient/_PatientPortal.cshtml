@@ -1,8 +1,4 @@
-﻿@{ 
-   
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -16,12 +12,17 @@
 
 <body>
     <!-- HEADER -->
-        @Html.Partial("~/Views/Shared/_Header.cshtml")
+    @Html.Partial("~/Views/Shared/_Header.cshtml")
 
+    <!-- END OF HEADER-->
     <!-- START OF BODY CONTENT -->
     <div class="container body-content">
         <div class="row">
-            <main class="col-sm-12">
+
+            <!-- Footer -->
+            @Html.Partial("~/Views/Shared/_SidePatient.cshtml")
+
+            <main class="col-sm-9">
                 @RenderBody()
                 <hr />
             </main>
@@ -33,7 +34,6 @@
 
     <script src="~/Scripts/jquery-3.0.0.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>
+

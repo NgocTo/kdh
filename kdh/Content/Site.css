@@ -42,6 +42,10 @@
     background-color: #20396d;
     color: white;
 }
+#footer a {
+    color: white;
+}
+
 #navigation {
     background-color: #17429b;
 }
