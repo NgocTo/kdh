@@ -15,7 +15,7 @@
                 <div class="my-3">@ViewBag.AdminEmail</div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">@Html.ActionLink("Patient Registration", "PatientList", "Admin")</li>
-                    <li class="list-group-item">@Html.ActionLink("Jobs", "Index", "Job")</li>
+                    <li class="list-group-item">@Html.ActionLink("Job Posting", "JobLogin", "Account")</li>
                     <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Login", "FAQLogin")</li>
                     <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
                     <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
@@ -34,6 +34,14 @@
                     <li class="list-group-item"><a href="@Url.Action("Logout", "Account")" class="btn btn-danger">Logout</a></li>
                 </ul>
 
+            }
+            else if (User.IsInRole("hr"))
+            {
+                <h3 class="text-dark">Job Posting Menu</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">@Html.ActionLink("Create new job posting", "Create", "Job")</li>
+                    <li class="list-group-item"><a href="@Url.Action("JobLogout", "Account")" class="btn btn-danger">Logout</a></li>
+                </ul>
             }
 
         }

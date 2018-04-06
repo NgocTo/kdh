@@ -1,0 +1,41 @@
+﻿@model kdh.Models.User
+
+@{
+    ViewBag.Title = "Job login Portal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Job login Portal</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal text-center">
+        <div class="text-danger">*: required</div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group mt-5 row">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label offset-1 col-sm-3 text-right" })
+            <div class="col-sm-5">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label offset-1 col-sm-3 text-right" })
+            <div class="col-sm-5">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="text-center">
+                <input type="submit" value="Login" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="text-danger">
+            @ViewBag.JobLoginMessage
+        </div>
+    </div>
+}

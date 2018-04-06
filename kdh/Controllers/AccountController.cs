@@ -182,6 +182,46 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
 
+        // JADE'S ACCOUNT CONTROLLER
+        // Login action
+        [HttpGet]
+        public ActionResult JobLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult JobLogin(User user)
+        {
+            string password = Hasher.ToHashedStr(user.Password);
+            var usr = context.Users.SingleOrDefault(u => u.Email == user.Email && u.Password == password);
+            if (usr != null && usr.Role == "hr")
+            {
+                FormsAuthentication.SetAuthCookie(usr.Id.ToString(), false);
+
+                return RedirectToAction("Index_Admin", "Job");
+            }
+            else
+            {
+                ViewBag.JobLoginMessage = "Incorrect username or password.";
+            }
+            return View();
+            }
+
+        //Logout action
+        public ActionResult JobLogout()
+        {
+            try
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+        }
 
     }
 }
