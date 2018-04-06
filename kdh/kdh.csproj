@@ -176,6 +176,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
+    <Compile Include="Controllers\FAQLoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
@@ -319,6 +320,7 @@
     <Content Include="Views\Job\Create.cshtml" />
     <Content Include="Views\Job\Edit.cshtml" />
     <Content Include="Views\Job\Delete.cshtml" />
+    <Content Include="Views\FAQLogin\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

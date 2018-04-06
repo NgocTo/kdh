@@ -50,7 +50,7 @@
                             <a class="nav-link dropdown-toggle text-white mr-2" data-toggle="dropdown" href="#">Patient &amp; Visitor</a>
                             <div class="dropdown-menu">
                                 <a href="@Url.Action("Login", "Account")" class="dropdown-item">Patient Portal</a>
-                                <a href="@Url.Action("Index", "FAQPublic")" class="dropdown-item">FAQ</a>
+                                <a href="@Url.Action("Details", "FAQ")" class="dropdown-item">FAQ</a>
                                 <a class="dropdown-item" href="#">Link 3</a>
                             </div>
                         </li>
@@ -96,10 +96,11 @@
     {
         <h3 class="text-dark">Features</h3>
             <ul class="list-group list-group-flush">
+                <li class="list-group-item"><p class="text-dark text-lg-center">Welcome  </p>@User.Identity.Name</li>
                 <li class="list-group-item"><a href="@Url.Action("Logout", "Home")" class="btn btn-outline-danger">Logout</a></li>
                 <li class="list-group-item">@Html.ActionLink("Patient Registration", "Index", "Account")</li>
                 <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
-                <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Index", "FAQ")</li>
+                <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Login", "FAQLogin")</li>
                 <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
                 <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
                 <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
@@ -112,8 +113,21 @@
 }
 else
 {
+    <h3 class="text-dark">Quick Links</h3>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">@Html.ActionLink("Patient Registration", "Index", "Account")</li>
+        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+        <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Details", "FAQ")</li>
+        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+        <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
 
+    </ul>
 }
+
  </div>
 </aside>
             <!-- Body -->

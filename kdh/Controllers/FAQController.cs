@@ -39,7 +39,7 @@ namespace kdh.Controllers
         }
         //create details of FAQ for admin
         // GET: FAQ
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         public ActionResult Details()
         {
             try

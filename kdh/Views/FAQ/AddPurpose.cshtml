@@ -4,19 +4,24 @@
     ViewBag.Title = "AddPurpose";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2 class="text-center text-dark">Add Purpose</h2>
+<h2 class="text-center text-dark">Frequently Asked Questions(FAQ)</h2>
+<h3 class=" text-dark">Add Purpose</h3>
+<div class="offset-9">
+    @Html.ActionLink("Back to List", "PurposeList")
+</div>
 
 @using (Html.BeginForm("AddPurpose", "FAQ"))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Purpose</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.PurposeToCreate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div>
+            @Html.LabelFor(model => model.PurposeToCreate, htmlAttributes: new { @class = "control-label col-md-4" })
+                </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PurposeToCreate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PurposeToCreate, "", new { @class = "text-danger" })
@@ -31,6 +36,4 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "PurposeList")
-</div>
+
