@@ -13,16 +13,19 @@ namespace kdh.Controllers
     public class HomeController : Controller
     {
         HospitalContext db = new HospitalContext();
+        
         // GET: Home
         public ActionResult Index()
         {
             return View();
         }
+
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Login(AccountLoginVM vm)
         {
@@ -35,12 +38,9 @@ namespace kdh.Controllers
                 if (u != null && u.Role == "admin")
                 {
                     FormsAuthentication.SetAuthCookie(u.Id.ToString(), false);
-                    Session["id"] = u.Id; // Id from Users table
-                    string userEmail = db.Users.SingleOrDefault(q => q.Id == u.Id).Email;
-                    ViewBag.AdminEmail = userEmail;
 
-                    // --- temp: where do you want to redirect admin?
-                    return RedirectToAction("Index");
+                    // --- Redirect to Admin/Index
+                    return RedirectToAction("Index", "Admin");
                 }
                 else
                 {
@@ -77,6 +77,7 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
         }
+
 
 
     }

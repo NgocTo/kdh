@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = null;
+}
+
+<aside class="col-sm-3 bg-light rounded-right">
+    <div class="mb-3 mt-2">
+        @if (User.Identity.IsAuthenticated)
+        {
+            // Only admin will be able to see the sidebar
+            if (User.IsInRole("admin"))
+            {
+                <h3 class="text-dark">Admin Menu</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Logged in as @ViewBag.AdminEmail</li>
+
+                    <li class="list-group-item"><a href="@Url.Action("Logout", "Home")" class="btn btn-outline-danger">Logout</a></li>
+                    <li class="list-group-item">@Html.ActionLink("Patient Registration", "PatientList", "Admin")</li>
+                    <li class="list-group-item">@Html.ActionLink("Jobs", "Index", "Job")</li>
+                    <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Login", "FAQLogin")</li>
+                    <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                    <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+
+                </ul>
+            }
+            else if (User.IsInRole("patient"))
+            {
+                <h3 class="text-dark">Patient Menu</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">@Html.ActionLink("My Profile", "MyProfile", "Patient")</li>
+                    <li class="list-group-item">@Html.ActionLink("My Lab Results", "Index", "Patient")</li>
+                    <li class="list-group-item">@Html.ActionLink("My Appointments", "Index", "Patient")</li>
+                    <li class="list-group-item"><a href="@Url.Action("Logout", "Account")" class="btn btn-danger">Logout</a></li>
+                </ul>
+
+            }
+
+        }
+        // this is for public view
+        else
+        {
+            <h3 class="text-dark">Quick Links</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="#">Location and Hours</a></li>
+                    <li class="list-group-item"><a href="#">Services</a></li>
+                    <li class="list-group-item"><a href="#">Online Gift Shop</a></li>
+                    <li class="list-group-item"><a href="#">Donation</a></li>
+                </ul>
+        }
+
+    </div>
+</aside>

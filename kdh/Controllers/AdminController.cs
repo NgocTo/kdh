@@ -18,8 +18,10 @@ namespace kdh.Controllers
 
         public ActionResult Index()
         {
-            // Todo: decide which page will be the top
-            return RedirectToAction("PatientList");
+            string adminId = User.Identity.Name;
+            string adminEmail = context.Users.SingleOrDefault(q => q.Id.ToString() == adminId).Email;
+            ViewBag.AdminEmail = adminEmail;
+            return View();
         }
 
         // GET: Registration

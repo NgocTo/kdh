@@ -52,7 +52,7 @@ namespace kdh.ViewModels
         public Nullable<DateTime> DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Gender is required. ")]
-        [RegularExpression("^Female|Male|Other$/gi", ErrorMessage = "Gender must be choosen from one of the options.")]
+        [RegularExpression("^Female|Male|Others$", ErrorMessage = "Gender must be choosen from one of the options.")]
         [Display(Name = "* Gender")]
         public string Gender { get; set; }
 

@@ -3,7 +3,7 @@
     Layout = null;
 }
 
-<footer id="footer" class="mainfooter" role="contentinfo">
+<footer id="footer" class="mainfooter mt-5" role="contentinfo">
     <div class="py-4">
         <div class="container">
             <div class="row">
@@ -60,21 +60,22 @@
         </div>
     </div>
 
-    <div class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <!--Footer Bottom-->
                     <p class="text-xs-center font-weight-bold text-warning">*Please note that this website is a part of the student projects and not a real hospital website.</p>
-                </div>
-                <div class="col-md-4">
-                    <a href="@Url.Action("Login", "Home")" class="btn btn-danger btn-sm offset-7">Admin Login</a>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a href="@Url.Action("Login", "Home")" class="btn btn-danger btn-sm">Admin Login</a>
+                </div>
+            </div>
+        </div>
+
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
@@ -83,5 +84,4 @@
                 </div>
             </div>
         </div>
-    </div>
 </footer>

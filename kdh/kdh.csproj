@@ -313,7 +313,7 @@
     <Content Include="Views\Patient\EditProfile.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Patient\MyProfile.cshtml" />
-    <Content Include="Views\Patient\_PatientPortal.cshtml" />
+    <Content Include="Views\Shared\PatientPortal\_PatientPortal.cshtml" />
     <Content Include="Views\Shared\_NoSidebar.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Job\Index.cshtml" />
@@ -324,9 +324,9 @@
     <Content Include="Views\FAQLogin\Login.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\_SideAdmin.cshtml" />
+    <Content Include="Views\Shared\_LeftSidebar.cshtml" />
     <Content Include="Views\Shared\_SidePatient.cshtml" />
-    <Content Include="Views\Shared\_SidePublic.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
