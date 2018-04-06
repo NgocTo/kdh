@@ -4,15 +4,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Available job Positions</h2>
+<h2>Job list</h2>
 
+<p>
+    @Html.ActionLink("Create new Job", "Create")
+</p>
 @foreach (var item in Model)
 {
     <div>
         <h3>@Html.DisplayNameFor(model => model.JobId): @item.JobId</h3>
-        <span>
-            @Html.ActionLink("Details", "Details", new { job_id = item.JobId })
-        </span>
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { job_id = item.JobId }) |
+            @Html.ActionLink("Details", "Details_Admin", new { job_id = item.JobId }) |
+            @Html.ActionLink("Delete", "Delete", new { job_id = item.JobId })
+        </div>
         <dl class="dl-horizontal row">
 
             <dt class="col-2">@Html.DisplayNameFor(model => model.JobTitle):</dt>
@@ -27,6 +32,11 @@
             <dd class="col-4">@Html.DisplayFor(modelItem => item.DateClosed)</dd>
             <dt class="col-2">@Html.DisplayNameFor(model => model.User.Email)</dt>
             <dd class="col-10">@Html.DisplayFor(modelItem => item.User.Email)</dd>
+
+            @*<div>@Html.DisplayNameFor(model => model.JobDescription): @Html.DisplayFor(modelItem => item.JobDescription)</div>*@
+            @*<div>@Html.DisplayNameFor(model => model.JobShift): @Html.DisplayFor(modelItem => item.JobShift)</div>*@
+            @*<div>@Html.DisplayNameFor(model => model.Salary): @Html.DisplayFor(modelItem => item.Salary)</div>*@
+            @*<div>@Html.DisplayNameFor(model => model.Requirement): @Html.DisplayFor(modelItem => item.Requirement)</div>*@
         </dl>
     </div>
 }

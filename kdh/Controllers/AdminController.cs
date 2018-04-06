@@ -185,7 +185,6 @@ namespace kdh.Controllers
                     // If email address is provided, create a user account
                     if (!String.IsNullOrWhiteSpace(registrationVM.Email))
                     {
-                        Guid pw = new Guid();
 
                         User u = new User
                         {
