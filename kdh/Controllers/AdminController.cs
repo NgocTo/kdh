@@ -21,12 +21,22 @@ namespace kdh.Controllers
             string adminId = User.Identity.Name;
             string adminEmail = context.Users.SingleOrDefault(q => q.Id.ToString() == adminId).Email;
             return adminEmail;
+               
         }
 
         public ActionResult Index()
         {
-            ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
-            return View();
+            try
+            {
+                ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
+                return View();
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+
         }
 
         // GET: Registration
