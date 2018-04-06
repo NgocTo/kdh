@@ -606,7 +606,7 @@
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="64" FixedLength="true" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="64" FixedLength="true" Unicode="false" Nullable="true" />
           <Property Name="Role" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Jobs" Relationship="Self.jobs_userid_fk" FromRole="Users" ToRole="Jobs" />
           <NavigationProperty Name="Patients" Relationship="Self.FK_Patients_Users" FromRole="Users" ToRole="Patients" />

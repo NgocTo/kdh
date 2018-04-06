@@ -186,7 +186,7 @@ namespace kdh.Controllers
                             Role = "patient",
                             // Since nullable password column does not work
                             // set temporary dummy password
-                            Password = Hasher.ToHashedStr(pw.ToString())
+                            Password = "Not Set"
                         };
                         p.UserId = userId;
 
