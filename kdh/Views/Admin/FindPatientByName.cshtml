@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<kdh.ViewModels.PatientVM>
 
 @{
-    ViewBag.Title = "List of All Patients";
+    ViewBag.Title = "Search Results";
     Layout = "~/Views/Shared/PatientPortal/_PatientPortal.cshtml";
-
 }
 
-
-<h2>List of All Patients</h2>
+<h2>Search Result: </h2>
 <div class="container">
     <div class="row">
 
@@ -23,8 +21,9 @@
                 </span>
             </div>
         }
-
     </div>
+    <div class="text-danger mb-4">@ViewBag.SearchError @ViewBag.CountResult</div>
+
 </div>
 
 @foreach (var p in Model)
@@ -52,6 +51,8 @@
             </span>
         </div>
     </div>
-        @* new { id = p.Id }  id should be the same as parameter of the action*@
+    @* new { id = p.Id }  id should be the same as parameter of the action*@
 
 }
+
+

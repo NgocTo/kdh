@@ -331,6 +331,7 @@
     <Content Include="Views\JobApplicant\Index_Admin.cshtml" />
     <Content Include="Views\JobApplicant\Create.cshtml" />
     <Content Include="Views\JobApplicant\Delete.cshtml" />
+    <Content Include="Views\Admin\FindPatientByName.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

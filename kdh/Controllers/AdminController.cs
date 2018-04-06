@@ -406,18 +406,31 @@ namespace kdh.Controllers
 
         }
 
-        // TODO
+        // TODO: implement DRY
         [HttpPost]
-        public ActionResult FindPatientByName(string name)
+        [ValidateAntiForgeryToken]
+        public ActionResult FindPatientByName(string pName)
         {
             try
             {
-
-                // patients (and users) from database with values
-                List<Patient> patients = context.Patients.ToList().FindAll(q=>q.FirstName == name||q.LastName == name);
-
                 // goes to view. now it's empty
                 List<PatientVM> patientsVM = new List<PatientVM>();
+                List<Patient> patients = new List<Patient>();
+
+                if (!String.IsNullOrEmpty(pName))
+                {
+                    // patients (and users) from database with values
+                    patients = context.Patients.ToList().FindAll(q => q.FirstName.ToLower() == pName.ToLower() || q.LastName.ToLower() == pName.ToLower());
+
+                    int count = patients.Count();
+                    ViewBag.CountResult = count + " patient(s) are found.";
+                }
+                else
+                {
+                    patients = context.Patients.ToList();
+                    ViewBag.CountResult = " Displaying all patients.";
+                    ViewBag.SearchError = "Please enter a search keyword.";
+                }
 
                 // assign each patient data from db to patientsVM(list)
                 foreach (var p in patients)
@@ -443,7 +456,9 @@ namespace kdh.Controllers
                     }
                     else patientVM.Email = "N/A";
 
+                    ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
                     patientsVM.Add(patientVM);
+
                 }
 
                 return View(patientsVM.OrderBy(q => q.FullName));
