@@ -63,6 +63,7 @@ namespace kdh.Controllers
                     profile.PostalCode = (String.IsNullOrEmpty(patient.PostalCode)) ? "N/A" : patient.PostalCode;
                     profile.DateOfBirth = patient.DateOfBirth;
                     profile.Phone = (String.IsNullOrEmpty(patient.Phone)) ? "N/A" : patient.Phone;
+                    profile.Email = (String.IsNullOrEmpty(patient.Phone)) ? "N/A" : patient.User.Email;
 
                     ViewBag.PatientName = "Logged in as " + DisplayPatientName(patient);
                     return View(profile);
@@ -166,6 +167,56 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
 
+        }
+
+
+        // Add a patients
+        [HttpGet]
+        public ActionResult UpdateAccount()
+        {
+            try
+            {
+                Guid authId = new Guid(User.Identity.Name);
+                Patient patient = context.Patients.SingleOrDefault(q => q.UserId == authId); // Patient.UserId
+
+                ViewBag.PatientName = "Logged in as " + DisplayPatientName(patient);
+                return View();
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+
+        }
+
+        public ActionResult UpdateAccount(UpdateAccountVM vm)
+        {
+            Guid userId = new Guid(User.Identity.Name);
+            Patient patient = context.Patients.SingleOrDefault(q => q.UserId == userId); // Patient.UserId
+
+            // find the patient and update email
+            User u = context.Users.SingleOrDefault(q => q.Id == userId);
+            string token = context.Patients.SingleOrDefault(q => q.UserId == userId).EmailToken;
+
+            u.Email = vm.Email;
+            context.SaveChanges();
+
+            Mailer.SendEmail(u.Email, token);
+
+            ViewBag.NewEmail = u.Email;
+            ViewBag.PatientName = "Logged in as " + DisplayPatientName(patient);
+            return View("UpdateComplete");
+        }
+
+
+        // Remote Validation
+        // return false if email adress is in use
+        [HttpPost]
+        public JsonResult IsAvailableEmail(string email)
+        {
+            bool result = context.Users.Any(q => q.Email.ToLower() == email.ToLower());
+            return Json(!result);
         }
 
     }

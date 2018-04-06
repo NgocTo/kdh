@@ -272,6 +272,7 @@
     <Compile Include="ViewModels\PatientVM.cs" />
     <Compile Include="ViewModels\PatientRegistrationVM.cs" />
     <Compile Include="ViewModels\PurposesVM.cs" />
+    <Compile Include="ViewModels\UpdateAccountVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -332,6 +333,8 @@
     <Content Include="Views\JobApplicant\Create.cshtml" />
     <Content Include="Views\JobApplicant\Delete.cshtml" />
     <Content Include="Views\Admin\FindPatientByName.cshtml" />
+    <Content Include="Views\Patient\UpdateAccount.cshtml" />
+    <Content Include="Views\Patient\UpdateComplete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
