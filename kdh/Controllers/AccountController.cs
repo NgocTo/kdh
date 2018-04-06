@@ -130,7 +130,7 @@ namespace kdh.Controllers
             try
             {
                 string password = Hasher.ToHashedStr(vm.Password);
-                var u = context.Users.SingleOrDefault(q => q.Email == vm.Email && q.Password == password);
+                var u = context.Users.SingleOrDefault(q => q.Email.ToLower() == vm.Email.ToLower() && q.Password == password);
 
                 // if username(email) and password are correct
                 if (u != null && u.Role == "patient")

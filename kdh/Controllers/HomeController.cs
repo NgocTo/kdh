@@ -32,7 +32,7 @@ namespace kdh.Controllers
             try
             {
                 string password = Hasher.ToHashedStr(vm.Password);
-                var u = db.Users.SingleOrDefault(q => q.Email == vm.Email && q.Password == password);
+                var u = db.Users.SingleOrDefault(q => q.Email.ToLower() == vm.Email.ToLower() && q.Password == password);
 
                 // if username(email) and password are correct
                 if (u != null && u.Role == "admin")

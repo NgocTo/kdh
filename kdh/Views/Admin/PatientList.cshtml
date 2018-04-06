@@ -8,8 +8,23 @@
 
 
 <h2>List of All Patients</h2>
-<a href="@Url.Action("AddPatient", "Admin")" class="btn btn-primary my-3 col-md-4">Add a new patient</a>
+<div class="container">
+    
+    <a href="@Url.Action("AddPatient", "Admin")" class="btn btn-primary my-3 col-md-4">Add a new patient</a>
 
+    @using (Html.BeginForm("FindPatientByName", "Admin"))
+    {
+        @Html.AntiForgeryToken()
+        <div class="input-group col-md-8">
+            <input class="form-control my-3 py-2 border-right-0 border border-dark" type="search" placeholder="Search">
+            <span class="input-group-append  my-3">
+                <button class="btn btn-outline-dark border-left-0 border border-dark" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+    }
+</div>
 
 @foreach (var p in Model)
 {
