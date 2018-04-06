@@ -39,13 +39,13 @@ namespace kdh.Models
         public string DepartmentId { get; set; }
 
         [Required(ErrorMessage = "Date posted for job must be later than today.")]
-        //[DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         [Display(Name = "Date posted")]
         public Nullable<DateTime> DatePosted { get; set; }
 
         [Required(ErrorMessage = "Date closed for job must be later than today.")]
-        //[DisplayFormat(DataFormatString = "{yyyy-mm-dd hh:mm}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date closed")]
+        [DataType(DataType.DateTime)]
         public Nullable<DateTime> DateClosed { get; set; }
 
         [Display(Name = "Shift")]

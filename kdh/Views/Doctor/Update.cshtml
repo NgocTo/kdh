@@ -1,0 +1,77 @@
+﻿@model kdh.Models.Doctor
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Update</h2>
+
+
+@using (Html.BeginForm("Update", "Doctor"))
+{
+    @Html.HiddenFor(Model=>Model.Doctorid)
+<div>
+    @Html.DisplayNameFor(Model => Model.Fname)
+    @Html.TextBoxFor(Model => Model.Fname)
+    @Html.ValidationMessageFor(Model => Model.Fname)
+</div>
+<div>
+    @Html.DisplayNameFor(Model => Model.Lname)
+    @Html.TextBoxFor(Model => Model.Lname)
+    @Html.ValidationMessageFor(Model => Model.Lname)
+</div>
+<div>
+    @Html.DisplayNameFor(Model => Model.Email)
+    @Html.TextBoxFor(Model => Model.Email)
+    @Html.ValidationMessageFor(Model => Model.Email)
+</div>
+<div>
+    @Html.DisplayNameFor(Model => Model.Address_line1)
+    @Html.EditorFor(Model => Model.Address_line1)
+    @Html.ValidationMessageFor(Model => Model.Address_line1)
+</div>
+<div>
+    @Html.DisplayNameFor(Model => Model.Address_line2)
+    @Html.EditorFor(Model => Model.Address_line2)
+    @Html.ValidationMessageFor(Model => Model.Address_line2)
+</div>
+<div>
+    @Html.DisplayNameFor(Model => Model.Province)
+    @Html.TextBoxFor(Model => Model.Province)
+    @Html.ValidationMessageFor(Model => Model.Province)
+</div>
+<div>
+    @Html.DisplayNameFor(Model => Model.City)
+    @Html.TextBoxFor(Model => Model.City)
+    @Html.ValidationMessageFor(Model => Model.City)
+</div>
+<div>
+    @Html.DisplayNameFor(Model => Model.Postal_code)
+    @Html.TextBoxFor(Model => Model.Postal_code)
+    @Html.ValidationMessageFor(Model => Model.Postal_code)
+</div>
+<div>
+    @Html.DisplayNameFor(Model => Model.Date_of_join)
+    @Html.TextBoxFor(Model => Model.Date_of_join, new { @type = "Date" })
+    @Html.ValidationMessageFor(Model => Model.Date_of_join)
+</div>
+<div>
+    @Html.DisplayNameFor(Model => Model.Mobile_no)
+    @Html.TextBoxFor(Model => Model.Mobile_no)
+    @Html.ValidationMessageFor(Model => Model.Mobile_no)
+</div>
+<div>
+    @Html.DisplayNameFor(Model => Model.Departmentid)
+    @Html.DropDownListFor(Model=>Model.Departmentid,new SelectList(ViewBag.Departments, "departmentid", "department_name"),"Select Department")
+    @Html.ValidationMessageFor(Model => Model.Departmentid)
+</div>
+<div>
+    @Html.DisplayNameFor(Model => Model.Speciality)
+    @Html.TextBoxFor(Model => Model.Speciality)
+    @Html.ValidationMessageFor(Model => Model.Speciality)
+</div>
+<input type="submit" value="ADD" />
+
+}
+
+

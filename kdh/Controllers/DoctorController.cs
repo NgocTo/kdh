@@ -63,6 +63,7 @@ namespace kdh.Controllers
             }
             return View();
         }
+        [HttpGet]
         public ActionResult Update(int? id)
         {
             try
@@ -75,6 +76,7 @@ namespace kdh.Controllers
                         return RedirectToAction("Index");
                     }
                     ViewBag.Departments = db.departments.ToList();
+                    ViewBag.err = "invalid";
                     return View(doctor);
 
                 }
@@ -82,7 +84,37 @@ namespace kdh.Controllers
                 {
                     return RedirectToAction("Index");
                 }
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.err = e.Message;
+            }
+            //errror
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Update(Doctor doctor)
+        {
+            try
+            {
+                ViewBag.Departments = db.departments.ToList();
+                Doctor olddoctor = db.Doctors.FirstOrDefault(e => e.Doctorid == doctor.Doctorid);
+                if (ModelState.IsValid)
+                {
+                    ViewBag.err = "invalid";
+                    db.Entry(olddoctor).CurrentValues.SetValues(doctor);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                   // ViewBag.err = "invalid";
+                }
                 
+                ViewBag.err = "invalid";
+                return View();
+
             }
             catch(Exception e)
             {
@@ -90,5 +122,68 @@ namespace kdh.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    
+                    return RedirectToAction("Index");
+                }
+                DoctorDepartment doctorDepartment = db.Doctors.Join(db.departments, doc => doc.Departmentid, dep => dep.departmentid, (doc, dep) => new DoctorDepartment { doctor = doc, department = dep }).Where(doc => doc.doctor.Doctorid == id).FirstOrDefault();
+                return View(doctorDepartment);
+            }
+            catch(Exception e)
+            {
+                ViewBag.err = e.Message;
+            }
+
+            return View();
+        }
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult Deletepost(int? id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                Doctor doctor = db.Doctors.FirstOrDefault(d => d.Doctorid == id);
+                db.Doctors.Remove(doctor);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch(Exception e)
+            {
+                ViewBag.err = e.Message;
+            }
+            return View();
+        }
+        public PartialViewResult DoctorSearch(FormCollection form)
+        {
+            string search = form["SearchBar"];
+            
+            List<DoctorDepartment> doctordepartment = new List<DoctorDepartment>();
+            if (!String.IsNullOrWhiteSpace(search))
+            {
+                try
+                {
+                    List<Doctor> doctors = db.Doctors.ToList();
+                    List<department> departments = db.departments.ToList();
+                    doctordepartment = doctors.Join(departments, doc => doc.Departmentid, dep => dep.departmentid, (doc, dep) => new DoctorDepartment { doctor = doc, department = dep }).Where(doc => doc.doctor.Fname.ToUpper().Contains(search.ToUpper())).ToList();
+                }
+                catch(Exception e)
+                {
+                    ViewBag.err = e.Message;
+                }
+            }
+            return PartialView("~/Views/Doctor/_DoctorSearch.cshtml", doctordepartment);
+
+        }
     }
+    
 }

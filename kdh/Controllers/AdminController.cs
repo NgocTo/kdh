@@ -28,9 +28,10 @@ namespace kdh.Controllers
 
             try
             {
-                string sessionId = Session["id"].ToString();
+                // string sessionId = Session["id"].ToString();
+                string authId = User.Identity.Name;
 
-                string userAccount = context.Users.Where(q => q.Id.ToString() == sessionId).SingleOrDefault().Email;
+                string userAccount = context.Users.Where(q => q.Id.ToString() == authId).SingleOrDefault().Email;
                 ViewBag.UserEmail = userAccount;
 
                 // patients (and users) from database with values
@@ -183,7 +184,8 @@ namespace kdh.Controllers
                             Id = userId,
                             Email = registrationVM.Email,
                             Role = "patient",
-                            // TODO: set temporary password
+                            // Since nullable password column does not work
+                            // set temporary dummy password
                             Password = Hasher.ToHashedStr(pw.ToString())
                         };
                         p.UserId = userId;
@@ -348,7 +350,6 @@ namespace kdh.Controllers
             }
 
             return View("~/Views/Errors/Details.cshtml");
-
 
         }
 

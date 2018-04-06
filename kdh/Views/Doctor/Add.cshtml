@@ -8,6 +8,7 @@
 @ViewBag.err
 @using (Html.BeginForm("Add", "Doctor"))
 {
+    
     <div>
         @Html.DisplayNameFor(Model => Model.Fname)
         @Html.TextBoxFor(Model => Model.Fname)
@@ -60,7 +61,7 @@
     </div>
     <div>
         @Html.DisplayNameFor(Model => Model.Departmentid)
-        @Html.TextBoxFor(Model => Model.Departmentid)
+        @Html.DropDownListFor(Model=>Model.Departmentid,new SelectList(ViewBag.Departments, "departmentid", "department_name"),"Select Department")
         @Html.ValidationMessageFor(Model => Model.Departmentid)
     </div>
     <div>

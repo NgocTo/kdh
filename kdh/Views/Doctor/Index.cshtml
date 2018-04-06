@@ -6,38 +6,65 @@
 
 <h2>Doctors List</h2>
 <ul>
-   
+   @using(@Ajax.BeginForm("DoctorSearch", "Doctor", new AjaxOptions
+   {
+       HttpMethod = "POST",
+       UpdateTargetId = "results",
+       InsertionMode = InsertionMode.Replace
+   },new { id = "country_form", autocomplete = "off" }))
+   {
+
+      <input type="text" name="SearchBar" id="SearchBar" class="form-control" placeholder="Search for a Doctor or city here..." style="margin-top: 20px" />
+    
+    }
+    <div id="results">
+        @{ Html.RenderPartial("~/Views/Doctor/_DoctorSearch.cshtml",Model);}
+    </div>
     <li>
         @foreach (var d in Model)
-         {
-                <div>
-                    @Html.DisplayNameFor(Doctor => d.doctor.Doctorid)
-                    @Html.DisplayFor(Doctor => d.doctor.Doctorid)
-                </div>
-                <div>
-                    @Html.DisplayNameFor(Doctor => d.doctor.Fname)
-                    @Html.DisplayFor(Doctor => d.doctor.Fname)
-                </div>
-                <div>
-                    @Html.DisplayNameFor(Doctor => d.doctor.Lname)
-                    @Html.DisplayFor(Doctor => d.doctor.Lname)
-                </div>
-                <div>
-                    @Html.DisplayNameFor(Doctor => d.doctor.Email)
-                    @Html.DisplayFor(Doctor => d.doctor.Email)
-                </div>
-                <div>
-                    @Html.DisplayNameFor(Doctor => d.doctor.Mobile_no)
-                    @Html.DisplayFor(Doctor => d.doctor.Mobile_no)
-                </div>
-                <div>
-                    @Html.DisplayNameFor(Doctor => d.department.department_name)
-                    @Html.DisplayFor(Doctor => d.department.department_name)
-                </div>
+        {
+            <div>
+                @Html.DisplayNameFor(Doctor => d.doctor.Doctorid)
+                @Html.DisplayFor(Doctor => d.doctor.Doctorid)
+            </div>
+            <div>
+                @Html.DisplayNameFor(Doctor => d.doctor.Fname)
+                @Html.DisplayFor(Doctor => d.doctor.Fname)
+            </div>
+            <div>
+                @Html.DisplayNameFor(Doctor => d.doctor.Lname)
+                @Html.DisplayFor(Doctor => d.doctor.Lname)
+            </div>
+            <div>
+                @Html.DisplayNameFor(Doctor => d.doctor.Email)
+                @Html.DisplayFor(Doctor => d.doctor.Email)
+            </div>
+            <div>
+                @Html.DisplayNameFor(Doctor => d.doctor.Mobile_no)
+                @Html.DisplayFor(Doctor => d.doctor.Mobile_no)
+            </div>
+            <div>
+                @Html.DisplayNameFor(Doctor => d.department.department_name)
+                @Html.DisplayFor(Doctor => d.department.department_name)
+            </div>
 
 
         }
     </li>
 </ul>
+<script>
+    $(document).ready(function () {
+        $("#country_form").keyup(function () {
+                alert("hi");
+                $("#country_form").submit();
+            }
+    });
+        //$(function () {
+        //    $("#SearchBar").(function () {
+        //        $(this).submit();
+        //    })
+        //})();
+
+</script>
 
 

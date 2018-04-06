@@ -1,0 +1,30 @@
+﻿@model List<kdh.ViewModels.DoctorDepartment>
+@foreach (var d in Model)
+{
+    <div>
+        @Html.DisplayNameFor(Doctor => d.doctor.Doctorid)
+        @Html.DisplayFor(Doctor => d.doctor.Doctorid)
+    </div>
+    <div>
+        @Html.DisplayNameFor(Doctor => d.doctor.Fname)
+        @Html.DisplayFor(Doctor => d.doctor.Fname)
+    </div>
+    <div>
+        @Html.DisplayNameFor(Doctor => d.doctor.Lname)
+        @Html.DisplayFor(Doctor => d.doctor.Lname)
+    </div>
+    <div>
+        @Html.DisplayNameFor(Doctor => d.doctor.Email)
+        @Html.DisplayFor(Doctor => d.doctor.Email)
+    </div>
+    <div>
+        @Html.DisplayNameFor(Doctor => d.doctor.Mobile_no)
+        @Html.DisplayFor(Doctor => d.doctor.Mobile_no)
+    </div>
+    <div>
+        @Html.DisplayNameFor(Doctor => d.department.department_name)
+        @Html.DisplayFor(Doctor => d.department.department_name)
+    </div>
+
+
+}

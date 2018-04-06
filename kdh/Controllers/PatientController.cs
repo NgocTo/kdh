@@ -35,10 +35,11 @@ namespace kdh.Controllers
         {
             try
             {
-                Guid id = new Guid(Session["id"].ToString());
+                // Guid id = new Guid(Session["id"].ToString());
+                Guid authId = new Guid(User.Identity.Name);
 
                 // get data from db
-                Patient patient = context.Patients.SingleOrDefault(q => q.UserId == id);
+                Patient patient = context.Patients.SingleOrDefault(q => q.UserId == authId);
 
                 if (patient != null)
                 {
@@ -59,7 +60,7 @@ namespace kdh.Controllers
                     return View(profile);
                 }
 
-                return RedirectToAction("Index", id);
+                return RedirectToAction("Index", authId);
 
             }
             catch (Exception e)
@@ -75,10 +76,11 @@ namespace kdh.Controllers
         {
             try
             {
-                Guid id = new Guid(Session["id"].ToString());
+                // Guid id = new Guid(Session["id"].ToString());
+                Guid authId = new Guid(User.Identity.Name);
 
                 // get data from db
-                Patient patient = context.Patients.SingleOrDefault(q => q.UserId == id);
+                Patient patient = context.Patients.SingleOrDefault(q => q.UserId == authId);
 
                 if (patient != null)
                 {
@@ -99,7 +101,7 @@ namespace kdh.Controllers
                     return View(profile);
                 }
 
-                return RedirectToAction("Index", id);
+                return RedirectToAction("Index", authId);
 
             }
             catch (Exception e)
@@ -118,12 +120,13 @@ namespace kdh.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Guid id = new Guid(Session["id"].ToString());
+                    // Guid id = new Guid(Session["id"].ToString());
+                    Guid authId = new Guid(User.Identity.Name);
 
                     // get data from db and assign new value to patient obj
-                    Patient patient = context.Patients.SingleOrDefault(q => q.UserId == id);
+                    Patient patient = context.Patients.SingleOrDefault(q => q.UserId == authId);
 
-                    patient.UserId = id;
+                    patient.UserId = authId;
 
                     patient.FirstName = profile.FirstName;
                     patient.LastName = profile.LastName;
