@@ -63,7 +63,7 @@ namespace kdh.Controllers
                     profile.PostalCode = (String.IsNullOrEmpty(patient.PostalCode)) ? "N/A" : patient.PostalCode;
                     profile.DateOfBirth = patient.DateOfBirth;
                     profile.Phone = (String.IsNullOrEmpty(patient.Phone)) ? "N/A" : patient.Phone;
-                    profile.Email = (String.IsNullOrEmpty(patient.Phone)) ? "N/A" : patient.User.Email;
+                    profile.Email = (String.IsNullOrEmpty(patient.User.Email)) ? "N/A" : patient.User.Email;
 
                     ViewBag.PatientName = "Logged in as " + DisplayPatientName(patient);
                     return View(profile);
