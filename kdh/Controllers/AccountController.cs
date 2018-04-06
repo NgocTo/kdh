@@ -178,6 +178,37 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
 
+        // JADE'S ACCOUNT CONTROLLER
+        // Login action
+        [HttpGet]
+        public ActionResult JobLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult JobLogin(User user)
+        {
+            var count = context.Users.Where(u => u.Email == user.Email && u.Password == user.Password).Count();
+
+            if (count == 0)
+            {
+                ViewBag.LoginMessage = "Invalid User";
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SetAuthCookie(user.Email, false);
+                return RedirectToAction("Index_Admin", "Job");
+            }
+        }
+
+        // Logout action
+        public ActionResult JobLogout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Home");
+        }
 
     }
 }
