@@ -7,21 +7,21 @@
 
 }
 
-<h2>Delete</h2>
+<h2>Delete User Account</h2>
 @using (Html.BeginForm("DeleteUser", "Admin", new { id = ViewBag.Id }))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-        <div>
-            @Html.LabelFor(model => model.FullName): @Model.FullName
+        <div class="h6 mt-5">
+            Full name: @Model.FullName
         </div>
-        <div>
+        <div class="h6 mt-2">
             @Html.LabelFor(model => model.Email): @Model.Email
         </div>
-        <div class="mb-5">
-            Are you sure to delete the online account of the patient?
+        <div class="my-5 text-danger font-weight-bold">
+            Are you sure to delete this online account?
         </div>
-        <input type="submit" value="Delete" class="btn bg-danger text-white" />
+        <input type="submit" value="Delete" class="btn bg-danger text-white col-md-5" />
 
 
     </div>

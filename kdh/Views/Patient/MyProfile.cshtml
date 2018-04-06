@@ -7,52 +7,39 @@
 
 <h2>View Profile</h2>
 
-<div>
-    <div class="row">
-        <div class="col-2">
-            Name:
-        </div>
-        <div class="col-10">
-            @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName) (@Html.DisplayFor(model => model.Gender))
-        </div>
+<div class="card my-3">
+    <div class="card-header">
+        <span class="h5">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName) (@Html.DisplayFor(model => model.Gender))</span>
     </div>
-    <div class="row">
-        <div class="col-2">
-            @Html.DisplayNameFor(model => model.HealthCardNumber):
-        </div>
-        <div class="col-10">
-            @Html.DisplayFor(model => model.HealthCardNumber)
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            Address:
-        </div>
-        <div class="col-10">
-            @Html.DisplayFor(model => model.Address1), 
-            @Html.DisplayFor(model => model.Address2), 
-            @Html.DisplayFor(model => model.City), 
-            @Html.DisplayFor(model => model.Province),
-            @Html.DisplayFor(model => model.PostalCode)
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
+    <div class="card-body">
+        <div class="card-text">
             Date of Birth:
+            @if (Model.DateOfBirth.HasValue)
+            {
+                string d = Model.DateOfBirth.ToString();
+                d = d.Substring(0, d.Length - 11);
+                <span>@d</span>
+
+            }
+            else
+            {
+                <span>N/A</span>
+            }
         </div>
-        <div class="col-10">
-            @Html.DisplayFor(model => model.DateOfBirth)
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            Phone Number:
-        </div>
-        <div class="col-10">
-            @Html.DisplayFor(model => model.Phone)
-        </div>
+        <div class="card-text">Gender: @Model.Gender</div>
+        <div class="card-text">OHIP: @Html.DisplayFor(model => model.HealthCardNumber)</div>
+        <div class="card-text">Address1: @Html.DisplayFor(model => model.Address1)</div>
+        <div class="card-text">Address2: @Html.DisplayFor(model => model.Address2)</div>
+        <div class="card-text">City: @Html.DisplayFor(model => model.City)</div>
+        <div class="card-text">Province: @Html.DisplayFor(model => model.Province)</div>
+        <div class="card-text">Postal Code: @Html.DisplayFor(model => model.PostalCode)</div>
+        <div class="card-text">Phone: @Html.DisplayFor(model => model.Phone)</div>
+        <a href="@Url.Action("EditProfile")" class="btn btn-outline-primary btn-sm ml-2 my-3 col-md-3">Update Profile</a>
+
     </div>
 </div>
-<p>
-    @Html.ActionLink("Update Profile", "EditProfile")
-</p>
+
+
+
+
+

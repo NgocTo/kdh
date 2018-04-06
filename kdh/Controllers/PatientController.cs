@@ -64,7 +64,7 @@ namespace kdh.Controllers
                     profile.DateOfBirth = patient.DateOfBirth;
                     profile.Phone = (String.IsNullOrEmpty(patient.Phone)) ? "N/A" : patient.Phone;
 
-                    ViewBag.PatientName = DisplayPatientName(patient);
+                    ViewBag.PatientName = "Logged in as " + DisplayPatientName(patient);
                     return View(profile);
                 }
 
@@ -106,7 +106,7 @@ namespace kdh.Controllers
                     profile.DateOfBirth = patient.DateOfBirth;
                     profile.Phone = (String.IsNullOrEmpty(patient.Phone)) ? null : patient.Phone;
 
-                    ViewBag.PatientName = DisplayPatientName(patient);
+                    ViewBag.PatientName = "Logged in as " + DisplayPatientName(patient);
                     return View(profile);
                 }
 
