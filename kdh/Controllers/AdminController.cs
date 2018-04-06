@@ -21,12 +21,22 @@ namespace kdh.Controllers
             string adminId = User.Identity.Name;
             string adminEmail = context.Users.SingleOrDefault(q => q.Id.ToString() == adminId).Email;
             return adminEmail;
+               
         }
 
         public ActionResult Index()
         {
-            ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
-            return View();
+            try
+            {
+                ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
+                return View();
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+
         }
 
         // GET: Registration
@@ -392,6 +402,58 @@ namespace kdh.Controllers
             {
                 ViewBag.ExceptionMessage = e.Message;
             }
+            return View("~/Views/Errors/Details.cshtml");
+
+        }
+
+        // TODO
+        [HttpPost]
+        public ActionResult FindPatientByName(string name)
+        {
+            try
+            {
+
+                // patients (and users) from database with values
+                List<Patient> patients = context.Patients.ToList().FindAll(q=>q.FirstName == name||q.LastName == name);
+
+                // goes to view. now it's empty
+                List<PatientVM> patientsVM = new List<PatientVM>();
+
+                // assign each patient data from db to patientsVM(list)
+                foreach (var p in patients)
+                {
+                    // assigning required field
+                    PatientVM patientVM = new PatientVM
+                    {
+                        Id = p.Id,
+                        FullName = p.FirstName + " " + p.LastName,
+                        Gender = p.Gender,
+                        Address1 = String.IsNullOrEmpty(p.Address1) ? "N/A" : p.Address1,
+                        Address2 = String.IsNullOrEmpty(p.Address2) ? "N/A" : p.Address2,
+                        City = String.IsNullOrEmpty(p.City) ? "N/A" : p.City,
+                        Province = String.IsNullOrEmpty(p.Province) ? "N/A" : p.Province,
+                        Postal = String.IsNullOrEmpty(p.PostalCode) ? "N/A" : p.PostalCode
+                    };
+
+                    // assign if patient has an User account
+                    if (p.User != null)
+                    {
+                        patientVM.Email = p.User.Email;
+                        patientVM.UserId = p.User.Id;
+                    }
+                    else patientVM.Email = "N/A";
+
+                    patientsVM.Add(patientVM);
+                }
+
+                return View(patientsVM.OrderBy(q => q.FullName));
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+
             return View("~/Views/Errors/Details.cshtml");
 
         }

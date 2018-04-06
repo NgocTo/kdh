@@ -11,7 +11,6 @@ using System.Data.Entity;
 
 namespace kdh.Controllers
 {
-    //[Authorize(Roles = "admin")]
     public class JobController : Controller
     {
         HospitalContext db = new HospitalContext();

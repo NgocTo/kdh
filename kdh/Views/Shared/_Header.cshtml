@@ -8,7 +8,11 @@
 
         <div class="row p-2 pt-3" id="navigation">
             <div class="col-1">
-                <div class="offset-3"><img style="width: 50px; height: 50px;" src="~/Images/LOGO.png" />"</div>
+                <div class="offset-3">
+                    <a href="@Url.Action("Index", "Home")" class="h3 text-white font-weight-bold">
+                        <img style="width: 50px; height: 50px;" src="~/Images/LOGO.png" />
+                    </a>
+                </div>
             </div>
             <div class="col-md-7 d-none d-md-block">
                 <h2><a href="@Url.Action("Index", "Home")" class="h3 text-white font-weight-bold">Humber and District Hospital</a></h2>
@@ -21,7 +25,7 @@
                     </select>
                 </form>
             </div>
-            <button class="navbar-toggler  navbar-dark d-block d-md-none" type="button" data-toggle="collapse" data-target="#toggleMenu" aria-controls="toggleMenu"
+            <button class="navbar-toggler offset-sm-3 navbar-dark d-block d-md-none" type="button" data-toggle="collapse" data-target="#toggleMenu" aria-controls="toggleMenu"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
