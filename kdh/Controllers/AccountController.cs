@@ -193,25 +193,34 @@ namespace kdh.Controllers
         [HttpPost]
         public ActionResult JobLogin(User user)
         {
-            var count = context.Users.Where(u => u.Email == user.Email && u.Password == user.Password).Count();
-
-            if (count == 0)
+            string password = Hasher.ToHashedStr(user.Password);
+            var usr = context.Users.SingleOrDefault(u => u.Email == user.Email && u.Password == password);
+            if (usr != null && usr.Role == "hr")
             {
-                ViewBag.LoginMessage = "Invalid User";
-                return View();
+                FormsAuthentication.SetAuthCookie(usr.Id.ToString(), false);
+
+                return RedirectToAction("Index_Admin", "Job");
             }
             else
             {
-                FormsAuthentication.SetAuthCookie(user.Email, false);
-                return RedirectToAction("Index_Admin", "Job");
+                ViewBag.JobLoginMessage = "Incorrect username or password.";
             }
-        }
+            return View();
+            }
 
-        // Logout action
+        //Logout action
         public ActionResult JobLogout()
         {
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "Home");
+            try
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
 
     }

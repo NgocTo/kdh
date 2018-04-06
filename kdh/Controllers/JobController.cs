@@ -16,7 +16,7 @@ namespace kdh.Controllers
     {
         HospitalContext db = new HospitalContext();
         // GET: Jobs
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "hr")]
         public ActionResult Index_admin()
         {
             try
@@ -34,7 +34,7 @@ namespace kdh.Controllers
         }
 
         // GET: Jobs/Details
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "hr")]
         public ActionResult Details_Admin(string job_id)
         {
             if (job_id == null)
@@ -50,7 +50,7 @@ namespace kdh.Controllers
         }
 
         // GET: add job
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "hr")]
         [HttpGet]
         public ActionResult Create()
         {
@@ -67,7 +67,7 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
         // POST: add job
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "hr")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "JobId,JobTitle,JobStatus,JobDescription,DepartmentId,DatePosted,DateClosed,JobShift,Salary,Requirement,UserId")] Job job)
@@ -95,7 +95,7 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
         // GET: edit job
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "hr")]
         [HttpGet]
         public ActionResult Edit(string job_id)
         {
@@ -119,7 +119,7 @@ namespace kdh.Controllers
         }
 
         // POST: edit job
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "hr")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "JobId,JobTitle,JobStatus,JobDescription,DepartmentId,DatePosted,DateClosed,JobShift,Salary,Requirement,UserId")]Job job)
@@ -152,7 +152,7 @@ namespace kdh.Controllers
         }
 
         //GET delete job
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "hr")]
         //[HttpGet]
         public ActionResult Delete(string job_id)
         {
@@ -181,7 +181,7 @@ namespace kdh.Controllers
         }
 
         //POST delete job
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "hr")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(FormCollection form)
