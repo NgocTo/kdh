@@ -179,6 +179,7 @@
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\FAQLoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobApplicantController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -189,6 +190,7 @@
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\buddy_Job.cs" />
+    <Compile Include="Models\buddy_JobApplicant.cs" />
     <Compile Include="Models\buddy_User.cs" />
     <Compile Include="Models\department.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
@@ -326,6 +328,9 @@
     <Content Include="Views\Account\JobLogin.cshtml" />
     <Content Include="Views\Job\Index_Admin.cshtml" />
     <Content Include="Views\Job\Details_Admin.cshtml" />
+    <Content Include="Views\JobApplicant\Index_Admin.cshtml" />
+    <Content Include="Views\JobApplicant\Create.cshtml" />
+    <Content Include="Views\JobApplicant\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
