@@ -30,11 +30,11 @@ namespace kdh.ViewModels
         public string HealthCardNumber { get; set; }
 
         [StringLength(100, ErrorMessage = "Field must be less than 100 characters.")]
-        [Display(Name = "Address(Street)")]
+        [Display(Name = "Address1")]
         public string Address1 { get; set; }
 
         [StringLength(100, ErrorMessage = "Field must be less than 100 characters.")]
-        [Display(Name = "Address(Apartment number)")]
+        [Display(Name = "Address2")]
         public string Address2 { get; set; }
 
         [StringLength(20, ErrorMessage = "Field must be less than 20 characters.")]

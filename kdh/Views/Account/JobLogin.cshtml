@@ -1,11 +1,11 @@
 ﻿@model kdh.Models.User
 
 @{
-    ViewBag.Title = "JobLogin";
+    ViewBag.Title = "Job login Portal";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="text-center">JobLogin</h2>
+<h2 class="text-center">Job login Portal</h2>
 
 @using (Html.BeginForm())
 {
@@ -29,11 +29,13 @@
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="text-center">
                 <input type="submit" value="Login" class="btn btn-default" />
             </div>
+        </div>
+        <div class="text-danger">
+            @ViewBag.JobLoginMessage
         </div>
     </div>
 }
