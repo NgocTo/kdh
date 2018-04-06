@@ -17,7 +17,7 @@ namespace kdh.Controllers
 
         HospitalContext db = new HospitalContext();
         //FOR FAQS
-        [Authorize(Roles = "patient, admin")]
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
 
@@ -39,7 +39,7 @@ namespace kdh.Controllers
         }
         //create details of FAQ for admin
         // GET: FAQ
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         public ActionResult Details()
         {
             try
@@ -246,7 +246,7 @@ namespace kdh.Controllers
         }
         //add new purpose
         [HttpGet]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public ActionResult AddPurpose()
         {
             try

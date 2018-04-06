@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/PatientPortal.cshtml";
+    Layout = "~/Views/Shared/PatientPortal/_PatientPortal.cshtml";
 }
 
 @model kdh.Models.Patient
@@ -13,9 +13,8 @@
 
 <h2>Patient Portal Top</h2>
 
-<div>
-    Welcom, @Model.FirstName @Model.LastName
+<div class="h5 my-4">
+    Welcome, @Model.FirstName @Model.LastName
 </div>
-
 
 

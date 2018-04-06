@@ -1,0 +1,62 @@
+﻿
+@{
+    Layout = null;
+}
+
+<aside class="col-md-3 bg-light rounded-right">
+    <div class="mb-3 mt-2">
+
+        @if (User.Identity.IsAuthenticated) // If user are authorized...
+        {
+            // Only admin can see the sidebar
+            if (User.IsInRole("admin"))
+            {
+                <h3 class="text-dark">Admin Menu</h3>
+                <div class="my-3">@ViewBag.AdminEmail</div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">@Html.ActionLink("Patient Registration", "PatientList", "Admin")</li>
+                    <li class="list-group-item">@Html.ActionLink("Job Posting", "JobLogin", "Account")</li>
+                    <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Login", "FAQLogin")</li>
+                    <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                    <li class="list-group-item">@Html.ActionLink("Jobs", "Jobs")</li>
+                    <li class="list-group-item"><a href="@Url.Action("Logout", "Home")" class="btn btn-outline-danger col-md-10">Logout</a></li>
+
+                </ul>
+            }
+            // Only for patient
+            else if (User.IsInRole("patient"))
+            {
+                <h3 class="text-dark">Patient Menu</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">@Html.ActionLink("My Profile", "MyProfile", "Patient")</li>
+                    <li class="list-group-item">@Html.ActionLink("My Lab Results", "Index", "Patient")</li>
+                    <li class="list-group-item">@Html.ActionLink("My Appointments", "Index", "Patient")</li>
+                    <li class="list-group-item"><a href="@Url.Action("Logout", "Account")" class="btn btn-danger">Logout</a></li>
+                </ul>
+
+            }
+            else if (User.IsInRole("hr"))
+            {
+                <h3 class="text-dark">Job Posting Menu</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">@Html.ActionLink("Create new job posting", "Create", "Job")</li>
+                    <li class="list-group-item">@Html.ActionLink("See Applicants", "Index_Admin", "JobApplicant")</li>
+                    <li class="list-group-item"><a href="@Url.Action("JobLogout", "Account")" class="btn btn-danger">Logout</a></li>
+                </ul>
+            }
+
+        }
+        // this is for public view (not authorized user)
+        else
+        {
+            <h3 class="text-dark">Quick Links</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="#">Location and Hours</a></li>
+                    <li class="list-group-item"><a href="#">Services</a></li>
+                    <li class="list-group-item"><a href="#">Online Gift Shop</a></li>
+                    <li class="list-group-item"><a href="#">Donation</a></li>
+                </ul>
+        }
+
+    </div>
+</aside>

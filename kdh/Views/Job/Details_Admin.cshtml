@@ -1,17 +1,15 @@
 ﻿@model kdh.Models.Job
-
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Details_Admin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Details</h2>
 
-<h3>Are you sure you want to delete @Model.JobTitle?</h3>
 <div>
     <h4>Job</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal row">
         <dt>
             @Html.DisplayNameFor(model => model.JobTitle)
         </dt>
@@ -93,16 +91,8 @@
         </dd>
 
     </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <form>
-            @Html.HiddenFor(model => model.JobId)
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index_Admin")
-            </div>
-        </form>
-    }
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { job_id = Model.JobId }) |
+    @Html.ActionLink("Back to List", "Index_Admin")
+</p>

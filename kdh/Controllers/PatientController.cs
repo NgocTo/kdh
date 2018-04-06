@@ -15,13 +15,21 @@ namespace kdh.Controllers
     {
         HospitalContext context = new HospitalContext();
 
+        private string DisplayPatientName(Patient p)
+        {
+            string pFn = context.Patients.SingleOrDefault(q => q.UserId == p.UserId).FirstName;
+            string pLn = context.Patients.SingleOrDefault(q => q.UserId == p.UserId).LastName;
+            return pFn + " " + pLn;
+        }
+
         // GET: PortalPatient
         public ActionResult Index(Guid id) // id in Users table (=UserId in Patients table)
         {
             try
             {
-                Patient p = context.Patients.SingleOrDefault(q => q.UserId == id);
-                return View(p);
+                Patient patient = context.Patients.SingleOrDefault(q => q.UserId == id);
+                ViewBag.PatientName = DisplayPatientName(patient);
+                return View(patient);
             }
             catch (Exception e)
             {
@@ -35,10 +43,10 @@ namespace kdh.Controllers
         {
             try
             {
-                Guid id = new Guid(Session["id"].ToString());
+                Guid authId = new Guid(User.Identity.Name);
 
                 // get data from db
-                Patient patient = context.Patients.SingleOrDefault(q => q.UserId == id);
+                Patient patient = context.Patients.SingleOrDefault(q => q.UserId == authId);
 
                 if (patient != null)
                 {
@@ -56,10 +64,11 @@ namespace kdh.Controllers
                     profile.DateOfBirth = patient.DateOfBirth;
                     profile.Phone = (String.IsNullOrEmpty(patient.Phone)) ? "N/A" : patient.Phone;
 
+                    ViewBag.PatientName = "Logged in as " + DisplayPatientName(patient);
                     return View(profile);
                 }
 
-                return RedirectToAction("Index", id);
+                return RedirectToAction("Index", authId);
 
             }
             catch (Exception e)
@@ -75,10 +84,11 @@ namespace kdh.Controllers
         {
             try
             {
-                Guid id = new Guid(Session["id"].ToString());
+                // Guid id = new Guid(Session["id"].ToString());
+                Guid authId = new Guid(User.Identity.Name);
 
                 // get data from db
-                Patient patient = context.Patients.SingleOrDefault(q => q.UserId == id);
+                Patient patient = context.Patients.SingleOrDefault(q => q.UserId == authId);
 
                 if (patient != null)
                 {
@@ -96,10 +106,11 @@ namespace kdh.Controllers
                     profile.DateOfBirth = patient.DateOfBirth;
                     profile.Phone = (String.IsNullOrEmpty(patient.Phone)) ? null : patient.Phone;
 
+                    ViewBag.PatientName = "Logged in as " + DisplayPatientName(patient);
                     return View(profile);
                 }
 
-                return RedirectToAction("Index", id);
+                return RedirectToAction("Index", authId);
 
             }
             catch (Exception e)
@@ -118,12 +129,12 @@ namespace kdh.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Guid id = new Guid(Session["id"].ToString());
+                    Guid authId = new Guid(User.Identity.Name);
 
                     // get data from db and assign new value to patient obj
-                    Patient patient = context.Patients.SingleOrDefault(q => q.UserId == id);
+                    Patient patient = context.Patients.SingleOrDefault(q => q.UserId == authId);
 
-                    patient.UserId = id;
+                    patient.UserId = authId;
 
                     patient.FirstName = profile.FirstName;
                     patient.LastName = profile.LastName;

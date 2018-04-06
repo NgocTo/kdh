@@ -5,46 +5,54 @@
 }
 
 
-<h2 class="text-center text-dark">Frequently Asked Questions(FAQ)</h2>
+<h2 class="text-center text-dark">Frequently Asked Questions(FAQ)</h2> 
+<h3 class="text-dark mb-3">FAQs Details</h3>
 
-<p>
-    @Html.ActionLink("Create New FAQ", "Add")
-</p>
-<p>
-    @Html.ActionLink("Show Purpose List", "PurposeList")
-</p>
-
-<ul>
+   <div class="mb-2">
+        <div class="btn btn-dark">
+            @Html.ActionLink("Create New FAQ", "Add")
+        </div>
+        <div class="btn btn-dark ">
+            @Html.ActionLink("Show Purpose List", "PurposeList")
+        </div>
+       </div>
+<ul class="border">
     @foreach (var item in Model.Faqs)
     {
         <li>
-            @Html.DisplayNameFor(model => item.Question): @Html.DisplayFor(modelItem => item.Question) <br />
-            @Html.DisplayNameFor(model => item.Answer):
-           @if (item.Answer != null)
-            {
-              @Html.DisplayFor(modelItem => item.Answer) <br />
-           }
-           else
-           {
-               @Html.Raw("N/A")            <br />
-           }
-           
-            @Html.DisplayNameFor(model => item.DateCreated): @Html.DisplayFor(modelItem => item.DateCreated) <br />
-            @Html.DisplayNameFor(model => item.AuthorFirstName): @Html.DisplayFor(modelItem => item.AuthorFirstName) <br />
-            @Html.DisplayNameFor(model => item.AuthorityFirstName): @Html.DisplayFor(modelItem => item.AuthorityFirstName) <br />
-            @Html.DisplayNameFor(model => item.PurposeId): @Html.DisplayFor(modelItem => item.PurposeId) ---
-            @foreach (var p in Model.Purposes)
-            {
-                if (item.PurposeId == p.PurposeId)
+           <span class="font-weight-bold"> @Html.DisplayNameFor(model => item.Question): </span>@Html.DisplayFor(modelItem => item.Question) <br />
+            <span class="font-weight-bold">
+                @Html.DisplayNameFor(model => item.Answer):</span>
+                @if (item.Answer != null)
                 {
-                    @Html.DisplayFor(modelItem => p.PurposeToCreate)
+                    @Html.DisplayFor(modelItem => item.Answer) <br />
                 }
-            }
-            <br />
-            @Html.ActionLink("Edit", "Edit", new { id = item.QueId })
+                else
+                {
+                    @Html.Raw("N/A")            <br />
+                }
 
-            @Html.ActionLink("Delete", "Delete", new { id = item.QueId })
-        </li>
+            <span class="font-weight-bold">@Html.DisplayNameFor(model => item.DateCreated): </span>@Html.DisplayFor(modelItem => item.DateCreated) <br />
+            <span class="font-weight-bold"> @Html.DisplayNameFor(model => item.AuthorFirstName):</span> @Html.DisplayFor(modelItem => item.AuthorFirstName) <br />
+            <span class="font-weight-bold">
+                @Html.DisplayNameFor(model => item.AuthorityFirstName):</span> @Html.DisplayFor(modelItem => item.AuthorityFirstName) <br />
+            <span class="font-weight-bold">
+                @Html.DisplayNameFor(model => item.PurposeId): </span>
+            @*@Html.DisplayFor(modelItem => item.PurposeId)*@
+                @foreach (var p in Model.Purposes)
+                {
+                    if (item.PurposeId == p.PurposeId)
+                    {
+                        @Html.DisplayFor(modelItem => p.PurposeToCreate)
+                    }
+                }
+                <br />
+        
+                @Html.ActionLink("Edit", "Edit", new { id = item.QueId }) | 
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.QueId })
+            <hr />
+</li>
     }
 </ul>
 

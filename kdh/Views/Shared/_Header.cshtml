@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+}
+
+    <!-- HEADER -->
+<header class="mb-5">
+    <div class="container-fluid" id="header">
+
+        <div class="row p-2 pt-3" id="navigation">
+            <div class="col-1">
+                <div class="offset-3">
+                    <a href="@Url.Action("Index", "Home")" class="h3 text-white font-weight-bold">
+                        <img style="width: 50px; height: 50px;" src="~/Images/LOGO.png" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-7 d-none d-md-block">
+                <h2><a href="@Url.Action("Index", "Home")" class="h3 text-white font-weight-bold">Humber and District Hospital</a></h2>
+            </div>
+            <div class="col-5 col-md-2 offset-1 offset-md-0">
+                <form>
+                    <select class="form-control" aria-label="Language">
+                        <option>ENG</option>
+                        <option>FR</option>
+                    </select>
+                </form>
+            </div>
+            <button class="navbar-toggler offset-sm-3 navbar-dark d-block d-md-none" type="button" data-toggle="collapse" data-target="#toggleMenu" aria-controls="toggleMenu"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="col-md-2">
+                <form>
+                    <button class="btn btn-danger d-none d-md-block" type="submit">Donate Now</button>
+                </form>
+            </div>
+
+        </div> <!-- end of 1st row -->
+
+        <nav class="navbar navbar-expand-md" role="navigation">
+
+            <div class="row col-12 collapse navbar-collapse" id="toggleMenu">
+                <ul class="navbar-nav col-md-9">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white mr-2" data-toggle="dropdown" href="#">Patient &amp; Visitor</a>
+                        <div class="dropdown-menu">
+                            <a href="@Url.Action("Login", "Account")" class="dropdown-item">Patient Portal</a>
+                            <a href="@Url.Action("Details", "FAQ")" class="dropdown-item">FAQ</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white mr-2" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white mr-2" href="@Url.Action("Index", "Job")">Career &amp; Volunteering</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white mr-2" href="#">Foundation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white mr-2" href="#">Contact Us</a>
+                    </li>
+                </ul>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-light" type="button">Go</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div>
+            <ul class="list-unstyled">
+                <li class="ml-3 pb-2 text-warning">*Please note that this website is a part of the student projects and not a real hospital website.</li>
+            </ul>
+        </div>
+
+    </div><!-- end of container fluid -->
+</header>

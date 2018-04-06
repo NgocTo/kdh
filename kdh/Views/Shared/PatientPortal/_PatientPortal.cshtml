@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    @Html.Partial("~/Views/Shared/_Header.cshtml")
+
+    <!-- END OF HEADER-->
+    <!-- START OF BODY CONTENT -->
+    <div id="body" class="container body-content">
+        <div class="row">
+
+            <!-- Sidebar -->
+            <aside class="col-sm-3 bg-light rounded-right">
+                <div class="mb-3 mt-2">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        // Only admin will be able to see the sidebar
+                        if (User.IsInRole("admin"))
+                        {
+                            <h3 class="text-dark">Admin Menu</h3>
+                            <div class="my-3">@ViewBag.AdminEmail</div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">@Html.ActionLink("Patient Registration", "PatientList", "Admin")</li>
+                                <li class="list-group-item">@Html.ActionLink("Lab Report", "PatientList", "Admin")</li>
+                                <li class="list-group-item">@Html.ActionLink("Appointments", "PatientList", "Admin")</li>
+                                <li class="list-group-item"><a href="@Url.Action("Logout", "Account")" class="btn btn-outline-danger col-md-10">Logout</a></li>
+                            </ul>
+                        }
+                        else if (User.IsInRole("patient"))
+                        {
+                            <h3 class="text-dark">Patient Menu</h3>
+                            <div>Logged in as @ViewBag.PatientName</div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">@Html.ActionLink("My Profile", "MyProfile", "Patient")</li>
+                                <li class="list-group-item">@Html.ActionLink("My Lab Results", "Index", "Patient")</li>
+                                <li class="list-group-item">@Html.ActionLink("My Appointments", "Index", "Patient")</li>
+                                <li class="list-group-item"><a href="@Url.Action("Logout", "Account")" class="btn btn-outline-danger col-md-10">Logout</a></li>
+                            </ul>
+
+                        }
+
+                    }
+
+                </div>
+            </aside>
+
+            <main class="col-sm-9">
+                @RenderBody()
+                <hr />
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    @Html.Partial("~/Views/Shared/_Footer.cshtml")
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
+

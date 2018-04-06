@@ -16,10 +16,27 @@ namespace kdh.Controllers
     {
         HospitalContext context = new HospitalContext();
 
+        private string DisplayAdminEmail()
+        {
+            string adminId = User.Identity.Name;
+            string adminEmail = context.Users.SingleOrDefault(q => q.Id.ToString() == adminId).Email;
+            return adminEmail;
+               
+        }
+
         public ActionResult Index()
         {
-            // Todo: decide which page will be the top
-            return RedirectToAction("PatientList");
+            try
+            {
+                ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
+                return View();
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+
         }
 
         // GET: Registration
@@ -28,9 +45,10 @@ namespace kdh.Controllers
 
             try
             {
-                string sessionId = Session["id"].ToString();
 
-                string userAccount = context.Users.Where(q => q.Id.ToString() == sessionId).SingleOrDefault().Email;
+                string authId = User.Identity.Name;
+
+                string userAccount = context.Users.Where(q => q.Id.ToString() == authId).SingleOrDefault().Email;
                 ViewBag.UserEmail = userAccount;
 
                 // patients (and users) from database with values
@@ -48,6 +66,11 @@ namespace kdh.Controllers
                         Id = p.Id,
                         FullName = p.FirstName + " " + p.LastName,
                         Gender = p.Gender,
+                        Address1 = String.IsNullOrEmpty(p.Address1)? "N/A" : p.Address1,
+                        Address2 = String.IsNullOrEmpty(p.Address2) ? "N/A" : p.Address2,
+                        City = String.IsNullOrEmpty(p.City) ? "N/A" : p.City,
+                        Province = String.IsNullOrEmpty(p.Province) ? "N/A" : p.Province,
+                        Postal = String.IsNullOrEmpty(p.PostalCode) ? "N/A" : p.PostalCode
                     };
 
                     // assign if patient has an User account
@@ -58,6 +81,7 @@ namespace kdh.Controllers
                     }
                     else patientVM.Email = "N/A";
 
+                    ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
                     patientsVM.Add(patientVM);
                 }
 
@@ -108,9 +132,8 @@ namespace kdh.Controllers
                         registrationVM.Email = patient.User.Email;
                     }
 
-
-
                     ViewBag.Id = id;
+                    ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
                     return View(registrationVM);
                 }
 
@@ -131,6 +154,7 @@ namespace kdh.Controllers
         {
             try
             {
+                ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
                 return View();
             }
             catch (Exception e)
@@ -176,15 +200,15 @@ namespace kdh.Controllers
                     // If email address is provided, create a user account
                     if (!String.IsNullOrWhiteSpace(registrationVM.Email))
                     {
-                        Guid pw = new Guid();
 
                         User u = new User
                         {
                             Id = userId,
                             Email = registrationVM.Email,
                             Role = "patient",
-                            // TODO: set temporary password
-                            Password = Hasher.ToHashedStr(pw.ToString())
+                            // Since nullable password column does not work
+                            // set temporary dummy string (won't be able to match with hashed string)
+                            Password = "Not Set"
                         };
                         p.UserId = userId;
 
@@ -196,9 +220,11 @@ namespace kdh.Controllers
                     context.Patients.Add(p);
                     context.SaveChanges();
 
+
                     return RedirectToAction("PatientList");
                 }
 
+                ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
                 return View(registrationVM);
 
             }
@@ -253,6 +279,7 @@ namespace kdh.Controllers
                     }
 
                     ViewBag.Id = id;
+                    ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
                     return View(registrationVM);
                 }
 
@@ -336,6 +363,7 @@ namespace kdh.Controllers
                     }
 
                     ViewBag.Id = id;
+                    ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
                     return View(patientVM);
                 }
 
@@ -348,7 +376,6 @@ namespace kdh.Controllers
             }
 
             return View("~/Views/Errors/Details.cshtml");
-
 
         }
 
@@ -375,6 +402,73 @@ namespace kdh.Controllers
             {
                 ViewBag.ExceptionMessage = e.Message;
             }
+            return View("~/Views/Errors/Details.cshtml");
+
+        }
+
+        // TODO: implement DRY
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult FindPatientByName(string pName)
+        {
+            try
+            {
+                // goes to view. now it's empty
+                List<PatientVM> patientsVM = new List<PatientVM>();
+                List<Patient> patients = new List<Patient>();
+
+                if (!String.IsNullOrEmpty(pName))
+                {
+                    // patients (and users) from database with values
+                    patients = context.Patients.ToList().FindAll(q => q.FirstName.ToLower() == pName.ToLower() || q.LastName.ToLower() == pName.ToLower());
+
+                    int count = patients.Count();
+                    ViewBag.CountResult = count + " patient(s) are found.";
+                }
+                else
+                {
+                    patients = context.Patients.ToList();
+                    ViewBag.CountResult = " Displaying all patients.";
+                    ViewBag.SearchError = "Please enter a search keyword.";
+                }
+
+                // assign each patient data from db to patientsVM(list)
+                foreach (var p in patients)
+                {
+                    // assigning required field
+                    PatientVM patientVM = new PatientVM
+                    {
+                        Id = p.Id,
+                        FullName = p.FirstName + " " + p.LastName,
+                        Gender = p.Gender,
+                        Address1 = String.IsNullOrEmpty(p.Address1) ? "N/A" : p.Address1,
+                        Address2 = String.IsNullOrEmpty(p.Address2) ? "N/A" : p.Address2,
+                        City = String.IsNullOrEmpty(p.City) ? "N/A" : p.City,
+                        Province = String.IsNullOrEmpty(p.Province) ? "N/A" : p.Province,
+                        Postal = String.IsNullOrEmpty(p.PostalCode) ? "N/A" : p.PostalCode
+                    };
+
+                    // assign if patient has an User account
+                    if (p.User != null)
+                    {
+                        patientVM.Email = p.User.Email;
+                        patientVM.UserId = p.User.Id;
+                    }
+                    else patientVM.Email = "N/A";
+
+                    ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
+                    patientsVM.Add(patientVM);
+
+                }
+
+                return View(patientsVM.OrderBy(q => q.FullName));
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+
             return View("~/Views/Errors/Details.cshtml");
 
         }
