@@ -107,9 +107,13 @@ namespace kdh.Controllers
                     {
                         return RedirectToAction("Index", "Admin");
                     }
-                    else
+                    else if (u.Role == "patient")
                     {
                         return RedirectToAction("Index", "Patient", new { Id = u.Id });
+                    }
+                    else // this is for other roles
+                    {
+                        return View();
                     }
                 }
                 return View();

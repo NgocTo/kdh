@@ -243,7 +243,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Doctors_ToTable">
+        <Association Name="fk_dept">
           <End Role="departments" Type="Self.departments" Multiplicity="1" />
           <End Role="Doctors" Type="Self.Doctors" Multiplicity="*" />
           <ReferentialConstraint>
@@ -356,7 +356,7 @@
             <End Role="Purposes" EntitySet="Purposes" />
             <End Role="FAQs" EntitySet="FAQs" />
           </AssociationSet>
-          <AssociationSet Name="FK_Doctors_ToTable" Association="Self.FK_Doctors_ToTable">
+          <AssociationSet Name="fk_dept" Association="Self.fk_dept">
             <End Role="departments" EntitySet="departments" />
             <End Role="Doctors" EntitySet="Doctors" />
           </AssociationSet>
