@@ -35,7 +35,7 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
         [HttpGet]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin,hr")]
         public ActionResult Add()
         {
             try
@@ -75,7 +75,7 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
         [HttpGet]
-        [Authorize(Roles = "admin,hr")]
+        [Authorize(Roles = "admin")]
         public ActionResult Update(int? id)
         {
             try
