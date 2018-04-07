@@ -36,8 +36,11 @@
         <div class="card-text">Phone: @Html.DisplayFor(model => model.Phone)</div>
         <div class="card-text">Email: @Html.DisplayFor(model => model.Email)</div>
         
-        <a href="@Url.Action("EditProfile")" class="btn btn-outline-primary btn-sm ml-2 my-3 col-md-5">Update Profile</a>
-        <a href="@Url.Action("UpdateAccount")" class="btn btn-outline-primary btn-sm ml-2 my-3 col-md-5">Update Login Information</a>
+        <div>
+            <a href="@Url.Action("EditProfile")" class="btn btn-outline-primary btn-sm ml-2 my-3 col-md-4">Update Profile</a>
+            <a href="@Url.Action("UpdateAccount")" class="btn btn-outline-primary btn-sm ml-2 my-3 col-md-4">Update Login Information</a>
+        </div>
+        <a href="@Url.Action("DeleteConfirmation")" class="btn btn-outline-danger btn-sm ml-2 my-3 col-md-4">Delete Online Account</a>
 
     </div>
 </div>

@@ -335,6 +335,7 @@
     <Content Include="Views\Admin\FindPatientByName.cshtml" />
     <Content Include="Views\Patient\UpdateAccount.cshtml" />
     <Content Include="Views\Patient\UpdateComplete.cshtml" />
+    <Content Include="Views\Patient\DeleteConfirmation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

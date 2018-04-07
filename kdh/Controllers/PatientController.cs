@@ -7,6 +7,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace kdh.Controllers
 {
@@ -190,6 +191,7 @@ namespace kdh.Controllers
 
         }
 
+        [HttpPost]
         public ActionResult UpdateAccount(UpdateAccountVM vm)
         {
             Guid userId = new Guid(User.Identity.Name);
@@ -207,6 +209,83 @@ namespace kdh.Controllers
             ViewBag.NewEmail = u.Email;
             ViewBag.PatientName = "Logged in as " + DisplayPatientName(patient);
             return View("UpdateComplete");
+        }
+
+        // DeleteUser Patient's Portal Account
+        [HttpGet]
+        public ActionResult DeleteConfirmation()
+        {
+            try
+            {
+                Guid id = new Guid(User.Identity.Name);
+
+                if (String.IsNullOrWhiteSpace(id.ToString()))
+                {
+                    return RedirectToAction("Index");
+                }
+
+                User u = context.Users.SingleOrDefault(q => q.Id == id);
+                Patient p = context.Patients.SingleOrDefault(q => q.UserId == id);
+
+
+                if (p != null)
+                {
+                    // assigining value from db to VM
+                    PatientVM patientVM = new PatientVM
+                    {
+                        FullName = p.FirstName + " " + p.LastName,
+                    };
+
+                    if (p.User != null)
+                    {
+                        patientVM.Email = p.User.Email;
+                    }
+
+                    ViewBag.Id = id;
+                    ViewBag.AdminEmail = "Logged in as " + DisplayPatientName(p);
+                    return View(patientVM);
+                }
+
+                return RedirectToAction("Index");
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+
+            return View("~/Views/Errors/Details.cshtml");
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete()
+        {
+            try
+            {
+                Guid id = new Guid(User.Identity.Name);
+
+                User u = context.Users.SingleOrDefault(q => q.Id == id);
+                Patient p = context.Patients.SingleOrDefault(q => q.UserId == id);
+
+                context.Users.Remove(u);
+                p.UserId = null;
+                context.SaveChanges();
+
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Index", "Home");
+            }
+            catch (DbUpdateException DbException)
+            {
+                ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(DbException);
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+
         }
 
 
