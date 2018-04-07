@@ -145,6 +145,8 @@ namespace kdh.Controllers
 
         //    return View("~/Views/Errors/Details.cshtml");
         //}
+
+        [Authorize(Roles = "admin,hr")]
         public ActionResult UpdateV(int? id)
         {
             try
@@ -265,7 +267,7 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
         }
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin,hr")]
         public ActionResult Detail(int? id)
         {
             try

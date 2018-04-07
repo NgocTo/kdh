@@ -256,7 +256,7 @@
     <Compile Include="Utils\Hasher.cs" />
     <Compile Include="Utils\Mailer.cs" />
     <Compile Include="Utils\TokenGenerator.cs" />
-    <Compile Include="Utils\ValidAgeValidator.cs" />
+    
     <Compile Include="ViewModels\AccountLoginVM.cs" />
     <Compile Include="ViewModels\AccountRegistrationVM.cs" />
     <Compile Include="ViewModels\DoctorDepartment.cs" />

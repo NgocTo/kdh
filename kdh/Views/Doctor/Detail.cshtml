@@ -58,4 +58,11 @@
     <input type="submit" value="Delete" class="btn btn-primary" />
     @Html.ActionLink("back to list", "Index", "Doctor")
 </div>
-@Html.ActionLink("Update", "Update", "Doctor", new { id = Model.doctor.Doctorid }, null)
+@if (User.IsInRole("admin"))
+{
+    @Html.ActionLink("Update", "UpdateV", "Doctor", new { id = Model.doctor.Doctorid }, null)
+
+
+
+   
+}
