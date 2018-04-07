@@ -11,6 +11,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace kdh.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class DoctorController : Controller
     {
         HospitalContext db = new HospitalContext();
@@ -30,7 +31,7 @@ namespace kdh.Controllers
             {
                 ViewBag.ExceptionMessage = e.Message;
             }
-            return View();
+            return View("~/Views/Errors/Details.cshtml");
         }
         [HttpGet]
         public ActionResult Add()
@@ -47,6 +48,7 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Add(Doctor doctor)
         {
             try
@@ -77,6 +79,7 @@ namespace kdh.Controllers
             {
                 if (id != null)
                 {
+     
                     Doctor doctor = db.Doctors.SingleOrDefault(d => d.Doctorid == id);
                     if (doctor == null)
                     {
@@ -101,6 +104,7 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(Doctor doctor)
         {
             try
@@ -119,7 +123,7 @@ namespace kdh.Controllers
                
                 return View();
 
-            }
+        }
             catch (DbUpdateException d)
             {
                 ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(d);
@@ -136,6 +140,7 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
         [HttpGet]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int? id)
         {
             try
@@ -160,6 +165,7 @@ namespace kdh.Controllers
         }
         [HttpPost]
         [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult Deletepost(int? id)
         {
             try
@@ -209,6 +215,7 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
         }
+        [AllowAnonymous]
         public PartialViewResult DoctorSearch(string ajaxdoc)
         {
             string search = ajaxdoc;
@@ -229,6 +236,24 @@ namespace kdh.Controllers
             }
             return PartialView("~/Views/Doctor/_dl.cshtml", doctordepartment);
 
+        }
+        [AllowAnonymous]
+        public ActionResult PublicView()
+        {
+            try
+            {
+
+                List<Doctor> doctors = db.Doctors.ToList();
+                List<department> departments = db.departments.ToList();
+                List<DoctorDepartment> doctordepartment = new List<DoctorDepartment>();
+                doctordepartment = doctors.Join(departments, doc => doc.Departmentid, dep => dep.departmentid, (doc, dep) => new DoctorDepartment { doctor = doc, department = dep }).ToList();
+                return View(doctordepartment);
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
     }
     

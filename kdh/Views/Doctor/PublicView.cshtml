@@ -15,7 +15,7 @@
     </span>
 </div>
 @*<input type="text" name="SearchBar" id="SearchBar" class="form-control" placeholder="Search for a Doctor here..." style="margin-top: 20px" />*@
-@Html.ActionLink("Add", "Add", "Doctor")
+
 
 
 
@@ -51,8 +51,7 @@
                 @Html.DisplayFor(Doctor => d.department.department_name)
             </div>
 
-            @Html.ActionLink("Update", "Update", "Doctor", new { id = d.doctor.Doctorid }, null)
-            @Html.ActionLink("Delete", "Delete", "Doctor", new { id = d.doctor.Doctorid }, null)
+           
             @Html.ActionLink("Details", "Detail", "Doctor", new { id = d.doctor.Doctorid }, null)
 
 

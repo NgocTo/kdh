@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using kdh.Utils;
 namespace kdh.Models
 {
     [Table("Doctors")]
@@ -61,6 +61,7 @@ namespace kdh.Models
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Date of join Required")]
         [Display(Name = "joining Date")]
+        [DateValidator]
         public DateTime Date_of_join { get; set; }
 
         [StringLength(40, MinimumLength = 6, ErrorMessage = "Field must be 6 or 40 characters.")]

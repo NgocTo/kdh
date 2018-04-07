@@ -21,14 +21,16 @@ namespace kdh.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            ViewBag.page = "get";
             return View();
         }
         [HttpPost]
         public ActionResult Login(AccountLoginVM user)
         {
+            
             try
             {
-                string password = Hasher.ToHashedStr(user.Password);
+                
                 var u = db.Users.SingleOrDefault(r => r.Email == user.Email && r.Password == user.Password);
 
 
@@ -40,9 +42,10 @@ namespace kdh.Controllers
                 }
                 else
                 {
+                    ViewBag.page = "post";
                     ModelState.AddModelError("", "Incorrect username or password. Please confirm your login information.");
                 }
-
+                
                 return View();
 
             }
