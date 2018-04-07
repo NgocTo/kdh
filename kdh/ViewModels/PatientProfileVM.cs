@@ -63,5 +63,7 @@ namespace kdh.ViewModels
         [RegularExpression(@"^\d{10,15}$", ErrorMessage = "Invalid phone number. Phone number must be between 10 to 15 digits.")]
         public string Phone { get; set; }
 
+        public string Email { get; set; }
+
     }
 }

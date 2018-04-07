@@ -7,6 +7,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace kdh.Controllers
 {
@@ -63,8 +64,9 @@ namespace kdh.Controllers
                     profile.PostalCode = (String.IsNullOrEmpty(patient.PostalCode)) ? "N/A" : patient.PostalCode;
                     profile.DateOfBirth = patient.DateOfBirth;
                     profile.Phone = (String.IsNullOrEmpty(patient.Phone)) ? "N/A" : patient.Phone;
+                    profile.Email = (String.IsNullOrEmpty(patient.User.Email)) ? "N/A" : patient.User.Email;
 
-                    ViewBag.PatientName = "Logged in as " + DisplayPatientName(patient);
+                    ViewBag.PatientName = DisplayPatientName(patient);
                     return View(profile);
                 }
 
@@ -106,7 +108,7 @@ namespace kdh.Controllers
                     profile.DateOfBirth = patient.DateOfBirth;
                     profile.Phone = (String.IsNullOrEmpty(patient.Phone)) ? null : patient.Phone;
 
-                    ViewBag.PatientName = "Logged in as " + DisplayPatientName(patient);
+                    ViewBag.PatientName = DisplayPatientName(patient);
                     return View(profile);
                 }
 
@@ -166,6 +168,147 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
 
+        }
+
+
+        // Add a patients
+        [HttpGet]
+        public ActionResult UpdateAccount()
+        {
+            try
+            {
+                Guid authId = new Guid(User.Identity.Name);
+                Patient patient = context.Patients.SingleOrDefault(q => q.UserId == authId); // Patient.UserId
+
+                ViewBag.PatientName = DisplayPatientName(patient);
+                return View();
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+
+        }
+
+        [HttpPost]
+        public ActionResult UpdateAccount(UpdateAccountVM vm)
+        {
+
+            try
+            {
+                Guid userId = new Guid(User.Identity.Name);
+                Patient patient = context.Patients.SingleOrDefault(q => q.UserId == userId); // Patient.UserId
+
+                // find the patient and update email
+                User u = context.Users.SingleOrDefault(q => q.Id == userId);
+                string token = context.Patients.SingleOrDefault(q => q.UserId == userId).EmailToken;
+
+                u.Email = vm.Email;
+                context.SaveChanges();
+
+                Mailer.SendEmail(u.Email, token);
+
+                ViewBag.NewEmail = u.Email;
+                ViewBag.PatientName = DisplayPatientName(patient);
+
+                return View("UpdateComplete");
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+
+            return View("~/Views/Errors/Details.cshtml");
+
+        }
+
+        // DeleteUser Patient's Portal Account
+        [HttpGet]
+        public ActionResult DeleteConfirmation()
+        {
+            try
+            {
+                Guid id = new Guid(User.Identity.Name);
+
+                if (String.IsNullOrWhiteSpace(id.ToString()))
+                {
+                    return RedirectToAction("Index");
+                }
+
+                User u = context.Users.SingleOrDefault(q => q.Id == id);
+                Patient p = context.Patients.SingleOrDefault(q => q.UserId == id);
+
+
+                if (p != null)
+                {
+                    // assigining value from db to VM
+                    PatientVM patientVM = new PatientVM
+                    {
+                        FullName = p.FirstName + " " + p.LastName,
+                    };
+
+                    if (p.User != null)
+                    {
+                        patientVM.Email = p.User.Email;
+                    }
+
+                    ViewBag.Id = id;
+                    ViewBag.AdminEmail = DisplayPatientName(p);
+                    return View(patientVM);
+                }
+
+                return RedirectToAction("Index");
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+
+            return View("~/Views/Errors/Details.cshtml");
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete()
+        {
+            try
+            {
+                Guid id = new Guid(User.Identity.Name);
+
+                User u = context.Users.SingleOrDefault(q => q.Id == id);
+                Patient p = context.Patients.SingleOrDefault(q => q.UserId == id);
+
+                context.Users.Remove(u);
+                p.UserId = null;
+                context.SaveChanges();
+
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Index", "Home");
+            }
+            catch (DbUpdateException DbException)
+            {
+                ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(DbException);
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+
+        }
+
+
+        // Remote Validation
+        // return false if email adress is in use
+        [HttpPost]
+        public JsonResult IsAvailableEmail(string email)
+        {
+            bool result = context.Users.Any(q => q.Email.ToLower() == email.ToLower());
+            return Json(!result);
         }
 
     }

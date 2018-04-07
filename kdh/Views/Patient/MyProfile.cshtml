@@ -34,7 +34,15 @@
         <div class="card-text">Province: @Html.DisplayFor(model => model.Province)</div>
         <div class="card-text">Postal Code: @Html.DisplayFor(model => model.PostalCode)</div>
         <div class="card-text">Phone: @Html.DisplayFor(model => model.Phone)</div>
-        <a href="@Url.Action("EditProfile")" class="btn btn-outline-primary btn-sm ml-2 my-3 col-md-3">Update Profile</a>
+        <div class="card-text">Email: @Html.DisplayFor(model => model.Email)</div>
+        
+        <div>
+            <a href="@Url.Action("EditProfile")" class="btn btn-outline-primary btn-sm ml-2 my-3 col-md-4">Update Profile</a>
+            <a href="@Url.Action("UpdateAccount")" class="btn btn-outline-primary btn-sm ml-2 my-3 col-md-4">Update Login Information</a>
+        </div>
+        <div>
+            <a href="@Url.Action("DeleteConfirmation")" class="btn btn-outline-danger btn-sm ml-2 my-3 col-md-4">Delete Online Account</a>
+        </div>
 
     </div>
 </div>
