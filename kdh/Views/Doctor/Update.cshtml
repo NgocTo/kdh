@@ -4,10 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add</h2>
-@ViewBag.err
+<h2>Update doctor</h2>
+@Html.ActionLink("Logout", "Logout", "DoctorAuth")
 <div class="container">
-    @using (Html.BeginForm("Update", "Doctor", new { @class = "" }))
+    @using (Html.BeginForm("Update", "DoctorAuth", new { @class = "" }))
     {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(Model=>Model.Doctorid)
@@ -152,5 +152,5 @@
     }
 </div>
 <script>
-   
+
 </script>

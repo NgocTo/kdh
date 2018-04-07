@@ -5,7 +5,7 @@
 }
 
 <h2>Doctors List</h2>
-
+@Html.ActionLink("Logout", "Logout", "DoctorAuth")
 <div class="input-group p-2">
     <input class="form-control py-2" type="search" id="SearchBar">
     <span class="input-group-append">
@@ -14,6 +14,7 @@
         </button>
     </span>
 </div>
+
 @*<input type="text" name="SearchBar" id="SearchBar" class="form-control" placeholder="Search for a Doctor here..." style="margin-top: 20px" />*@
 @Html.ActionLink("Add", "Add", "Doctor")
 
@@ -52,10 +53,10 @@
             </div>
 
             @Html.ActionLink("Update", "Update", "Doctor", new { id = d.doctor.Doctorid }, null)
-            @Html.ActionLink("Delete", "Delete", "Doctor", new { id = d.doctor.Doctorid }, null)
+
             @Html.ActionLink("Details", "Detail", "Doctor", new { id = d.doctor.Doctorid }, null)
 
-
+            @Html.ActionLink("Delete", "Delete", "Doctor", new { id = d.doctor.Doctorid }, null)
         </div>
     }
 </div>

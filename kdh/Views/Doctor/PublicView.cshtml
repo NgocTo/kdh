@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@Html.ActionLink("Login", "Login", "DoctorAuth")
 <h2>Doctors List</h2>
 
 <div class="input-group p-2">
@@ -51,8 +51,8 @@
                 @Html.DisplayFor(Doctor => d.department.department_name)
             </div>
 
-           
-            @Html.ActionLink("Details", "Detail", "Doctor", new { id = d.doctor.Doctorid }, null)
+
+
 
 
         </div>

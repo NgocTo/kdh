@@ -191,40 +191,40 @@ namespace kdh.Controllers
 
         }
 
-        [HttpPost]
-        public ActionResult UpdateAccount(UpdateAccountVM vm)
-        {
+        //[HttpPost]
+        //public ActionResult UpdateAccount(UpdateAccountVM vm)
+        //{
 
-            try
-            {
-                Guid userId = new Guid(User.Identity.Name);
-                Patient patient = context.Patients.SingleOrDefault(q => q.UserId == userId); // Patient.UserId
+        //    try
+        //    {
+        //        Guid userId = new Guid(User.Identity.Name);
+        //        Patient patient = context.Patients.SingleOrDefault(q => q.UserId == userId); // Patient.UserId
 
-                // find the patient and update email
-                User u = context.Users.SingleOrDefault(q => q.Id == userId);
-                string token = context.Patients.SingleOrDefault(q => q.UserId == userId).EmailToken;
+        //        // find the patient and update email
+        //        User u = context.Users.SingleOrDefault(q => q.Id == userId);
+        //        string token = context.Patients.SingleOrDefault(q => q.UserId == userId).EmailToken;
 
-                u.Email = vm.Email;
-                context.SaveChanges();
+        //        u.Email = vm.Email;
+        //        context.SaveChanges();
 
-                Mailer.SendEmail(u.Email, token);
+        //        Mailer.SendEmail(u.Email, token);
 
-                ViewBag.NewEmail = u.Email;
-                ViewBag.PatientName = DisplayPatientName(patient);
+        //        ViewBag.NewEmail = u.Email;
+        //        ViewBag.PatientName = DisplayPatientName(patient);
 
-                return View("UpdateComplete");
+        //        return View("UpdateComplete");
 
-            }
-            catch (Exception e)
-            {
-                ViewBag.ExceptionMessage = e.Message;
-            }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ViewBag.ExceptionMessage = e.Message;
+        //    }
 
-            return View("~/Views/Errors/Details.cshtml");
+        //    return View("~/Views/Errors/Details.cshtml");
 
-        }
+        //}
 
-        // DeleteUser Patient's Portal Account
+        //// DeleteUser Patient's Portal Account
         [HttpGet]
         public ActionResult DeleteConfirmation()
         {

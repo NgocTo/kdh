@@ -64,7 +64,7 @@ namespace kdh.Controllers
                     Session.Abandon();
                     FormsAuthentication.SignOut();
                 }
-                return RedirectToAction("Login", "Doctor");
+                return RedirectToAction("Login","DoctorAuth");
 
             }
             catch (Exception e)

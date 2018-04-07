@@ -6,6 +6,7 @@
 
 <h2>Add Doctor</h2>
 @ViewBag.err
+@Html.ActionLink("Logout", "Logout", "DoctorAuth")
 <div class="container">
     @using (Html.BeginForm("Add", "Doctor", new { @class = "" }))
     {

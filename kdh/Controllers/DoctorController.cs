@@ -11,11 +11,12 @@ using System.Data.Entity.Infrastructure;
 
 namespace kdh.Controllers
 {
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public class DoctorController : Controller
     {
         HospitalContext db = new HospitalContext();
         // GET: Doctor
+        [Authorize(Roles = "admin,hr")]
         public ActionResult Index()
         {
             try
@@ -34,6 +35,7 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Add()
         {
             try
@@ -73,6 +75,7 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
         [HttpGet]
+        [Authorize(Roles = "admin,hr")]
         public ActionResult Update(int? id)
         {
             try
@@ -139,8 +142,9 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
         }
+
         [HttpGet]
-        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin,manager")]
         public ActionResult Delete(int? id)
         {
             try
@@ -193,6 +197,7 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
         }
+        [Authorize(Roles = "admin")]
         public ActionResult Detail(int? id)
         {
             try
