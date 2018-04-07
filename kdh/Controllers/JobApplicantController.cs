@@ -24,7 +24,6 @@ namespace kdh.Controllers
                 var applicants = db.Applicants.Include(a => a.Job);
                 List<Applicant> applicant = db.Applicants.ToList();
                 return View(applicant);
-
             }
             catch (Exception genericException)
             {
@@ -35,11 +34,11 @@ namespace kdh.Controllers
 
         // GET: new applicant
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(string job_id)
         {
             try
             {
-                ViewBag.JobId = db.Jobs.ToList();
+                ViewBag.jobs = db.Jobs.ToList();
                 return View();
             }
             catch (Exception genericException)
@@ -59,15 +58,19 @@ namespace kdh.Controllers
                 {
                     db.Applicants.Add(applicant);
                     db.SaveChanges();
+                    ViewBag.SuccessMessage = "Application was successfully submitted.";
                     return RedirectToAction("Index", "Job");
                 }
                 ViewBag.JobId = db.Jobs.ToList();
                 return View(applicant);
-
         }
             catch (DbUpdateException dbException)
             {
                 ViewBag.DbExceptionMessage = dbException.Message;
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlException = sqlException.Message;
             }
             catch (Exception genericException)
             {
@@ -87,7 +90,7 @@ namespace kdh.Controllers
                 Applicant applicant = db.Applicants.SingleOrDefault(model => model.ApplicantId == id);
                 if (id == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index_Admin");
                 }
                 return View(applicant);
             }
@@ -117,7 +120,7 @@ namespace kdh.Controllers
                 Applicant applicant = db.Applicants.Find(id);
                 db.Applicants.Remove(applicant);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index_Admin");
             }
             catch (DbUpdateException dbException)
             {

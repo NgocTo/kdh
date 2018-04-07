@@ -3,18 +3,23 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Available job Positions</h2>
-
+<div class="text-center">
+    @ViewBag.SuccessMessage;
+</div>
+<h2>Career Opportunities</h2>
+<p>The Human Resources Department at the Humber District Hospital works as a collaborative team with the Englehart and District Hospital to provide service for almost 400 full-time and part-time staff employed at the Hospitals.</p>
+<p>Only qualified candidates will be contacted for an interview. Humber District Hospitals are equal opportunity employers. We welcome and encourage applications from people with disabilities. Accommodations are available on request for candidates taking part in all aspects of the selection process.</p>
+<p class="font-weight-bold">Resumes will only be accepted via email to: resumes@kdhospital.com</p>
+<p>This is a listing of our current job openings:</p>
 @foreach (var item in Model)
 {
+    <hr />
     <div>
-        <h3>@Html.DisplayNameFor(model => model.JobId): @item.JobId</h3>
+        <div class="text-uppercase font-weight-bold lead">@Html.DisplayNameFor(model => model.JobId): @item.JobId</div>
         <span>
             @Html.ActionLink("Details", "Details", new { job_id = item.JobId })
         </span>
-        <dl class="dl-horizontal row">
-
+        <dl class="row mb-0">
             <dt class="col-2">@Html.DisplayNameFor(model => model.JobTitle):</dt>
             <dd class="col-4">@Html.DisplayFor(modelItem => item.JobTitle)</dd>
             <dt class="col-2">@Html.DisplayNameFor(model => model.JobStatus)</dt>
@@ -28,6 +33,7 @@
             <dt class="col-2">@Html.DisplayNameFor(model => model.User.Email)</dt>
             <dd class="col-10">@Html.DisplayFor(modelItem => item.User.Email)</dd>
         </dl>
-        @Html.ActionLink("Apply now", "Create", "JobApplicant", new { job_id = item.JobId })
+        @*<div class="mb-3">@Html.ActionLink("Apply now", "Create", "JobApplicant", new { job_id = item.JobId }, null)</div>*@
     </div>
 }
+<div class="text-center">@Html.ActionLink("Apply now", "Create", "JobApplicant")</div>

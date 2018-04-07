@@ -4,20 +4,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Job details</h2>
+<p>Only qualified candidates will be contacted for an interview. Humber District Hospitals are equal opportunity employers. We welcome and encourage applications from people with disabilities. Accommodations are available on request for candidates taking part in all aspects of the selection process.</p>
+<p class="font-weight-bold">Resumes will only be accepted via email to: resumes@kdhospital.com</p>
 
 <div>
-    <h4>Job</h4>
     <hr />
+    <h3>@Html.DisplayFor(model => model.JobTitle)</h3>
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.JobTitle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.JobTitle)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.JobStatus)
         </dt>
