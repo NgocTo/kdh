@@ -52,7 +52,7 @@
                 @Html.DisplayFor(Doctor => d.department.department_name)
             </div>
 
-            @Html.ActionLink("Update", "Update", "Doctor", new { id = d.doctor.Doctorid }, null)
+            @Html.ActionLink("Update", "UpdateV", "Doctor", new { id = d.doctor.Doctorid }, null)
 
             @Html.ActionLink("Details", "Detail", "Doctor", new { id = d.doctor.Doctorid }, null)
 

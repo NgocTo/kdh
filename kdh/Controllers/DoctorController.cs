@@ -74,15 +74,84 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
         }
-        [HttpGet]
-        [Authorize(Roles = "admin")]
-        public ActionResult Update(int? id)
+        //[HttpGet]
+        //[Authorize(Roles = "admin")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Update(int? id)
+        //{
+        //    try
+        //    {
+        //        if (id != null)
+        //        {
+
+        //            Doctor doctor = db.Doctors.SingleOrDefault(d => d.Doctorid == id);
+        //            if (doctor == null)
+        //            {
+        //                return RedirectToAction("Index");
+        //            }
+        //            ViewBag.Departments = db.departments.ToList();
+        //            ViewBag.err = "invalid";
+        //            return View(doctor);
+
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Index");
+        //        }
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ViewBag.ExceptionMessage = e.Message;
+        //    }
+
+        //    return View("~/Views/Errors/Details.cshtml");
+        //}
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="doctor"></param>
+        /// <returns></returns>
+        //[HttpGet]
+        //[Authorize(Roles = "admin")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Update(int? id)
+        //{
+        //    try
+        //    {
+        //        if (id != null)
+        //        {
+
+        //            Doctor doctor = db.Doctors.SingleOrDefault(d => d.Doctorid == id);
+        //            if (doctor == null)
+        //            {
+        //                return RedirectToAction("Index");
+        //            }
+        //            ViewBag.Departments = db.departments.ToList();
+        //            ViewBag.err = "invalid";
+        //            return View(doctor);
+
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Index");
+        //        }
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ViewBag.ExceptionMessage = e.Message;
+        //    }
+
+        //    return View("~/Views/Errors/Details.cshtml");
+        //}
+        public ActionResult UpdateV(int? id)
         {
             try
             {
                 if (id != null)
                 {
-     
+
                     Doctor doctor = db.Doctors.SingleOrDefault(d => d.Doctorid == id);
                     if (doctor == null)
                     {
@@ -121,12 +190,12 @@ namespace kdh.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-                
-                
-               
+
+
+
                 return View();
 
-        }
+            }
             catch (DbUpdateException d)
             {
                 ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(d);
@@ -142,7 +211,6 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
         }
-
         [HttpGet]
         [Authorize(Roles = "admin,manager")]
         public ActionResult Delete(int? id)
