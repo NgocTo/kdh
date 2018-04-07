@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using kdh.Utils;
 
 namespace kdh.Models
 {
@@ -16,6 +17,7 @@ namespace kdh.Models
     public class buddy_JobApplicant
     {
         [Key]
+        [Display(Name = "Applicant #")]
         public int ApplicantId { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "First name is required.")]
@@ -28,7 +30,8 @@ namespace kdh.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Date of birth should not be later than today.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Date of birth is required.")]
+        [DateValidator(ErrorMessage = "Date of Birth cannot be later than today.")]
         [DataType(DataType.Date)]
         [Display(Name = "Date of Birth")]
         public System.DateTime DateOfBirth { get; set; }
@@ -46,7 +49,6 @@ namespace kdh.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Position is required.")]
         [Display(Name = "Job Position")]
         public string JobId { get; set; }
-
-        public virtual Job Job { get; set; }
+        
     }
 }

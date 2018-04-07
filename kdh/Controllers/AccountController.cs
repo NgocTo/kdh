@@ -181,7 +181,7 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
 
-        // JADE'S ACCOUNT CONTROLLER
+        // NGOC'S ACCOUNT CONTROLLER
         // Login action
         [HttpGet]
         public ActionResult JobLogin()

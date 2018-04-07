@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using kdh.Utils;
 
 namespace kdh.Models
 {
@@ -16,7 +17,7 @@ namespace kdh.Models
     public class buddy_Job
     {
         [Key]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Id field is required.")]
+        [Required( ErrorMessage = "Id field is required.")]
         [StringLength(50, ErrorMessage = "Input must be between 2 and 50 characters.", MinimumLength = 2)]
         [Display(Name = "Id")]
         public string JobId { get; set; }
@@ -35,16 +36,15 @@ namespace kdh.Models
         public string JobDescription { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please select a department.")]
-        [StringLength(500, ErrorMessage = "Input must be less than 500 characters.")]
         [Display(Name = "Department")]
-        public string DepartmentId { get; set; }
+        public int DepartmentId { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Date posted for job must be later than today.")]
+        [FutureDateValidator(ErrorMessage = "Date posted for job must be later than today.")]
         [DataType(DataType.Date)]
         [Display(Name = "Date posted")]
         public Nullable<DateTime> DatePosted { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Date closed for job must be later than today.")]
+        [FutureDateValidator(ErrorMessage = "Date closed for job must be later than today.")]
         [Display(Name = "Date closed")]
         [DataType(DataType.DateTime)]
         public Nullable<DateTime> DateClosed { get; set; }
@@ -63,7 +63,7 @@ namespace kdh.Models
         [Display(Name = "Requirement")]
         public string Requirement { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Job manager's email field is required.")]
+        [Required(ErrorMessage = "Job manager's email field is required.")]
         [Display(Name = "Manager's Email")]
         public int UserId { get; set; }
     }

@@ -23,7 +23,6 @@ namespace kdh.Controllers
                 var extra = db.Jobs.Include(j => j.department).Include(j => j.User);
                 List<Job> job = db.Jobs.ToList();
                 return View(job);
-
             }
             catch (Exception genericException)
             {
@@ -38,7 +37,7 @@ namespace kdh.Controllers
         {
             if (job_id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index_Admin");
             }
             Job job = db.Jobs.Find(job_id);
             if (job == null)
@@ -77,15 +76,19 @@ namespace kdh.Controllers
                 {
                     db.Jobs.Add(job);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index_Admin");
                 }
                 ViewBag.departments = db.departments.ToList();
                 ViewBag.users = db.Users.ToList();
                 return View(job);
-            }
+        }
             catch (DbUpdateException dbException)
             {
                 ViewBag.DbExceptionMessage = dbException.Message;
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlException = sqlException.Message;
             }
             catch (Exception genericException)
             {
@@ -104,7 +107,7 @@ namespace kdh.Controllers
 
                 if (job == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index_Admin");
                 }
                 ViewBag.departments = db.departments.ToList();
                 ViewBag.users = db.Users.ToList();
@@ -129,7 +132,7 @@ namespace kdh.Controllers
                 {
                     db.Entry(job).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index_Admin");
                 }
                 ViewBag.departments = db.departments.ToList();
                 ViewBag.users = db.Users.ToList();
@@ -160,7 +163,7 @@ namespace kdh.Controllers
                 Job job = db.Jobs.SingleOrDefault(model => model.JobId == job_id);
                 if (job_id == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index_Admin");
                 }
                 return View(job);
             }
@@ -191,7 +194,7 @@ namespace kdh.Controllers
                 Job job = db.Jobs.Find(job_id);
                 db.Jobs.Remove(job);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index_Admin");
             }
             catch (DbUpdateException dbException)
             {
@@ -232,7 +235,7 @@ namespace kdh.Controllers
         {
             if (job_id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             Job job = db.Jobs.Find(job_id);
             if (job == null)

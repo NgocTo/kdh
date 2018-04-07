@@ -4,8 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Apply to the position</h2>
-
+<h2>Apply to job position</h2>
+<p>Only qualified candidates will be contacted for an interview. Humber District Hospitals are equal opportunity employers. We welcome and encourage applications from people with disabilities. Accommodations are available on request for candidates taking part in all aspects of the selection process.</p>
+<p class="font-weight-bold">Resumes will only be accepted via email to: resumes@kdhospital.com</p>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -71,10 +72,10 @@
         <div class="form-group row">
             <div class="col-form-label col-sm-3 text-right">
                 <span class="text-danger">*</span>
-                @Html.LabelFor(model => model.JobId, "JobId")
+                @Html.LabelFor(model => model.JobId)
             </div>
             <div class="col-sm-7">
-                @Html.DropDownListFor(model => model.JobId, new SelectList(ViewBag.JobId, "JobId", "JobTitle"), " - Select a job position - ", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.JobId, new SelectList(ViewBag.jobs, "JobId", "JobTitle"), " - Select a job position - ", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.JobId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -87,6 +88,6 @@
     </div>
 }
 
-<div>
+<div class="text-center">
     @Html.ActionLink("Back to List", "Index", "Job")
 </div>
