@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "PurposeList";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/FAQDonation/_FaqDonation.cshtml";
 }
 
 <h2 class="text-center text-dark">Frequently Asked Questions(FAQ)</h2>
@@ -11,25 +11,27 @@
     @Html.ActionLink("Back to FAQ List", "Index")
 </div>
 
-<div class="btn btn-dark">
-    @Html.ActionLink("Create New Purpose", "AddPurpose")
+<div>
+    <a href="@Url.Action("AddPurpose", "FAQ")" class="btn btn-primary my-3 mr-4">Create New Purpose</a>
 </div>
 
+@foreach (var item in Model)
+{
+    <div class="card mb-3">
+        <div class="card-header bg-light">
+            <span class="h5 text-primary font-weight-bold">Purpose ID: @Html.DisplayFor(modelItem => item.PurposeId)</span>
+        </div>
+        <div class="card-body">
+            <div class="card-text"><span class="font-weight-bold text-primary">Purpose To Create:</span> @Html.DisplayFor(modelItem => item.PurposeToCreate)</div>
+          
+            @*@Html.ActionLink("Edit", "EditPurpose", new { id = item.PurposeId }) |
+                @Html.ActionLink("Delete", "DeletePurpose", new { id = item.PurposeId })*@
 
+            <a href="@Url.Action("EditPurpose", "FAQ", new { id = item.PurposeId })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Edit</a>
+            <a href="@Url.Action("DeletePurpose", "FAQ", new { id = item.PurposeId })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Delete</a>
 
-<ul class="border mt-3">
-    @foreach (var item in Model)
-            {
-        <li>
-            <span class="font-weight-bold">
-                Purpose ID:</span> @Html.DisplayFor(modelItem => item.PurposeId) <br />
-            <span class="font-weight-bold">
-                Purpose: </span>   @Html.DisplayFor(modelItem => item.PurposeToCreate) <br />
-                @Html.ActionLink("Edit", "EditPurpose", new { id = item.PurposeId }) |
-                @Html.ActionLink("Delete", "DeletePurpose", new { id = item.PurposeId })
-</li>
+        </div>
+    </div>
 
-    }
-</ul>
-
+}
 

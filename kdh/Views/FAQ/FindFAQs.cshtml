@@ -1,0 +1,63 @@
+﻿@model  IEnumerable<kdh.Models.FAQ>
+@{
+    ViewBag.Title = "FindFAQs";
+    Layout = "~/Views/Shared/FAQDonation/_FaqDonation.cshtml";
+}
+
+<h2 class="text-center text-dark">Frequently Asked Questions(FAQ)</h2>
+<h3 class="text-dark mb-3">List of FAQs</h3>
+
+<div class="mb-2 container">
+    <div class="row">
+        <a href="@Url.Action("Add", "FAQ")" class="btn btn-primary my-3 mr-4">Create New FAQ</a>
+        <a href="@Url.Action("PurposeList","FAQ")" class="btn btn-primary my-3 mr-4">Show Purpose List</a>
+        @using (Html.BeginForm("FindFAQs", "FAQ"))
+            {
+            @Html.AntiForgeryToken()
+            <div class="input-group offset-9">
+                @Html.TextBox("FaqName", null, new { @class = "form-control my-3 py-2 border-right-0 border border-dark" })
+                <span class="input-group-append  my-3">
+                    <input type="submit" aria-labelledby="search button" value="Go" class="btn bg-primary text-white border-left-0 border border-dark">
+                </span>
+            </div>
+        }
+    </div>
+    <div class="text-danger mb-4 offset-8">@ViewBag.SearchError @ViewBag.CountResult</div>
+
+</div>
+
+
+@foreach (var item in Model)
+{
+    <div class="card mb-3">
+        <div class="card-header bg-light">
+            <span class="h5 text-primary font-weight-bold">@Html.DisplayFor(modelItem => item.Question)</span>
+        </div>
+        <div class="card-body">
+            <div class="card-text">
+                <span class="font-weight-bold text-primary">Answer: 
+                    @*@Html.DisplayNameFor(model => item.Answer):*@
+                </span>
+                @if (item.Answer != null)
+                {
+                    @Html.DisplayFor(modelItem => item.Answer) <br />
+                }
+                else
+                {
+                    @Html.Raw("N/A")            <br />
+                }
+            </div>
+            <div class="card-text"><span class="font-weight-bold text-primary">Date: @*@Html.DisplayNameFor(model => item.DateCreated):*@</span> @Html.DisplayFor(modelItem => item.DateCreated)</div>
+            
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.QueId }) |
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.QueId })*@
+
+            <a href="@Url.Action("FAQDetails", "FAQ", new { id = item.QueId })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Details</a>
+            <a href="@Url.Action("Edit", "FAQ", new { id = item.QueId })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Edit</a>
+            <a href="@Url.Action("Delete", "FAQ", new { id = item.QueId })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Delete</a>
+
+        </div>
+    </div>
+
+}

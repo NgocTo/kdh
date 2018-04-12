@@ -164,6 +164,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\script.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -265,7 +266,6 @@
     <Compile Include="Utils\Hasher.cs" />
     <Compile Include="Utils\Mailer.cs" />
     <Compile Include="Utils\TokenGenerator.cs" />
-    <Compile Include="Utils\ValidAgeValidator.cs" />
     <Compile Include="ViewModels\AccountLoginVM.cs" />
     <Compile Include="ViewModels\AccountRegistrationVM.cs" />
     <Compile Include="ViewModels\DoctorDepartment.cs" />
@@ -338,6 +338,11 @@
     <Content Include="Views\Patient\UpdateAccount.cshtml" />
     <Content Include="Views\Patient\UpdateComplete.cshtml" />
     <Content Include="Views\Patient\DeleteConfirmation.cshtml" />
+    <Content Include="Views\Shared\FAQDonation\_FaqDonation.cshtml" />
+    <Content Include="Views\Shared\FAQDonation\_FaqDonateSidebar.cshtml" />
+    <Content Include="Views\FAQ\FindFAQs.cshtml" />
+    <Content Include="Views\FAQ\FAQDetails.cshtml" />
+    <Content Include="Views\FAQ\FindFAQsPublic.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
