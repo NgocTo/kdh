@@ -63,11 +63,8 @@ namespace kdh.Controllers
         {
             try
             {
-                if (Session["id"] != null)
-                {
                     Session.Abandon();
                     FormsAuthentication.SignOut();
-                }
                 return RedirectToAction("Index","Home");
 
             }
