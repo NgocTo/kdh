@@ -23,7 +23,7 @@ namespace kdh.Models
         public int CreditId { get; set; }
         public string CardNumber { get; set; }
         public string CardHolderName { get; set; }
-        public string ExpiryDate { get; set; }
+        public System.DateTime ExpiryDate { get; set; }
         public string SecurityCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

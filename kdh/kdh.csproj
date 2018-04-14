@@ -193,6 +193,7 @@
     <Compile Include="Models\Applicant.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\buddy_donateContact.cs" />
     <Compile Include="Models\buddy_Job.cs" />
     <Compile Include="Models\buddy_JobApplicant.cs" />
     <Compile Include="Models\buddy_User.cs" />
@@ -204,6 +205,7 @@
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Doctors.cs" />
+    <Compile Include="Models\buddy_FAQ.cs" />
     <Compile Include="Models\DonateCreditCard.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
@@ -213,7 +215,6 @@
     <Compile Include="Models\FAQ.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\buddy_FAQ.cs" />
     <Compile Include="Models\FAQsPurposes.cs" />
     <Compile Include="Models\HospitalContext.Context.cs">
       <AutoGen>True</AutoGen>
@@ -240,6 +241,7 @@
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MyRoleProvider.cs" />
+    <Compile Include="Models\buddy_Purposes.cs" />
     <Compile Include="Models\OnlineConsultationForm.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
@@ -249,7 +251,6 @@
     <Compile Include="Models\Purpos.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\buddy_Purposes.cs" />
     <Compile Include="Models\Result.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
