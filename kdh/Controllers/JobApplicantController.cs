@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using CaptchaMvc.HtmlHelpers;
 
 namespace kdh.Controllers
 {
@@ -56,14 +57,19 @@ namespace kdh.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.Applicants.Add(applicant);
-                    db.SaveChanges();
-                    ViewBag.SuccessMessage = "Application was successfully submitted.";
-                    return RedirectToAction("Index", "Job");
+                    //if (this.IsCaptchaValid("Validate your captcha"))
+                    //{
+                        db.Applicants.Add(applicant);
+                        db.SaveChanges();
+                        ViewBag.SuccessMessage = "Application was successfully submitted.";
+                        return RedirectToAction("Index", "Job");
+                    //}
+                    //ViewBag.ErrorCaptcha = "Captcha is not valid.";
+                    //return View(applicant);
                 }
-                ViewBag.JobId = db.Jobs.ToList();
+                ViewBag.jobs = db.Jobs.ToList();
                 return View(applicant);
-        }
+            }
             catch (DbUpdateException dbException)
             {
                 ViewBag.DbExceptionMessage = dbException.Message;
