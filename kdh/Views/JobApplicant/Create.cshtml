@@ -1,4 +1,6 @@
 ﻿@model kdh.Models.Applicant
+@using CaptchaMvc.HtmlHelpers
+ 
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -80,6 +82,9 @@
             </div>
         </div>
 
+        <div class="text-center">
+                @Html.Captcha("Refresh", "Enter the text you see above:", 7, "Captcha is required.", true)
+        </div>
         <div class="form-group">
             <div class="text-center">
                 <input type="submit" value="Apply!" class="btn btn-default" />
