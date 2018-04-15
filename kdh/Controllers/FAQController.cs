@@ -141,17 +141,7 @@ namespace kdh.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                   /* FAQ f = new FAQ
-                    {
-                        QueId = faq.QueId,
-                        Question = faq.Question,
-                        Answer = faq.Answer,
-                        DateCreated = faq.DateCreated,
-                        AuthorFirstName = faq.AuthorFirstName,
-                        AuthorityFirstName = faq.AuthorityFirstName,
-                        PurposeId = faq.PurposeId
-
-                    };*/
+                   
                     db.FAQs.Add(faq);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -258,6 +248,7 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(FormCollection form)
         {
             try

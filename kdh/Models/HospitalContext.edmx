@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="InClassModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="InClassModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applicants">
           <Key>
             <PropertyRef Name="ApplicantId" />
@@ -59,19 +59,19 @@
             <PropertyRef Name="DonorId" />
           </Key>
           <Property Name="DonorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Phone" Type="varchar" MaxLength="30" />
+          <Property Name="Phone" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="DonorAddress" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="City" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="PostalCode" Type="char" MaxLength="6" Nullable="false" />
           <Property Name="Country" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Province" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Comments" Type="varchar" MaxLength="900" />
+          <Property Name="Comments" Type="varchar" MaxLength="200" />
           <Property Name="DonationDate" Type="datetime" Nullable="false" />
           <Property Name="Amount" Type="decimal" Precision="20" Scale="2" Nullable="false" />
-          <Property Name="CreditCardId" Type="int" />
+          <Property Name="PaymentId" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="FAQs">
           <Key>
@@ -219,18 +219,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="DonationContacts_CreditCardId_fk">
-          <End Role="DonateCreditCards" Type="Self.DonateCreditCards" Multiplicity="0..1" />
-          <End Role="DonationContacts" Type="Self.DonationContacts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DonateCreditCards">
-              <PropertyRef Name="CreditId" />
-            </Principal>
-            <Dependent Role="DonationContacts">
-              <PropertyRef Name="CreditCardId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FAQs_PurposeId_fk">
           <End Role="Purposes" Type="Self.Purposes" Multiplicity="1" />
           <End Role="FAQs" Type="Self.FAQs" Multiplicity="*" />
@@ -348,10 +336,6 @@
             <End Role="Jobs" EntitySet="Jobs" />
             <End Role="Applicants" EntitySet="Applicants" />
           </AssociationSet>
-          <AssociationSet Name="DonationContacts_CreditCardId_fk" Association="Self.DonationContacts_CreditCardId_fk">
-            <End Role="DonateCreditCards" EntitySet="DonateCreditCards" />
-            <End Role="DonationContacts" EntitySet="DonationContacts" />
-          </AssociationSet>
           <AssociationSet Name="FAQs_PurposeId_fk" Association="Self.FAQs_PurposeId_fk">
             <End Role="Purposes" EntitySet="Purposes" />
             <End Role="FAQs" EntitySet="FAQs" />
@@ -385,8 +369,7 @@
             <End Role="Jobs" EntitySet="Jobs" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InClassModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -442,27 +425,25 @@
           <Property Name="CardHolderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SecurityCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="DonationContacts" Relationship="Self.DonationContacts_CreditCardId_fk" FromRole="DonateCreditCards" ToRole="DonationContacts" />
         </EntityType>
         <EntityType Name="DonationContact">
           <Key>
             <PropertyRef Name="DonorId" />
           </Key>
           <Property Name="DonorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DonorAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Country" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Province" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Comments" Type="String" MaxLength="900" FixedLength="false" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="DonationDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Amount" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
-          <Property Name="CreditCardId" Type="Int32" />
-          <NavigationProperty Name="DonateCreditCard" Relationship="Self.DonationContacts_CreditCardId_fk" FromRole="DonationContacts" ToRole="DonateCreditCards" />
+          <Property Name="PaymentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="FAQ">
           <Key>
@@ -648,18 +629,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="DonationContacts_CreditCardId_fk">
-          <End Role="DonateCreditCards" Type="Self.DonateCreditCard" Multiplicity="0..1" />
-          <End Role="DonationContacts" Type="Self.DonationContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DonateCreditCards">
-              <PropertyRef Name="CreditId" />
-            </Principal>
-            <Dependent Role="DonationContacts">
-              <PropertyRef Name="CreditCardId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FAQs_PurposeId_fk">
           <End Role="Purposes" Type="Self.Purpos" Multiplicity="1" />
           <End Role="FAQs" Type="Self.FAQ" Multiplicity="*" />
@@ -761,10 +730,6 @@
             <End Role="departments" EntitySet="departments" />
             <End Role="Jobs" EntitySet="Jobs" />
           </AssociationSet>
-          <AssociationSet Name="DonationContacts_CreditCardId_fk" Association="Self.DonationContacts_CreditCardId_fk">
-            <End Role="DonateCreditCards" EntitySet="DonateCreditCards" />
-            <End Role="DonationContacts" EntitySet="DonationContacts" />
-          </AssociationSet>
           <AssociationSet Name="FAQs_PurposeId_fk" Association="Self.FAQs_PurposeId_fk">
             <End Role="Purposes" EntitySet="Purposes" />
             <End Role="FAQs" EntitySet="FAQs" />
@@ -865,7 +830,7 @@
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="DonationDate" ColumnName="DonationDate" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="CreditCardId" ColumnName="CreditCardId" />
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

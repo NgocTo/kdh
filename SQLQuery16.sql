@@ -1,3 +1,3 @@
 ﻿--delete from DonateCreditCards;
---select * from DonateCreditCards;
---insert into DonateCreditCards(CardNumber,CardHolderName, ExpiryDate,SecurityCode ) values('1234567877345678','guri','2018/09/04','123');
+--select * from DonationContacts;
+--insert into DonationContacts(Ca ) values('1234566677345678','jatinder','2018/04/22','123');

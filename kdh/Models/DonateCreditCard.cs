@@ -14,19 +14,10 @@ namespace kdh.Models
     
     public partial class DonateCreditCard
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DonateCreditCard()
-        {
-            this.DonationContacts = new HashSet<DonationContact>();
-        }
-    
         public int CreditId { get; set; }
         public string CardNumber { get; set; }
         public string CardHolderName { get; set; }
         public System.DateTime ExpiryDate { get; set; }
         public string SecurityCode { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonationContact> DonationContacts { get; set; }
     }
 }
