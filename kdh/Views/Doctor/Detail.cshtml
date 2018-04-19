@@ -55,8 +55,8 @@
         @Html.DisplayNameFor(x => x.department.department_location)
         @Html.DisplayFor(x => x.department.department_location)
     </div>
-    <input type="submit" value="Delete" class="btn btn-primary" />
-    @Html.ActionLink("back to list", "Index", "Doctor")
+
+    @Html.ActionLink("back to list", "Index", "Doctor")`
 </div>
 @if (User.IsInRole("admin"))
 {
@@ -64,5 +64,10 @@
 
 
 
-   
+
+}
+else if (User.IsInRole("hr"))
+{
+
+    @Html.ActionLink("Update", "UpdateV", "Doctor", new { id = Model.doctor.Doctorid }, null)
 }

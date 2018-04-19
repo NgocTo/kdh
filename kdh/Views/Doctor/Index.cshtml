@@ -55,11 +55,15 @@
     {
         @Html.ActionLink("Update", "UpdateV", "Doctor", new { id = d.doctor.Doctorid }, null)
 
-
+        @Html.ActionLink("Details", "Detail", "Doctor", new { id = d.doctor.Doctorid }, null)
 
         @Html.ActionLink("Delete", "Delete", "Doctor", new { id = d.doctor.Doctorid }, null)
 }
-        @Html.ActionLink("Details", "Detail", "Doctor", new { id = d.doctor.Doctorid }, null)
+else if (User.IsInRole("hr"))
+{
+    @Html.ActionLink("Details", "Detail", "Doctor", new { id = d.doctor.Doctorid }, null)
+    @Html.ActionLink("Update", "UpdateV", "Doctor", new { id = d.doctor.Doctorid }, null)
+}
 
     </div>
     }
