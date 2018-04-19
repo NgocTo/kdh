@@ -18,6 +18,7 @@ namespace kdh.Models
         public department()
         {
             this.Doctors = new HashSet<Doctor>();
+            this.Testimonials = new HashSet<Testimonial>();
             this.Jobs = new HashSet<Job>();
         }
     
@@ -28,6 +29,8 @@ namespace kdh.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Doctor> Doctors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Testimonial> Testimonials { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Job> Jobs { get; set; }
     }
