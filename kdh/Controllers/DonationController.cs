@@ -240,5 +240,44 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
 
         }
+        [HttpGet]
+        public ActionResult MakeDonation()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ExceptionMessage = ex.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MakeDonation(DonationContact donor)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.DonationContacts.Add(donor);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+                return View(donor);
+            }
+            catch (DbUpdateException uex)
+            {
+                ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(uex);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ExceptionMessage = ex.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+        }
+
     }
 }

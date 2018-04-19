@@ -355,6 +355,7 @@
     <Content Include="Views\Donation\Edit.cshtml" />
     <Content Include="Views\Donation\Delete.cshtml" />
     <Content Include="Views\Donation\FindDonors.cshtml" />
+    <Content Include="Views\Donation\MakeDonation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
