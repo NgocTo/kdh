@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="InClassModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="kdh.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applicants">
           <Key>
             <PropertyRef Name="ApplicantId" />
@@ -84,15 +84,6 @@
           <Property Name="AuthorFirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="AuthorityFirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PurposeId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="JobManagers">
-          <Key>
-            <PropertyRef Name="ManagerId" />
-          </Key>
-          <Property Name="ManagerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ManagerName" Type="nvarchar(max)" />
-          <Property Name="Email" Type="nvarchar(max)" />
-          <Property Name="Phone" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Jobs">
           <Key>
@@ -186,6 +177,20 @@
           <Property Name="AppointmentIssue" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="StaffRate" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Comment" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Testimonials">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Subject" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Content" Type="nchar" MaxLength="500" Nullable="false" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="Reviewed" Type="nchar" MaxLength="7" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TestTypes">
           <Key>
@@ -291,6 +296,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Testimonials_DepartmentId">
+          <End Role="departments" Type="Self.departments" Multiplicity="1" />
+          <End Role="Testimonials" Type="Self.Testimonials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departments">
+              <PropertyRef Name="departmentid" />
+            </Principal>
+            <Dependent Role="Testimonials">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="jobs_departmentid_fk">
           <End Role="departments" Type="Self.departments" Multiplicity="1" />
           <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
@@ -315,14 +332,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="InClassModelStoreContainer">
+        <EntityContainer Name="kdhStoreContainer">
           <EntitySet Name="Applicants" EntityType="Self.Applicants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="departments" EntityType="Self.departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonateCreditCards" EntityType="Self.DonateCreditCards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonationContacts" EntityType="Self.DonationContacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FAQs" EntityType="Self.FAQs" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="JobManagers" EntityType="Self.JobManagers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LabReports" EntityType="Self.LabReports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OnlineConsultationForm" EntityType="Self.OnlineConsultationForm" Schema="dbo" store:Type="Tables" />
@@ -330,6 +346,7 @@
           <EntitySet Name="Purposes" EntityType="Self.Purposes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Results" EntityType="Self.Results" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Survey" EntityType="Self.Survey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Testimonials" EntityType="Self.Testimonials" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestTypes" EntityType="Self.TestTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="applicants_jobid_fk" Association="Self.applicants_jobid_fk">
@@ -360,6 +377,10 @@
             <End Role="TestTypes" EntitySet="TestTypes" />
             <End Role="Results" EntitySet="Results" />
           </AssociationSet>
+          <AssociationSet Name="FK_Testimonials_DepartmentId" Association="Self.FK_Testimonials_DepartmentId">
+            <End Role="departments" EntitySet="departments" />
+            <End Role="Testimonials" EntitySet="Testimonials" />
+          </AssociationSet>
           <AssociationSet Name="jobs_departmentid_fk" Association="Self.jobs_departmentid_fk">
             <End Role="departments" EntitySet="departments" />
             <End Role="Jobs" EntitySet="Jobs" />
@@ -369,10 +390,11 @@
             <End Role="Jobs" EntitySet="Jobs" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="InClassModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="kdh" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="ApplicantId" />
@@ -395,6 +417,7 @@
           <Property Name="department_location" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="department_description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Doctors" Relationship="Self.fk_dept" FromRole="departments" ToRole="Doctors" />
+          <NavigationProperty Name="Testimonials" Relationship="Self.FK_Testimonials_DepartmentId" FromRole="departments" ToRole="Testimonials" />
           <NavigationProperty Name="Jobs" Relationship="Self.jobs_departmentid_fk" FromRole="departments" ToRole="Jobs" />
         </EntityType>
         <EntityType Name="Doctor">
@@ -457,15 +480,6 @@
           <Property Name="AuthorityFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PurposeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Purpos" Relationship="Self.FAQs_PurposeId_fk" FromRole="FAQs" ToRole="Purposes" />
-        </EntityType>
-        <EntityType Name="JobManager">
-          <Key>
-            <PropertyRef Name="ManagerId" />
-          </Key>
-          <Property Name="ManagerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ManagerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Job">
           <Key>
@@ -570,6 +584,21 @@
           <Property Name="StaffRate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Testimonial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Subject" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="500" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Reviewed" Type="String" MaxLength="7" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="department" Relationship="Self.FK_Testimonials_DepartmentId" FromRole="Testimonials" ToRole="departments" />
+        </EntityType>
         <EntityType Name="TestType">
           <Key>
             <PropertyRef Name="Id" />
@@ -614,6 +643,18 @@
             </Principal>
             <Dependent Role="Doctors">
               <PropertyRef Name="Departmentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Testimonials_DepartmentId">
+          <End Role="departments" Type="Self.department" Multiplicity="1" />
+          <End Role="Testimonials" Type="Self.Testimonial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departments">
+              <PropertyRef Name="departmentid" />
+            </Principal>
+            <Dependent Role="Testimonials">
+              <PropertyRef Name="DepartmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -708,7 +749,6 @@
           <EntitySet Name="DonateCreditCards" EntityType="Self.DonateCreditCard" />
           <EntitySet Name="DonationContacts" EntityType="Self.DonationContact" />
           <EntitySet Name="FAQs" EntityType="Self.FAQ" />
-          <EntitySet Name="JobManagers" EntityType="Self.JobManager" />
           <EntitySet Name="Jobs" EntityType="Self.Job" />
           <EntitySet Name="LabReports" EntityType="Self.LabReport" />
           <EntitySet Name="OnlineConsultationForms" EntityType="Self.OnlineConsultationForm" />
@@ -716,6 +756,7 @@
           <EntitySet Name="Purposes" EntityType="Self.Purpos" />
           <EntitySet Name="Results" EntityType="Self.Result" />
           <EntitySet Name="Surveys" EntityType="Self.Survey" />
+          <EntitySet Name="Testimonials" EntityType="Self.Testimonial" />
           <EntitySet Name="TestTypes" EntityType="Self.TestType" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="applicants_jobid_fk" Association="Self.applicants_jobid_fk">
@@ -725,6 +766,10 @@
           <AssociationSet Name="fk_dept" Association="Self.fk_dept">
             <End Role="departments" EntitySet="departments" />
             <End Role="Doctors" EntitySet="Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Testimonials_DepartmentId" Association="Self.FK_Testimonials_DepartmentId">
+            <End Role="departments" EntitySet="departments" />
+            <End Role="Testimonials" EntitySet="Testimonials" />
           </AssociationSet>
           <AssociationSet Name="jobs_departmentid_fk" Association="Self.jobs_departmentid_fk">
             <End Role="departments" EntitySet="departments" />
@@ -760,9 +805,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="InClassModelStoreContainer" CdmEntityContainer="HospitalContext">
+        <EntityContainerMapping StorageEntityContainer="kdhStoreContainer" CdmEntityContainer="HospitalContext">
           <EntitySetMapping Name="Applicants">
-            <EntityTypeMapping TypeName="InClassModel.Applicant">
+            <EntityTypeMapping TypeName="kdh.Applicant">
               <MappingFragment StoreEntitySet="Applicants">
                 <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -775,7 +820,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="departments">
-            <EntityTypeMapping TypeName="InClassModel.department">
+            <EntityTypeMapping TypeName="kdh.department">
               <MappingFragment StoreEntitySet="departments">
                 <ScalarProperty Name="departmentid" ColumnName="departmentid" />
                 <ScalarProperty Name="department_name" ColumnName="department_name" />
@@ -785,7 +830,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Doctors">
-            <EntityTypeMapping TypeName="InClassModel.Doctor">
+            <EntityTypeMapping TypeName="kdh.Doctor">
               <MappingFragment StoreEntitySet="Doctors">
                 <ScalarProperty Name="Doctorid" ColumnName="Doctorid" />
                 <ScalarProperty Name="Fname" ColumnName="Fname" />
@@ -804,7 +849,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DonateCreditCards">
-            <EntityTypeMapping TypeName="InClassModel.DonateCreditCard">
+            <EntityTypeMapping TypeName="kdh.DonateCreditCard">
               <MappingFragment StoreEntitySet="DonateCreditCards">
                 <ScalarProperty Name="CreditId" ColumnName="CreditId" />
                 <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
@@ -815,7 +860,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DonationContacts">
-            <EntityTypeMapping TypeName="InClassModel.DonationContact">
+            <EntityTypeMapping TypeName="kdh.DonationContact">
               <MappingFragment StoreEntitySet="DonationContacts">
                 <ScalarProperty Name="DonorId" ColumnName="DonorId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -835,7 +880,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FAQs">
-            <EntityTypeMapping TypeName="InClassModel.FAQ">
+            <EntityTypeMapping TypeName="kdh.FAQ">
               <MappingFragment StoreEntitySet="FAQs">
                 <ScalarProperty Name="QueId" ColumnName="QueId" />
                 <ScalarProperty Name="Question" ColumnName="Question" />
@@ -847,18 +892,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="JobManagers">
-            <EntityTypeMapping TypeName="InClassModel.JobManager">
-              <MappingFragment StoreEntitySet="JobManagers">
-                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
-                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Jobs">
-            <EntityTypeMapping TypeName="InClassModel.Job">
+            <EntityTypeMapping TypeName="kdh.Job">
               <MappingFragment StoreEntitySet="Jobs">
                 <ScalarProperty Name="JobId" ColumnName="JobId" />
                 <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
@@ -875,7 +910,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LabReports">
-            <EntityTypeMapping TypeName="InClassModel.LabReport">
+            <EntityTypeMapping TypeName="kdh.LabReport">
               <MappingFragment StoreEntitySet="LabReports">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
@@ -887,7 +922,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OnlineConsultationForms">
-            <EntityTypeMapping TypeName="InClassModel.OnlineConsultationForm">
+            <EntityTypeMapping TypeName="kdh.OnlineConsultationForm">
               <MappingFragment StoreEntitySet="OnlineConsultationForm">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -903,7 +938,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Patients">
-            <EntityTypeMapping TypeName="InClassModel.Patient">
+            <EntityTypeMapping TypeName="kdh.Patient">
               <MappingFragment StoreEntitySet="Patients">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -924,7 +959,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Purposes">
-            <EntityTypeMapping TypeName="InClassModel.Purpos">
+            <EntityTypeMapping TypeName="kdh.Purpos">
               <MappingFragment StoreEntitySet="Purposes">
                 <ScalarProperty Name="PurposeId" ColumnName="PurposeId" />
                 <ScalarProperty Name="PurposeToCreate" ColumnName="PurposeToCreate" />
@@ -932,7 +967,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Results">
-            <EntityTypeMapping TypeName="InClassModel.Result">
+            <EntityTypeMapping TypeName="kdh.Result">
               <MappingFragment StoreEntitySet="Results">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ReportId" ColumnName="ReportId" />
@@ -944,7 +979,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Surveys">
-            <EntityTypeMapping TypeName="InClassModel.Survey">
+            <EntityTypeMapping TypeName="kdh.Survey">
               <MappingFragment StoreEntitySet="Survey">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -957,8 +992,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Testimonials">
+            <EntityTypeMapping TypeName="kdh.Testimonial">
+              <MappingFragment StoreEntitySet="Testimonials">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Reviewed" ColumnName="Reviewed" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TestTypes">
-            <EntityTypeMapping TypeName="InClassModel.TestType">
+            <EntityTypeMapping TypeName="kdh.TestType">
               <MappingFragment StoreEntitySet="TestTypes">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
@@ -970,7 +1020,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="InClassModel.User">
+            <EntityTypeMapping TypeName="kdh.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

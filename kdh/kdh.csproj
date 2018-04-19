@@ -239,9 +239,6 @@
     <Compile Include="Models\Job.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\JobManager.cs">
-      <DependentUpon>HospitalContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\LabReport.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
@@ -260,6 +257,9 @@
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Survey.cs">
+      <DependentUpon>HospitalContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Testimonial.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TestType.cs">
