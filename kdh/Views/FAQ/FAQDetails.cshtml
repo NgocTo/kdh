@@ -1,0 +1,41 @@
+﻿@model kdh.Models.FAQ
+
+@{
+    ViewBag.Title = "FAQDetails";
+    Layout = "~/Views/Shared/FAQDonation/_FaqDonation.cshtml";
+}
+<h2 class="text-center text-dark">Frequently Asked Questions(FAQ)</h2>
+<h3 class="text-dark mb-3">FAQ Details</h3>
+
+<div class="card mb-3">
+    <div class="card-header bg-light">
+        <span class="h5 text-primary font-weight-bold">@Html.DisplayFor(model => model.Question)</span>
+    </div>
+    <div class="card-body">
+        <div class="card-text">
+            <span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => model.Answer):
+            </span>
+            @if (Model.Answer != null)
+            {
+                @Html.DisplayFor(model => model.Answer) <br />
+            }
+            else
+            {
+                @Html.Raw("N/A")            <br />
+            }
+        </div>
+        <div class="card-text"><span class="font-weight-bold text-primary">@Html.DisplayNameFor(model => model.DateCreated):</span> @Html.DisplayFor(model => model.DateCreated)</div>
+        <div class="card-text"><span class="font-weight-bold text-primary">@Html.DisplayNameFor(model => model.AuthorFirstName):</span> @Html.DisplayFor(model => model.AuthorFirstName)</div>
+        <div class="card-text"><span class="font-weight-bold text-primary">@Html.DisplayNameFor(model => model.AuthorityFirstName):</span> @Html.DisplayFor(model =>model.AuthorityFirstName)</div>
+        <div class="card-text">
+            <span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => model.Purpos.PurposeToCreate)
+            </span>
+            @Html.DisplayFor(model => model.Purpos.PurposeToCreate)
+        </div>
+        <a href="@Url.Action("Edit", "FAQ", new { id = Model.QueId })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Edit</a>
+        <a href="@Url.Action("Delete", "FAQ", new { id = Model.QueId })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Delete</a>
+        <a href="@Url.Action("Index", "FAQ")" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Back </a>
+    </div>
+</div>

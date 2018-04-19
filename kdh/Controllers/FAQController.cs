@@ -58,10 +58,66 @@ namespace kdh.Controllers
 
             return RedirectToAction("Index");
         }
+        //Find Faq for User
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult FindFAQsPublic(string FaqName)
+        {
+            try
+            {
+                // goes to view. now it's empty
+                List<FAQ> faqs = new List<FAQ>();
+                if (!String.IsNullOrEmpty(FaqName))
+                {
+                    // patients (and users) from database with values
+                    faqs = db.FAQs.ToList().FindAll(q => q.Question.ToLower().Contains(FaqName) || q.Answer.ToLower().Contains(FaqName));
+                    int count = faqs.Count();
+                    ViewBag.CountResult = count + " FAQ(s) are found.";
+                }
+                else
+                {
+                    faqs = db.FAQs.ToList();
+                    ViewBag.CountResult = " Displaying all FAQs.";
+                    ViewBag.SearchError = "Please enter search keyword.";
+                }
+                return View(faqs.OrderBy(q => q.Question));
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
 
+            return View("~/Views/Errors/Details.cshtml");
 
+        }
+
+        //FAQ details
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public ActionResult FAQDetails(int id)
+        {
+            try
+            {
+                if (String.IsNullOrWhiteSpace(id.ToString()))
+                {
+                    return RedirectToAction("Index");
+                }
+
+                // get data from db
+                FAQ faq = db.FAQs.SingleOrDefault(q => q.QueId == id);
+
+                return View(faq);
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+
+        }
         //Create a new FAQ
-       [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public ActionResult Add()
         {
@@ -85,17 +141,7 @@ namespace kdh.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                   /* FAQ f = new FAQ
-                    {
-                        QueId = faq.QueId,
-                        Question = faq.Question,
-                        Answer = faq.Answer,
-                        DateCreated = faq.DateCreated,
-                        AuthorFirstName = faq.AuthorFirstName,
-                        AuthorityFirstName = faq.AuthorityFirstName,
-                        PurposeId = faq.PurposeId
-
-                    };*/
+                   
                     db.FAQs.Add(faq);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -202,6 +248,7 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(FormCollection form)
         {
             try
@@ -398,6 +445,38 @@ namespace kdh.Controllers
                 ViewBag.ExceptionMessage = genericException.Message;
             }
             return View("~/Views/Errors/Details.cshtml");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
+        public ActionResult FindFAQs(string FaqName)
+        {
+            try
+            {
+                // goes to view. now it's empty
+                List<FAQ> faqs = new List<FAQ>();
+                if (!String.IsNullOrEmpty(FaqName))
+                {
+                    // patients (and users) from database with values
+                    faqs = db.FAQs.ToList().FindAll(q => q.Question.ToLower().Contains(FaqName) || q.Answer.ToLower().Contains(FaqName));
+                    int count = faqs.Count();
+                    ViewBag.CountResult = count + " FAQ(s) are found.";
+                }
+                else
+                {
+                    faqs = db.FAQs.ToList();
+                    ViewBag.CountResult = " Displaying all FAQs.";
+                    ViewBag.SearchError = "Please enter a search keyword.";
+                }
+               return View(faqs.OrderBy(q => q.Question));
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+
+            return View("~/Views/Errors/Details.cshtml");
+
         }
     }
 }

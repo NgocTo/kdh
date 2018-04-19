@@ -56,4 +56,11 @@
 
 #navigation {
     background-color: #17429b;
+    color:#fff;
+}
+.FAQ-BgColor {
+    background-color: #20396d;
+}
+.FAQ-Color {
+    color: #20396d;
 }

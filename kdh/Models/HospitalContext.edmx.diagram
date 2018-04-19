@@ -4,33 +4,33 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3f2a0abfbc444694b6de73670ac0c67b" Name="Diagram1" ZoomLevel="83">
-        <EntityTypeShape EntityType="HospitalModels.Applicant" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.department" Width="1.5" PointX="5.75" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.Doctor" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.DonateCreditCard" Width="1.5" PointX="9.75" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.DonationContact" Width="1.5" PointX="12" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.FAQ" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.JobManager" Width="1.5" PointX="11.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.Job" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.LabReport" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.OnlineConsultationForm" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.Patient" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.Purpos" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.Result" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.Survey" Width="1.5" PointX="11.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.TestType" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModels.User" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <AssociationConnector Association="HospitalModels.applicants_jobid_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalModels.jobs_departmentid_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalModels.DonationContacts_CreditCardId_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalModels.FAQs_PurposeId_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalModels.jobs_userid_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalModels.FK_LabReports_Patients" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalModels.FK_Results_LabReports" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalModels.FK_Patients_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalModels.FK_Results_TestTypes" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalModels.FK_Doctors_ToTable" />
+      <Diagram DiagramId="8399aac073b04f948065d1b2a6aac935" Name="Diagram1">
+        <EntityTypeShape EntityType="kdh.Applicant" Width="1.5" PointX="8.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.department" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.Doctor" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.DonateCreditCard" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.DonationContact" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.FAQ" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.Job" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.LabReport" Width="1.5" PointX="8.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.OnlineConsultationForm" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.Patient" Width="1.5" PointX="6" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.Purpos" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.Result" Width="1.5" PointX="10.5" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.Survey" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.Testimonial" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.TestType" Width="1.5" PointX="8.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.User" Width="1.5" PointX="3.75" PointY="8.25" IsExpanded="true" />
+        <AssociationConnector Association="kdh.applicants_jobid_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="kdh.fk_dept" ManuallyRouted="false" />
+        <AssociationConnector Association="kdh.FK_Testimonials_DepartmentId" ManuallyRouted="false" />
+        <AssociationConnector Association="kdh.jobs_departmentid_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="kdh.FAQs_PurposeId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="kdh.jobs_userid_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="kdh.FK_LabReports_Patients" ManuallyRouted="false" />
+        <AssociationConnector Association="kdh.FK_Results_LabReports" ManuallyRouted="false" />
+        <AssociationConnector Association="kdh.FK_Patients_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="kdh.FK_Results_TestTypes" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

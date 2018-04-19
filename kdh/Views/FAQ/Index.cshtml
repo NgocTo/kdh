@@ -1,61 +1,74 @@
 ﻿@model kdh.Models.FAQsPurposes
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/FAQDonation/_FaqDonation.cshtml";
 }
 
 
 <h2 class="text-center text-dark">Frequently Asked Questions(FAQ)</h2> 
-<h3 class="text-dark mb-3">FAQs Details</h3>
+<h3 class="text-dark mb-3">List of FAQs</h3>
 
-   <div class="mb-2">
-        <div class="btn btn-dark">
-            @Html.ActionLink("Create New FAQ", "Add")
+   <div class="mb-2 container">
+        <div class="row">
+            <a href="@Url.Action("Add", "FAQ")" class="btn btn-primary my-3 mr-4">Create New FAQ</a>
+            <a href="@Url.Action("PurposeList","FAQ")" class="btn btn-primary my-3 mr-4">Show Purpose List</a>
+            @using (Html.BeginForm("FindFAQs", "FAQ"))
+            {
+                @Html.AntiForgeryToken()
+                <div class="input-group offset-9">
+                    @Html.TextBox("FaqName", null, new { @class = "form-control my-3 py-2 border-right-0 border border-dark" })
+                    <span class="input-group-append  my-3">
+                        <input type="submit" aria-labelledby="search button" value="Go" class="btn bg-primary text-white border-left-0 border border-dark">
+                    </span>
+                </div>
+            }
         </div>
-        <div class="btn btn-dark ">
-            @Html.ActionLink("Show Purpose List", "PurposeList")
-        </div>
-       </div>
-<ul class="border">
-    @foreach (var item in Model.Faqs)
-    {
-        <li>
-           <span class="font-weight-bold"> @Html.DisplayNameFor(model => item.Question): </span>@Html.DisplayFor(modelItem => item.Question) <br />
-            <span class="font-weight-bold">
-                @Html.DisplayNameFor(model => item.Answer):</span>
-                @if (item.Answer != null)
-                {
-                    @Html.DisplayFor(modelItem => item.Answer) <br />
-                }
-                else
-                {
-                    @Html.Raw("N/A")            <br />
-                }
-
-            <span class="font-weight-bold">@Html.DisplayNameFor(model => item.DateCreated): </span>@Html.DisplayFor(modelItem => item.DateCreated) <br />
-            <span class="font-weight-bold"> @Html.DisplayNameFor(model => item.AuthorFirstName):</span> @Html.DisplayFor(modelItem => item.AuthorFirstName) <br />
-            <span class="font-weight-bold">
-                @Html.DisplayNameFor(model => item.AuthorityFirstName):</span> @Html.DisplayFor(modelItem => item.AuthorityFirstName) <br />
-            <span class="font-weight-bold">
-                @Html.DisplayNameFor(model => item.PurposeId): </span>
-            @*@Html.DisplayFor(modelItem => item.PurposeId)*@
-                @foreach (var p in Model.Purposes)
-                {
-                    if (item.PurposeId == p.PurposeId)
-                    {
-                        @Html.DisplayFor(modelItem => p.PurposeToCreate)
-                    }
-                }
-                <br />
         
-                @Html.ActionLink("Edit", "Edit", new { id = item.QueId }) | 
+       </div>
 
-                @Html.ActionLink("Delete", "Delete", new { id = item.QueId })
-            <hr />
-</li>
-    }
-</ul>
+@foreach (var item in Model.Faqs)
+{
+    <div class="card mb-3">
+        <div class="card-header bg-light" >
+            <span class="h5 text-primary font-weight-bold">@Html.DisplayFor(modelItem => item.Question)</span>
+        </div>
+        <div class="card-body">
+            <div class="card-text"><span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => item.Answer):</span>
+                    @if (item.Answer != null) {
+                        @Html.DisplayFor(modelItem => item.Answer) <br />
+                    }
+                    else {
+                        @Html.Raw("N/A")            <br />
+                    }
+            </div>
+            <div class="card-text"><span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => item.PurposeId):</span>
+                    @foreach (var p in Model.Purposes){
+                        if (item.PurposeId == p.PurposeId) {
+                            @Html.DisplayFor(modelItem => p.PurposeToCreate)
+                        }
+                     }
+            </div>
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.QueId }) |
 
+            @Html.ActionLink("Delete", "Delete", new { id = item.QueId })*@
+
+            <a href="@Url.Action("FAQDetails", "FAQ", new { id = item.QueId })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Details</a>
+            <a href="@Url.Action("Edit", "FAQ", new { id = item.QueId })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Edit</a>
+            <a href="@Url.Action("Delete", "FAQ", new { id = item.QueId })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Delete</a>
+            
+        </div>
+    </div>
+
+}
+
+
+
+
+
+        
+              
 
 
 

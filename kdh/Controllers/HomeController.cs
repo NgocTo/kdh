@@ -13,40 +13,41 @@ namespace kdh.Controllers
     public class HomeController : Controller
     {
         HospitalContext db = new HospitalContext();
+        
         // GET: Home
         public ActionResult Index()
         {
             return View();
         }
+
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Login(AccountLoginVM vm)
         {
             try
             {
                 string password = Hasher.ToHashedStr(vm.Password);
-                var u = db.Users.SingleOrDefault(q => q.Email == vm.Email && q.Password == password);
+                var u = db.Users.SingleOrDefault(q => q.Email.ToLower() == vm.Email.ToLower() && q.Password == password);
+
                 // if username(email) and password are correct
                 if (u != null && u.Role == "admin")
                 {
                     FormsAuthentication.SetAuthCookie(u.Id.ToString(), false);
-                    Session["id"] = u.Id; // Id from Users table
-                    string userEmail = db.Users.SingleOrDefault(q => q.Id == u.Id).Email;
-                    ViewBag.AdminEmail = userEmail;
 
-                    // --- temp: where do you want to redirect admin?
-                    return View("Index");
+                    // --- Redirect to Admin/Index
+                    return RedirectToAction("Index", "Admin");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Incorrect username or password. Please confirm your login information.");
                 }
 
-                return View("Login");
+                return View("Index");
 
             }
             catch (Exception e)
@@ -62,12 +63,9 @@ namespace kdh.Controllers
         {
             try
             {
-                if (Session["id"] != null)
-                {
                     Session.Abandon();
                     FormsAuthentication.SignOut();
-                }
-                return RedirectToAction("Login","Home");
+                return RedirectToAction("Index","Home");
 
             }
             catch (Exception e)
@@ -76,6 +74,7 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
         }
+
 
 
     }

@@ -1,0 +1,112 @@
+﻿@model kdh.Models.DonationContact
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/FAQDonation/_FaqDonation.cshtml";
+}
+
+
+<h2 class="text-center text-dark">Donations</h2>
+<h3 class="text-dark mb-3">Donor Details</h3>
+
+<div class="card mb-3">
+    <div class="card-header bg-light">
+        <span class="h5 text-primary font-weight-bold">
+            @Html.DisplayFor(model => model.FirstName)
+            @Html.DisplayFor(model => model.LastName)
+        </span>
+    </div>
+    <div class="card-body">
+        <div class="card-text">
+            <span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => model.DonorId):
+            </span>
+            @Html.DisplayFor(model => model.DonorId)
+        </div>
+        <div class="card-text">
+            <span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => model.Email):
+            </span>
+            @Html.DisplayFor(model => model.Email)
+        </div>
+        <div class="card-text">
+            <span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => model.Phone):
+            </span>
+            @Html.DisplayFor(model => model.Phone)
+        </div>
+        <div class="card-text">
+            <span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => model.DonorAddress):
+            </span>
+            @Html.DisplayFor(model => model.DonorAddress)
+        </div>
+        <div class="card-text">
+            <span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => model.City):
+            </span>
+            @Html.DisplayFor(model => model.City)
+        </div>
+        <div class="card-text">
+            <span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => model.PostalCode):
+            </span>
+            @Html.DisplayFor(model => model.PostalCode)
+        </div>
+        <div class="card-text">
+            <span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => model.Country):
+            </span>
+            @Html.DisplayFor(model => model.Country)
+        </div>
+        <div class="card-text">
+            <span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => model.Province):
+            </span>
+            @Html.DisplayFor(model => model.Province)
+        </div>
+        <div class="card-text">
+            <span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => model.Comments):
+            </span>
+            @if (Model.Comments != null)
+            {
+                @Html.DisplayFor(model => model.Comments)
+            }
+            else
+            {
+                @Html.Raw("N/A")          
+            }
+        </div>
+        <div class="card-text">
+            <span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => model.DonationDate):
+            </span>
+            @Html.DisplayFor(model => model.DonationDate)
+        </div>
+        <div class="card-text">
+            <span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => model.Amount):
+            </span>
+            @Html.DisplayFor(model => model.Amount)
+        </div>
+        <div class="card-text">
+            <span class="font-weight-bold text-primary">
+                @Html.DisplayNameFor(model => model.PaymentId):
+            </span>
+            @if (Model.PaymentId != null)
+            {
+                @Html.DisplayFor(model => model.PaymentId) 
+            }
+            else
+            {
+                @Html.Raw("N/A")            
+            }
+        </div>
+
+        <a href="@Url.Action("Edit", "Donation", new { id = Model.DonorId })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Edit</a>
+        <a href="@Url.Action("Delete", "Donation", new { id = Model.DonorId })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Delete</a>
+        <a href="@Url.Action("Index", "Donation")" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Back </a>
+    </div>
+</div>
+

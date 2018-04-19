@@ -27,8 +27,6 @@ namespace kdh.Models
         public string Comments { get; set; }
         public System.DateTime DonationDate { get; set; }
         public decimal Amount { get; set; }
-        public Nullable<int> CreditCardId { get; set; }
-    
-        public virtual DonateCreditCard DonateCreditCard { get; set; }
+        public string PaymentId { get; set; }
     }
 }

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <script type="text/javascript" src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/script.js"></script>
+    
+    
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    
+</head>
+
+<body>
+    <!-- HEADER -->
+
+    @Html.Partial("~/Views/Shared/_Header.cshtml")
+
+    <!-- END OF HEADER-->
+    <!-- START OF BODY CONTENT -->
+    <div id="body" class="container body-content">
+        <div class="row">
+
+            <!-- Sidebar -->
+            @Html.Partial("~/Views/Shared/FAQDonation/_FaqDonateSidebar.cshtml")
+
+
+            <!-- Body -->
+            <main class="col-md-9">
+                @RenderBody()
+            </main>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    @Html.Partial("~/Views/Shared/_Footer.cshtml")
+
+</body>
+</html>
+

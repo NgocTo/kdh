@@ -26,7 +26,7 @@ namespace kdh.Models
         [Display(Name = "Answer")]
         public string Answer { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Date Created is required.")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "Date Created is required.")]
         [Display(Name = "Date Created")]
         public System.DateTime DateCreated { get; set; }
 
