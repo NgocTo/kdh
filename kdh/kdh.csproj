@@ -186,8 +186,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobApplicantController.cs" />
     <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Controllers\LabReportController.cs" />
+    <Compile Include="Controllers\LabResultsController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\PatientLabResultController.cs" />
+    <Compile Include="Controllers\TestTypesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -355,6 +359,22 @@
     <Content Include="Views\Donation\Edit.cshtml" />
     <Content Include="Views\Donation\Delete.cshtml" />
     <Content Include="Views\Donation\FindDonors.cshtml" />
+    <Content Include="Views\LabReport\Create.cshtml" />
+    <Content Include="Views\LabReport\Delete.cshtml" />
+    <Content Include="Views\LabReport\Details.cshtml" />
+    <Content Include="Views\LabReport\Edit.cshtml" />
+    <Content Include="Views\LabReport\Index.cshtml" />
+    <Content Include="Views\LabResults\Create.cshtml" />
+    <Content Include="Views\LabResults\Delete.cshtml" />
+    <Content Include="Views\LabResults\Details.cshtml" />
+    <Content Include="Views\LabResults\Edit.cshtml" />
+    <Content Include="Views\LabResults\Index.cshtml" />
+    <Content Include="Views\TestTypes\Create.cshtml" />
+    <Content Include="Views\TestTypes\Delete.cshtml" />
+    <Content Include="Views\TestTypes\Details.cshtml" />
+    <Content Include="Views\TestTypes\Edit.cshtml" />
+    <Content Include="Views\TestTypes\Index.cshtml" />
+    <Content Include="Views\PatientLabResult\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

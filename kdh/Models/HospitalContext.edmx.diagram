@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="InClassModel.department" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InClassModel.Doctor" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="InClassModel.DonateCreditCard" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InClassModel.DonationContact" Width="1.5" PointX="2.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.DonationContact" Width="1.5" PointX="2.5" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="InClassModel.FAQ" Width="1.5" PointX="13" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="InClassModel.JobManager" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="InClassModel.Job" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
@@ -17,10 +17,10 @@
         <EntityTypeShape EntityType="InClassModel.OnlineConsultationForm" Width="1.5" PointX="10.75" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="InClassModel.Patient" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="InClassModel.Purpos" Width="1.5" PointX="10.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="InClassModel.Result" Width="1.5" PointX="10.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.Result" Width="1.5" PointX="10.25" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InClassModel.Survey" Width="1.5" PointX="12.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InClassModel.TestType" Width="1.5" PointX="8.25" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InClassModel.User" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.TestType" Width="1.5" PointX="12.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="InClassModel.User" Width="1.5" PointX="4.25" PointY="9.125" IsExpanded="true" />
         <AssociationConnector Association="InClassModel.applicants_jobid_fk" ManuallyRouted="false" />
         <AssociationConnector Association="InClassModel.fk_dept" ManuallyRouted="false" />
         <AssociationConnector Association="InClassModel.jobs_departmentid_fk" ManuallyRouted="false" />
