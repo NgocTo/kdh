@@ -19,6 +19,7 @@ namespace kdh.Controllers
         {
             try
             {
+
                 return RedirectToAction("Login");
             }
             catch (Exception e)
