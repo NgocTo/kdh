@@ -20,60 +20,60 @@ namespace kdh.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Login()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public ActionResult Login()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        public ActionResult Login(AccountLoginVM vm)
-        {
-            try
-            {
-                string password = Hasher.ToHashedStr(vm.Password);
-                var u = db.Users.SingleOrDefault(q => q.Email.ToLower() == vm.Email.ToLower() && q.Password == password);
+        //[HttpPost]
+        //public ActionResult Login(AccountLoginVM vm)
+        //{
+        //    try
+        //    {
+        //        string password = Hasher.ToHashedStr(vm.Password);
+        //        var u = db.Users.SingleOrDefault(q => q.Email.ToLower() == vm.Email.ToLower() && q.Password == password);
 
-                // if username(email) and password are correct
-                if (u != null && u.Role == "admin")
-                {
-                    FormsAuthentication.SetAuthCookie(u.Id.ToString(), false);
+        //        // if username(email) and password are correct
+        //        if (u != null && u.Role == "admin")
+        //        {
+        //            FormsAuthentication.SetAuthCookie(u.Id.ToString(), false);
 
-                    // --- Redirect to Admin/Index
-                    return RedirectToAction("Index", "Admin");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Incorrect username or password. Please confirm your login information.");
-                }
+        //            // --- Redirect to Admin/Index
+        //            return RedirectToAction("Index", "Admin");
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("", "Incorrect username or password. Please confirm your login information.");
+        //        }
 
-                return View("Index");
+        //        return View("Index");
 
-            }
-            catch (Exception e)
-            {
-                ViewBag.ExceptionMessage = e.Message;
-            }
-            return View("~/Views/Errors/Details.cshtml");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ViewBag.ExceptionMessage = e.Message;
+        //    }
+        //    return View("~/Views/Errors/Details.cshtml");
 
 
-        }
+        //}
 
-        public ActionResult Logout()
-        {
-            try
-            {
-                    Session.Abandon();
-                    FormsAuthentication.SignOut();
-                return RedirectToAction("Index","Home");
+        //public ActionResult Logout()
+        //{
+        //    try
+        //    {
+        //            Session.Abandon();
+        //            FormsAuthentication.SignOut();
+        //        return RedirectToAction("Index","Home");
 
-            }
-            catch (Exception e)
-            {
-                ViewBag.ExceptionMessage = e.Message;
-            }
-            return View("~/Views/Errors/Details.cshtml");
-        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ViewBag.ExceptionMessage = e.Message;
+        //    }
+        //    return View("~/Views/Errors/Details.cshtml");
+        //}
 
 
 

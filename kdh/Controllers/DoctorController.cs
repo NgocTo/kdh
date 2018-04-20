@@ -5,13 +5,18 @@ using System.Web;
 using System.Web.Mvc;
 using kdh.Models;
 using kdh.ViewModels;
+using kdh.Utils;
+using System.Data.SqlClient;
+using System.Data.Entity.Infrastructure;
 
 namespace kdh.Controllers
 {
+    //[Authorize(Roles = "admin")]
     public class DoctorController : Controller
     {
         HospitalContext db = new HospitalContext();
         // GET: Doctor
+        [Authorize(Roles = "admin,hr")]
         public ActionResult Index()
         {
             try
@@ -23,13 +28,14 @@ namespace kdh.Controllers
                 doctordepartment = doctors.Join(departments, doc => doc.Departmentid, dep => dep.departmentid, (doc, dep) => new DoctorDepartment { doctor = doc, department = dep }).ToList();
                 return View(doctordepartment);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                ViewBag.err = e.Message;
+                ViewBag.ExceptionMessage = e.Message;
             }
-            return View();
+            return View("~/Views/Errors/Details.cshtml");
         }
         [HttpGet]
+        [Authorize(Roles = "admin,hr")]
         public ActionResult Add()
         {
             try
@@ -39,11 +45,12 @@ namespace kdh.Controllers
             }
             catch (Exception e)
             {
-                ViewBag.err = e.Message;
+                ViewBag.ExceptionMessage = e.Message;
             }
-            return View();
+            return View("~/Views/Errors/Details.cshtml");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Add(Doctor doctor)
         {
             try
@@ -57,19 +64,96 @@ namespace kdh.Controllers
                 ViewBag.Departments = db.departments.ToList();
                 return View(doctor);
             }
-            catch(Exception e)
+            catch (DbUpdateException d)
             {
-                ViewBag.err = e.Message;
+                ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(d);
             }
-            return View();
+            catch (Exception ex)
+            {
+                ViewBag.ExceptionMessage = ex.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
-        [HttpGet]
-        public ActionResult Update(int? id)
+        //[HttpGet]
+        //[Authorize(Roles = "admin")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Update(int? id)
+        //{
+        //    try
+        //    {
+        //        if (id != null)
+        //        {
+
+        //            Doctor doctor = db.Doctors.SingleOrDefault(d => d.Doctorid == id);
+        //            if (doctor == null)
+        //            {
+        //                return RedirectToAction("Index");
+        //            }
+        //            ViewBag.Departments = db.departments.ToList();
+        //            ViewBag.err = "invalid";
+        //            return View(doctor);
+
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Index");
+        //        }
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ViewBag.ExceptionMessage = e.Message;
+        //    }
+
+        //    return View("~/Views/Errors/Details.cshtml");
+        //}
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="doctor"></param>
+        /// <returns></returns>
+        //[HttpGet]
+        //[Authorize(Roles = "admin")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Update(int? id)
+        //{
+        //    try
+        //    {
+        //        if (id != null)
+        //        {
+
+        //            Doctor doctor = db.Doctors.SingleOrDefault(d => d.Doctorid == id);
+        //            if (doctor == null)
+        //            {
+        //                return RedirectToAction("Index");
+        //            }
+        //            ViewBag.Departments = db.departments.ToList();
+        //            ViewBag.err = "invalid";
+        //            return View(doctor);
+
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Index");
+        //        }
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ViewBag.ExceptionMessage = e.Message;
+        //    }
+
+        //    return View("~/Views/Errors/Details.cshtml");
+        //}
+
+        [Authorize(Roles = "admin,hr")]
+        public ActionResult UpdateV(int? id)
         {
             try
             {
                 if (id != null)
                 {
+
                     Doctor doctor = db.Doctors.SingleOrDefault(d => d.Doctorid == id);
                     if (doctor == null)
                     {
@@ -88,12 +172,13 @@ namespace kdh.Controllers
             }
             catch (Exception e)
             {
-                ViewBag.err = e.Message;
+                ViewBag.ExceptionMessage = e.Message;
             }
-            //errror
-            return View();
+
+            return View("~/Views/Errors/Details.cshtml");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(Doctor doctor)
         {
             try
@@ -107,22 +192,29 @@ namespace kdh.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-                else
-                {
-                   // ViewBag.err = "invalid";
-                }
-                
-                ViewBag.err = "invalid";
+
+
+
                 return View();
 
             }
-            catch(Exception e)
+            catch (DbUpdateException d)
             {
-                ViewBag.err = e.Message;
+                ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(d);
+                //ViewBag.DbExceptionMessage = uex.Message;
             }
-            return View();
+            catch (SqlException sq)
+            {
+                ViewBag.SqlExceptionMessage = sq.Message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
         [HttpGet]
+        [Authorize(Roles = "admin,manager")]
         public ActionResult Delete(int? id)
         {
             try
@@ -135,15 +227,19 @@ namespace kdh.Controllers
                 DoctorDepartment doctorDepartment = db.Doctors.Join(db.departments, doc => doc.Departmentid, dep => dep.departmentid, (doc, dep) => new DoctorDepartment { doctor = doc, department = dep }).Where(doc => doc.doctor.Doctorid == id).FirstOrDefault();
                 return View(doctorDepartment);
             }
-            catch(Exception e)
+            catch (SqlException sq)
             {
-                ViewBag.err = e.Message;
+                ViewBag.SqlExceptionMessage = sq.Message;
             }
-
-            return View();
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
         [HttpPost]
         [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult Deletepost(int? id)
         {
             try
@@ -157,15 +253,47 @@ namespace kdh.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch(Exception e)
+            catch (DbUpdateException d)
             {
-                ViewBag.err = e.Message;
+                ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(d);
             }
-            return View();
+            catch (SqlException s)
+            {
+                ViewBag.SqlExceptionMessage = s.Message;
+            }
+            catch (Exception g)
+            {
+                ViewBag.ExceptionMessage = g.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
-        public PartialViewResult DoctorSearch(FormCollection form)
+        [Authorize(Roles = "admin,hr")]
+        public ActionResult Detail(int? id)
         {
-            string search = form["SearchBar"];
+            try
+            {
+                if (id == null)
+                {
+
+                    return RedirectToAction("Index");
+                }
+                DoctorDepartment doctorDepartment = db.Doctors.Join(db.departments, doc => doc.Departmentid, dep => dep.departmentid, (doc, dep) => new DoctorDepartment { doctor = doc, department = dep }).Where(doc => doc.doctor.Doctorid == id).FirstOrDefault();
+                return View(doctorDepartment);
+            }
+            catch (SqlException sq)
+            {
+                ViewBag.SqlExceptionMessage = sq.Message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+        }
+        [AllowAnonymous]
+        public PartialViewResult DoctorSearch(string ajaxdoc)
+        {
+            string search = ajaxdoc;
             
             List<DoctorDepartment> doctordepartment = new List<DoctorDepartment>();
             if (!String.IsNullOrWhiteSpace(search))
@@ -181,8 +309,26 @@ namespace kdh.Controllers
                     ViewBag.err = e.Message;
                 }
             }
-            return PartialView("~/Views/Doctor/_DoctorSearch.cshtml", doctordepartment);
+            return PartialView("~/Views/Doctor/_dl.cshtml", doctordepartment);
 
+        }
+        [AllowAnonymous]
+        public ActionResult PublicView()
+        {
+            try
+            {
+
+                List<Doctor> doctors = db.Doctors.ToList();
+                List<department> departments = db.departments.ToList();
+                List<DoctorDepartment> doctordepartment = new List<DoctorDepartment>();
+                doctordepartment = doctors.Join(departments, doc => doc.Departmentid, dep => dep.departmentid, (doc, dep) => new DoctorDepartment { doctor = doc, department = dep }).ToList();
+                return View(doctordepartment);
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
     }
     

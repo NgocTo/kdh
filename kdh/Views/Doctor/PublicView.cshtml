@@ -1,0 +1,93 @@
+﻿@model List<kdh.ViewModels.DoctorDepartment>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ActionLink("Login", "Login", "DoctorAuth")
+<h2>Doctors List</h2>
+
+<div class="input-group p-2">
+    <input class="form-control py-2" type="search" id="SearchBar">
+    <span class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button">
+            <i class="fa fa-search"></i>
+        </button>
+    </span>
+</div>
+@*<input type="text" name="SearchBar" id="SearchBar" class="form-control" placeholder="Search for a Doctor here..." style="margin-top: 20px" />*@
+
+
+
+
+
+
+<div id="results"></div>
+<div id="doctormain">
+    @foreach (var d in Model)
+    {
+        <div class="card bg-light rounded d-inline-flex p-2 flex-column justify-content-between col-md-4" style="margin-bottom:5px;">
+            <div class="card-header">
+                @Html.DisplayNameFor(Doctor => d.doctor.Doctorid)
+                @Html.DisplayFor(Doctor => d.doctor.Doctorid)
+            </div>
+            <div class="card-header">
+                @Html.DisplayNameFor(Doctor => d.doctor.Fname)
+                @Html.DisplayFor(Doctor => d.doctor.Fname)
+            </div>
+            <div class="card-header">
+                @Html.DisplayNameFor(Doctor => d.doctor.Lname)
+                @Html.DisplayFor(Doctor => d.doctor.Lname)
+            </div>
+            <div class="card-body">
+                @Html.DisplayNameFor(Doctor => d.doctor.Email)
+                @Html.DisplayFor(Doctor => d.doctor.Email)
+            </div>
+            <div class="card-body">
+                @Html.DisplayNameFor(Doctor => d.doctor.Mobile_no)
+                @Html.DisplayFor(Doctor => d.doctor.Mobile_no)
+            </div>
+            <div class="card-footer">
+                @Html.DisplayNameFor(Doctor => d.department.department_name)
+                @Html.DisplayFor(Doctor => d.department.department_name)
+            </div>
+
+
+
+
+
+        </div>
+    }
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#SearchBar").keyup(function () {
+            var data = $(this).val();
+            if (data != "") {
+                $("#doctormain").hide();
+            }
+            else {
+                $("#doctormain").show();
+            }
+            $.ajax({
+                type: "POST",
+                url: "/Doctor/DoctorSearch",
+                data: '{ajaxdoc: "' + data + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    $('#results').html(response);
+                    //$('#dialog').dialog('open');
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        })
+    });
+</script>
+
+
