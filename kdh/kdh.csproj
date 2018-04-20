@@ -312,8 +312,6 @@
     <Content Include="Views\FAQ\AddPurpose.cshtml" />
     <Content Include="Views\FAQ\EditPurpose.cshtml" />
     <Content Include="Views\FAQ\DeletePurpose.cshtml" />
-    <Content Include="Views\Doctor\Index.cshtml" />
-    <Content Include="Views\Doctor\Add.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />
