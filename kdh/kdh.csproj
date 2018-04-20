@@ -188,6 +188,7 @@
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\TestimonialController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -197,11 +198,15 @@
     <Compile Include="Models\buddy_donateContact.cs" />
     <Compile Include="Models\buddy_Job.cs" />
     <Compile Include="Models\buddy_JobApplicant.cs" />
+    <Compile Include="Models\buddy_Testimonial.cs" />
     <Compile Include="Models\buddy_User.cs" />
     <Compile Include="Models\department.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Departments.cs" />
+    <Compile Include="Models\DirtyWord.cs">
+      <DependentUpon>HospitalContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Doctor.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
@@ -355,6 +360,11 @@
     <Content Include="Views\Donation\Edit.cshtml" />
     <Content Include="Views\Donation\Delete.cshtml" />
     <Content Include="Views\Donation\FindDonors.cshtml" />
+    <Content Include="Views\Testimonial\Create.cshtml" />
+    <Content Include="Views\Testimonial\Index_Admin.cshtml" />
+    <Content Include="Views\Testimonial\Index.cshtml" />
+    <Content Include="Views\Testimonial\Delete_Admin.cshtml" />
+    <Content Include="Views\Testimonial\Edit_Admin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

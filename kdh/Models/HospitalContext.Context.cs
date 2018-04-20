@@ -41,5 +41,6 @@ namespace kdh.Models
         public virtual DbSet<Testimonial> Testimonials { get; set; }
         public virtual DbSet<TestType> TestTypes { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<DirtyWord> DirtyWords { get; set; }
     }
 }

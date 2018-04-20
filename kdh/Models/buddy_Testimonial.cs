@@ -7,6 +7,7 @@ using System.Web;
 
 namespace kdh.Models
 {
+    [Table("Testimonials")]
     [MetadataType(typeof(buddy_Testimonial))]
     public partial class Testimonial
     {
@@ -18,13 +19,13 @@ namespace kdh.Models
         public int Id { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your name.")]
+        [RegularExpression("^[A-Za-z ]*$", ErrorMessage = "Your name can only contain characters.")]
         [Display(Name = "Your name")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Your name should be at least 2 characters long")]
         public string Name { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please select who you are.")]
         [Display(Name = "Who you are")]
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "Your role should be at least 2 characters long")]
         public string Role { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Subject is required.")]
@@ -36,10 +37,17 @@ namespace kdh.Models
         public string Content { get; set; }
 
         [Required(ErrorMessage = "Please rate us.")]
-        [Display(Name = "Rate us")]
+        [Display(Name = "Rating")]
         [Range(1, 5, ErrorMessage = "Rating can only be between 1 and 5")]
         public Nullable<int> Rate { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Date posted")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
+        public System.DateTime Timestamp { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string Reviewed { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please select a department.")]

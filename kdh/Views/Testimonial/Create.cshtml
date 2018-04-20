@@ -1,0 +1,116 @@
+﻿@model kdh.Models.Testimonial
+@using CaptchaMvc.HtmlHelpers
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Add your own testimonial</h4>
+        <hr />
+        <p class="text-danger text-center">*: Required</p>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group row">
+            <div class="col-md-3 text-md-right">
+                <span class="text-danger">*</span>
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your name..." } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-3 text-md-right">
+                <span class="text-danger">*</span>
+                @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.Role, new List<SelectListItem>
+                     {
+                        new SelectListItem{ Text="- Please select who you are -", Value = "" },
+                        new SelectListItem{ Text="Patient", Value = "Patient" },
+                        new SelectListItem{ Text="Relatives", Value = "Relatives" },
+                        new SelectListItem{ Text="Visitors", Value = "Visitors" },
+                        new SelectListItem{ Text="Others", Value = "Others" } }, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-3 text-md-right">
+                <span class="text-danger">*</span>
+                @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your testimonial subject..." } })
+                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-3 text-md-right">
+                <span class="text-danger">*</span>
+                @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-8">
+                @Html.TextAreaFor(model => model.Content, 4, 20, new { @class = "form-control", @placeholder = "Your testimonial content..." })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-3 text-md-right">
+                <span class="text-danger">*</span>
+                @Html.LabelFor(model => model.Rate, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-8">
+                <div>On a scale of 1-5, with 1 being "poor" and 5 being "excellent", how do you rate our services?</div>
+                <div class="form-check form-check-inline">
+                    <label class="">@Html.RadioButtonFor(model => model.Rate, "1", new { @class = "form-check-input" }) 1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="radio-inline">@Html.RadioButtonFor(model => model.Rate, "2", new { @class = "form-check-input" }) 2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="radio-inline">@Html.RadioButtonFor(model => model.Rate, "3", new { @class = "form-check-input" }) 3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="radio-inline">@Html.RadioButtonFor(model => model.Rate, "4", new { @class = "form-check-input" }) 4</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="radio-inline">@Html.RadioButtonFor(model => model.Rate, "5", new { @class = "form-check-input" }) 5</label>
+                </div>
+                @Html.ValidationMessageFor(model => model.Rate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-3 text-md-right">
+                <span class="text-danger">*</span>
+                @Html.LabelFor(model => model.DepartmentId, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.DepartmentId, new SelectList(ViewBag.departments, "Departmentid", "department_name"), " - Select a Department - ", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="text-center"><span class="text-danger">*</span>
+            @Html.Captcha("Refresh", "Enter the text you see above:", 4, "", true)
+            @*@Html.ValidationMessage(captcha.BuildInfo.InputElementId)*@
+        </div>
+
+
+        <div class="form-group">
+            <div class="text-center">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
