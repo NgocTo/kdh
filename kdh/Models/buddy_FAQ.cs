@@ -28,7 +28,7 @@ namespace kdh.Models
 
         //[Required(AllowEmptyStrings = false, ErrorMessage = "Date Created is required.")]
         [Display(Name = "Date Created")]
-        public System.DateTime DateCreated { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Author First Name is required.")]
         [RegularExpression("^[A-Za-z]*$", ErrorMessage = " Author name can consist of alphabets only.")]

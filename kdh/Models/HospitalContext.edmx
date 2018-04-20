@@ -5,6 +5,22 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="kdh.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="Applicants">
           <Key>
             <PropertyRef Name="ApplicantId" />
@@ -92,6 +108,15 @@
           <Property Name="AuthorFirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="AuthorityFirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PurposeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobManagers">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+          </Key>
+          <Property Name="ManagerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ManagerName" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Jobs">
           <Key>
@@ -341,6 +366,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="kdhStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Applicants" EntityType="Self.Applicants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="departments" EntityType="Self.departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DirtyWords" EntityType="Self.DirtyWords" Schema="dbo" store:Type="Tables" />
@@ -348,6 +375,7 @@
           <EntitySet Name="DonateCreditCards" EntityType="Self.DonateCreditCards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonationContacts" EntityType="Self.DonationContacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FAQs" EntityType="Self.FAQs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobManagers" EntityType="Self.JobManagers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LabReports" EntityType="Self.LabReports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OnlineConsultationForm" EntityType="Self.OnlineConsultationForm" Schema="dbo" store:Type="Tables" />
@@ -404,6 +432,22 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="kdh" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="ApplicantId" />
@@ -497,6 +541,15 @@
           <Property Name="AuthorityFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PurposeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Purpos" Relationship="Self.FAQs_PurposeId_fk" FromRole="FAQs" ToRole="Purposes" />
+        </EntityType>
+        <EntityType Name="JobManager">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+          </Key>
+          <Property Name="ManagerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ManagerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Job">
           <Key>
@@ -760,6 +813,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HospitalContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="Applicants" EntityType="Self.Applicant" />
           <EntitySet Name="departments" EntityType="Self.department" />
           <EntitySet Name="DirtyWords" EntityType="Self.DirtyWord" />
@@ -767,6 +822,7 @@
           <EntitySet Name="DonateCreditCards" EntityType="Self.DonateCreditCard" />
           <EntitySet Name="DonationContacts" EntityType="Self.DonationContact" />
           <EntitySet Name="FAQs" EntityType="Self.FAQ" />
+          <EntitySet Name="JobManagers" EntityType="Self.JobManager" />
           <EntitySet Name="Jobs" EntityType="Self.Job" />
           <EntitySet Name="LabReports" EntityType="Self.LabReport" />
           <EntitySet Name="OnlineConsultationForms" EntityType="Self.OnlineConsultationForm" />
@@ -824,6 +880,23 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="kdhStoreContainer" CdmEntityContainer="HospitalContext">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="kdh.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="kdh.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Applicants">
             <EntityTypeMapping TypeName="kdh.Applicant">
               <MappingFragment StoreEntitySet="Applicants">
@@ -916,6 +989,16 @@
                 <ScalarProperty Name="AuthorFirstName" ColumnName="AuthorFirstName" />
                 <ScalarProperty Name="AuthorityFirstName" ColumnName="AuthorityFirstName" />
                 <ScalarProperty Name="PurposeId" ColumnName="PurposeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobManagers">
+            <EntityTypeMapping TypeName="kdh.JobManager">
+              <MappingFragment StoreEntitySet="JobManagers">
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

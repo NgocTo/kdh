@@ -25,6 +25,8 @@ namespace kdh.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
         public virtual DbSet<Applicant> Applicants { get; set; }
         public virtual DbSet<department> departments { get; set; }
         public virtual DbSet<DirtyWord> DirtyWords { get; set; }
@@ -32,6 +34,7 @@ namespace kdh.Models
         public virtual DbSet<DonateCreditCard> DonateCreditCards { get; set; }
         public virtual DbSet<DonationContact> DonationContacts { get; set; }
         public virtual DbSet<FAQ> FAQs { get; set; }
+        public virtual DbSet<JobManager> JobManagers { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<LabReport> LabReports { get; set; }
         public virtual DbSet<OnlineConsultationForm> OnlineConsultationForms { get; set; }

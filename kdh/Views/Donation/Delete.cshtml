@@ -85,10 +85,19 @@
         <dd>
             @Html.DisplayFor(model => model.Province)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Comments)
         </dt>
+        <dd>
+        @if (Model.Comments != null)
+        {
+            @Html.DisplayFor(model => model.Comments)
+        }
+        else
+        {
+            @Html.Raw("N/A")
+        }
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.DonationDate)
         </dt>
@@ -110,11 +119,14 @@
         </dt>
 
         <dd>
+            @if(Model.PaymentId != null) {
             @Html.DisplayFor(model => model.PaymentId)
+            }
+            else {
+            @Html.Raw("N/A");
+            }
         </dd>
-        <dd>
-            @Html.DisplayFor(model => model.Comments)
-        </dd>
+        
 
        
 
