@@ -192,12 +192,9 @@
     <Compile Include="Controllers\LabResultsController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\TestimonialController.cs" />
-=======
     <Compile Include="Controllers\PatientLabResultController.cs" />
     <Compile Include="Controllers\TestTypesController.cs" />
->>>>>>> 0bfef4af722f16d541eb311a56b0228d5371ecf0
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
