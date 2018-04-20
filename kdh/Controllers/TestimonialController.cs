@@ -38,6 +38,7 @@ namespace kdh.Controllers
             try
             {
                 var testimonials = db.Testimonials.Include(t => t.department);
+
                 return View(testimonials.ToList());
             }
             catch (Exception genericException)

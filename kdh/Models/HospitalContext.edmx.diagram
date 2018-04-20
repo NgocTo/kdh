@@ -4,11 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8399aac073b04f948065d1b2a6aac935" Name="Diagram1">
+      <Diagram DiagramId="a5a0998d26104bfa98932ecdc98d4868" Name="Diagram1">
         <EntityTypeShape EntityType="kdh.Applicant" Width="1.5" PointX="8.25" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.department" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.DirtyWord" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.Doctor" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="kdh.DonateCreditCard" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.DonateCreditCard" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.DonationContact" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.FAQ" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.Job" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
@@ -31,7 +32,6 @@
         <AssociationConnector Association="kdh.FK_Results_LabReports" ManuallyRouted="false" />
         <AssociationConnector Association="kdh.FK_Patients_Users" ManuallyRouted="false" />
         <AssociationConnector Association="kdh.FK_Results_TestTypes" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="kdh.DirtyWord" Width="1.5" PointX="0.75" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

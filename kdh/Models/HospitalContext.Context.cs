@@ -27,6 +27,7 @@ namespace kdh.Models
     
         public virtual DbSet<Applicant> Applicants { get; set; }
         public virtual DbSet<department> departments { get; set; }
+        public virtual DbSet<DirtyWord> DirtyWords { get; set; }
         public virtual DbSet<Doctor> Doctors { get; set; }
         public virtual DbSet<DonateCreditCard> DonateCreditCards { get; set; }
         public virtual DbSet<DonationContact> DonationContacts { get; set; }
@@ -41,6 +42,5 @@ namespace kdh.Models
         public virtual DbSet<Testimonial> Testimonials { get; set; }
         public virtual DbSet<TestType> TestTypes { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<DirtyWord> DirtyWords { get; set; }
     }
 }

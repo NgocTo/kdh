@@ -3,7 +3,7 @@
 	[Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, 
     [Name] VARCHAR(50) NOT NULL, 
     [Role] VARCHAR(50) NOT NULL, 
-    [Subject] NVARCHAR(100) NOT NULL, 
+    [Subject] VARCHAR(100) NOT NULL, 
     [Content] NVARCHAR(500) NOT NULL, 
     [Rate] INT NOT NULL, 
     [Timestamp] DATETIME2  CONSTRAINT [DF_Testimonials_Timestamp] DEFAULT (getdate()) NULL, 

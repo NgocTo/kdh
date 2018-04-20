@@ -5,24 +5,129 @@
 }
 
 <h2>Testimonials</h2>
-<p>This is the list of all testimonials from public.</p>
-@foreach (var item in Model)
-{
-    
-    <hr />
-    <div>
-        <div class="font-weight-bold lead">@Html.DisplayNameFor(model => model.Subject): @Html.DisplayFor(modelItem => item.Subject)</div>
-        <div>@Html.DisplayNameFor(model => model.Rate): @Html.DisplayFor(modelItem => item.Rate)/5</div>
-        <div>@Html.DisplayFor(modelItem => item.Content)</div>
-        <div>
-            @Html.DisplayNameFor(model => model.DepartmentId): @Html.DisplayFor(modelItem => item.department.department_name)
-        </div>
-        <div class="text-right">@Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Role)</div>
-        <div class="text-right">@Html.DisplayFor(modelItem => item.Timestamp)</div>
-        <div>
-            @Html.ActionLink("Edit", "Edit_Admin", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete_Admin", new { id = item.Id })
-        </div>
 
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-need-revision-tab" data-toggle="tab" href="#nav-need-revision" role="tab" aria-controls="nav-need-revision" aria-selected="true">Need revision</a>
+        <a class="nav-item nav-link" id="nav-pending-tab" data-toggle="tab" href="#nav-pending" role="tab" aria-controls="nav-pending" aria-selected="false">Pending</a>
+        <a class="nav-item nav-link" id="nav-published-tab" data-toggle="tab" href="#nav-published" role="tab" aria-controls="nav-published" aria-selected="false">Published</a>
+        <a class="nav-item nav-link" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab" aria-controls="nav-all" aria-selected="false">All</a>
     </div>
-}
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <!-- Start of need revision testimonial -->
+    <div class="tab-pane fade show active" id="nav-need-revision" role="tabpanel" aria-labelledby="nav-need-revision-tab">
+        <p>This is the list of testimonials that need to be reviewed.</p>
+        @foreach (var item in Model)
+         {
+             if (item.Reviewed == "NO")
+             {
+             <hr />
+             <div>
+                <div class="font-weight-bold lead">@Html.DisplayNameFor(model => model.Subject): @Html.DisplayFor(modelItem => item.Subject)</div>
+                <div>@Html.DisplayNameFor(model => model.Rate): @Html.DisplayFor(modelItem => item.Rate)/5</div>
+                <div>@Html.DisplayFor(modelItem => item.Content)</div>
+                <div>
+                    @Html.DisplayNameFor(model => model.DepartmentId): @Html.DisplayFor(modelItem => item.department.department_name)
+                </div>
+                 <div>
+                     @Html.DisplayNameFor(model => model.Reviewed): @Html.DisplayFor(modelItem => item.Reviewed)
+                 </div>
+                <div>By: @Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Role)</div>
+                <div>On: @Html.DisplayFor(modelItem => item.Timestamp)</div>
+                <div>
+                    @Html.ActionLink("Edit", "Edit_Admin", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete_Admin", new { id = item.Id })
+                </div>
+             </div>
+             }
+         }
+    </div>
+
+    <!-- Start of pending testimonial -->
+    <div class="tab-pane fade" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
+        <p>This is the list of testimonials that were moved here because of potentially bad content.</p>
+        @foreach (var item in Model)
+         {
+             if (item.Reviewed == "PENDING")
+             {
+                <hr />
+                <div>
+                    <div class="font-weight-bold lead">@Html.DisplayNameFor(model => model.Subject): @Html.DisplayFor(modelItem => item.Subject)</div>
+                    <div>@Html.DisplayNameFor(model => model.Rate): @Html.DisplayFor(modelItem => item.Rate)/5</div>
+                    <div>@Html.DisplayFor(modelItem => item.Content)</div>
+                    <div>
+                        @Html.DisplayNameFor(model => model.DepartmentId): @Html.DisplayFor(modelItem => item.department.department_name)
+                    </div>
+                    <div>
+                        @Html.DisplayNameFor(model => model.Reviewed): @Html.DisplayFor(modelItem => item.Reviewed)
+                    </div>
+                    <div>By: @Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Role)</div>
+                    <div>On: @Html.DisplayFor(modelItem => item.Timestamp)</div>
+                    <div>
+                        @Html.ActionLink("Edit", "Edit_Admin", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete_Admin", new { id = item.Id })
+                    </div>
+
+                </div>
+             }
+         }
+    </div>
+
+    <!-- Start of published testimonial -->
+    <div class="tab-pane fade" id="nav-published" role="tabpanel" aria-labelledby="nav-published-tab">
+        <p>This is the list of all testimonials that were approved by admin.</p>
+        @foreach (var item in Model)
+         {
+             if (item.Reviewed == "YES")
+             {
+                <hr />
+                <div>
+                    <div class="font-weight-bold lead">@Html.DisplayNameFor(model => model.Subject): @Html.DisplayFor(modelItem => item.Subject)</div>
+                    <div>@Html.DisplayNameFor(model => model.Rate): @Html.DisplayFor(modelItem => item.Rate)/5</div>
+                    <div>@Html.DisplayFor(modelItem => item.Content)</div>
+                    <div>
+                        @Html.DisplayNameFor(model => model.DepartmentId): @Html.DisplayFor(modelItem => item.department.department_name)
+                    </div>
+                    <div>
+                        @Html.DisplayNameFor(model => model.Reviewed): @Html.DisplayFor(modelItem => item.Reviewed)
+                    </div>
+                    <div>By: @Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Role)</div>
+                    <div>On: @Html.DisplayFor(modelItem => item.Timestamp)</div>
+                    <div>
+                        @Html.ActionLink("Edit", "Edit_Admin", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete_Admin", new { id = item.Id })
+                    </div>
+
+                </div>
+             }
+         }
+    </div>
+    <div class="tab-pane fade" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
+        <p>This is the list of all testimonials from public.</p>
+        @foreach (var item in Model)
+        {
+            <hr />
+            <div>
+                <div class="font-weight-bold lead">@Html.DisplayNameFor(model => model.Subject): @Html.DisplayFor(modelItem => item.Subject)</div>
+                <div>@Html.DisplayNameFor(model => model.Rate): @Html.DisplayFor(modelItem => item.Rate)/5</div>
+                <div>@Html.DisplayFor(modelItem => item.Content)</div>
+                <div>
+                    @Html.DisplayNameFor(model => model.DepartmentId): @Html.DisplayFor(modelItem => item.department.department_name)
+                </div>
+                <div>
+                    @Html.DisplayNameFor(model => model.Reviewed): @Html.DisplayFor(modelItem => item.Reviewed)
+                </div>
+                <div>By: @Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Role)</div>
+                <div>On: @Html.DisplayFor(modelItem => item.Timestamp)</div>
+                <div>
+                    @Html.ActionLink("Edit", "Edit_Admin", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete_Admin", new { id = item.Id })
+                </div>
+            </div>
+
+        }
+    </div>
+
+</div>
+

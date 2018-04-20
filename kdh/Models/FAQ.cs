@@ -17,7 +17,7 @@ namespace kdh.Models
         public int QueId { get; set; }
         public string Question { get; set; }
         public string Answer { get; set; }
-        public System.DateTime DateCreated { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
         public string AuthorFirstName { get; set; }
         public string AuthorityFirstName { get; set; }
         public int PurposeId { get; set; }
