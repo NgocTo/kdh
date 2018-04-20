@@ -8,58 +8,63 @@
     <p>enpty</p>
 }
 
-<h2>Delete</h2>
+<h2>Delete Doctor</h2>
+@Html.ActionLink("Logout", "Logout", "DoctorAuth")
 @using (Html.BeginForm("Delete", "Doctor"))
 {
-    <div>
-        @Html.DisplayNameFor(x => x.doctor.Departmentid)
-        @Html.DisplayFor(x => x.doctor.Departmentid)
+    @Html.AntiForgeryToken()
+    <div class="card">
+        <div class="card-header">
+            @Html.DisplayNameFor(x => x.doctor.Doctorid)
+            @Html.DisplayFor(x => x.doctor.Doctorid)
+        </div>
+        <div class="card-header">
+            @Html.DisplayNameFor(x => x.doctor.Fname)
+            @Html.DisplayFor(x => x.doctor.Fname)
+        </div>
+        <div class="card-header">
+            @Html.DisplayNameFor(x => x.doctor.Lname)
+            @Html.DisplayFor(x => x.doctor.Lname)
+        </div>
+        <div class="card-body">
+            @Html.DisplayNameFor(x => x.doctor.Email)
+            @Html.DisplayFor(x => x.doctor.Email)
+        </div>
+        <div class="card-body">
+            @Html.DisplayNameFor(x => x.doctor.Mobile_no)
+            @Html.DisplayFor(x => x.doctor.Mobile_no)
+        </div>
+        <div class="card-body">
+            @Html.DisplayNameFor(x => x.doctor.Speciality)
+            @Html.DisplayFor(x => x.doctor.Speciality)
+        </div>
+        <div class="card-body">
+            @Html.DisplayNameFor(x => x.doctor.Address_line1)
+            @Html.DisplayFor(x => x.doctor.Address_line1)
+        </div>
+        <div class="card-body">
+            @Html.DisplayNameFor(x => x.doctor.Address_line2)
+            @Html.DisplayFor(x => x.doctor.Address_line2)
+        </div>
+        <div class="card-body">
+            @Html.DisplayNameFor(x => x.doctor.Province)
+            @Html.DisplayFor(x => x.doctor.Province)
+        </div>
+        <div class="card-footer">
+            @Html.DisplayNameFor(x => x.doctor.City)
+            @Html.DisplayFor(x => x.doctor.City)
+        </div>
+        <div class="card-footer">
+            @Html.DisplayNameFor(x => x.department.department_name)
+            @Html.DisplayFor(x => x.department.department_name)
+        </div>
+        <div class="card-footer">
+            @Html.DisplayNameFor(x => x.department.department_location)
+            @Html.DisplayFor(x => x.department.department_location)
+        </div>
+        <input type="submit" value="Delete" class="btn btn-primary" />
+        @Html.ActionLink("back to list", "Index", "Doctor")
     </div>
-<div>
-    @Html.DisplayNameFor(x => x.doctor.Fname)
-    @Html.DisplayFor(x => x.doctor.Fname)
-</div>
-<div>
-    @Html.DisplayNameFor(x => x.doctor.Lname)
-    @Html.DisplayFor(x => x.doctor.Lname)
-</div>
-<div>
-    @Html.DisplayNameFor(x => x.doctor.Email)
-    @Html.DisplayFor(x => x.doctor.Email)
-</div>
-<div>
-    @Html.DisplayNameFor(x => x.doctor.Mobile_no)
-    @Html.DisplayFor(x => x.doctor.Mobile_no)
-</div>
-<div>
-    @Html.DisplayNameFor(x => x.doctor.Speciality)
-    @Html.DisplayFor(x => x.doctor.Speciality)
-</div>
-<div>
-    @Html.DisplayNameFor(x => x.doctor.Address_line1)
-    @Html.DisplayFor(x => x.doctor.Address_line1)
-</div>
-<div>
-    @Html.DisplayNameFor(x => x.doctor.Address_line2)
-    @Html.DisplayFor(x => x.doctor.Address_line2)
-</div>
-<div>
-    @Html.DisplayNameFor(x => x.doctor.Speciality)
-    @Html.DisplayFor(x => x.doctor.Speciality)
-</div>
-<div>
-    @Html.DisplayNameFor(x => x.doctor.Speciality)
-    @Html.DisplayFor(x => x.doctor.Speciality)
-</div>
-<div>
-    @Html.DisplayNameFor(x => x.department.department_name)
-    @Html.DisplayFor(x => x.department.department_name)
-</div>
-<div>
-    @Html.DisplayNameFor(x => x.department.department_location)
-    @Html.DisplayFor(x => x.department.department_location)
-</div>
-    <input type="submit" value="Delete" />
 }
 
 

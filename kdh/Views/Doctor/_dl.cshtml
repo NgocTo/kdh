@@ -1,0 +1,46 @@
+﻿@model List<kdh.ViewModels.DoctorDepartment>
+@foreach (var d in Model)
+{
+<div class="card bg-light rounded d-inline-flex p-2 flex-column justify-content-between col-md-4" style="margin-bottom:5px;">
+    <div class="card-header">
+        @Html.DisplayNameFor(Doctor => d.doctor.Doctorid)
+        @Html.DisplayFor(Doctor => d.doctor.Doctorid)
+    </div>
+    <div class="card-header">
+        @Html.DisplayNameFor(Doctor => d.doctor.Fname)
+        @Html.DisplayFor(Doctor => d.doctor.Fname)
+    </div>
+    <div class="card-header">
+        @Html.DisplayNameFor(Doctor => d.doctor.Lname)
+        @Html.DisplayFor(Doctor => d.doctor.Lname)
+    </div>
+    <div class="card-body">
+        @Html.DisplayNameFor(Doctor => d.doctor.Email)
+        @Html.DisplayFor(Doctor => d.doctor.Email)
+    </div>
+    <div class="card-body">
+        @Html.DisplayNameFor(Doctor => d.doctor.Mobile_no)
+        @Html.DisplayFor(Doctor => d.doctor.Mobile_no)
+    </div>
+    <div class="card-footer">
+        @Html.DisplayNameFor(Doctor => d.department.department_name)
+        @Html.DisplayFor(Doctor => d.department.department_name)
+    </div>
+    @if (User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Update", "UpdateV", "Doctor", new { id = d.doctor.Doctorid }, null)
+
+        @Html.ActionLink("Details", "Detail", "Doctor", new { id = d.doctor.Doctorid }, null)
+
+        @Html.ActionLink("Delete", "Delete", "Doctor", new { id = d.doctor.Doctorid }, null)
+    }
+    else if (User.IsInRole("hr"))
+    {
+        @Html.ActionLink("Details", "Detail", "Doctor", new { id = d.doctor.Doctorid }, null)
+        @Html.ActionLink("Update", "UpdateV", "Doctor", new { id = d.doctor.Doctorid }, null)
+    }
+
+</div>
+
+
+}

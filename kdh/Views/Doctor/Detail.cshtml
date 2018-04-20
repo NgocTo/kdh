@@ -1,0 +1,73 @@
+﻿@model kdh.ViewModels.DoctorDepartment
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Doctor Detail</h2>
+@Html.ActionLink("Logout", "Logout", "DoctorAuth")
+<div class="card">
+    <div class="card-header">
+        @Html.DisplayNameFor(x => x.doctor.Doctorid)
+        @Html.DisplayFor(x => x.doctor.Doctorid)
+    </div>
+    <div class="card-header">
+        @Html.DisplayNameFor(x => x.doctor.Fname)
+        @Html.DisplayFor(x => x.doctor.Fname)
+    </div>
+    <div class="card-header">
+        @Html.DisplayNameFor(x => x.doctor.Lname)
+        @Html.DisplayFor(x => x.doctor.Lname)
+    </div>
+    <div class="card-body">
+        @Html.DisplayNameFor(x => x.doctor.Email)
+        @Html.DisplayFor(x => x.doctor.Email)
+    </div>
+    <div class="card-body">
+        @Html.DisplayNameFor(x => x.doctor.Mobile_no)
+        @Html.DisplayFor(x => x.doctor.Mobile_no)
+    </div>
+    <div class="card-body">
+        @Html.DisplayNameFor(x => x.doctor.Speciality)
+        @Html.DisplayFor(x => x.doctor.Speciality)
+    </div>
+    <div class="card-body">
+        @Html.DisplayNameFor(x => x.doctor.Address_line1)
+        @Html.DisplayFor(x => x.doctor.Address_line1)
+    </div>
+    <div class="card-body">
+        @Html.DisplayNameFor(x => x.doctor.Address_line2)
+        @Html.DisplayFor(x => x.doctor.Address_line2)
+    </div>
+    <div class="card-body">
+        @Html.DisplayNameFor(x => x.doctor.Province)
+        @Html.DisplayFor(x => x.doctor.Province)
+    </div>
+    <div class="card-footer">
+        @Html.DisplayNameFor(x => x.doctor.City)
+        @Html.DisplayFor(x => x.doctor.City)
+    </div>
+    <div class="card-footer">
+        @Html.DisplayNameFor(x => x.department.department_name)
+        @Html.DisplayFor(x => x.department.department_name)
+    </div>
+    <div class="card-footer">
+        @Html.DisplayNameFor(x => x.department.department_location)
+        @Html.DisplayFor(x => x.department.department_location)
+    </div>
+
+    @Html.ActionLink("back to list", "Index", "Doctor")`
+</div>
+@if (User.IsInRole("admin"))
+{
+    @Html.ActionLink("Update", "UpdateV", "Doctor", new { id = Model.doctor.Doctorid }, null)
+
+
+
+
+}
+else if (User.IsInRole("hr"))
+{
+
+    @Html.ActionLink("Update", "UpdateV", "Doctor", new { id = Model.doctor.Doctorid }, null)
+}

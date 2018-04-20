@@ -1,16 +1,17 @@
-﻿@model kdh.Models.Doctor
+﻿
+@model kdh.Models.Doctor
 @{
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add Doctor</h2>
-@ViewBag.err
+<h2>Update doctor</h2>
 @Html.ActionLink("Logout", "Logout", "DoctorAuth")
 <div class="container">
-    @using (Html.BeginForm("Add", "Doctor", new { @class = "" }))
+    @using (Html.BeginForm("Update", "Doctor", new { @class = "" }))
     {
         @Html.AntiForgeryToken()
+        @Html.HiddenFor(Model => Model.Doctorid)
         <div class="form-row">
             <div class="form-group col-md-6">
                 <div class="col-form-label">
@@ -145,10 +146,12 @@
                 </div>
 
             </div>
-            <input type="submit" value="ADD" class="btn btn-primary" />
+            <input type="submit" value="Update" class="btn btn-primary" />
 
             @Html.ActionLink("back to list", "Index", "Doctor")
         </div>
     }
 </div>
+<script>
 
+</script>

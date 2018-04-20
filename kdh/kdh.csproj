@@ -179,6 +179,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DoctorAuthController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Controllers\LabResultsController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\TestimonialController.cs" />
     <Compile Include="Controllers\PatientLabResultController.cs" />
     <Compile Include="Controllers\TestTypesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -200,6 +202,7 @@
     <Compile Include="Models\buddy_donateContact.cs" />
     <Compile Include="Models\buddy_Job.cs" />
     <Compile Include="Models\buddy_JobApplicant.cs" />
+    <Compile Include="Models\buddy_Testimonial.cs" />
     <Compile Include="Models\buddy_User.cs" />
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
@@ -323,8 +326,6 @@
     <Content Include="Views\FAQ\AddPurpose.cshtml" />
     <Content Include="Views\FAQ\EditPurpose.cshtml" />
     <Content Include="Views\FAQ\DeletePurpose.cshtml" />
-    <Content Include="Views\Doctor\Index.cshtml" />
-    <Content Include="Views\Doctor\Add.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />
@@ -370,6 +371,11 @@
     <Content Include="Views\Donation\Edit.cshtml" />
     <Content Include="Views\Donation\Delete.cshtml" />
     <Content Include="Views\Donation\FindDonors.cshtml" />
+    <Content Include="Views\Testimonial\Create.cshtml" />
+    <Content Include="Views\Testimonial\Index_Admin.cshtml" />
+    <Content Include="Views\Testimonial\Index.cshtml" />
+    <Content Include="Views\Testimonial\Delete_Admin.cshtml" />
+    <Content Include="Views\Testimonial\Edit_Admin.cshtml" />
     <Content Include="Views\Donation\MakeDonation.cshtml" />
     <Content Include="Views\LabReport\Create.cshtml" />
     <Content Include="Views\LabReport\Delete.cshtml" />
@@ -387,6 +393,15 @@
     <Content Include="Views\TestTypes\Edit.cshtml" />
     <Content Include="Views\TestTypes\Index.cshtml" />
     <Content Include="Views\PatientLabResult\Index.cshtml" />
+    <Content Include="Views\Doctor\Add.cshtml" />
+    <Content Include="Views\Doctor\Delete.cshtml" />
+    <Content Include="Views\Doctor\Detail.cshtml" />
+    <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Doctor\PublicView.cshtml" />
+    <Content Include="Views\Doctor\UpdateV.cshtml" />
+    <Content Include="Views\Doctor\_dl.cshtml" />
+    <Content Include="Views\Doctor\_DoctorSearch.cshtml" />
+    <Content Include="Views\DoctorAuth\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
