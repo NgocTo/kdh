@@ -141,7 +141,7 @@ namespace kdh.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                   
+                    faq.DateCreated = DateTime.Now;
                     db.FAQs.Add(faq);
                     db.SaveChanges();
                     return RedirectToAction("Index");

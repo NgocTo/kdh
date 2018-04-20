@@ -12,18 +12,11 @@ namespace kdh.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Testimonial
+    public partial class JobManager
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Role { get; set; }
-        public string Subject { get; set; }
-        public string Content { get; set; }
-        public int Rate { get; set; }
-        public Nullable<System.DateTime> Timestamp { get; set; }
-        public string Reviewed { get; set; }
-        public int DepartmentId { get; set; }
-    
-        public virtual department department { get; set; }
+        public int ManagerId { get; set; }
+        public string ManagerName { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
     }
 }

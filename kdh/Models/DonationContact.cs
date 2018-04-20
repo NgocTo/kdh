@@ -25,7 +25,7 @@ namespace kdh.Models
         public string Country { get; set; }
         public string Province { get; set; }
         public string Comments { get; set; }
-        public System.DateTime DonationDate { get; set; }
+        public Nullable<System.DateTime> DonationDate { get; set; }
         public decimal Amount { get; set; }
         public string PaymentId { get; set; }
     }

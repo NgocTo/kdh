@@ -74,11 +74,10 @@ namespace kdh.Models
         [Display(Name = "Comments")]
         public string Comments { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Date is required.")]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{yyyy/mm/dd}")]
-        [DataType(DataType.DateTime)]
+        
+        [DataType(DataType.Date)]
         [Display(Name = "Donation Date")]
-        public System.DateTime DonationDate { get; set; }
+        public Nullable<System.DateTime> DonationDate { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Amount is required.")]
         [Display(Name = "Amount")]

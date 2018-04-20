@@ -29,7 +29,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Answer)
+            @if (Model.Answer != null)
+            {
+                @Html.DisplayFor(model => model.Answer)
+            }
+            else
+            {
+                @Html.Raw("N/A");
+            }
         </dd>
 
         <dt>

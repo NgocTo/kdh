@@ -77,6 +77,7 @@ namespace kdh.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    donor.DonationDate = DateTime.Now;
                     db.DonationContacts.Add(donor);
                     db.SaveChanges();
                     return RedirectToAction("Index");

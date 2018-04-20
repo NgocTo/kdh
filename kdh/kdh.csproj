@@ -182,7 +182,6 @@
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
-    <Compile Include="Controllers\FAQLoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobApplicantController.cs" />
     <Compile Include="Controllers\JobController.cs" />
@@ -202,10 +201,19 @@
     <Compile Include="Models\buddy_Job.cs" />
     <Compile Include="Models\buddy_JobApplicant.cs" />
     <Compile Include="Models\buddy_User.cs" />
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>HospitalContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__RefactorLog.cs">
+      <DependentUpon>HospitalContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\department.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Departments.cs" />
+    <Compile Include="Models\DirtyWord.cs">
+      <DependentUpon>HospitalContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Doctor.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
@@ -237,6 +245,9 @@
       <DependentUpon>HospitalContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Job.cs">
+      <DependentUpon>HospitalContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobManager.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LabReport.cs">
