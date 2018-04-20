@@ -150,6 +150,7 @@
     <Content Include="Models\HospitalContext.edmx.diagram">
       <DependentUpon>HospitalContext.edmx</DependentUpon>
     </Content>
+    <Content Include="Controllers\RajControllerV2.rar" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -179,6 +180,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DoctorAuthController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
@@ -374,6 +376,15 @@
     <Content Include="Views\TestTypes\Edit.cshtml" />
     <Content Include="Views\TestTypes\Index.cshtml" />
     <Content Include="Views\PatientLabResult\Index.cshtml" />
+    <Content Include="Views\Doctor\Add.cshtml" />
+    <Content Include="Views\Doctor\Delete.cshtml" />
+    <Content Include="Views\Doctor\Detail.cshtml" />
+    <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Doctor\PublicView.cshtml" />
+    <Content Include="Views\Doctor\UpdateV.cshtml" />
+    <Content Include="Views\Doctor\_dl.cshtml" />
+    <Content Include="Views\Doctor\_DoctorSearch.cshtml" />
+    <Content Include="Views\DoctorAuth\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
