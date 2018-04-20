@@ -150,7 +150,6 @@
     <Content Include="Models\HospitalContext.edmx.diagram">
       <DependentUpon>HospitalContext.edmx</DependentUpon>
     </Content>
-    <Content Include="Controllers\RajControllerV2.rar" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
