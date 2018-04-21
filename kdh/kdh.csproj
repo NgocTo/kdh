@@ -39,7 +39,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -289,6 +289,7 @@
     <Compile Include="ViewModels\PatientVM.cs" />
     <Compile Include="ViewModels\PatientRegistrationVM.cs" />
     <Compile Include="ViewModels\PurposesVM.cs" />
+    <Compile Include="ViewModels\TestimonialVM.cs" />
     <Compile Include="ViewModels\UpdateAccountVM.cs" />
   </ItemGroup>
   <ItemGroup>

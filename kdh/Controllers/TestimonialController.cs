@@ -11,6 +11,7 @@ using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using CaptchaMvc.HtmlHelpers;
 using CaptchaMvc.Attributes;
+using kdh.ViewModels;
 
 namespace kdh.Controllers
 {
@@ -85,15 +86,13 @@ namespace kdh.Controllers
                                 db.Testimonials.Add(testimonial);
                                 db.SaveChanges();
                                 return RedirectToAction("Index"); ;
-                            } else
-                            {
-                                testimonial.Timestamp = DateTime.Now;
-                                testimonial.Reviewed = "NO";
-                                db.Testimonials.Add(testimonial);
-                                db.SaveChanges();
-                                return RedirectToAction("Index");
                             }
                         }
+                        testimonial.Timestamp = DateTime.Now;
+                        testimonial.Reviewed = "NO";
+                        db.Testimonials.Add(testimonial);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
                     }
                     ViewBag.ErrorCaptcha = "Captcha is not valid.";
                     return View(testimonial);
@@ -191,14 +190,18 @@ namespace kdh.Controllers
         // POST: Testimonials/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit_Admin([Bind(Include = "Id,Subject,Content,Reviewed")] Testimonial testimonial)
+        public ActionResult Edit_Admin([Bind(Include = "Id,Subject,Content")] TestimonialVM testimonial)
         {
             try
             {
+                //testimonial.Reviewed = "YES";
+                var dbTestimonial = db.Testimonials.Find(testimonial.Id);
+                dbTestimonial.Subject = testimonial.Subject;
+                dbTestimonial.Content = testimonial.Content;
+                dbTestimonial.Reviewed = "YES";
                 if (ModelState.IsValid)
                 {
-                    testimonial.Reviewed = "YES";
-                    db.Entry(testimonial).State = EntityState.Modified;
+                    db.Entry(dbTestimonial).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index_Admin");
                 }
