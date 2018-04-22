@@ -1,7 +1,9 @@
 ﻿using kdh.Models;
 using kdh.Utils;
+using Stripe;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
@@ -241,44 +243,93 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
 
         }
-        [HttpGet]
         public ActionResult MakeDonation()
         {
-            try
-            {
-                return View();
-            }
-            catch (Exception ex)
-            {
-                ViewBag.ExceptionMessage = ex.Message;
-            }
-            return View("~/Views/Errors/Details.cshtml");
+            string stripePublishKey = ConfigurationManager.AppSettings["stripePublishableKey"];
+            ViewBag.StripePublishKey = stripePublishKey;
+            return View();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult MakeDonation(DonationContact donor)
+        public ActionResult Charge(string stripeEmail, string stripeToken, DonationContact donor)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.DonationContacts.Add(donor);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    donor.DonationDate = DateTime.Now;
+                    int amount = Convert.ToInt32(donor.Amount * 100);
+                    ViewBag.Email = stripeEmail;
+                    ViewBag.Token = stripeToken;
+                    StripeCustomerService customers = new StripeCustomerService();
+                    StripeChargeService charges = new StripeChargeService();
 
+                    //create new customer
+                    StripeCustomer customer = customers.Create(new StripeCustomerCreateOptions
+                    {
+                        Email = stripeEmail,
+                        SourceToken = stripeToken
+                    });
+
+                    ViewBag.customerId = customer.Id;
+                    //Create a charge
+                    StripeCharge charge = charges.Create(new StripeChargeCreateOptions
+                    {
+                        Amount = amount,
+                        Description = "Sample charge",
+                        Currency = "usd",
+                        CustomerId = customer.Id
+                    });
+                    
                 }
-                return View(donor);
-            }
-            catch (DbUpdateException uex)
-            {
-                ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(uex);
+        
+            return View();
             }
             catch (Exception ex)
             {
                 ViewBag.ExceptionMessage = ex.Message;
             }
-            return View("~/Views/Errors/Details.cshtml");
+            return View("~/Views/Errors/Details.cshtml"); 
+            /* try
+             {
+                 if (ModelState.IsValid)
+                 {
+                     donor.DonationDate = DateTime.Now;
+                     int amount = Convert.ToInt32(donor.Amount * 100);
+                     ViewBag.Email = stripeEmail;
+                     ViewBag.Token = stripeToken;
+                     StripeCustomerService customers = new StripeCustomerService();
+                     StripeChargeService charges = new StripeChargeService();
+
+                     //create new customer
+                     StripeCustomer customer = customers.Create(new StripeCustomerCreateOptions
+                     {
+                         Email = stripeEmail,
+                         SourceToken = stripeToken
+                     });
+                     ViewBag.customerId = customer.Id;
+
+                     //Create a charge
+                     StripeCharge charge = charges.Create(new StripeChargeCreateOptions
+                     {
+                         Amount = amount,
+                         Description = "Sample charge",
+                         Currency = "usd",
+                         CustomerId = customer.Id
+                     });
+
+                     ViewBag.chargeId = charge.Id;
+                     donor.PaymentId = ViewBag.chargeId;
+                     db.DonationContacts.Add(donor);
+                     db.SaveChanges();
+                 }
+                 return View();
+             }
+             catch (Exception ex)
+             {
+                 ViewBag.ExceptionMessage = ex.Message;
+             }
+             return View("~/Views/Errors/Details.cshtml");*/
         }
+
 
     }
 }
