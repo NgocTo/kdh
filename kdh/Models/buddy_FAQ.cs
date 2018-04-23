@@ -31,13 +31,13 @@ namespace kdh.Models
         public Nullable<System.DateTime> DateCreated { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Author First Name is required.")]
-        [RegularExpression("^[A-Za-z]*$", ErrorMessage = " Author name can consist of alphabets only.")]
+        [RegularExpression("^[A-Za-z]*$", ErrorMessage = " Alphabets Only. No Space permitted")]
         [Display(Name = "Author First Name")]
         [DataType(DataType.Text)]
         public string AuthorFirstName { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Authority First Name is required.")]
-        [RegularExpression("^[A-Za-z]*$", ErrorMessage = " Authority name can consist of alphabets only.")]
+        [RegularExpression("^[A-Za-z]*$", ErrorMessage = " Alphabets Only. No Space permitted.")]
         [Display(Name = "Authority First Name")]
         [DataType(DataType.Text)]
         public string AuthorityFirstName { get; set; }

@@ -82,7 +82,6 @@ namespace kdh.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Amount is required.")]
         [Display(Name = "Amount")]
         [DataType(DataType.Currency)]
-        [RegularExpression(@"^[0-9]+(\.[0-9]{1,2})$", ErrorMessage = "Valid Decimal number with maximum 2 decimal places.")]
         public decimal Amount { get; set; }
 
         [Display(Name = "Payment ID")]
