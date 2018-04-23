@@ -116,45 +116,6 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "Name,Role,Subject,Content,Rate,DepartmentId")] Testimonial testimonial)
-        //{
-        //    try
-        //    {
-        //        if (this.IsCaptchaValid("Captcha is not valid."))
-        //        {
-        //            if (ModelState.IsValid)
-        //            {
-        //                var DirtyWords = db.DirtyWords.ToList();
-        //                testimonial.Timestamp = DateTime.Now;
-        //                db.Testimonials.Add(testimonial);
-        //                db.SaveChanges();
-        //                return RedirectToAction("Index");
-        //            }
-        //            ViewBag.ErrorCaptcha = "Captcha is not valid.";
-        //            return View(testimonial);
-        //        }
-
-        //        ViewBag.departments = db.departments.ToList();
-        //        return View(testimonial);
-        //    }
-        //    catch (DbUpdateException dbException)
-        //    {
-        //        ViewBag.DbExceptionMessage = dbException.Message;
-        //    }
-        //    catch (SqlException sqlException)
-        //    {
-        //        ViewBag.SqlException = sqlException.Message;
-        //    }
-        //    catch (Exception genericException)
-        //    {
-        //        ViewBag.ExceptionMessage = genericException.Message;
-        //    }
-        //    return View("~/Views/Errors/Details.cshtml");
-        //}
-
-
         // GET: Testimonials/Edit/5
         public ActionResult Edit_Admin(int? id)
         {
@@ -263,6 +224,29 @@ namespace kdh.Controllers
                 ViewBag.ExceptionMessage = genericException.Message;
             }
             return View("~/Views/Errors/Details.cshtml");
+        }
+
+        //AJAX
+
+        public PartialViewResult Testimonial_Search(FormCollection form)
+        {
+            buddy_Testimonial testimonial_list = new buddy_Testimonial();
+            string search_term = form["term"];
+            if (!String.IsNullOrWhiteSpace(search_term))
+            {
+                try
+                {
+                    //testimonial_list = db.Testimonials.Where(t => t.Content.ToLower().Contains(search_term.ToLower())).ToList();
+                    List<Testimonial> testimonial = db.Testimonials.ToList();
+                    return PartialView("_Testimonials", testimonial);
+                }
+                catch (Exception genericException)
+                {
+                    ViewBag.ExceptionMessage = genericException.Message;
+                }
+                return PartialView("~/Views/Errors/_Details.cshtml");
+            }
+            return PartialView("~/Views/Testimonial/_Testimonials.cshtml", testimonial_list);
         }
     }
 }
