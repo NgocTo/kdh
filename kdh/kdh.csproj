@@ -409,6 +409,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Donation\Charge.cshtml" />
     <Content Include="Views\Donation\MakeDonation.cshtml" />
+    <Content Include="Views\Shared\_LayoutNoSidebar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

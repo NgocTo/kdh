@@ -2,30 +2,102 @@
 @{
     ViewBag.Title = "Index";
     //Layout = "~/Views/Shared/_Layout.cshtml";
-    Layout = "~/Views/Shared/FAQDonation/_FaqDonation.cshtml";
+    Layout = "~/Views/Shared/_LayoutNoSidebar.cshtml";
 }
 
 
 
 
-<h2 class="text-center mb-5">Welcome Humber and District Hospital</h2>
-<p>The Humber and District Hospital is a fully accredited modern, well-equipped Hospital that opened in its current location in 1975. It was originally a 132-bed Hospital and has been gradually downsized to 62 beds as follows: 6 Intensive Care, 41 Medical/Surgical, and 15 Continuing Complex Care.  The Hospital currently employs approximately 235 staff (135 full-time, 92 part-time and casual, and 11 management).</p>
+<div id="title-intro" class="text-center">
+    <h2>Welcome to Humber and District Hospital</h2>
+</div>
 
-<p>The Hospital provides emergency, general medicine, general surgery and pediatric services to the local community. It also provides a range of specialty and subspecialty diagnostic and therapeutic clinics.</p>
+<div class="py-5 bg-light text-center d-none d-md-block">
+    <div class="py-5">Slider placeholder</div>
+</div>
+<div style="margin-top:30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="bg-light">
+                    <div class="container site-section" id="welcome" style="padding-top:20px;padding-bottom:21px;">
+                        <div class="row justify-content-center align-items-start pt-4">
+                            <div class="col-sm-4 text-center"><a href="#"><i class="fa fa-user" style="font-size:60px;"></i><p>Patients &amp; Visitors</p></a></div>
+                            <div class="col-sm-4 text-center"><a href="#"><i class="fa fa-clock" style="font-size:60px;color:rgb(255,15,0);"></i><p>ER Wait Time</p></a></div>
+                            <div class="col-sm-4 text-center"><a href="#"><i class="fa fa-question-circle" style="font-size:60px;"></i><p>FAQ</p></a></div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top:30px;padding-top:0px;">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Latest News</a></li>
+                        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Events</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" role="tabpanel" id="tab-1" style="margin-top:30px;padding-top:11px;">
+                            <p class="tab-feed">
+                                <i class="far fa-newspaper d-flex float-left" style="font-size:75px;margin-right:15px;margin-bottom:-5px;"></i>It is a long established fact that a reader will be distracted by the readable content of a page when
+                                looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                            </p>
+                            <p style="margin-top:0px;">
+                                <i class="far fa-newspaper d-flex float-left" style="font-size:75px;margin-right:15px;margin-bottom:-5px;"></i>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
+                                and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)
+                            </p>
+                        </div>
+                        <div class="tab-pane" role="tabpanel" id="tab-2">
+                            <i class="icon-event d-flex float-left" style="font-size:75px;margin-right:20px;margin-bottom:22px;"></i>
+                            <p>Content for tab 2.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="visit">
+                    <h4 class="text-center">Visiting Hours &amp; Contact</h4>
+                    <ul class="list-unstyled visit">
+                        <li>11:30 a.m to 8:00 p.m daily.<br><br></li>
+                        <li>Phone: 705-567-5251.<br><br></li>
+                        <li>HDH recommends no more than two visitors per patient at any time.<br><br></li>
+                        <li>Children under 12 years of age must be accompanied by an adult.<br><br></li>
+                        <li>The Main Entrance to the hospital will be locked between 8:00 pm and 7:00 am daily.<br><br></li>
+                    </ul>
+                </div>
+                <div class="d-inline" style="width:315px;">
+                    <h4 class="text-center" style="width:300px;">Health Blog<br></h4>
+                    <ul class="list-group" style="width:299px;">
+                        <li class="list-group-item"><a href="#"><span>Title of the health blog 1</span></a></li>
+                        <li class="list-group-item"><a href="#"><span>Title of the health blog 2</span></a></li>
+                        <li class="list-group-item"><a href="#"><span>Title of the health blog 3</span></a></li>
+                        <li class="list-group-item"><a href="#"><span>Title of the health blog 4</span></a></li>
+                        <li class="list-group-item"><a href="#"><span>Title of the health blog 5</span></a></li>
+                    </ul>
+                </div>
+                <aside class="float-right" style="width:300px;padding-left:36px;"></aside>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>The Hospital is supported by an active Auxiliary and Foundation; both organizations raise much-needed funds for Hospital equipment.</p>
+<div>
+    <h3 class="py-3">About us</h3>
+    <p>The Humber and District Hospital is a fully accredited modern, well-equipped Hospital that opened in its current location in 1975. It was originally a 132-bed Hospital and has been gradually downsized to 62 beds as follows: 6 Intensive Care, 41 Medical/Surgical, and 15 Continuing Complex Care.  The Hospital currently employs approximately 235 staff (135 full-time, 92 part-time and casual, and 11 management).</p>
+
+    <p>The Hospital provides emergency, general medicine, general surgery and pediatric services to the local community. It also provides a range of specialty and subspecialty diagnostic and therapeutic clinics.</p>
+
+    <p>The Hospital is supported by an active Auxiliary and Foundation; both organizations raise much-needed funds for Hospital equipment.</p>
 
 
-<p>The Hospital is involved with the Northern Ontario Residency Training Program and physicians readily accept medical students for elective programs.</p>
-<p>The visiting specialist program consists of: Neurology, Urology, Internal Medicine, Otolaryngology, Pediatrics, Psychiatry, Ophthalmology and Gynecology.</p>
-<p>Support Services include:</p>
-<ul>
-    <li>Diagnostic Imaging</li>
-    <li>Physiotherapy</li>
-    <li>Respiratory Therapy</li>
-    <li> Renal Dialysis (Satellite of Health Sciences North, Sudbury)</li>
-    <li>Outpatient Chemotherapy (Satellite of Health Sciences North)</li>
-</ul>
+    <p>The Hospital is involved with the Northern Ontario Residency Training Program and physicians readily accept medical students for elective programs.</p>
+    <p>The visiting specialist program consists of: Neurology, Urology, Internal Medicine, Otolaryngology, Pediatrics, Psychiatry, Ophthalmology and Gynecology.</p>
+    <p>Support Services include:</p>
+    <ul>
+        <li>Diagnostic Imaging</li>
+        <li>Physiotherapy</li>
+        <li>Respiratory Therapy</li>
+        <li> Renal Dialysis (Satellite of Health Sciences North, Sudbury)</li>
+        <li>Outpatient Chemotherapy (Satellite of Health Sciences North)</li>
+    </ul>
+</div>
 
 
 
