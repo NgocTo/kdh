@@ -5,32 +5,31 @@
     <!-- HEADER -->
 <header class="mb-5">
     <div class="container-fluid" id="header">
-
-        <div class="row p-2 pt-3" id="navigation">
-            <div class="col-1">
-                <div class="offset-3">
-                    <a href="@Url.Action("Index", "Home")" class="h3 text-white font-weight-bold">
+        <div class="row p-2 py-3 align-items-center justify-content-center" id="navigation">
+            <div class="col-2 col-md-1 text-center">
+                    <a href="@Url.Action("Index", "Home")">
                         <img style="width: 50px; height: 50px;" src="~/Images/LOGO.png" />
                     </a>
-                </div>
             </div>
             <div class="col-md-7 d-none d-md-block">
                 <h2><a href="@Url.Action("Index", "Home")" class="h3 text-white font-weight-bold">Humber and District Hospital</a></h2>
             </div>
-            <div class="col-5 col-md-2 offset-1 offset-md-0">
+            <div class="offset-2 offset-md-0 col-3 col-md-2">
                 <form>
                     <select class="form-control" aria-label="Language">
-                        <option>ENG</option>
+                        <option>EN</option>
                         <option>FR</option>
                     </select>
                 </form>
             </div>
-            <button class="navbar-toggler offset-sm-3 navbar-dark d-block d-md-none" type="button" data-toggle="collapse" data-target="#toggleMenu" aria-controls="toggleMenu"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="col-md-2">
+            <div class="col-3 col-md-2 text-right">
                 <a href="@Url.Action("MakeDonation", "Donation")" class="btn btn-danger btn-sm">Donate Now</a>
+            </div>
+            <div class="col-1">
+                <button class="navbar-toggler navbar-dark d-block d-md-none text-right" type="button" data-toggle="collapse" data-target="#toggleMenu" aria-controls="toggleMenu"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
 
         </div> <!-- end of 1st row -->
@@ -79,7 +78,7 @@
             </div>
         </nav>
         <div>
-            <ul class="list-unstyled">
+            <ul class="list-unstyled text-center">
                 <li class="ml-3 pb-2 text-warning">*Please note that this website is a part of the student projects and not a real hospital website.</li>
             </ul>
         </div>
