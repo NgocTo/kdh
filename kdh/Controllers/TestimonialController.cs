@@ -230,15 +230,21 @@ namespace kdh.Controllers
 
         public PartialViewResult Testimonial_Search(FormCollection form)
         {
-            buddy_Testimonial testimonial_list = new buddy_Testimonial();
+            _Testimonial testimonial_list = new _Testimonial();
+            //List<Testimonial>
             string search_term = form["term"];
             if (!String.IsNullOrWhiteSpace(search_term))
             {
                 try
                 {
-                    //testimonial_list = db.Testimonials.Where(t => t.Content.ToLower().Contains(search_term.ToLower())).ToList();
-                    List<Testimonial> testimonial = db.Testimonials.ToList();
-                    return PartialView("_Testimonials", testimonial);
+                    // These doesn't work
+                    testimonial_list.Contents = db.Testimonials.Where(t => t.Content.ToLower().Contains(search_term.ToLower())).ToList();
+                    testimonial_list.Subjects = db.Testimonials.Where(t => t.Subject.ToLower().Contains(search_term.ToLower())).ToList();
+                    
+                    // This works
+                    // List<Testimonial> testimonial_list = db.Testimonials.Where(t => t.Content.ToLower().Contains(search_term.ToLower())).ToList();
+                    
+                    return PartialView("_Testimonials", testimonial_list);
                 }
                 catch (Exception genericException)
                 {
