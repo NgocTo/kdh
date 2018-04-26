@@ -8,13 +8,13 @@
         <div class="row p-2 py-3 align-items-center " id="navigation">
             <div class="col-1 text-center">
                     <a href="@Url.Action("Index", "Home")">
-                        <img style="width: 100%; height: auto; min-width:40px;" src="~/Images/LOGO.png" />
+                        <img style="width: 100%; height: auto; min-width:40px; max-width:70px;" src="~/Images/LOGO.png" />
                     </a>
             </div>
             <div class="col-md-7 d-none d-md-block pr-0">
                 <h2><a href="@Url.Action("Index", "Home")" class="h3 text-white font-weight-bold">Humber and District Hospital</a></h2>
             </div>
-            <div class="offset-1 offset-md-0 col-4 col-md-2">
+            <div class="offset-1 col-4 col-md-2">
                 <form>
                     <select class="form-control" aria-label="Language">
                         <option>EN</option>
@@ -22,7 +22,7 @@
                     </select>
                 </form>
             </div>
-            <div class="col-3 col-md-2 text-right">
+            <div class="col-3 col-md-1">
                 <a href="@Url.Action("MakeDonation", "Donation")" class="btn btn-danger btn-sm">Donate</a>
             </div>
             <div class="col-1">
