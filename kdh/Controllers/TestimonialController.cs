@@ -249,10 +249,9 @@ namespace kdh.Controllers
                     // This works
                     List<Testimonial> testimonial = db.Testimonials.Where(t => t.Content.ToLower().Contains(search_term.ToLower())).ToList();
                     
-                    return PartialView("_Testimonials", testimonial);
-
+                    
                     //the result is stored in testimonial_list but it doesn't go to the partial view
-                    //return PartialView("_Testimonials", testimonial_list);
+                    return PartialView("_Testimonials", testimonial);
                 }
                 catch (Exception genericException)
                 {
