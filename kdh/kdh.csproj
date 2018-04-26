@@ -288,8 +288,10 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\_Testimonial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Captcha.cs" />
+    <Compile Include="Utils\CustomAuthorize.cs" />
     <Compile Include="Utils\FutureDateValidator.cs" />
     <Compile Include="Utils\DateValidator.cs" />
     <Compile Include="Utils\ErrorHandler.cs" />
@@ -413,6 +415,8 @@
     <Content Include="Views\Donation\Charge.cshtml" />
     <Content Include="Views\Donation\MakeDonation.cshtml" />
     <Content Include="Views\Shared\_LayoutNoSidebar.cshtml" />
+    <Content Include="Views\Testimonial\_Testimonials_Admin.cshtml" />
+    <Content Include="Views\Account\Unauthorized.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

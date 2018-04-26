@@ -77,7 +77,7 @@ namespace kdh.Controllers
                 else
                 {
                     faqs = db.FAQs.ToList();
-                    ViewBag.CountResult = " Displaying all FAQs.";
+                    ViewBag.CountResult = "";
                     ViewBag.SearchError = "Please enter search keyword.";
                 }
                 return View(faqs.OrderBy(q => q.Question));
@@ -465,7 +465,7 @@ namespace kdh.Controllers
                 else
                 {
                     faqs = db.FAQs.ToList();
-                    ViewBag.CountResult = " Displaying all FAQs.";
+                    ViewBag.CountResult = "";
                     ViewBag.SearchError = "Please enter a search keyword.";
                 }
                return View(faqs.OrderBy(q => q.Question));

@@ -5,7 +5,7 @@
 
 <footer id="footer" class="mainfooter mt-5" role="contentinfo">
     <div class="text-center">
-        <div class="container py-4 col-md-12">
+        <div class="py-4">
             <div class="row justify-content-center">
                 <div class="col-md-2">
                     <h5><a href="#"><u>Patients &amp; Visitors</u></a></h5>
@@ -50,17 +50,21 @@
         </div>
     </div>
     <div>
-        <ul class="list-unstyled">
-            <li align="center" class="ml-3 pb-2 text-warning">*Please note that this website is a part of the student projects and not a real hospital website.</li>
+        <ul class="list-unstyled text-center">
+            <li class="pb-2 text-warning">*Please note that this website is a part of the student projects and not a real hospital website.</li>
         </ul>
     </div>
-    <div class="container pb-2 ml-5 col-md-12">
-        <div class="row">
-            <div class="col-md-3"><a href="@Url.Action("Login", "Account")">Admin Login</a></div>
-            <div class="d-inline-block col-md-4">
-                <p class="text-xs-center" style="margin:0px;">&copy; @DateTime.Now.Year - Humber and District Hospital</p>
+    <div class="pb-2 text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-3" text-center><a href="@Url.Action("Login", "Account")">Admin Login</a></div>
+            <div class="col-md-4">
+                <p>&copy; @DateTime.Now.Year - Humber and District Hospital</p>
             </div>
-            <div class="col-md-5" style="padding:0px;margin:0px;"><a href="#" style="margin:15px;">By Laws</a><a href="#" style="margin:15px 15px 15px 15px;">Terms of Use</a><a href="#">Financial Accountability</a></div>
+            <div class="col-md-5">
+                <a href="#">By Laws</a> | 
+                <a href="#">Terms of Use</a> | 
+                <a href="#">Financial Accountability</a>
+            </div>
         </div>
     </div>
 </footer>
