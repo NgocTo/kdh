@@ -267,7 +267,8 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
         }
-        [Authorize(Roles = "admin,hr")]
+        [AllowAnonymous]
+        //[Authorize(Roles = "admin,hr")]
         public ActionResult Detail(int? id)
         {
             try

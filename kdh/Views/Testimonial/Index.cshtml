@@ -15,15 +15,18 @@
 <section class="row">
     <div class="offset-md-1 col-md-10">
         @using (Ajax.BeginForm("Testimonial_Search", "Testimonial",
-            new AjaxOptions
-            {
-                HttpMethod = "POST",
-                UpdateTargetId = "search_results",
-                InsertionMode = InsertionMode.Replace
-            }, new { id = "search_form", autocomplete = "off" }
-            ))
+                new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    UpdateTargetId = "search_results",
+                    InsertionMode = InsertionMode.Replace
+                }, new { id = "search_form", autocomplete = "off" }
+                ))
         {
-            <input type="text" name="term" class="form-control" placeholder="Search for testimonial..." style="margin-top: 20px" />
+            <div class="form-inline row">
+                    <input type="text" name="term" class="form-control col-9" placeholder="Search for testimonial..."/>
+                    <button type="submit" class="btn col-3">Search</button>
+            </div>
         }
         <div id="search_results">
 

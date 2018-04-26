@@ -159,6 +159,9 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Properties\PublishProfiles\feature1raj - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\HumberDistrictHospital - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\HumberDistrictHospital - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\home\testimonial.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

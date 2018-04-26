@@ -31,9 +31,10 @@ namespace kdh.Models
         [Display(Name = "Last Name :")]
         public string Lname { get; set; }
 
-        [StringLength(100, MinimumLength = 6, ErrorMessage = "Field must be 6 or 100 characters.")]
+        //[StringLength(100, MinimumLength = 6, ErrorMessage = "Field must be 6 or 100 characters.")]
         [EmailAddress(ErrorMessage ="Invalid Email")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Email Required")]
+        [DataType(DataType.EmailAddress)]
         [Display(Name = "Email :")]
         public string Email { get; set; }
 
@@ -49,40 +50,41 @@ namespace kdh.Models
 
         [RegularExpression("[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]", ErrorMessage = "Invalid postal code. 6 characters alphanumeric ")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Postal Code Required")]
-        [Display(Name = "Postal Code")]
+        [Display(Name = "Postal Code :")]
         public string Postal_code { get; set; }
 
         [StringLength(15, MinimumLength = 6, ErrorMessage = "Field must be 10 or 15 characters.")]
         [RegularExpression(@"^\d{10,15}$", ErrorMessage = "10 to 15 numeric characters")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Mobile No required")]
-        [Display(Name = "Mobile No")]
+        [Display(Name = "Mobile No :")]
         public string Mobile_no { get; set; }
 
-
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Date of join Required")]
-        [Display(Name = "joining Date")]
+        [Display(Name = "joining Date :")]
         public DateTime Date_of_join { get; set; }
 
         [StringLength(40, MinimumLength = 6, ErrorMessage = "Field must be 6 or 40 characters.")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Province Required")]
         [RegularExpression("^[ A-Za-z]*$", ErrorMessage = " Province can consist of alphabets only.")]
-        [Display(Name = "Province")]
+        [Display(Name = "Province :")]
         public string Province { get; set; }
 
         [StringLength(40, MinimumLength = 6, ErrorMessage = "Field must be 6 or 40 characters.")]
         [RegularExpression("^[ A-Za-z]*$", ErrorMessage = " city can consist of alphabets only.")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "City required")]
-        [Display(Name = "City")]
+        [Display(Name = "City :")]
         public string City { get; set; }
 
         [StringLength(20, MinimumLength = 6, ErrorMessage = "Field must be 6 or 20 characters.")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Speciality required")]
         [RegularExpression("^[ A-Za-z]*$", ErrorMessage = " speciality can consist of alphabets only.")]
-        [Display(Name = "Speciality")]
+        [Display(Name = "Speciality :")]
         public string Speciality { get; set; }
 
         //navigation property defining many to one
-        [Display(Name = "Department")]
+        [Display(Name = "Department :")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Department Required")]
         public int Departmentid { get; set; }
 
