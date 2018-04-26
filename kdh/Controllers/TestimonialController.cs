@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using CaptchaMvc.HtmlHelpers;
 using CaptchaMvc.Attributes;
 using kdh.ViewModels;
+using kdh.Utils;
 
 namespace kdh.Controllers
 {
@@ -34,6 +35,7 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
 
+        [CustomAuthorize(Roles = "admin")]
         public ActionResult Index_Admin()
         {
             try
@@ -116,46 +118,8 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "Name,Role,Subject,Content,Rate,DepartmentId")] Testimonial testimonial)
-        //{
-        //    try
-        //    {
-        //        if (this.IsCaptchaValid("Captcha is not valid."))
-        //        {
-        //            if (ModelState.IsValid)
-        //            {
-        //                var DirtyWords = db.DirtyWords.ToList();
-        //                testimonial.Timestamp = DateTime.Now;
-        //                db.Testimonials.Add(testimonial);
-        //                db.SaveChanges();
-        //                return RedirectToAction("Index");
-        //            }
-        //            ViewBag.ErrorCaptcha = "Captcha is not valid.";
-        //            return View(testimonial);
-        //        }
-
-        //        ViewBag.departments = db.departments.ToList();
-        //        return View(testimonial);
-        //    }
-        //    catch (DbUpdateException dbException)
-        //    {
-        //        ViewBag.DbExceptionMessage = dbException.Message;
-        //    }
-        //    catch (SqlException sqlException)
-        //    {
-        //        ViewBag.SqlException = sqlException.Message;
-        //    }
-        //    catch (Exception genericException)
-        //    {
-        //        ViewBag.ExceptionMessage = genericException.Message;
-        //    }
-        //    return View("~/Views/Errors/Details.cshtml");
-        //}
-
-
         // GET: Testimonials/Edit/5
+        [CustomAuthorize(Roles = "admin")]
         public ActionResult Edit_Admin(int? id)
         {
             try
@@ -190,6 +154,7 @@ namespace kdh.Controllers
         // POST: Testimonials/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles = "admin")]
         public ActionResult Edit_Admin([Bind(Include = "Id,Subject,Content")] TestimonialVM testimonial)
         {
             try
@@ -224,6 +189,7 @@ namespace kdh.Controllers
         }
 
         // GET: Testimonials/Delete/5
+        [CustomAuthorize(Roles = "admin")]
         public ActionResult Delete_Admin(int? id)
         {
             if (id == null)
@@ -239,6 +205,7 @@ namespace kdh.Controllers
         }
 
         // POST: Testimonials/Delete/5
+        [CustomAuthorize(Roles = "admin")]
         [HttpPost, ActionName("Delete_Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete_Admin(int id)
@@ -264,5 +231,59 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
         }
+
+        //AJAX
+
+        public PartialViewResult Testimonial_Search(FormCollection form)
+        {
+            _Testimonial testimonial_list = new _Testimonial();
+            string search_term = form["term"];
+            if (!String.IsNullOrWhiteSpace(search_term))
+            {
+                try
+                {
+                    // These doesn't work
+                    //testimonial_list.Contents = db.Testimonials.Where(t => t.Content.ToLower().Contains(search_term.ToLower())).ToList();
+                    //testimonial_list.Subjects = db.Testimonials.Where(t => t.Subject.ToLower().Contains(search_term.ToLower())).ToList();
+                    
+                    // This works
+                    List<Testimonial> testimonial = db.Testimonials.Where(t => t.Content.ToLower().Contains(search_term.ToLower())).ToList();
+                    
+                    
+                    //the result is stored in testimonial_list but it doesn't go to the partial view
+                    return PartialView("_Testimonials", testimonial);
+                }
+                catch (Exception genericException)
+                {
+                    ViewBag.ExceptionMessage = genericException.Message;
+                }
+                return PartialView("~/Views/Errors/_Details.cshtml");
+            }
+            return PartialView("~/Views/Testimonial/_Testimonials.cshtml", testimonial_list);
+        }
+
+        [CustomAuthorize(Roles = "admin")]
+        public PartialViewResult Testimonial_Search_Admin(FormCollection form)
+        {
+            _Testimonial testimonial_list = new _Testimonial();
+            string search_term = form["term"];
+            if (!String.IsNullOrWhiteSpace(search_term))
+            {
+                try
+                {
+                    List<Testimonial> testimonial = db.Testimonials.Where(t => t.Content.ToLower().Contains(search_term.ToLower())).ToList();
+
+                    return PartialView("_Testimonials_Admin", testimonial);
+                }
+                catch (Exception genericException)
+                {
+                    ViewBag.ExceptionMessage = genericException.Message;
+                }
+                return PartialView("~/Views/Errors/_Details.cshtml");
+            }
+            return PartialView("~/Views/Testimonial/_Testimonials_Admin.cshtml", testimonial_list);
+        }
+
+
     }
 }

@@ -223,5 +223,12 @@ namespace kdh.Controllers
             return View("~/Views/Errors/Details.cshtml");
         }
 
+
+        // This action redirects unauthorized activity to custom error page
+        public ActionResult Unauthorized()
+        {
+            Response.StatusCode = 403;
+            return View();
+        }
     }
 }

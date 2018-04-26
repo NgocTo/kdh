@@ -1,0 +1,17 @@
+﻿@model IEnumerable<kdh.Models.Testimonial>
+
+<h3>Search results</h3>
+@foreach (var item in Model)
+{
+        <hr />
+        <div>
+            <div class="font-weight-bold lead">@Html.DisplayNameFor(model => model.Subject): @Html.DisplayFor(modelItem => item.Subject)</div>
+            <div>@Html.DisplayNameFor(model => model.Rate): @Html.DisplayFor(modelItem => item.Rate)/5</div>
+            <div>@Html.DisplayFor(modelItem => item.Content)</div>
+            <div>
+                @Html.DisplayNameFor(model => model.DepartmentId): @Html.DisplayFor(modelItem => item.department.department_name)
+            </div>
+            <div class="text-right">@Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Role)</div>
+            <div class="text-right">@Html.DisplayFor(modelItem => item.Timestamp)</div>
+        </div>
+}

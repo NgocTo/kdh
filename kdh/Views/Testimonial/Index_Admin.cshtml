@@ -3,11 +3,33 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
 <h2>Testimonials</h2>
 
+<!-- AJAX -->
+<section class="row">
+    <div class="offset-md-1 col-md-10">
+        @using (Ajax.BeginForm("Testimonial_Search_Admin", "Testimonial",
+                new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    UpdateTargetId = "search_results",
+                    InsertionMode = InsertionMode.Replace
+                }, new { id = "search_form", autocomplete = "off" }
+                ))
+        {
+            <input type="text" name="term" class="form-control" placeholder="Search for testimonial..." style="margin-top: 20px" />
+        }
+        <div id="search_results">
+
+        </div>
+    </div>
+</section>
+
 <nav>
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <div class="nav nav-tabs mt-5" id="nav-tab" role="tablist">
         <a class="nav-item nav-link active" id="nav-need-revision-tab" data-toggle="tab" href="#nav-need-revision" role="tab" aria-controls="nav-need-revision" aria-selected="true">Need revision</a>
         <a class="nav-item nav-link" id="nav-pending-tab" data-toggle="tab" href="#nav-pending" role="tab" aria-controls="nav-pending" aria-selected="false">Pending</a>
         <a class="nav-item nav-link" id="nav-published-tab" data-toggle="tab" href="#nav-published" role="tab" aria-controls="nav-published" aria-selected="false">Published</a>
