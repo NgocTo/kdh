@@ -6,7 +6,7 @@
 }
 
 <h2>Update doctor</h2>
-@Html.ActionLink("Logout", "Logout", "DoctorAuth")
+
 <div class="container">
     @using (Html.BeginForm("Update", "Doctor", new { @class = "" }))
     {
@@ -118,7 +118,11 @@
                 </div>
 
                 <div class="col-sm-9">
-                    @Html.TextBoxFor(Model => Model.Date_of_join, new { @type = "Date", @class = "form-control" })
+                    @*@Html.TextBoxFor(Model => Model.Date_of_join, new { @type = "Date", @class = "form-control", Value = Model.Date_of_join })*@
+                    @*@Html.TextBoxFor(Model => Model.Date_of_join, new { htmlAttributes = new {@Value = @Model.Date_of_join.ToString(), @class = "customclass"} })*@
+                    @*@Html.EditorFor(Model=>Model.Date_of_join, new { @type = "date" })*@
+                    @Html.TextBoxFor(model => model.Date_of_join, "{0:yyyy-MM-dd}", new { type = "date" })
+
                     @Html.ValidationMessageFor(Model => Model.Date_of_join)
                 </div>
 
@@ -146,9 +150,9 @@
                 </div>
 
             </div>
-            <input type="submit" value="Update" class="btn btn-primary" />
+            <input type="submit" value="Update" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3" />
 
-            @Html.ActionLink("back to list", "Index", "Doctor")
+            @Html.ActionLink("back to list", "Index", "Doctor",new { }, new { @class = "btn btn-outline-primary btn-sm ml-2 my-1 col-md-3" })
         </div>
     }
 </div>

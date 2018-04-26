@@ -9,7 +9,7 @@
 }
 
 <h2>Delete Doctor</h2>
-@Html.ActionLink("Logout", "Logout", "DoctorAuth")
+
 @using (Html.BeginForm("Delete", "Doctor"))
 {
     @Html.AntiForgeryToken()
@@ -62,8 +62,8 @@
             @Html.DisplayNameFor(x => x.department.department_location)
             @Html.DisplayFor(x => x.department.department_location)
         </div>
-        <input type="submit" value="Delete" class="btn btn-primary" />
-        @Html.ActionLink("back to list", "Index", "Doctor")
+        <input type="submit" value="Delete" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3" />
+        @Html.ActionLink("back to list", "Index", "Doctor",new { }, new { @class = "btn btn-outline-primary btn-sm ml-2 my-1 col-md-3" })
     </div>
 }
 

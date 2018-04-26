@@ -5,7 +5,7 @@
 }
 
 <h2>Doctor Detail</h2>
-@Html.ActionLink("Logout", "Logout", "DoctorAuth")
+@*@Html.ActionLink("Logout", "Logout", "DoctorAuth")*@
 <div class="card">
     <div class="card-header">
         @Html.DisplayNameFor(x => x.doctor.Doctorid)
@@ -56,11 +56,12 @@
         @Html.DisplayFor(x => x.department.department_location)
     </div>
 
-    @Html.ActionLink("back to list", "Index", "Doctor")`
+
 </div>
 @if (User.IsInRole("admin"))
 {
-    @Html.ActionLink("Update", "UpdateV", "Doctor", new { id = Model.doctor.Doctorid }, null)
+    @Html.ActionLink("Update", "UpdateV", "Doctor", new { id = Model.doctor.Doctorid }, new { @class = "btn btn-outline-primary btn-sm ml-2 my-1 col-md-3" })
+    @Html.ActionLink("back to list", "Index", "Doctor", new { @class = "btn btn-outline-primary btn-sm ml-2 my-1 col-md-3" })
 
 
 
@@ -69,5 +70,11 @@
 else if (User.IsInRole("hr"))
 {
 
-    @Html.ActionLink("Update", "UpdateV", "Doctor", new { id = Model.doctor.Doctorid }, null)
+    @Html.ActionLink("Update", "UpdateV", "Doctor", new { id = Model.doctor.Doctorid }, new { @class = "btn btn-outline-primary btn-sm ml-2 my-1 col-md-3" })
+    @Html.ActionLink("back to list", "Index", "Doctor", new { @class = "btn btn-outline-primary btn-sm ml-2 my-1 col-md-3" })
+}
+else
+{
+    @Html.ActionLink("back to list", "PublicView", "Doctor", new { @class = "btn btn-outline-primary btn-sm ml-2 my-1 col-md-3" })
+
 }

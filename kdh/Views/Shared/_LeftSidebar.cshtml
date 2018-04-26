@@ -19,6 +19,7 @@
                     <li class="list-group-item">@Html.ActionLink("Frequently Asked Questions", "Index", "FAQ")</li>
                     <li class="list-group-item">@Html.ActionLink("Testimonials", "Index_Admin", "Testimonial")</li>
                     <li class="list-group-item">@Html.ActionLink("Donations", "Index", "Donation")</li>
+                    <li class="list-group-item">@Html.ActionLink("Doctor List", "Index", "Doctor")</li>
                     <li class="list-group-item"><a href="@Url.Action("Logout", "Account")" class="btn btn-outline-danger col-md-10">Logout</a></li>
 
                 </ul>
@@ -41,6 +42,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">@Html.ActionLink("Create new job posting", "Create", "Job")</li>
                     <li class="list-group-item">@Html.ActionLink("See Applicants", "Index_Admin", "JobApplicant")</li>
+                    <li class="list-group-item">@Html.ActionLink("Doctor List", "Index", "Doctor")</li>
                     <li class="list-group-item"><a href="@Url.Action("JobLogout", "Account")" class="btn btn-danger">Logout</a></li>
                 </ul>
             }
@@ -50,12 +52,13 @@
         else
         {
             <h3 class="text-dark">Quick Links</h3>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="#">Location and Hours</a></li>
-                    <li class="list-group-item"><a href="#">Services</a></li>
-                    <li class="list-group-item"><a href="#">Online Gift Shop</a></li>
-                    <li class="list-group-item">@Html.ActionLink("Donations", "MakeDonation", "Donation")</li>
-                </ul>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="#">Location and Hours</a></li>
+                <li class="list-group-item"><a href="#">Services</a></li>
+                <li class="list-group-item"><a href="#">Online Gift Shop</a></li>
+                <li class="list-group-item">@Html.ActionLink("Donations", "MakeDonation", "Donation")</li>
+                <li class="list-group-item">@Html.ActionLink("Doctors", "PublicView", "Doctor")</li>
+            </ul>
         }
 
     </div>
