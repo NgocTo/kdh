@@ -15,37 +15,35 @@ namespace kdh.Models
 using System;
     using System.Collections.Generic;
     
-public partial class LabReport
+public partial class Question
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public LabReport()
+    public Question()
     {
 
-        this.Results = new HashSet<Result>();
+        this.Answers = new HashSet<Answer>();
 
     }
 
 
-    public System.Guid Id { get; set; }
+    public int Id { get; set; }
 
-    public System.Guid PatientId { get; set; }
+    public string Email { get; set; }
 
-    public System.DateTime CollectionDate { get; set; }
+    public string subject { get; set; }
 
-    public Nullable<System.DateTime> IssueDate { get; set; }
+    public string question1 { get; set; }
 
-    public string Status { get; set; }
+    public Nullable<System.DateTime> create_date { get; set; }
 
-    public string OrderedBy { get; set; }
+    public string Name { get; set; }
 
 
-
-    public virtual Patient Patient { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<Result> Results { get; set; }
+    public virtual ICollection<Answer> Answers { get; set; }
 
 }
 

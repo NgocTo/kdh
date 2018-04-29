@@ -15,28 +15,22 @@ namespace kdh.Models
 using System;
     using System.Collections.Generic;
     
-public partial class OnlineConsultationForm
+public partial class Answer
 {
 
-    public System.Guid Id { get; set; }
+    public int Id { get; set; }
 
-    public string FirstName { get; set; }
+    public int Questionsid { get; set; }
 
-    public string LastName { get; set; }
+    public string Answer1 { get; set; }
 
-    public System.DateTime DateOfBirth { get; set; }
+    public string Sender_mail { get; set; }
 
-    public string Gender { get; set; }
+    public System.DateTime Create_date { get; set; }
 
-    public string PhoneNumber { get; set; }
 
-    public string Email { get; set; }
 
-    public string Specialization { get; set; }
-
-    public string Comment { get; set; }
-
-    public System.DateTime DateOfConsultation { get; set; }
+    public virtual Question Question { get; set; }
 
 }
 

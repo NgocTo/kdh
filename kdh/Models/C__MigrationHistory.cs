@@ -15,28 +15,16 @@ namespace kdh.Models
 using System;
     using System.Collections.Generic;
     
-public partial class OnlineConsultationForm
+public partial class C__MigrationHistory
 {
 
-    public System.Guid Id { get; set; }
+    public string MigrationId { get; set; }
 
-    public string FirstName { get; set; }
+    public string ContextKey { get; set; }
 
-    public string LastName { get; set; }
+    public byte[] Model { get; set; }
 
-    public System.DateTime DateOfBirth { get; set; }
-
-    public string Gender { get; set; }
-
-    public string PhoneNumber { get; set; }
-
-    public string Email { get; set; }
-
-    public string Specialization { get; set; }
-
-    public string Comment { get; set; }
-
-    public System.DateTime DateOfConsultation { get; set; }
+    public string ProductVersion { get; set; }
 
 }
 
