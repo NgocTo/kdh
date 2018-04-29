@@ -416,7 +416,6 @@
     <Content Include="Views\Donation\MakeDonation.cshtml" />
     <Content Include="Views\Shared\_LayoutNoSidebar.cshtml" />
     <Content Include="Views\Testimonial\_Testimonials_Admin.cshtml" />
-    <Content Include="Views\Account\Unauthorized.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

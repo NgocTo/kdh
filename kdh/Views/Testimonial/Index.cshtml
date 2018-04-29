@@ -6,6 +6,11 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="text-success text-center">@TempData["SuccessMessage"]</div>
+}
+
 <h2>Testimonials</h2>
 <p>Our hospital has received many good testimonials from our patients and visitors.</p>
 <p>
@@ -24,7 +29,7 @@
                 ))
         {
             <div class="form-inline row">
-                    <input type="text" name="term" class="form-control col-9" placeholder="Search for testimonial..."/>
+                    <input type="text" name="term" class="form-control col-9" placeholder="Search testimonial content..."/>
                     <button type="submit" class="btn col-3">Search</button>
             </div>
         }
