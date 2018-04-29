@@ -12,7 +12,7 @@
     <div class="row">
         <a href="@Url.Action("Create", "Donation")" class="btn btn-primary my-3 mr-4">Create New Donor</a>
 
-        @using (Html.BeginForm("FindDonors", "Donation"))
+                @using (Html.BeginForm("FindDonors", "Donation"))
             {
             @Html.AntiForgeryToken()
             <div class="input-group offset-11">
