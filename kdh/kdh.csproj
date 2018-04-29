@@ -197,6 +197,7 @@
     <Compile Include="Controllers\DoctorAuthController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobApplicantController.cs" />
@@ -416,6 +417,7 @@
     <Content Include="Views\Donation\MakeDonation.cshtml" />
     <Content Include="Views\Shared\_LayoutNoSidebar.cshtml" />
     <Content Include="Views\Testimonial\_Testimonials_Admin.cshtml" />
+    <Content Include="Views\Errors\NotFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
