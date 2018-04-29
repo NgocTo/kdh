@@ -204,8 +204,10 @@
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\LabReportController.cs" />
     <Compile Include="Controllers\LabResultsController.cs" />
+    <Compile Include="Controllers\OnlineConsultationFormsController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="Controllers\TestimonialController.cs" />
     <Compile Include="Controllers\PatientLabResultController.cs" />
     <Compile Include="Controllers\TestTypesController.cs" />
@@ -218,6 +220,8 @@
     <Compile Include="Models\buddy_donateContact.cs" />
     <Compile Include="Models\buddy_Job.cs" />
     <Compile Include="Models\buddy_JobApplicant.cs" />
+    <Compile Include="Models\buddy_OCF.cs" />
+    <Compile Include="Models\buddy_Survey.cs" />
     <Compile Include="Models\buddy_Testimonial.cs" />
     <Compile Include="Models\buddy_User.cs" />
     <Compile Include="Models\department.cs">
@@ -418,6 +422,19 @@
     <Content Include="Views\Shared\_LayoutNoSidebar.cshtml" />
     <Content Include="Views\Testimonial\_Testimonials_Admin.cshtml" />
     <Content Include="Views\Errors\NotFound.cshtml" />
+    <Content Include="Views\Surveys\Create.cshtml" />
+    <Content Include="Views\Surveys\Delete.cshtml" />
+    <Content Include="Views\Surveys\Details.cshtml" />
+    <Content Include="Views\Surveys\Edit.cshtml" />
+    <Content Include="Views\Surveys\Index.cshtml" />
+    <Content Include="Views\Surveys\_Search_survey.cshtml" />
+    <Content Include="Views\OnlineConsultationForms\Create.cshtml" />
+    <Content Include="Views\OnlineConsultationForms\Delete.cshtml" />
+    <Content Include="Views\OnlineConsultationForms\Details.cshtml" />
+    <Content Include="Views\OnlineConsultationForms\Edit.cshtml" />
+    <Content Include="Views\OnlineConsultationForms\Index.cshtml" />
+    <Content Include="Views\Shared\Survey\_SurveySidebar.cshtml" />
+    <Content Include="Views\Shared\OnlineConsultationForm\_OCFSidebar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
