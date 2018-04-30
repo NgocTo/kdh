@@ -5,54 +5,39 @@
     Layout = "~/Views/Shared/PatientPortal/_PatientPortal.cshtml";
 }
 
-<h2>Index</h2>
+<h2>List of Test Items</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TestItem)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaxReference)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MinReference)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Unit)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TestItem)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaxReference)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MinReference)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Unit)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+<div class="mb-3">
+    @Html.ActionLink("Create New Item", "Create", null, new { @class = "btn btn-primary" })
+</div>
 
-</table>
+
+
+<div class="container">
+    <div class="row border d-none d-lg-flex">
+        <div class="col-lg-2 border bg-secondary text-white font-weight-bold text-center">Category</div>
+        <div class="col-lg-3 border bg-secondary text-white font-weight-bold text-center">Tested Item</div>
+        <div class="col-lg-2 border bg-secondary text-white font-weight-bold text-center">Max Ref.</div>
+        <div class="col-lg-2 border bg-secondary text-white font-weight-bold text-center">Min Ref.</div>
+        <div class="col-lg-1 border bg-secondary text-white font-weight-bold text-center">Unit</div>
+        <div class="col-lg-2 border bg-secondary text-white font-weight-bold text-center">Options</div>
+    </div>
+    @foreach (var item in Model)
+            {
+            <div class="row border mb-3 mb-md-0">
+                <div class="col-lg-2 border p-1"><span class="d-lg-none font-weight-bold">Category: </span>@item.Category</div>
+                <div class="col-lg-3 border p-1"><span class="d-lg-none font-weight-bold">Tested Item: </span>@item.TestItem</div>
+                <div class="col-lg-2 border p-1"><span class="d-lg-none font-weight-bold">Max Ref.: </span>@item.MaxReference</div>
+                <div class="col-lg-2 border p-1"><span class="d-lg-none font-weight-bold">Min Ref.: </span>@item.MinReference</div>
+                <div class="col-lg-1 border p-1"><span class="d-lg-none font-weight-bold">Unit: </span>@item.Unit</div>
+                <div class="col-lg-2 border p-4">
+                    <div class="row">@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-sm mb-2 col-12 btn-outline-primary" })</div>
+                    @*<div class="row">@Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-sm mb-2 col-12 btn-outline-primary" })</div>*@
+                    <div class="row">@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-sm mb-2 col-12 btn-outline-danger" })</div>
+                </div>
+            </div>
+    }
+
+</div>
+

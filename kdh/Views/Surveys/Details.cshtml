@@ -1,0 +1,75 @@
+﻿@model kdh.Models.Survey
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-primary">Survey</h2>
+<div>
+    <h4>Details</h4>
+    <hr />
+    <div class="card col-md-10">
+        <div class="row">
+            <div class="card-header col-md-6">
+                <span class="h5 text-primary font-weight-bold">@Html.DisplayNameFor(model => model.UserName)</span>
+                <span class="h5 text-primary font-weight-bold">: </span>
+                <span class="h5 font-weight-bold">@Html.DisplayFor(model => model.UserName)</span>
+            </div>
+            <div class="card-header col-md-6"> 
+                <span class=" text-primary font-weight-bold"> @Html.DisplayNameFor(model => model.DateOfSurvey)</span>
+                <span class="h5 text-primary font-weight-bold">: </span>
+                <span class="font-weight-bold">@Html.DisplayFor(model => model.DateOfSurvey)</span>
+            </div>
+        </div>
+        <div class="card-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.QualityService)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.QualityService)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AverageVisit)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AverageVisit)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AppointmentIssue)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AppointmentIssue)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.StaffRate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.StaffRate)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Comment)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Comment)
+                </dd>
+             </dl>
+        </div>
+        <hr />
+        <div class="form-group">
+            <div>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+</div>

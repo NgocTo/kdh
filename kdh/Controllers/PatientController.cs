@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -292,6 +293,59 @@ namespace kdh.Controllers
             catch (DbUpdateException DbException)
             {
                 ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(DbException);
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+
+        }
+
+
+        // GET: LabReport
+        public ActionResult Reports()
+        {
+
+            try
+            {
+                Guid id = new Guid(User.Identity.Name);
+
+                var patient = context.Patients.Single(q => q.UserId == id);
+                var labReports = patient.LabReports;
+
+                ViewBag.PatientId = id;
+                ViewBag.PatientName = $"{patient.FirstName} {patient.LastName}";
+
+                return View(labReports);
+        }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+}
+
+        // GET: LabReport/Details/5
+        public ActionResult ReportDetails(Guid? id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                LabReport labReport = context.LabReports.Find(id);
+
+                Guid pid = new Guid(User.Identity.Name);
+                ViewBag.PatientId = pid;
+
+                if (labReport == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(labReport);
             }
             catch (Exception e)
             {

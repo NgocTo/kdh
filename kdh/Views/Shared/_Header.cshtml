@@ -46,6 +46,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white mr-lg-2" data-toggle="dropdown" href="#">About Us</a>
                         <div class="dropdown-menu">
+                            <a href="@Url.Action("PublicView", "Doctor")" class="dropdown-item">Doctor's List</a>
                             <a href="@Url.Action("Details", "FAQ")" class="dropdown-item">FAQ</a>
                             <a href="@Url.Action("Index", "Testimonial")" class="dropdown-item">Testimonial</a>
                         </div>
@@ -62,9 +63,15 @@
                     <li class="nav-item">
                         <a class="nav-link text-white mr-lg-2" href="#">Foundation</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white mr-lg-2" href="#">Contact Us</a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white mr-lg-2" data-toggle="dropdown" href="#">Contact Us</a>
+                        <div class="dropdown-menu">
+                            <a href="@Url.Action("Create", "OnlineConsultationForms")" class="dropdown-item">Online Consultation Form</a>
+                            <a href="@Url.Action("Create", "Surveys")" class="dropdown-item">Survey</a>
+                        </div>
                     </li>
+
                 </ul>
                 <div class="col-md-3">
                     <div class="input-group">

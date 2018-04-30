@@ -12,7 +12,7 @@ namespace kdh.Utils
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
             //filterContext.Result = new HttpUnauthorizedResult(); // I don't know what this is for
-            filterContext.Result = new RedirectResult("~/Account/Unauthorized");
+            filterContext.Result = new RedirectResult("~/Account/Login");
         }
 
         public override void OnAuthorization(AuthorizationContext filterContext)

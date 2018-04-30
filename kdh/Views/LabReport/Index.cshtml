@@ -5,54 +5,47 @@
     Layout = "~/Views/Shared/PatientPortal/_PatientPortal.cshtml";
 }
 
-<h2>Index</h2>
+<h2 class="h4 mb-5">@ViewBag.PatientName -Lab Reports</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CollectionDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IssueDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Patient.FirstName)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CollectionDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IssueDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Patient.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+<div class="mb-3">
+    @Html.ActionLink("Create New Report", "Create", new { id = ViewBag.PatientId}, new { @class = "btn btn-primary" })
+</div>
+
+
+@foreach (var item in Model)
+{
+    <div class="container border border-secondary rounded p-3 mb-4">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                Report Issued:
+                @item.IssueDate.Value.ToString("MMMM dd, yyyy")
+            </div>
+            <div class="col-md-6">
+                Collected: @item.CollectionDate.ToString("MMMM dd, yyyy")
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                Ordered by: @item.OrderedBy
+            </div>
+            <div class="col-md-6">
+                <span class="badge @(item.Status == "Complete" ? "badge-info" : "badge-secondary")">@item.Status</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-outline-primary col-md-12 mb-3" })
+            </div>
+            <div class="col-md-4">
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-outline-primary col-md-12 mb-3" })
+            </div>
+            <div class="col-md-4">
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-outline-danger col-md-12" })
+            </div>
+        </div>
+
+    </div>
+
+
 }
-
-</table>

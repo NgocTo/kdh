@@ -31,7 +31,8 @@ namespace kdh.Controllers
 
             return RedirectToAction("Index");
         }
-
+        
+       
         // GET: Donation/Details/5
         [HttpGet]
         [Authorize(Roles = "admin")]
@@ -261,14 +262,12 @@ namespace kdh.Controllers
                     ViewBag.Token = stripeToken;
                     StripeCustomerService customers = new StripeCustomerService();
                     StripeChargeService charges = new StripeChargeService();
-
                     //create new customer
                     StripeCustomer customer = customers.Create(new StripeCustomerCreateOptions
                     {
                         Email = stripeEmail,
                         SourceToken = stripeToken
                     });
-
                     ViewBag.customerId = customer.Id;
                     //Create a charge
                     StripeCharge charge = charges.Create(new StripeChargeCreateOptions
@@ -278,58 +277,19 @@ namespace kdh.Controllers
                         Currency = "usd",
                         CustomerId = customer.Id
                     });
-                    
-                }
-        
-            return View();
+                    ViewBag.chargeId = charge.Id;
+                    donor.PaymentId = ViewBag.chargeId;
+                    db.DonationContacts.Add(donor);
+                    db.SaveChanges();
+                    return View(donor);
+                }       
+           // return View(donor);
             }
             catch (Exception ex)
             {
                 ViewBag.ExceptionMessage = ex.Message;
             }
             return View("~/Views/Errors/Details.cshtml"); 
-            /* try
-             {
-                 if (ModelState.IsValid)
-                 {
-                     donor.DonationDate = DateTime.Now;
-                     int amount = Convert.ToInt32(donor.Amount * 100);
-                     ViewBag.Email = stripeEmail;
-                     ViewBag.Token = stripeToken;
-                     StripeCustomerService customers = new StripeCustomerService();
-                     StripeChargeService charges = new StripeChargeService();
-
-                     //create new customer
-                     StripeCustomer customer = customers.Create(new StripeCustomerCreateOptions
-                     {
-                         Email = stripeEmail,
-                         SourceToken = stripeToken
-                     });
-                     ViewBag.customerId = customer.Id;
-
-                     //Create a charge
-                     StripeCharge charge = charges.Create(new StripeChargeCreateOptions
-                     {
-                         Amount = amount,
-                         Description = "Sample charge",
-                         Currency = "usd",
-                         CustomerId = customer.Id
-                     });
-
-                     ViewBag.chargeId = charge.Id;
-                     donor.PaymentId = ViewBag.chargeId;
-                     db.DonationContacts.Add(donor);
-                     db.SaveChanges();
-                 }
-                 return View();
-             }
-             catch (Exception ex)
-             {
-                 ViewBag.ExceptionMessage = ex.Message;
-             }
-             return View("~/Views/Errors/Details.cshtml");*/
         }
-
-
     }
 }

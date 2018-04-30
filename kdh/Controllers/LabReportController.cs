@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using kdh.Models;
+using kdh.ViewModels;
 
 namespace kdh.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class LabReportController : Controller
     {
         private HospitalContext db = new HospitalContext();
@@ -17,97 +19,224 @@ namespace kdh.Controllers
         // GET: LabReport
         public ActionResult Index(Guid id)
         {
-            var labReports = db.LabReports.Where(q=>q.PatientId==id);
-            return View(labReports.ToList());
+
+            try
+            {
+                var patient = db.Patients.SingleOrDefault(q => q.Id == id);
+                var labReports = patient.LabReports;
+
+                ViewBag.PatientId = id;
+                ViewBag.PatientName = $"{patient.FirstName} {patient.LastName}";
+
+                return View(labReports);
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
 
         // GET: LabReport/Details/5
         public ActionResult Details(Guid? id)
         {
-            if (id == null)
+
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                LabReport labReport = db.LabReports.Find(id);
+                ViewBag.PatientId = labReport.PatientId;
+
+                if (labReport == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(labReport);
             }
-            LabReport labReport = db.LabReports.Find(id);
-            if (labReport == null)
+            catch (Exception e)
             {
-                return HttpNotFound();
+                ViewBag.ExceptionMessage = e.Message;
             }
-            return View(labReport);
+            return View("~/Views/Errors/Details.cshtml");
+
         }
 
         // GET: LabReport/Create
-        public ActionResult Create()
+        public ActionResult Create(Guid id)
         {
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "FirstName");
-            return View();
+            try
+            {
+                var patient = db.Patients
+                    .SingleOrDefault(q => q.Id == id);
+
+                ViewBag.PatientName = $"{patient.FirstName} {patient.LastName}";
+                ViewBag.PatientId = patient.Id;
+                return View();
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+
+
         }
 
         // POST: LabReport/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PatientId,CollectionDate,IssueDate,Status,OrderedBy")] LabReport labReport)
+        public ActionResult Create(Guid id, LabReportVM labReportVM, bool add_result) // this id is PatientId
         {
-            if (ModelState.IsValid)
-            {
-                labReport.Id = Guid.NewGuid();
-                db.LabReports.Add(labReport);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "FirstName", labReport.PatientId);
-            return View(labReport);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    LabReport labReport = new LabReport()
+                    {
+                        PatientId = id,
+                        Id = Guid.NewGuid(),
+                        CollectionDate = labReportVM.CollectionDate,
+                        IssueDate = DateTime.Now,
+                        OrderedBy = labReportVM.OrderedBy,
+                        Status = labReportVM.Status
+                    };
+                    db.LabReports.Add(labReport);
+                    db.SaveChanges();
+
+                    if (add_result)
+                    {
+                        return RedirectToAction("Create", "LabResults", new { Id = labReport.Id });
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "LabReport", new { Id = labReport.PatientId });
+                    }
+
+                }
+
+                return View(labReportVM);
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
 
         // GET: LabReport/Edit/5
         public ActionResult Edit(Guid? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                LabReport labReport = db.LabReports.Find(id);
+                LabReportVM labReportVM = new LabReportVM
+                {
+                    Id = labReport.Id,
+                    CollectionDate = labReport.CollectionDate,
+                    IssueDate = labReport.IssueDate,
+                    OrderedBy = labReport.OrderedBy,
+                    PatientId = labReport.PatientId,
+                    Status = labReport.Status
+                };
+
+                var patient = labReport.Patient;
+                ViewBag.PatientName = $"{patient.FirstName} {patient.LastName}";
+                ViewBag.PatientId = patient.Id;
+
+                if (labReport == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(labReportVM);
             }
-            LabReport labReport = db.LabReports.Find(id);
-            if (labReport == null)
+            catch (Exception e)
             {
-                return HttpNotFound();
+                ViewBag.ExceptionMessage = e.Message;
             }
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "FirstName", labReport.PatientId);
-            return View(labReport);
+            return View("~/Views/Errors/Details.cshtml");
+
         }
 
         // POST: LabReport/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,PatientId,CollectionDate,IssueDate,Status,OrderedBy")] LabReport labReport)
+        public ActionResult Edit(LabReportVM labReportVM, bool add_result)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(labReport).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var patientId = labReportVM.PatientId;
+
+                    LabReport labReport = new LabReport
+                    {
+                        OrderedBy = labReportVM.OrderedBy,
+                        Status = labReportVM.Status,
+                        CollectionDate = labReportVM.CollectionDate,
+                        PatientId = labReportVM.PatientId,
+                        IssueDate = labReportVM.IssueDate,
+                        Id = labReportVM.Id
+                    };
+
+                    db.Entry(labReport).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    if (add_result)
+                    {
+                        return RedirectToAction("Create", "LabResults", new { Id = labReport.Id });
+                    }
+                    return RedirectToAction("Index", "LabReport", new { Id = labReport.PatientId });
+                }
+
+                return View(labReportVM);
+
             }
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "FirstName", labReport.PatientId);
-            return View(labReport);
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
 
         // GET: LabReport/Delete/5
         public ActionResult Delete(Guid? id)
         {
-            if (id == null)
+
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                LabReport labReport = db.LabReports.Find(id);
+                ViewBag.PatientId = labReport.PatientId;
+
+                if (labReport == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(labReport);
+
             }
-            LabReport labReport = db.LabReports.Find(id);
-            if (labReport == null)
+            catch (Exception e)
             {
-                return HttpNotFound();
+                ViewBag.ExceptionMessage = e.Message;
             }
-            return View(labReport);
+            return View("~/Views/Errors/Details.cshtml");
+
         }
 
         // POST: LabReport/Delete/5
@@ -115,10 +244,24 @@ namespace kdh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            LabReport labReport = db.LabReports.Find(id);
-            db.LabReports.Remove(labReport);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                LabReport labReport = db.LabReports.Find(id);
+                List<Result> results = db.Results.Where(q => q.LabReport.Id == id).ToList();
+                Guid patientId = labReport.PatientId;
+
+                db.Results.RemoveRange(results);
+                db.LabReports.Remove(labReport);
+                db.SaveChanges();
+                return RedirectToAction("Index", new { Id = patientId });
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
+
         }
 
         protected override void Dispose(bool disposing)
@@ -129,5 +272,6 @@ namespace kdh.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }
