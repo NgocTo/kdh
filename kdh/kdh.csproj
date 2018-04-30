@@ -193,6 +193,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AnswersController.cs" />
     <Compile Include="Controllers\DoctorAuthController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
@@ -206,7 +207,11 @@
     <Compile Include="Controllers\OnlineConsultationFormsController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+<<<<<<< HEAD
+    <Compile Include="Controllers\QuestionsController.cs" />
+=======
     <Compile Include="Controllers\SurveysController.cs" />
+>>>>>>> fdaf099a7e7d5e4a10af31425de04a3ed47da03c
     <Compile Include="Controllers\TestimonialController.cs" />
     <Compile Include="Controllers\TestTypesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -218,11 +223,16 @@
     <Compile Include="Models\Applicant.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\buddy_Answers.cs" />
     <Compile Include="Models\buddy_donateContact.cs" />
     <Compile Include="Models\buddy_Job.cs" />
     <Compile Include="Models\buddy_JobApplicant.cs" />
+<<<<<<< HEAD
+    <Compile Include="Models\buddy_Questions.cs" />
+=======
     <Compile Include="Models\buddy_OCF.cs" />
     <Compile Include="Models\buddy_Survey.cs" />
+>>>>>>> fdaf099a7e7d5e4a10af31425de04a3ed47da03c
     <Compile Include="Models\buddy_Testimonial.cs" />
     <Compile Include="Models\buddy_User.cs" />
     <Compile Include="Models\C__MigrationHistory.cs">
@@ -434,6 +444,19 @@
     <Content Include="Views\Donation\MakeDonation.cshtml" />
     <Content Include="Views\Shared\_LayoutNoSidebar.cshtml" />
     <Content Include="Views\Testimonial\_Testimonials_Admin.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\Account\Unauthorized.cshtml" />
+    <Content Include="Views\Questions\Create.cshtml" />
+    <Content Include="Views\Questions\Delete.cshtml" />
+    <Content Include="Views\Questions\Details.cshtml" />
+    <Content Include="Views\Questions\Edit.cshtml" />
+    <Content Include="Views\Questions\Index.cshtml" />
+    <Content Include="Views\Answers\Create.cshtml" />
+    <Content Include="Views\Answers\Delete.cshtml" />
+    <Content Include="Views\Answers\Details.cshtml" />
+    <Content Include="Views\Answers\Edit.cshtml" />
+    <Content Include="Views\Answers\Index.cshtml" />
+=======
     <Content Include="Views\Errors\NotFound.cshtml" />
     <Content Include="Views\Surveys\Create.cshtml" />
     <Content Include="Views\Surveys\Delete.cshtml" />
@@ -450,6 +473,7 @@
     <Content Include="Views\Shared\OnlineConsultationForm\_OCFSidebar.cshtml" />
     <Content Include="Views\Patient\ReportDetails.cshtml" />
     <Content Include="Views\Patient\Reports.cshtml" />
+>>>>>>> fdaf099a7e7d5e4a10af31425de04a3ed47da03c
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,90 @@
+﻿@model IEnumerable<kdh.Models.Answer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Answers</h2>
+
+<p>
+</p>
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Answer1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sender_mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Create_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Question.Email)
+        </th>
+        <th></th>
+    </tr>*@
+<h2>Question :@ViewBag.question</h2>
+    @foreach (var item in Model)
+    {
+        @*<tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Answer1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sender_mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Create_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Back to Questions", "Index", "Questions")
+            </td>
+        </tr>*@
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="card mb-3">
+            <div class="card-header bg-light">
+
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <span class="font-weight-bold text-primary">
+                        @Html.DisplayNameFor(model => model.Answer1):
+                    </span>
+                    @Html.DisplayFor(modelItem => item.Answer1)
+
+                </div>
+                <div class="card-text">
+                    <span class="font-weight-bold text-primary">
+                        @Html.DisplayNameFor(model => model.Create_date):
+                    </span>
+                    @Html.DisplayFor(modelItem => item.Create_date)
+
+                </div>
+                
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-primary btn-sm ml-2 my-1 col-md-3" })
+                @Html.ActionLink("back to question","Index","Questions",null, new { @class = "btn btn-outline-primary btn-sm ml-2 my-1 col-md-3" })
+                
+            </div>
+        </div>
+      
+    }
+

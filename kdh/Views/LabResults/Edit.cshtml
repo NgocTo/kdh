@@ -11,7 +11,7 @@
         <div class="card-header">
             <h2 class="h5">@Model.LabReport.Patient.FirstName @Model.LabReport.Patient.LastName</h2>
             <div>
-                Report Status: <span class="badge @(Model.LabReport.Status == "Complete" ? "badge-success" : "badge-secondary")">@Model.LabReport.Status</span>
+                Report Status: <span class="badge @(Model.LabReport.Status == "Complete" ? "badge-info" : "badge-secondary")">@Model.LabReport.Status</span>
             </div>
         </div>
         <div class="card-body">

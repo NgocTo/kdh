@@ -23,7 +23,39 @@ public partial class HospitalContext : DbContext
     public HospitalContext()
         : base("name=HospitalContext")
     {
+<<<<<<< HEAD
+        public HospitalContext()
+            : base("name=HospitalContext")
+        {
+        }
+    
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
+    
+        public virtual DbSet<Applicant> Applicants { get; set; }
+        public virtual DbSet<department> departments { get; set; }
+        public virtual DbSet<DirtyWord> DirtyWords { get; set; }
+        public virtual DbSet<Doctor> Doctors { get; set; }
+        public virtual DbSet<DonateCreditCard> DonateCreditCards { get; set; }
+        public virtual DbSet<DonationContact> DonationContacts { get; set; }
+        public virtual DbSet<FAQ> FAQs { get; set; }
+        public virtual DbSet<Job> Jobs { get; set; }
+        public virtual DbSet<LabReport> LabReports { get; set; }
+        public virtual DbSet<OnlineConsultationForm> OnlineConsultationForms { get; set; }
+        public virtual DbSet<Patient> Patients { get; set; }
+        public virtual DbSet<Purpos> Purposes { get; set; }
+        public virtual DbSet<Result> Results { get; set; }
+        public virtual DbSet<Survey> Surveys { get; set; }
+        public virtual DbSet<Testimonial> Testimonials { get; set; }
+        public virtual DbSet<TestType> TestTypes { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Answer> Answers { get; set; }
+        public virtual DbSet<Question> Questions { get; set; }
+=======
 
+>>>>>>> fdaf099a7e7d5e4a10af31425de04a3ed47da03c
     }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
