@@ -87,13 +87,16 @@ namespace kdh.Controllers
                                 testimonial.Reviewed = "PENDING";
                                 db.Testimonials.Add(testimonial);
                                 db.SaveChanges();
-                                return RedirectToAction("Index"); ;
+
+                                TempData["SuccessMessage"] = "Your testimonial has been successfully submitted.";
+                                return RedirectToAction("Index");
                             }
                         }
                         testimonial.Timestamp = DateTime.Now;
                         testimonial.Reviewed = "NO";
                         db.Testimonials.Add(testimonial);
                         db.SaveChanges();
+                        TempData["SuccessMessage"] = "Your testimonial has been successfully submitted.";
                         return RedirectToAction("Index");
                     }
                     ViewBag.ErrorCaptcha = "Captcha is not valid.";
@@ -168,6 +171,7 @@ namespace kdh.Controllers
                 {
                     db.Entry(dbTestimonial).State = EntityState.Modified;
                     db.SaveChanges();
+                    TempData["SuccessMessage"] = "The testimonial has been successfully posted.";
                     return RedirectToAction("Index_Admin");
                 }
                 ViewBag.departments = db.departments.ToList();
@@ -214,6 +218,7 @@ namespace kdh.Controllers
             {
                 Testimonial testimonial = db.Testimonials.Find(id);
                 db.Testimonials.Remove(testimonial);
+                TempData["SuccessMessage"] = "The testimonial has been successfully deleted.";
                 db.SaveChanges();
                 return RedirectToAction("Index_Admin");
             }
@@ -248,8 +253,8 @@ namespace kdh.Controllers
                     
                     // This works
                     List<Testimonial> testimonial = db.Testimonials.Where(t => t.Content.ToLower().Contains(search_term.ToLower())).ToList();
-                    
-                    
+                    ViewBag.Count = testimonial.Count;
+
                     //the result is stored in testimonial_list but it doesn't go to the partial view
                     return PartialView("_Testimonials", testimonial);
                 }
@@ -272,7 +277,7 @@ namespace kdh.Controllers
                 try
                 {
                     List<Testimonial> testimonial = db.Testimonials.Where(t => t.Content.ToLower().Contains(search_term.ToLower())).ToList();
-
+                    ViewBag.Count = testimonial.Count;
                     return PartialView("_Testimonials_Admin", testimonial);
                 }
                 catch (Exception genericException)

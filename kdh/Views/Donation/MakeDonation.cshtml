@@ -6,6 +6,7 @@
 }
 
 <h2>Make Donation</h2>
+<p class="text-danger">All the fields are required.</p>
 
 @using (Html.BeginForm("Charge","Donation", FormMethod.Post))
 {
@@ -16,19 +17,18 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="container">
             <div class="form-group row">
-                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label text-primary col-md-2" })
-                <div class="col-md-10">
+               
+                @*@Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label text-primary col-md-2" })*@
+                <div class="col-md-6">
                     @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { placeholder = "First Name...", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                 </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label text-primary col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-6">
                     @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { placeholder = "Last Name...", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                 </div>
             </div>
+           
 
             <div class="form-group row">
                 @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label text-primary col-md-2" })
@@ -54,37 +54,32 @@
                 </div>
             </div>
 
-            <div class="form-group row">
-                @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label text-primary col-md-2" })
-                <div class="col-md-10">
+            <div class=" offset-2 form-group row">
+                @*@Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label text-primary col-md-2" })*@
+                <div class="col-md-6">
                     @Html.EditorFor(model => model.City, new { htmlAttributes = new { placeholder = "City...", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
                 </div>
-            </div>
-
-            <div class="form-group row">
-                @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "control-label text-primary col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-6">
                     @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { placeholder = "Postal Code...", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group row">
-                @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label text-primary col-md-2" })
-                <div class="col-md-10">
+            
+            <div class=" offset-2 form-group row">
+                @*@Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label text-primary col-md-2" })*@
+                <div class="col-md-6">
                     @Html.EditorFor(model => model.Country, new { htmlAttributes = new { placeholder = "Country...", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
                 </div>
-            </div>
-
-            <div class="form-group row">
-                @Html.LabelFor(model => model.Province, htmlAttributes: new { @class = "control-label text-primary col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-6">
                     @Html.EditorFor(model => model.Province, new { htmlAttributes = new { placeholder = "Province...", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Province, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+           
             <div class="form-group row">
                 @Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "control-label text-primary col-md-2" })
                 <div class="col-md-10">

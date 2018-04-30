@@ -32,6 +32,12 @@
         <AssociationConnector Association="kdh.FK_Results_LabReports" ManuallyRouted="false" />
         <AssociationConnector Association="kdh.FK_Patients_Users" ManuallyRouted="false" />
         <AssociationConnector Association="kdh.FK_Results_TestTypes" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="kdh.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="kdh.C__RefactorLog" Width="1.5" PointX="13.75" PointY="8.75" />
+        <EntityTypeShape EntityType="kdh.Answer" Width="1.5" PointX="16" PointY="5" />
+        <EntityTypeShape EntityType="kdh.JobManager" Width="1.5" PointX="13.75" PointY="10.75" />
+        <EntityTypeShape EntityType="kdh.Question" Width="1.5" PointX="13.75" PointY="5" />
+        <AssociationConnector Association="kdh.FK_Answers_Questions" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

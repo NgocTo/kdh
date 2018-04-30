@@ -1,15 +1,20 @@
 ﻿
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutNoSidebar.cshtml";
 }
 
-<h2>Details</h2>
+<h2>An Error Occured</h2>
+<div class="m-4">
+    <p class="h5">Error may occured due to incomplete Required information. Please fill required information, refresh or try again later.</p>
 
-<h2>Error Occured</h2>
-
+    @Html.ActionLink("Return to home", "Index", "Home")
+</div>
 <p>@ViewBag.DbExceptionMessage</p>
 <p>@ViewBag.EntityCode</p>
 <p>@ViewBag.EntityExceptionMessage</p>
 <p>@ViewBag.SqlExceptionNumber</p>
 <p>@ViewBag.SqlExceptionMessage</p>
 <p>@ViewBag.ExceptionMessage</p>
+
+<div class="my-5 py-5"></div>

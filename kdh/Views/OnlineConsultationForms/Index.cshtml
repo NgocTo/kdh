@@ -1,0 +1,60 @@
+﻿@model IEnumerable<kdh.Models.OnlineConsultationForm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Online Consultation Form</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="card col-sm-12">
+    <div class="row">
+        <div class="card-header col-sm-4 bg-light">
+            <span class="h5 text-primary font-weight-bold">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </span>
+        </div>
+        <div class="card-header col-sm-4 bg-light">
+            <span class="h5 text-primary font-weight-bold">
+                @Html.DisplayNameFor(model => model.LastName)
+            </span>
+        </div>
+        <div class="card-header col-sm-4 bg-light">
+            <span class="h5 text-primary font-weight-bold">
+                @Html.DisplayNameFor(model => model.Email)
+            </span>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="card-body col-sm-12">
+                <div class="row">
+                    <div class="card-text col-sm-4">
+                        <span class="font-weight-bold">@Html.DisplayFor(modelItem => item.FirstName)</span>
+                    </div>
+                    <div class="card-text col-sm-4">
+                        <span class="font-weight-bold">@Html.DisplayFor(modelItem => item.LastName)</span>
+                    </div>
+                    <div class="card-text col-sm-4">
+                        <span class="font-weight-bold">@Html.DisplayFor(modelItem => item.Email)</span>
+                    </div>
+                </div>
+                <div class="card-footer col-sm-12 text-right">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
+                </div>
+            </div>
+            <hr />
+
+        }
+    </div>
+</div>
+
+
+
+
+
+
+

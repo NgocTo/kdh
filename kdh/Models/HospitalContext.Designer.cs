@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\Humber\MobileDev\kdh\kdh\Models\HospitalContext.edmx'. 
+﻿// T4 code generation is enabled for model '\\Mac\Home\Downloads\kdh-final\kdh\Models\HospitalContext.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

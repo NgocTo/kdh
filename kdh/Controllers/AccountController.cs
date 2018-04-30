@@ -222,12 +222,5 @@ namespace kdh.Controllers
             }
             return View("~/Views/Errors/Details.cshtml");
         }
-
-
-        // This action redirects unauthorized activity to custom error page
-        public ActionResult Unauthorized()
-        {
-            return View("Login");
-        }
     }
 }

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<kdh.Models.Survey>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>All serveys submitted by users</h2>
+<hr />
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+@*<div>
+    <form action="#" method="post" role="search" id="survey-search" class="search-form">
+        <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
+        <input type="search" name="search" id="search" class="search-text" placeholder="Search by date..." autocomplete="off">
+    </form>
+</div>*@
+<div class="card col-sm-12">
+    <div class="row">
+        <div class="card-header col-sm-3 bg-light">
+            <span class="h5 text-primary font-weight-bold">
+                @Html.DisplayNameFor(model => model.Id)
+            </span>
+        </div>
+        <div class="card-header col-sm-3 bg-light">
+            <span class="h5 text-primary font-weight-bold">
+                @Html.DisplayNameFor(model => model.UserName)
+            </span>
+        </div>
+        <div class="card-header col-sm-3 bg-light">
+            <span class="h5 text-primary font-weight-bold">
+                @Html.DisplayNameFor(model => model.DateOfSurvey)
+            </span>
+        </div>
+        <div class="card-header col-sm-3 bg-light">
+            <p class="h5 text-primary font-weight-bold">Actions</p>
+        </div>
+    </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="card-body col-sm-12">
+                <div class="row">
+                    <div class="card-text col-sm-3"  style="padding-left: 0;">
+                        <span class="font-weight-bold text-primary">@Html.DisplayFor(modelItem => item.Id)</span>
+                    </div>
+                    <div class="card-text col-sm-3">
+                        <span class="font-weight-bold">@Html.DisplayFor(modelItem => item.UserName)</span>
+                    </div>
+                    <div class="card-text col-sm-2">
+                        <span class="font-weight-bold">@Html.DisplayFor(modelItem => item.DateOfSurvey)</span>
+                    </div>
+                    <div class="card-text col-sm-4 text-center">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
+                    </div>
+                </div>
+            </div>
+            <hr />
+           
+         }
+
+    </div>
+
+@*<script>
+    $(function () {
+        $("#servey-search").submit(function (event) {
+            event.preventDefault();
+        })
+        $("#search").on('keyup paste',function (event) {
+		var search = $("#search").val();
+
+			$.ajax({
+				type: 'POST',
+				url: '@Url.Action("Search_By_Name_Ajax", "Survey")',
+				data: { search: search },
+				success: function (data) {
+					$("#search-results").html(data);
+				}
+			});
+	    })
+      });
+</script>*@
+    
+
