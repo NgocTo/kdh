@@ -130,13 +130,6 @@
       <DependentUpon>HospitalContext.edmx</DependentUpon>
       <LastGenOutput>HospitalContext.cs</LastGenOutput>
     </Content>
-    <EntityDeploy Include="Models\HospitalContext.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HospitalContext.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\HospitalContext.edmx.diagram">
-      <DependentUpon>HospitalContext.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -159,6 +152,13 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="Models\HospitalContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HospitalContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\HospitalContext.edmx.diagram">
+      <DependentUpon>HospitalContext.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\HumberDistrictHospital - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\HumberDistrictHospital - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -229,12 +229,6 @@
     <Compile Include="Models\buddy_Survey.cs" />
     <Compile Include="Models\buddy_Testimonial.cs" />
     <Compile Include="Models\buddy_User.cs" />
-    <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>HospitalContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__RefactorLog.cs">
-      <DependentUpon>HospitalContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\department.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
@@ -273,9 +267,6 @@
       <DependentUpon>HospitalContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Job.cs">
-      <DependentUpon>HospitalContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\JobManager.cs">
       <DependentUpon>HospitalContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LabReport.cs">

@@ -4,24 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5f63c8414ca54bdc82eed7d3f7443710" Name="Diagram1">
+      <Diagram DiagramId="9d089efafbae45f79f2b6fcc70085924" Name="Diagram1">
+        <EntityTypeShape EntityType="kdh.Answer" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.Applicant" Width="1.5" PointX="8.25" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.department" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.DirtyWord" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.Doctor" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.DonateCreditCard" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="kdh.DonationContact" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="kdh.FAQ" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.DonationContact" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.FAQ" Width="1.5" PointX="13" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.Job" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.LabReport" Width="1.5" PointX="8.25" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="kdh.OnlineConsultationForm" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.OnlineConsultationForm" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.Patient" Width="1.5" PointX="6" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="kdh.Purpos" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.Purpos" Width="1.5" PointX="10.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.Question" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.Result" Width="1.5" PointX="10.5" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="kdh.Survey" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kdh.Survey" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.Testimonial" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.TestType" Width="1.5" PointX="8.25" PointY="15.125" IsExpanded="true" />
         <EntityTypeShape EntityType="kdh.User" Width="1.5" PointX="3.75" PointY="8.25" IsExpanded="true" />
+        <AssociationConnector Association="kdh.FK_Answers_Questions" ManuallyRouted="false" />
         <AssociationConnector Association="kdh.applicants_jobid_fk" ManuallyRouted="false" />
         <AssociationConnector Association="kdh.fk_dept" ManuallyRouted="false" />
         <AssociationConnector Association="kdh.FK_Testimonials_DepartmentId" ManuallyRouted="false" />
@@ -31,19 +34,7 @@
         <AssociationConnector Association="kdh.FK_LabReports_Patients" ManuallyRouted="false" />
         <AssociationConnector Association="kdh.FK_Results_LabReports" ManuallyRouted="false" />
         <AssociationConnector Association="kdh.FK_Patients_Users" ManuallyRouted="false" />
-<<<<<<< HEAD
         <AssociationConnector Association="kdh.FK_Results_TestTypes" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="kdh.Answer" Width="1.5" PointX="15.625" PointY="5" />
-        <EntityTypeShape EntityType="kdh.Question" Width="1.5" PointX="13.375" PointY="5" IsExpanded="true" />
-=======
-        <AssociationConnector Association="kdh.FK_Results_TestTypes" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="kdh.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="kdh.C__RefactorLog" Width="1.5" PointX="13.75" PointY="8.75" />
-        <EntityTypeShape EntityType="kdh.Answer" Width="1.5" PointX="16" PointY="5" />
-        <EntityTypeShape EntityType="kdh.JobManager" Width="1.5" PointX="13.75" PointY="10.75" />
-        <EntityTypeShape EntityType="kdh.Question" Width="1.5" PointX="13.75" PointY="5" />
->>>>>>> fdaf099a7e7d5e4a10af31425de04a3ed47da03c
-        <AssociationConnector Association="kdh.FK_Answers_Questions" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
