@@ -1,46 +1,91 @@
-﻿@model kdh.Models.Result
+﻿@model kdh.ViewModels.ReportResultVM
 
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/PatientPortal/_PatientPortal.cshtml";
 }
 
-<h2>Create</h2>
+<div class="container">
 
+    <div class="card mb-3">
+        <div class="card-header">
+            <h2 class="h5">@Model.LabReport.Patient.FirstName @Model.LabReport.Patient.LastName</h2>
+            <div>
+                Report Status: <span class="badge @(Model.LabReport.Status == "Complete" ? "badge-success" : "badge-secondary")">@Model.LabReport.Status</span>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-6">Issued on @Model.LabReport.IssueDate.Value.ToString("MMMM dd, yyyy")</div>
+                <div class="col-md-6">Collected on @Model.LabReport.CollectionDate.ToString("MMMM dd, yyyy")</div>
+            </div>
+            <div class="row border-bottom mb-3 pb-3">
+                <div class="col-md-6">Test Ordered by @Model.LabReport.OrderedBy</div>
+            </div>
+
+            <div class="row border d-none d-md-flex">
+                <div class="col-md-2 border bg-secondary text-white font-weight-bold text-center">Category</div>
+                <div class="col-md-2 border bg-secondary text-white font-weight-bold text-center">Tested Item</div>
+                <div class="col-md-2 border bg-secondary text-white font-weight-bold text-center">Max Ref.</div>
+                <div class="col-md-2 border bg-secondary text-white font-weight-bold text-center">Min Ref.</div>
+                <div class="col-md-2 border bg-secondary text-white font-weight-bold text-center">Result</div>
+                <div class="col-md-2 border bg-secondary text-white font-weight-bold text-center">Flag</div>
+            </div>
+            @foreach (var item in Model.LabReport.Results)
+            {
+                <div class="mb-4">
+                    <div class="row border">
+                        <div class="col-md-2 border"><span class="d-md-none font-weight-bold">Category: </span>@item.TestType.Category</div>
+                        <div class="col-md-2 border"><span class="d-md-none font-weight-bold">Tested Item: </span>@item.TestType.TestItem</div>
+                        <div class="col-md-2 border"><span class="d-md-none font-weight-bold">Max Ref.: </span>@item.TestType.MaxReference@item.TestType.Unit</div>
+                        <div class="col-md-2 border"><span class="d-md-none font-weight-bold">Min Ref.: </span>@item.TestType.MinReference@item.TestType.Unit</div>
+                        <div class="col-md-2 border"><span class="d-md-none font-weight-bold">Result: </span>@item.Result1</div>
+                        <div class="col-md-2 border"><span class="d-md-none font-weight-bold">Flag: </span>@item.Flag</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 border-right border-left border-bottom"><span class="font-weight-bold">Note: </span>@item.Note</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<p class="text-danger">* is a required field.</p>
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Result</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-group">
-            @Html.LabelFor(model => model.ReportId, "ReportId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TestType, "Category", htmlAttributes: new {@class = "control-label col-md-12" })
             <div class="col-md-10">
-                @Html.DropDownList("ReportId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ReportId, "", new { @class = "text-danger" })
+                @Html.DropDownList("Category", null, htmlAttributes: new { @id = "category_dd", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestType, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TestId, "TestId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("*Tested Item", htmlAttributes: new { @class = "control-label col-md-12" })
+            @*<div class="col-md-10">
+                @Html.DropDownList("TestItem", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestType, "", new { @class = "text-danger" })
+            </div>*@
             <div class="col-md-10">
-                @Html.DropDownList("TestId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TestId, "", new { @class = "text-danger" })
+                <select class="form-control" id="test_item_dd" name="TestId">
+
+                </select>
+                <span class="text-danger">@ViewBag.DropDownError</span>
+
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Flag, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Flag, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Flag, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Result1, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Result1, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Result1, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Result1, "", new { @class = "text-danger" })
@@ -48,21 +93,61 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        <div class="mb-4">
+            @Html.Label("*Add the result and", new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                <label class="d-block">@Html.RadioButton("add_result", true, new { @checked = "checked" }) Add more test results</label>
+                <label class="d-block">@Html.RadioButton("add_result", false) Return to the report</label>
+            </div>
+        </div>
+
+        @* Hidden Fields *@
+        <div class="form-group">
+            @Html.HiddenFor(model => model.LabReport.Id)
+        </div>
+
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </div>
     </div>
+
+    <div>
+        @Html.ActionLink("Back to Report", "Details", "LabReport", new { Id = Model.LabReport.Id }, null)
+    </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
+
+
+<script>
+    $("#category_dd").change(function (e) {
+        getTestItems(e.target.value);
+    });
+    function getTestItems(categoryName) {
+        $.ajax({
+            url: "/LabResults/ajax_getTestItemByCategory?categoryName=" + categoryName,
+            success: function (data) {
+                populateTestItems(data);
+            }
+        })
+    }
+    function populateTestItems(testItems) {
+        $("#test_item_dd").empty();
+        for (var i = 0; i < testItems.length; i++) {
+            $("#test_item_dd").append("<option value='" + testItems[i].Id + "'>" + testItems[i].TestItem + "</option>")
+        }
+    }
+    getTestItems('@ViewBag.DefaultCategory');
+    
+</script>

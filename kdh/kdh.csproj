@@ -206,7 +206,6 @@
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\TestimonialController.cs" />
-    <Compile Include="Controllers\PatientLabResultController.cs" />
     <Compile Include="Controllers\TestTypesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -292,6 +291,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Captcha.cs" />
     <Compile Include="Utils\CustomAuthorize.cs" />
+    <Compile Include="Utils\Extentions.cs" />
     <Compile Include="Utils\FutureDateValidator.cs" />
     <Compile Include="Utils\DateValidator.cs" />
     <Compile Include="Utils\ErrorHandler.cs" />
@@ -302,11 +302,14 @@
     <Compile Include="ViewModels\AccountRegistrationVM.cs" />
     <Compile Include="ViewModels\DoctorDepartment.cs" />
     <Compile Include="ViewModels\FAQsVM.cs" />
+    <Compile Include="ViewModels\LabReportVM.cs" />
     <Compile Include="ViewModels\PatientProfileVM.cs" />
     <Compile Include="ViewModels\PatientVM.cs" />
     <Compile Include="ViewModels\PatientRegistrationVM.cs" />
     <Compile Include="ViewModels\PurposesVM.cs" />
+    <Compile Include="ViewModels\ReportResultVM.cs" />
     <Compile Include="ViewModels\TestimonialVM.cs" />
+    <Compile Include="ViewModels\TestTypeVM.cs" />
     <Compile Include="ViewModels\UpdateAccountVM.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -383,15 +386,11 @@
     <Content Include="Views\LabReport\Index.cshtml" />
     <Content Include="Views\LabResults\Create.cshtml" />
     <Content Include="Views\LabResults\Delete.cshtml" />
-    <Content Include="Views\LabResults\Details.cshtml" />
     <Content Include="Views\LabResults\Edit.cshtml" />
-    <Content Include="Views\LabResults\Index.cshtml" />
     <Content Include="Views\TestTypes\Create.cshtml" />
     <Content Include="Views\TestTypes\Delete.cshtml" />
-    <Content Include="Views\TestTypes\Details.cshtml" />
     <Content Include="Views\TestTypes\Edit.cshtml" />
     <Content Include="Views\TestTypes\Index.cshtml" />
-    <Content Include="Views\PatientLabResult\Index.cshtml" />
     <Content Include="Views\Doctor\Add.cshtml" />
     <Content Include="Views\Doctor\Delete.cshtml" />
     <Content Include="Views\Doctor\Detail.cshtml" />
@@ -417,6 +416,8 @@
     <Content Include="Views\Shared\_LayoutNoSidebar.cshtml" />
     <Content Include="Views\Testimonial\_Testimonials_Admin.cshtml" />
     <Content Include="Views\Account\Unauthorized.cshtml" />
+    <Content Include="Views\Patient\Reports.cshtml" />
+    <Content Include="Views\Patient\ReportDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -42,14 +42,19 @@
             <div class="card-text">City: @p.City</div>
             <div class="card-text">Province: @p.Province</div>
             <div class="card-text">Postal Code: @p.Postal</div>
-            <a href="@Url.Action("PatientDetails", "Admin", new { id = p.Id })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Details</a>
-            <a href="@Url.Action("EditPatient", "Admin", new { id = p.Id })" class="btn btn-outline-primary btn-sm ml-2  my-1 col-md-3">Edit Patient</a>
-            <span>
+            <div class="row">
+                <a href="@Url.Action("PatientDetails", "Admin", new { id = p.Id })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Details</a>
+                <a href="@Url.Action("EditPatient", "Admin", new { id = p.Id })" class="btn btn-outline-primary btn-sm ml-2  my-1 col-md-3">Edit Patient</a>
                 @if (p.UserId.HasValue)
                 {
-                    <a href="@Url.Action("DeleteUser", "Admin", new { id = p.UserId })" class="btn btn-outline-danger btn-sm ml-2  my-1 col-md-3">Delete Account</a>
+                    <a href="@Url.Action("DeleteUser", "Admin", new { id = p.UserId })" class="btn btn-outline-danger btn-sm ml-2 my-1 col-md-3">Delete Account</a>
                 }
-            </span>
+            </div>
+            <div class="row my-2">
+                <a href="@Url.Action("Index", "LabReport", new { id = p.Id })" class="btn btn-outline-primary btn-sm ml-2 my-1 col-md-3">Update Lab Report</a>
+            </div>
+
+
         </div>
     </div>
         @* new { id = p.Id }  id should be the same as parameter of the action*@

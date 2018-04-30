@@ -9,56 +9,30 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>TestType</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TestItem)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TestItem)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaxReference)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaxReference)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MinReference)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MinReference)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Unit)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Unit)
-        </dd>
-
-    </dl>
+    <div class="container mb-3">
+        <div class="row border d-none d-md-flex">
+            <div class="col-md-3 border bg-secondary text-white font-weight-bold text-center">Category</div>
+            <div class="col-md-3 border bg-secondary text-white font-weight-bold text-center">Tested Item</div>
+            <div class="col-md-2 border bg-secondary text-white font-weight-bold text-center">Max Ref.</div>
+            <div class="col-md-2 border bg-secondary text-white font-weight-bold text-center">Min Ref.</div>
+            <div class="col-md-2 border bg-secondary text-white font-weight-bold text-center">Unit</div>
+        </div>
+        <div class="row border mb-3 mb-md-0">
+            <div class="col-md-3 border"><span class="d-md-none font-weight-bold">Category: </span>@Model.Category</div>
+            <div class="col-md-3 border"><span class="d-md-none font-weight-bold">Tested Item: </span>@Model.TestItem</div>
+            <div class="col-md-2 border"><span class="d-md-none font-weight-bold">Max Ref.: </span>@Model.MaxReference</div>
+            <div class="col-md-2 border"><span class="d-md-none font-weight-bold">Min Ref.: </span>@Model.MinReference</div>
+            <div class="col-md-2 border"><span class="d-md-none font-weight-bold">Unit: </span>@Model.Unit</div>
+        </div>
+    </div>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+        <div class="form-actions no-color mb-4">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </div>
+        <div>
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

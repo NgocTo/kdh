@@ -24,35 +24,28 @@
             <div class="row border-bottom mb-3 pb-3">
                 <div class="col-md-6">Test Ordered by @Model.OrderedBy</div>
             </div>
-            
+
             <div class="row border d-none d-lg-flex">
-                <div class="col-lg-2 border bg-secondary text-white font-weight-bold text-center">Category</div>
-                <div class="col-lg-2 border bg-secondary text-white font-weight-bold text-center">Tested Item</div>
+                <div class="col-lg-3 border bg-secondary text-white font-weight-bold text-center">Category</div>
+                <div class="col-lg-3 border bg-secondary text-white font-weight-bold text-center">Tested Item</div>
                 <div class="col-lg-2 border bg-secondary text-white font-weight-bold text-center">Ref. Range</div>
                 <div class="col-lg-2 border bg-secondary text-white font-weight-bold text-center">Result</div>
                 <div class="col-lg-2 border bg-secondary text-white font-weight-bold text-center">Flag</div>
-                <div class="col-lg-2 border bg-secondary text-white font-weight-bold text-center">Options</div>
             </div>
             @foreach (var item in Model.Results)
             {
                 <div class="mb-4">
                     <div class="row border">
-                        <div class="col-lg-2 border"><span class="d-lg-none font-weight-bold">Category: </span>@item.TestType.Category</div>
-                        <div class="col-lg-2 border"><span class="d-lg-none font-weight-bold">Tested Item: </span>@item.TestType.TestItem</div>
+                        <div class="col-lg-3 border"><span class="d-lg-none font-weight-bold">Category: </span>@item.TestType.Category</div>
+                        <div class="col-lg-3 border"><span class="d-lg-none font-weight-bold">Tested Item: </span>@item.TestType.TestItem</div>
                         <div class="col-lg-2 border"><span class="d-lg-none font-weight-bold">Ref. Range: </span>@item.TestType.MinReference - @item.TestType.MaxReference@item.TestType.Unit</div>
                         <div class="col-lg-2 border"><span class="d-lg-none font-weight-bold">Result: </span>@item.Result1</div>
                         <div class="col-lg-2 border"><span class="d-lg-none font-weight-bold">Flag: </span>@item.Flag</div>
-                        <div class="col-lg-2 border p-2">
-                            @Html.ActionLink("Edit", "Edit", "LabResults", new { Id = item.Id }, new { @class = "d-block btn btn-sm btn-outline-primary mb-1" })
-                            @Html.ActionLink("Delete", "Delete", "LabResults", new { Id = item.Id }, new { @class = "d-block btn btn-sm btn-outline-danger" })
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 border-right border-left border-bottom"><span class="font-weight-bold">Note: </span>@item.Note</div>
                     </div>
                 </div>
-
-
 
             }
 
@@ -64,9 +57,7 @@
 
 
 </div>
+
 <div>
-    @Html.ActionLink("Edit Report", "Edit", new { id = Model.Id })
-</div>
-<div>
-    @Html.ActionLink("Back to List", "Index", new { Id = ViewBag.PatientId })
+    @Html.ActionLink("Back to List", "Reports", new { Id = ViewBag.PatientId })
 </div>

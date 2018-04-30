@@ -8,6 +8,8 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
 </head>
 
 <body>
@@ -30,8 +32,8 @@
                             <h3 class="text-dark">Admin Menu</h3>
                             <div class="my-3">@ViewBag.AdminEmail</div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">@Html.ActionLink("Patient Registration", "PatientList", "Admin")</li>
-                                <li class="list-group-item">@Html.ActionLink("Lab Report", "PatientList", "Admin")</li>
+                                <li class="list-group-item">@Html.ActionLink("Manage Patient", "PatientList", "Admin")</li>
+                                <li class="list-group-item">@Html.ActionLink("Manage Test Items", "Index", "TestTypes")</li>
                                 <li class="list-group-item">@Html.ActionLink("Appointments", "PatientList", "Admin")</li>
                                 <li class="list-group-item">@Html.ActionLink("Admin Top", "Index", "Admin")</li>
                                 <li class="list-group-item"><a href="@Url.Action("Logout", "Account")" class="btn btn-outline-danger col-md-10">Logout</a></li>
@@ -43,7 +45,7 @@
                             <div>Logged in as @ViewBag.PatientName</div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">@Html.ActionLink("My Profile", "MyProfile", "Patient")</li>
-                                <li class="list-group-item">@Html.ActionLink("My Lab Results", "Index", "Patient")</li>
+                                <li class="list-group-item">@Html.ActionLink("My Lab Results", "Reports", "Patient")</li>
                                 <li class="list-group-item">@Html.ActionLink("My Appointments", "Index", "Patient")</li>
                                 <li class="list-group-item"><a href="@Url.Action("Logout", "Account")" class="btn btn-outline-danger col-md-10">Logout</a></li>
                             </ul>
@@ -65,8 +67,8 @@
     <!-- Footer -->
     @Html.Partial("~/Views/Shared/_Footer.cshtml")
 
-    @*<script src="~/Scripts/jquery-3.0.0.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>*@
+    @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
 

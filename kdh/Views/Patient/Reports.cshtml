@@ -8,11 +8,6 @@
 <h2 class="h4 mb-5">@ViewBag.PatientName -Lab Reports</h2>
 
 
-<div class="mb-3">
-    @Html.ActionLink("Create New Report", "Create", new { id = ViewBag.PatientId}, new { @class = "btn btn-primary" })
-</div>
-
-
 @foreach (var item in Model)
 {
     <div class="container border border-secondary rounded p-3 mb-4">
@@ -35,13 +30,7 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-outline-primary col-md-12 mb-3" })
-            </div>
-            <div class="col-md-4">
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-outline-primary col-md-12 mb-3" })
-            </div>
-            <div class="col-md-4">
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-outline-danger col-md-12" })
+                @Html.ActionLink("Details", "ReportDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-outline-primary col-md-12 mb-3" })
             </div>
         </div>
 
