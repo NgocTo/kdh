@@ -49,89 +49,87 @@
     <div class="tab-pane fade show active" id="nav-need-revision" role="tabpanel" aria-labelledby="nav-need-revision-tab">
         <p>This is the list of testimonials that need to be reviewed.</p>
         @foreach (var item in Model)
-         {
-             if (item.Reviewed == "NO")
-             {
-             <hr />
-             <div>
-                <div class="font-weight-bold lead">@Html.DisplayNameFor(model => model.Subject): @Html.DisplayFor(modelItem => item.Subject)</div>
-                <div>@Html.DisplayNameFor(model => model.Rate): @Html.DisplayFor(modelItem => item.Rate)/5</div>
-                <div>@Html.DisplayFor(modelItem => item.Content)</div>
+        {
+            if (item.Reviewed == "NO")
+            {
+                <hr />
                 <div>
-                    @Html.DisplayNameFor(model => model.DepartmentId): @Html.DisplayFor(modelItem => item.department.department_name)
+                    <div class="font-weight-bold lead">@Html.DisplayNameFor(model => model.Subject): @Html.DisplayFor(modelItem => item.Subject)</div>
+                    <div><span class="text-muted">@Html.DisplayNameFor(model => model.Rate):</span> @Html.DisplayFor(modelItem => item.Rate)/5</div>
+                    <div><span class="text-muted">@Html.DisplayNameFor(model => model.Content):</span> @Html.DisplayFor(modelItem => item.Content)</div>
+                    <div>
+                        <span class="text-muted">@Html.DisplayNameFor(model => model.DepartmentId):</span> @Html.DisplayFor(modelItem => item.department.department_name)
+                    </div>
+                    <div>
+                        <span class="text-muted">@Html.DisplayNameFor(model => model.Reviewed):</span> @Html.DisplayFor(modelItem => item.Reviewed)
+                    </div>
+                    <div><span class="text-muted">By:</span> @Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Role)</div>
+                    <div><span class="text-muted">On:</span> @Html.DisplayFor(modelItem => item.Timestamp)</div>
+                    <div>
+                        @Html.ActionLink("Edit", "Edit_Admin", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete_Admin", new { id = item.Id })
+                    </div>
                 </div>
-                 <div>
-                     @Html.DisplayNameFor(model => model.Reviewed): @Html.DisplayFor(modelItem => item.Reviewed)
-                 </div>
-                <div>By: @Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Role)</div>
-                <div>On: @Html.DisplayFor(modelItem => item.Timestamp)</div>
-                <div>
-                    @Html.ActionLink("Edit", "Edit_Admin", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete_Admin", new { id = item.Id })
-                </div>
-             </div>
-             }
-         }
+            }
+        }
     </div>
 
     <!-- Start of pending testimonial -->
     <div class="tab-pane fade" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
         <p>This is the list of testimonials that were moved here because of potentially bad content.</p>
         @foreach (var item in Model)
-         {
-             if (item.Reviewed == "PENDING")
-             {
+        {
+            if (item.Reviewed == "PENDING")
+            {
                 <hr />
                 <div>
                     <div class="font-weight-bold lead">@Html.DisplayNameFor(model => model.Subject): @Html.DisplayFor(modelItem => item.Subject)</div>
-                    <div>@Html.DisplayNameFor(model => model.Rate): @Html.DisplayFor(modelItem => item.Rate)/5</div>
-                    <div>@Html.DisplayFor(modelItem => item.Content)</div>
+                    <div><span class="text-muted">@Html.DisplayNameFor(model => model.Rate):</span> @Html.DisplayFor(modelItem => item.Rate)/5</div>
+                    <div><span class="text-muted">@Html.DisplayNameFor(model => model.Content):</span> @Html.DisplayFor(modelItem => item.Content)</div>
                     <div>
-                        @Html.DisplayNameFor(model => model.DepartmentId): @Html.DisplayFor(modelItem => item.department.department_name)
+                        <span class="text-muted">@Html.DisplayNameFor(model => model.DepartmentId):</span> @Html.DisplayFor(modelItem => item.department.department_name)
                     </div>
                     <div>
-                        @Html.DisplayNameFor(model => model.Reviewed): @Html.DisplayFor(modelItem => item.Reviewed)
+                        <span class="text-muted">@Html.DisplayNameFor(model => model.Reviewed):</span> @Html.DisplayFor(modelItem => item.Reviewed)
                     </div>
-                    <div>By: @Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Role)</div>
-                    <div>On: @Html.DisplayFor(modelItem => item.Timestamp)</div>
+                    <div><span class="text-muted">By:</span> @Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Role)</div>
+                    <div><span class="text-muted">On:</span> @Html.DisplayFor(modelItem => item.Timestamp)</div>
                     <div>
                         @Html.ActionLink("Edit", "Edit_Admin", new { id = item.Id }) |
                         @Html.ActionLink("Delete", "Delete_Admin", new { id = item.Id })
                     </div>
-
                 </div>
-             }
-         }
+            }
+        }
     </div>
 
     <!-- Start of published testimonial -->
     <div class="tab-pane fade" id="nav-published" role="tabpanel" aria-labelledby="nav-published-tab">
         <p>This is the list of all testimonials that were approved by admin.</p>
         @foreach (var item in Model)
-         {
-             if (item.Reviewed == "YES")
-             {
+        {
+            if (item.Reviewed == "YES")
+            {
                 <hr />
                 <div>
                     <div class="font-weight-bold lead">@Html.DisplayNameFor(model => model.Subject): @Html.DisplayFor(modelItem => item.Subject)</div>
-                    <div>@Html.DisplayNameFor(model => model.Rate): @Html.DisplayFor(modelItem => item.Rate)/5</div>
-                    <div>@Html.DisplayFor(modelItem => item.Content)</div>
+                    <div><span class="text-muted">@Html.DisplayNameFor(model => model.Rate):</span> @Html.DisplayFor(modelItem => item.Rate)/5</div>
+                    <div><span class="text-muted">@Html.DisplayNameFor(model => model.Content):</span> @Html.DisplayFor(modelItem => item.Content)</div>
                     <div>
-                        @Html.DisplayNameFor(model => model.DepartmentId): @Html.DisplayFor(modelItem => item.department.department_name)
+                        <span class="text-muted">@Html.DisplayNameFor(model => model.DepartmentId):</span> @Html.DisplayFor(modelItem => item.department.department_name)
                     </div>
                     <div>
-                        @Html.DisplayNameFor(model => model.Reviewed): @Html.DisplayFor(modelItem => item.Reviewed)
+                        <span class="text-muted">@Html.DisplayNameFor(model => model.Reviewed):</span> @Html.DisplayFor(modelItem => item.Reviewed)
                     </div>
-                    <div>By: @Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Role)</div>
-                    <div>On: @Html.DisplayFor(modelItem => item.Timestamp)</div>
+                    <div><span class="text-muted">By:</span> @Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Role)</div>
+                    <div><span class="text-muted">On:</span> @Html.DisplayFor(modelItem => item.Timestamp)</div>
                     <div>
                         @Html.ActionLink("Edit", "Edit_Admin", new { id = item.Id }) |
                         @Html.ActionLink("Delete", "Delete_Admin", new { id = item.Id })
                     </div>
-
                 </div>
-             }
-         }
+            }
+        }
     </div>
     <div class="tab-pane fade" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
         <p>This is the list of all testimonials from public.</p>
@@ -140,16 +138,16 @@
             <hr />
             <div>
                 <div class="font-weight-bold lead">@Html.DisplayNameFor(model => model.Subject): @Html.DisplayFor(modelItem => item.Subject)</div>
-                <div>@Html.DisplayNameFor(model => model.Rate): @Html.DisplayFor(modelItem => item.Rate)/5</div>
-                <div>@Html.DisplayFor(modelItem => item.Content)</div>
+                <div><span class="text-muted">@Html.DisplayNameFor(model => model.Rate):</span> @Html.DisplayFor(modelItem => item.Rate)/5</div>
+                <div><span class="text-muted">@Html.DisplayNameFor(model => model.Content):</span> @Html.DisplayFor(modelItem => item.Content)</div>
                 <div>
-                    @Html.DisplayNameFor(model => model.DepartmentId): @Html.DisplayFor(modelItem => item.department.department_name)
+                    <span class="text-muted">@Html.DisplayNameFor(model => model.DepartmentId):</span> @Html.DisplayFor(modelItem => item.department.department_name)
                 </div>
                 <div>
-                    @Html.DisplayNameFor(model => model.Reviewed): @Html.DisplayFor(modelItem => item.Reviewed)
+                    <span class="text-muted">@Html.DisplayNameFor(model => model.Reviewed):</span> @Html.DisplayFor(modelItem => item.Reviewed)
                 </div>
-                <div>By: @Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Role)</div>
-                <div>On: @Html.DisplayFor(modelItem => item.Timestamp)</div>
+                <div><span class="text-muted">By:</span> @Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Role)</div>
+                <div><span class="text-muted">On:</span> @Html.DisplayFor(modelItem => item.Timestamp)</div>
                 <div>
                     @Html.ActionLink("Edit", "Edit_Admin", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete_Admin", new { id = item.Id })
