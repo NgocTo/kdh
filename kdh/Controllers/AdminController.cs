@@ -29,6 +29,7 @@ namespace kdh.Controllers
             try
             {
                 ViewBag.AdminEmail = "Logged in as " + DisplayAdminEmail();
+                Session["email"] = DisplayAdminEmail();
                 return View();
             }
             catch (Exception e)

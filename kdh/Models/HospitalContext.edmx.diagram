@@ -32,6 +32,9 @@
         <AssociationConnector Association="kdh.FK_Results_LabReports" ManuallyRouted="false" />
         <AssociationConnector Association="kdh.FK_Patients_Users" ManuallyRouted="false" />
         <AssociationConnector Association="kdh.FK_Results_TestTypes" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="kdh.Answer" Width="1.5" PointX="15.625" PointY="5" />
+        <EntityTypeShape EntityType="kdh.Question" Width="1.5" PointX="13.375" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="kdh.FK_Answers_Questions" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

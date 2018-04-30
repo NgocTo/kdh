@@ -1,0 +1,92 @@
+﻿@model IEnumerable<kdh.Models.Question>
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Questions</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.question1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.create_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>*@
+
+    @foreach (var item in Model)
+    {
+        @*<tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.question1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.create_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+               @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                   @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Show Answer", "Index", "Answers", new { qid = item.Id }, null)
+                @Html.ActionLink("Give Answer", "Create", "Answers", new { qid = item.Id }, null)
+            </td>
+        </tr>*@
+
+
+        
+        <div class="card mb-3">
+            <div class="card-header bg-light">
+               
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <span class="font-weight-bold text-primary">
+                        @Html.DisplayNameFor(model => model.Email):
+                    </span>
+                    @Html.DisplayFor(modelItem => item.Email)
+
+                </div>
+                <div class="card-text">
+                    <span class="font-weight-bold text-primary">
+                        @Html.DisplayNameFor(model => model.subject):
+                    </span>
+                    @Html.DisplayFor(modelItem => item.subject)
+
+                </div>
+                <div class="card-text">
+                    <span class="font-weight-bold text-primary">
+                        @Html.DisplayNameFor(model => model.question1):
+                    </span>
+                    @Html.DisplayFor(modelItem => item.question1)
+                </div>
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-primary btn-sm ml-2 my-1 col-md-3" })
+                @Html.ActionLink("Show Answer", "Index", "Answers", new { qid = item.Id }, new { @class = "btn btn-outline-primary btn-sm ml-2 my-1 col-md-3" })
+                @Html.ActionLink("Give Answer", "Create", "Answers", new { qid = item.Id }, new { @class = "btn btn-outline-primary btn-sm ml-2 my-1 col-md-3" })
+            </div>
+        </div>
+    }
