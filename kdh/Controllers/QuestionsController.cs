@@ -71,6 +71,7 @@ namespace kdh.Controllers
                         db.Questions.Add(question);
                         db.SaveChanges();
                         ViewBag.sucess = "message received";
+                        ModelState.Clear();
                         return View();
                     }
                     return View(question);
