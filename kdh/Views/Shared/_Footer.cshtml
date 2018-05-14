@@ -2,13 +2,13 @@
 @{
     Layout = null;
 }
-
+        <div class="pt-5 text-danger text-center">This website is a part of the student projects and not a real hospital website.</div>
 <footer id="footer" class="mainfooter mt-5" role="contentinfo">
     <div class="text-center">
         <div class="py-4">
             <div class="row justify-content-center">
                 <div class="col-md-2">
-                    <h5><a href="#"><u>Patients &amp; Visitors</u></a></h5>
+                    <h5>Patients &amp; Visitors</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">General &amp; Visitor Info</a></li>
                         <li><a href="#">Programs &amp; Services</a></li>
@@ -16,23 +16,23 @@
                     </ul>
                 </div>
                 <div class="col-md-2">
-                    <h5><a href="#"><u>About Us</u></a></h5>
+                    <h5>About Us</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">History and Profile</a></li>
-                        <li><a href="#">Testimonials</a></li>
+                        <li><a href="@Url.Action("Index", "Testimonial")">Testimonials</a></li>
                         <li><a href="#">Quality &amp; Patient Safety</a></li>
                         <li><a href="#">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
-                    <h5><a href="#"><u>Careers</u></a></h5>
+                    <h5>Careers</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Career Opportunities</a></li>
+                        <li><a href="@Url.Action("Index", "Job")">Career Opportunities</a></li>
                         <li><a href="#">Volunteer Opportunities</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
-                    <h5><a href="#"><u>Foundation</u></a></h5>
+                    <h5>Foundation</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">Donations</a></li>
                         <li><a href="#">About the Foundation</a></li>
@@ -40,7 +40,7 @@
                     </ul>
                 </div>
                 <div class="col-md-2">
-                    <h5><a href="#"><u>Contact Us</u></a></h5>
+                    <h5>Contact Us</h5>
                     <ul class="list-unstyled">
                         <li><a href="@Url.Action("Create", "OnlineConsultationForms")">Online Consultation Form</a></li>
                         <li><a href="@Url.Action("Create", "Surveys")">Survey</a></li>
@@ -49,11 +49,7 @@
             </div>
         </div>
     </div>
-    <div>
-        <ul class="list-unstyled text-center">
-            <li class="pb-2 text-warning">*Please note that this website is a part of the student projects and not a real hospital website.</li>
-        </ul>
-    </div>
+
     <div class="pb-2 text-center">
         <div class="row justify-content-center">
             <div class="col-md-3" text-center><a href="@Url.Action("Login", "Account")">Admin Login</a></div>

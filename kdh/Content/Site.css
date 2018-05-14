@@ -32,14 +32,34 @@ html, body {
     overflow-x: hidden;
 }
 
-
+a {
+    text-decoration: none !important;
+    color: #10457A !important;
+}
+    a:hover {
+        text-decoration: none !important;
+        font-weight: bold;
+        color: #032B3F !important;
+    }
 #header {
-    background-color: #20396d;
     font-family: Lato;
     font-size: 1.1rem;
     letter-spacing: 0.1rem;
 }
-
+#title a {
+    color: #10457A !important;
+}
+.blue-background {
+    background-color: #10457A !important;
+    border: none !important;
+}
+#donate-btn {
+    border-color: #10457A !important;
+}
+#donate-btn:hover{
+    background-color: transparent !important;
+    font-weight: normal;
+}
 #body {
     font-family: Lato;
     letter-spacing: 0.05rem;
@@ -47,19 +67,21 @@ html, body {
 }
 
 #footer {
-    background-color: #20396d;
-    color: white;
+    background-color: #10457A !important;
+    color: #ffffff;
     font-family: Lato;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.05rem;
 }
-#footer a {
-    color: white;
-}
+    #footer a, #navigation a {
+        color: #ffffff !important;
+    }
+    #footer a:hover, #navigation a:hover {
+        font-weight: normal;
+        text-decoration: underline !important;
+        color: #ffffff !important;
+    }
 
-#navigation {
-    background-color: #17429b;
-    color:#fff;
-}
+
 .FAQ-BgColor {
     background-color: #20396d;
 }

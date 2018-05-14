@@ -4,15 +4,16 @@
 
     <!-- HEADER -->
 <header class="mb-5">
-    <div class="container-fluid" id="header">
-        <div class="row p-2 py-3 align-items-center " id="navigation">
-            <div class="col-1 text-center">
+    <div id="header">
+    <div class="container-fluid">
+        <div class="row p-2 py-3 align-items-center" id="title">
+            <div class="col-1">
                     <a href="@Url.Action("Index", "Home")">
                         <img style="width: 100%; height: auto; min-width:40px; max-width:70px;" src="~/Images/LOGO.png" />
                     </a>
             </div>
             <div class="col-md-7 d-none d-md-block pr-0">
-                <h2><a href="@Url.Action("Index", "Home")" class="h3 text-white font-weight-bold">Humber and District Hospital</a></h2>
+                <h2><a href="@Url.Action("Index", "Home")" class="h3 font-weight-bold">Humber and District Hospital</a></h2>
             </div>
             <div class="offset-1 col-4 col-md-2">
                 <form>
@@ -22,30 +23,29 @@
                     </select>
                 </form>
             </div>
-            <div class="col-3 col-md-1">
-                <a href="@Url.Action("MakeDonation", "Donation")" class="btn btn-danger btn-sm">Donate</a>
+            <div class="col-3 col-md-1 text-right">
+                <a href="@Url.Action("MakeDonation", "Donation")" class="btn btn-outline-primary btn-sm" id="donate-btn">Donate</a>
             </div>
             <div class="col-1">
-                <button class="navbar-toggler navbar-dark d-block d-md-none text-right" type="button" data-toggle="collapse" data-target="#toggleMenu" aria-controls="toggleMenu"
+                <button class="navbar-toggler navbar-light d-block d-md-none text-right" type="button" data-toggle="collapse" data-target="#toggleMenu" aria-controls="toggleMenu"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
-
         </div> <!-- end of 1st row -->
-
-        <nav class="navbar navbar-expand-md" role="navigation">
+        </div>
+        <nav class="navbar navbar-expand-md blue-background" role="navigation" id="navigation">
             <div class="row collapse navbar-collapse" id="toggleMenu">
                 <ul class="navbar-nav col-md-9 text-center">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white mr-lg-2" data-toggle="dropdown" href="#">Patient &amp; Visitor</a>
-                        <div class="dropdown-menu">
-                            <a href="@Url.Action("Login", "Account")" class="dropdown-item">Patient Portal</a>
+                        <div class="dropdown-menu blue-background">
+                            <a href="@Url.Action("Login", "Account")" class="mx-3">Patient Portal</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white mr-lg-2" data-toggle="dropdown" href="#">About Us</a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu blue-background">
                             <a href="@Url.Action("PublicView", "Doctor")" class="dropdown-item">Doctor's List</a>
                             <a href="@Url.Action("Details", "FAQ")" class="dropdown-item">FAQ</a>
                             <a href="@Url.Action("Index", "Testimonial")" class="dropdown-item">Testimonial</a>
@@ -54,7 +54,7 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white mr-lg-2" data-toggle="dropdown" href="#">Career &amp; Volunteer</a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu blue-background">
                             <a href="@Url.Action("Index", "Job")" class="dropdown-item">Career Opportunities</a>
                             <a href="#" class="dropdown-item">Volunteer opportunities</a>
                         </div>
@@ -66,7 +66,7 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white mr-lg-2" data-toggle="dropdown" href="#">Contact Us</a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu blue-background">
                             <a href="@Url.Action("Create", "OnlineConsultationForms")" class="dropdown-item">Online Consultation Form</a>
                             <a href="@Url.Action("Create", "Surveys")" class="dropdown-item">Survey</a>
                             <a href="@Url.Action("Create", "Questions")" class="dropdown-item">Ask Query</a>
@@ -84,11 +84,11 @@
                 </div>
             </div>
         </nav>
-        <div>
-            <ul class="list-unstyled text-center">
-                <li class="ml-3 pb-2 text-warning">*Please note that this website is a part of the student projects and not a real hospital website.</li>
-            </ul>
-        </div>
+        
 
     </div><!-- end of container fluid -->
+    <div>
+            <div class="p-2 text-danger text-center">This website is a part of the student projects and not a real hospital website.</div>
+
+    </div>
 </header>
