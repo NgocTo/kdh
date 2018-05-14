@@ -119,6 +119,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\building.jpg" />
     <Content Include="Images\LOGO.png" />
     <Content Include="Models\HospitalContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

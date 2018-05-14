@@ -45,6 +45,7 @@ a {
     font-family: Lato;
     font-size: 1.1rem;
     letter-spacing: 0.1rem;
+    background-color: #E8ECEF;
 }
 #title a {
     color: #10457A !important;
@@ -53,6 +54,10 @@ a {
     background-color: #10457A !important;
     border: none !important;
 }
+#navigation ul li a:hover {
+    background-color: #10457A;
+}
+
 #donate-btn {
     border-color: #10457A !important;
 }
