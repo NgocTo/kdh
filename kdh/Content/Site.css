@@ -32,11 +32,11 @@ html, body {
     overflow-x: hidden;
 }
 
-a {
+#header a {
     text-decoration: none !important;
     color: #10457A !important;
 }
-    a:hover {
+    #header a:hover {
         text-decoration: none !important;
         font-weight: bold;
         color: #032B3F !important;
@@ -65,6 +65,21 @@ a {
     background-color: transparent !important;
     font-weight: normal;
 }
+.btn-lght {
+    color: #212529;
+    background-color: #e2e6ea !important;
+    border-color: #f8f9fa
+}
+
+    .btn-lght:hover {
+        color: #212529;
+        background-color: #e2e6ea !important;
+        border-color: #dae0e5
+    }
+
+    .btn-lght.focus, .btn-light:focus {
+        box-shadow: 0 0 0 .2rem rgba(248,249,250,.5)
+    }
 #body {
     font-family: Lato;
     letter-spacing: 0.05rem;

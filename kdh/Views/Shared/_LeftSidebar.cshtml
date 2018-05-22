@@ -23,7 +23,7 @@
                     <li class="list-group-item">@Html.ActionLink("Survey", "Index", "Surveys")</li>
                     <li class="list-group-item">@Html.ActionLink("Online Consultation Form", "Index", "OnlineConsultationForms")</li>
                     <li class="list-group-item">@Html.ActionLink("Questions", "Index", "Questions")</li>
-                    <li class="list-group-item"><a href="@Url.Action("Logout", "Account")" class="btn btn-outline-danger col-md-10">Logout</a></li>
+                    <li class="list-group-item text-center"><a href="@Url.Action("Logout", "Account")" class="btn btn-light">Logout</a></li>
                 </ul>
             }
             // Only for patient
@@ -36,7 +36,7 @@
                     <li class="list-group-item">@Html.ActionLink("My Appointments", "Index", "Patient")</li>
                     <li class="list-group-item">@Html.ActionLink("Survey", "Create", "Surveys")</li>
                     <li class="list-group-item">@Html.ActionLink("Online Consultation Form", "Create", "OnlineConsultationForms")</li>
-                    <li class="list-group-item"><a href="@Url.Action("Logout", "Account")" class="btn btn-danger">Logout</a></li>
+                    <li class="list-group-item text-center"><a href="@Url.Action("Logout", "Account")" class="btn btn-light">Logout</a></li>
                 </ul>
 
             }
@@ -47,7 +47,7 @@
                     <li class="list-group-item">@Html.ActionLink("Create new job posting", "Create", "Job")</li>
                     <li class="list-group-item">@Html.ActionLink("See Applicants", "Index_Admin", "JobApplicant")</li>
                     <li class="list-group-item">@Html.ActionLink("Doctor List", "Index", "Doctor")</li>
-                    <li class="list-group-item"><a href="@Url.Action("JobLogout", "Account")" class="btn btn-danger">Logout</a></li>
+                    <li class="list-group-item text-center"><a href="@Url.Action("JobLogout", "Account")" class="btn btn-lght">Logout</a></li>
                 </ul>
             }
 
